@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 61adef6dadf19594da59523be8c0e4a8
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Tactico
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 60109c1c59059de4784f000d7ead021b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
