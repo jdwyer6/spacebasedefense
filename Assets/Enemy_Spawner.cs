@@ -80,13 +80,6 @@ public class Enemy_Spawner : MonoBehaviour
             spawnEnemy = true;
             level++;
             enemyMovementSpeedMultiplier += enemyMovementSpeedMultiplierAmountToAddEachLevel;
-            // foreach (var enemy in enemies)
-            // {
-            //     Enemy_Movement enemyMovement = enemy.GetComponent<Enemy_Movement>();
-            //     if(enemyMovement) {
-            //         enemyMovement.speed *= enemyMovementSpeedMultiplier;
-            //     }
-            // }
             waveText.text = "Wave " + level.ToString();
             StartCoroutine(SpawnEnemy());
         }

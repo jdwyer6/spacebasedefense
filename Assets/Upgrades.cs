@@ -60,25 +60,26 @@ public class Upgrades : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(pickups >= pickupsNeededForNextUpgrade) {
+        if(pickups >= pickupsNeededForNextUpgrade && !menuOpen) {
+            menuOpen = true;
             OpenUpgradeMenu();
         }
 
         pickupSlider.value = Mathf.Lerp(pickupSlider.value, targetSliderValue, Time.deltaTime * sliderSpeed);
 
-        if (Input.GetKeyDown(KeyCode.Tab)){
-            if(menuOpen){
-                CloseUpgradesMenu();
-            }else{
-                OpenUpgradeMenu();
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.Tab)){
+        //     if(menuOpen){
+        //         CloseUpgradesMenu();
+        //     }else{
+        //         OpenUpgradeMenu();
+        //     }
+        // }
 
-        if(upgradeMenu.activeInHierarchy){
-            menuOpen = true;
-        }else{
-            menuOpen = false;
-        }
+        // if(upgradeMenu.activeInHierarchy){
+        //     menuOpen = true;
+        // }else{
+        //     menuOpen = false;
+        // }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -125,7 +126,8 @@ public class Upgrades : MonoBehaviour
             am.Play("UI_Select");
             am.Play("Upgrade_UI");
             speedBoostParticles.SetActive(true);
-            StartCoroutine(CloseUpgradesMenu());
+            ResetAndUpdatePickups();
+            CloseUpgradesMenu();
         }else{
             am.Play("UI_Disabled");
         }
@@ -139,7 +141,8 @@ public class Upgrades : MonoBehaviour
             am.Play("UI_Select");
             am.Play("Upgrade_UI");
             GetComponent<Player_Health>().Heal(100);
-            StartCoroutine(CloseUpgradesMenu());
+            ResetAndUpdatePickups();
+            CloseUpgradesMenu();
         }else{
             am.Play("UI_Disabled");
         }
@@ -157,7 +160,8 @@ public class Upgrades : MonoBehaviour
             am.Play("UI_Select");
             am.Play("Upgrade_UI");
             //TODO Add new gun?
-            StartCoroutine(CloseUpgradesMenu());
+            ResetAndUpdatePickups();
+            CloseUpgradesMenu();
         }else{
             am.Play("UI_Disabled");
         }
@@ -167,21 +171,30 @@ public class Upgrades : MonoBehaviour
         upgradeMenu.SetActive(true);
         menuOpen = true;
         am.Play("Upgrade_UI");
-        pickups = 0;
-        pickupsNeededForNextUpgrade *= pickupLevelMultiplier;
         Time.timeScale = 0;
         pickupSlider.maxValue = pickupsNeededForNextUpgrade;
         pickupSlider.value = pickups;  
     }
 
-    IEnumerator CloseUpgradesMenu() {
-        Time.timeScale = 1;
-        yield return new WaitForSeconds(.2f);
+    void CloseUpgradesMenu() {
+        
+         Time.timeScale = 1;
         upgradeMenu.SetActive(false);
+        Debug.Log("time is called!");
         menuOpen = false;
+        foreach (var projectile in GameObject.FindGameObjectsWithTag("Projectile_Destructible"))
+        {
+            projectile.SetActive(false);
+        }
     }
 
     public void hover() {
         am.Play("UI_Hover");
+    }
+
+    
+    void ResetAndUpdatePickups(){
+        pickupsNeededForNextUpgrade *= pickupLevelMultiplier;
+        pickups = 0;
     }
 }
