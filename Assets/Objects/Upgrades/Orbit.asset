@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd54534695838d44986c19881dab85fc, type: 3}
-  m_Name: Arsenist
+  m_Name: Orbit
   m_EditorClassIdentifier: 
-  upgradeName: Arsenist
-  icon: {fileID: 21300000, guid: b6f4a58d98f16494fa283efd7178e215, type: 3}
-  value: 1.5
-  title: Flaming Bullets
-  description: 
-  upgradeLogic: 2
+  upgradeName: Orbit
+  icon: {fileID: 21300000, guid: d0bae29cf2a37fc459127763e6f6b5ab, type: 3}
+  value: 10
+  title: Orbital Assassin
+  description: Projectile orbits around your ship.
+  upgradeLogic: 4

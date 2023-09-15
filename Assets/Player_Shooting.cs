@@ -9,6 +9,7 @@ public class Player_Shooting : MonoBehaviour
     public Vector2 shootingOffset = new Vector2(0, 0.5f); 
     private AudioManager am;
     public float autoShootingInterval = .2f;
+    public GameObject flamingProjectiles;
 
     private void Start() {
         am = FindObjectOfType<AudioManager>();
@@ -56,6 +57,11 @@ public class Player_Shooting : MonoBehaviour
 
         // Instantiate the projectile
         GameObject projectile = Instantiate(projectilePrefab, (Vector2)transform.position, Quaternion.identity);
+        if(GetComponent<Upgrades>().arsenAcquired) {
+            GameObject particles = Instantiate(flamingProjectiles, projectile.transform.position, Quaternion.identity);
+            particles.transform.SetParent(projectile.transform);
+            projectile.GetComponent<Projectile>().damage*=1.5f;
+        }
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
         Projectile projectileScript = projectile.GetComponent<Projectile>();

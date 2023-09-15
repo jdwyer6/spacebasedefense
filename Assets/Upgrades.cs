@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 public class Upgrades : MonoBehaviour
 {
     private float pickups = 0;
-    float pickupsNeededForNextUpgrade = 5;
+    float pickupsNeededForNextUpgrade = 7;
     float pickupLevelMultiplier = 1.2f;
     AudioManager am;
     private GameObject gm;
@@ -149,7 +149,17 @@ public class Upgrades : MonoBehaviour
     }
 
     public void arsen(GameObject button) {
-
+        if(!arsenAcquired) {
+            arsenAcquired = true;
+            button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
+            button.GetComponent<Button>().interactable = false;
+            am.Play("UI_Select");
+            am.Play("Upgrade_UI");
+            ResetAndUpdatePickups();
+            CloseUpgradesMenu();
+        }else{
+            am.Play("UI_Disabled");
+        }
     }
 
     public void auto(GameObject button) {
