@@ -17,38 +17,41 @@ public class Player_Shooting : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            if(GetComponent<Upgrades>().autoAcquired){
-                StartCoroutine(ShootAutomatic(Vector2.up, KeyCode.UpArrow));
-            }else{
-                Shoot(Vector2.up);
+        if(GetComponent<Upgrades>().menuOpen == false){
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if(GetComponent<Upgrades>().autoAcquired){
+                    StartCoroutine(ShootAutomatic(Vector2.up, KeyCode.UpArrow));
+                }else{
+                    Shoot(Vector2.up);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                if(GetComponent<Upgrades>().autoAcquired){
+                    StartCoroutine(ShootAutomatic(Vector2.down, KeyCode.DownArrow));
+                }else{
+                    Shoot(Vector2.down);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                if(GetComponent<Upgrades>().autoAcquired){
+                    StartCoroutine(ShootAutomatic(Vector2.left, KeyCode.LeftArrow));
+                }else{
+                    Shoot(Vector2.left);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                if(GetComponent<Upgrades>().autoAcquired){
+                    StartCoroutine(ShootAutomatic(Vector2.right, KeyCode.RightArrow));
+                }else{
+                    Shoot(Vector2.right);
+                }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if(GetComponent<Upgrades>().autoAcquired){
-                StartCoroutine(ShootAutomatic(Vector2.down, KeyCode.DownArrow));
-            }else{
-                Shoot(Vector2.down);
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            if(GetComponent<Upgrades>().autoAcquired){
-                StartCoroutine(ShootAutomatic(Vector2.left, KeyCode.LeftArrow));
-            }else{
-                Shoot(Vector2.left);
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            if(GetComponent<Upgrades>().autoAcquired){
-                StartCoroutine(ShootAutomatic(Vector2.right, KeyCode.RightArrow));
-            }else{
-                Shoot(Vector2.right);
-            }
-        }
+
     }
 
     void Shoot(Vector2 direction)

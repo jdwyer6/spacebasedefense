@@ -28,12 +28,19 @@ public class Upgrades : MonoBehaviour
     public GameObject upgradeGroup;
 
     [Header("Upgrade Booleans")]
-    public bool speedAcquired;
-    public bool healthAcquired;
-    public bool arsenAcquired;
-    public bool autoAcquired;
+    public bool speedAcquired = false;
+    public bool healthAcquired = false;
+    public bool arsenAcquired = false;
+    public bool autoAcquired = false;
+    public bool empAcquired = false;
 
     public GameObject speedBoostParticles;
+
+    private Button[] upgradeButtons;
+    private EventSystem eventSystem;
+    int currentMenuHovered = 0;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,11 +48,6 @@ public class Upgrades : MonoBehaviour
         am = FindObjectOfType<AudioManager>();
         gm = GameObject.FindGameObjectWithTag("GM");
         upgrades = gm.GetComponent<Data>().upgrades;
-
-        speedAcquired = false;
-        healthAcquired = false;
-        arsenAcquired = false;
-        autoAcquired = false;
         
         if (pickupSlider)
         {
@@ -55,6 +57,9 @@ public class Upgrades : MonoBehaviour
             targetSliderValue = pickups;
         }
         SetUpgrades();
+        upgradeButtons = upgradeGroup.GetComponentsInChildren<Button>();
+        eventSystem = EventSystem.current;
+
     }
 
     // Update is called once per frame
@@ -67,19 +72,46 @@ public class Upgrades : MonoBehaviour
 
         pickupSlider.value = Mathf.Lerp(pickupSlider.value, targetSliderValue, Time.deltaTime * sliderSpeed);
 
-        // if (Input.GetKeyDown(KeyCode.Tab)){
-        //     if(menuOpen){
-        //         CloseUpgradesMenu();
-        //     }else{
-        //         OpenUpgradeMenu();
-        //     }
-        // }
 
-        // if(upgradeMenu.activeInHierarchy){
-        //     menuOpen = true;
-        // }else{
-        //     menuOpen = false;
-        // }
+        if (menuOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                // Reset color of previously hovered button
+                if (currentMenuHovered >= 0)
+                    upgradeButtons[currentMenuHovered].GetComponent<Image>().color = Color.white; 
+
+                currentMenuHovered--;
+                if (currentMenuHovered < 0) currentMenuHovered = upgradeButtons.Length - 1; 
+
+                // Set darker color for currently hovered button
+                upgradeButtons[currentMenuHovered].GetComponent<Image>().color = Color.gray; 
+
+                eventSystem.SetSelectedGameObject(upgradeButtons[currentMenuHovered].gameObject);
+                am.Play("UI_Hover");
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                // Reset color of previously hovered button
+                if (currentMenuHovered >= 0)
+                    upgradeButtons[currentMenuHovered].GetComponent<Image>().color = Color.white;
+
+                currentMenuHovered++;
+                if (currentMenuHovered >= upgradeButtons.Length) currentMenuHovered = 0;
+
+                // Set darker color for currently hovered button
+                upgradeButtons[currentMenuHovered].GetComponent<Image>().color = Color.gray;
+
+                eventSystem.SetSelectedGameObject(upgradeButtons[currentMenuHovered].gameObject);
+                am.Play("UI_Hover");
+            }
+            else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                upgradeButtons[currentMenuHovered].onClick.Invoke();
+            }
+        }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -89,7 +121,6 @@ public class Upgrades : MonoBehaviour
             Instantiate(pickupParticles, other.transform.position, Quaternion.identity);
             targetSliderValue = pickups;
             Destroy(other.gameObject);
-        
         }
     }
 
@@ -112,6 +143,9 @@ public class Upgrades : MonoBehaviour
                     break;
                 case UpgradeLogicType.auto:
                     newUpgrade.GetComponent<Button>().onClick.AddListener(() => auto(newUpgrade));
+                    break;
+                case UpgradeLogicType.emp:
+                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => emp(newUpgrade));
                     break;
             }
         }
@@ -169,7 +203,20 @@ public class Upgrades : MonoBehaviour
             button.GetComponent<Button>().interactable = false;
             am.Play("UI_Select");
             am.Play("Upgrade_UI");
-            //TODO Add new gun?
+            ResetAndUpdatePickups();
+            CloseUpgradesMenu();
+        }else{
+            am.Play("UI_Disabled");
+        }
+    }
+
+    public void emp(GameObject button) {
+        if(!empAcquired) {
+            empAcquired = true;
+            button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
+            button.GetComponent<Button>().interactable = false;
+            am.Play("UI_Select");
+            am.Play("Upgrade_UI");
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
@@ -207,4 +254,5 @@ public class Upgrades : MonoBehaviour
         pickupsNeededForNextUpgrade *= pickupLevelMultiplier;
         pickups = 0;
     }
+
 }

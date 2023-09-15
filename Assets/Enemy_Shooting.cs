@@ -34,10 +34,8 @@ public class Enemy_Shooting : MonoBehaviour
         // If we have a reference to the player
         if (player != null)
         {
-            // Decrease the shoot timer
             shootTimer -= Time.deltaTime;
 
-            // If it's time to shoot
             if (shootTimer <= 0 && Vector3.Distance(transform.position, player.position) < distanceFromPlayerToStartShooting)
             {
                 ShootAtPlayer();
