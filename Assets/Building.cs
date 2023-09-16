@@ -39,7 +39,7 @@ public class Building : MonoBehaviour
 
         bricksText.text = bricks.ToString();
 
-        if(GetComponent<Upgrades>().menuOpen) {
+        if(GameGlobals.Instance.globalMenuOpen) {
             canBuild = false;
         }else{
             canBuild = true;

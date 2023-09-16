@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Player_Shooting : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Player_Shooting : MonoBehaviour
     private AudioManager am;
     public float autoShootingInterval = .2f;
     public GameObject flamingProjectiles;
+    public CinemachineImpulseSource impulseSource;
+    public GameObject muzzleParticles;
 
     private void Start() {
         am = FindObjectOfType<AudioManager>();
@@ -17,9 +20,11 @@ public class Player_Shooting : MonoBehaviour
 
     void Update()
     {
-        if(GetComponent<Upgrades>().menuOpen == false){
+        if(GameGlobals.Instance.globalMenuOpen == false){
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
+                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+                SetFlashRotation(particles, -90f);
                 if(GetComponent<Upgrades>().autoAcquired){
                     StartCoroutine(ShootAutomatic(Vector2.up, KeyCode.UpArrow));
                 }else{
@@ -28,6 +33,8 @@ public class Player_Shooting : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
+                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, -1, 0), Quaternion.identity);
+                SetFlashRotation(particles, 90f);
                 if(GetComponent<Upgrades>().autoAcquired){
                     StartCoroutine(ShootAutomatic(Vector2.down, KeyCode.DownArrow));
                 }else{
@@ -36,6 +43,8 @@ public class Player_Shooting : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
+                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(-1, 0, 0), Quaternion.identity);
+                SetFlashRotation(particles, -180f);
                 if(GetComponent<Upgrades>().autoAcquired){
                     StartCoroutine(ShootAutomatic(Vector2.left, KeyCode.LeftArrow));
                 }else{
@@ -44,6 +53,8 @@ public class Player_Shooting : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
+                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+                SetFlashRotation(particles, 180f);
                 if(GetComponent<Upgrades>().autoAcquired){
                     StartCoroutine(ShootAutomatic(Vector2.right, KeyCode.RightArrow));
                 }else{
@@ -57,7 +68,7 @@ public class Player_Shooting : MonoBehaviour
     void Shoot(Vector2 direction)
     {
         am.Play("Shot");
-
+        impulseSource.GenerateImpulse();
         // Instantiate the projectile
         GameObject projectile = Instantiate(projectilePrefab, (Vector2)transform.position, Quaternion.identity);
         if(GetComponent<Upgrades>().arsenAcquired) {
@@ -102,5 +113,19 @@ public class Player_Shooting : MonoBehaviour
             yield return new WaitForSeconds(autoShootingInterval);
         }
 
+    }
+
+    private void SetFlashRotation(GameObject particles, float rotationDegree)
+    {
+        Transform flashTransform = particles.transform.Find("Flash");
+        if (flashTransform != null)
+        {
+            ParticleSystem flashParticles = flashTransform.GetComponent<ParticleSystem>();
+            if (flashParticles != null)
+            {
+                var main = flashParticles.main;
+                main.startRotation = rotationDegree * Mathf.Deg2Rad;
+            }
+        }
     }
 }

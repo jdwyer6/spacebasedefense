@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         thisCollider = GetComponent<Collider2D>();
-        Invoke("DestroySelf", 3f);
+        Invoke("DestroySelf", 10f);
         am = FindObjectOfType<AudioManager>();
         gm = GameObject.FindGameObjectWithTag("GM");
         data = gm.GetComponent<Data>();

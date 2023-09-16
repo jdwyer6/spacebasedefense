@@ -70,7 +70,11 @@ public class Upgrades : MonoBehaviour
             OpenUpgradeMenu();
         }
 
-        pickupSlider.value = Mathf.Lerp(pickupSlider.value, targetSliderValue, Time.deltaTime * sliderSpeed);
+        if(Mathf.Abs(pickupSlider.value - targetSliderValue) < 0.01f) {
+            pickupSlider.value = targetSliderValue;
+        } else {
+            pickupSlider.value = Mathf.Lerp(pickupSlider.value, targetSliderValue, Time.deltaTime * sliderSpeed);
+        }
 
 
         if (menuOpen)
@@ -227,6 +231,7 @@ public class Upgrades : MonoBehaviour
     void OpenUpgradeMenu() {
         upgradeMenu.SetActive(true);
         menuOpen = true;
+        GameGlobals.Instance.globalMenuOpen = true;
         am.Play("Upgrade_UI");
         Time.timeScale = 0;
         pickupSlider.maxValue = pickupsNeededForNextUpgrade;
@@ -235,10 +240,11 @@ public class Upgrades : MonoBehaviour
 
     void CloseUpgradesMenu() {
         
-         Time.timeScale = 1;
+        Time.timeScale = 1;
         upgradeMenu.SetActive(false);
         Debug.Log("time is called!");
         menuOpen = false;
+        GameGlobals.Instance.globalMenuOpen = false;
         foreach (var projectile in GameObject.FindGameObjectsWithTag("Projectile_Destructible"))
         {
             projectile.SetActive(false);
@@ -253,6 +259,8 @@ public class Upgrades : MonoBehaviour
     void ResetAndUpdatePickups(){
         pickupsNeededForNextUpgrade *= pickupLevelMultiplier;
         pickups = 0;
+        pickupSlider.value = 0;
+        targetSliderValue = pickups;
     }
 
 }

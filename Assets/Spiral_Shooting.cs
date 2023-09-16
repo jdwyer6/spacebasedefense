@@ -14,6 +14,7 @@ public class Spiral_Shooting : MonoBehaviour
     private Transform playerTransform;
     public float projectileSpeed = 5f;
     public GameObject player;
+    private AudioManager am;
 
     private void Update()
     {
@@ -23,8 +24,9 @@ public class Spiral_Shooting : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        am = FindObjectOfType<AudioManager>();
         StartCoroutine(ShootingRoutine());
-
+        
 
     }
 
@@ -50,11 +52,19 @@ public class Spiral_Shooting : MonoBehaviour
     void ShootProjectile(Transform barrelPos)
     {
         GameObject projectile = Instantiate(projectilePrefab, barrelPos.position, barrelPos.rotation);
-        Vector2 direction = (player.transform.position - transform.position).normalized;
+        am.Play("Enemy_Shot");
+        SpriteRenderer sr = projectile.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.color = Color.red;
+        }
+        
+        // Instead of aiming towards the player, just use the up direction of the barrel for shooting straight
+        Vector2 direction = barrelPos.up; 
+        
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         // Set the velocity of the projectile
         rb.velocity = direction * projectileSpeed;
-
 
         Collider2D projectileCollider = projectile.GetComponent<Collider2D>();
         Collider2D enemyCollider = GetComponent<Collider2D>();
@@ -64,4 +74,5 @@ public class Spiral_Shooting : MonoBehaviour
             Physics2D.IgnoreCollision(projectileCollider, enemyCollider);
         }
     }
+
 }

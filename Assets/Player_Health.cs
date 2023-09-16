@@ -14,6 +14,8 @@ public class Player_Health : MonoBehaviour
     private Data data;
     private float targetHealthValue; // The target value for the health slider
     public float healthSliderSpeed = 5f;
+    public bool isDead;
+    bool isChangingColor = false;
 
     public Sprite[] sprites;
     public SpriteRenderer spriteRenderer;
@@ -26,12 +28,17 @@ public class Player_Health : MonoBehaviour
         am = FindObjectOfType<AudioManager>();
         targetHealthValue = currentHealth; // Initialize the target value
         UpdateHealthBar();
+        isDead = false;
     }
 
     private void Update() {
         if (healthBar)
         {
             healthBar.value = Mathf.Lerp(healthBar.value, targetHealthValue / maxHealth, Time.deltaTime * healthSliderSpeed);
+        }
+
+        if(currentHealth <= 0){
+            isDead = true;
         }
     }
 
@@ -83,14 +90,32 @@ public class Player_Health : MonoBehaviour
     }
 
     IEnumerator ChangeColor() {
-        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        Color currentColor = spriteRenderer.color;
-        if(spriteRenderer != null)
-        {
-            spriteRenderer.color = new Color(1.0f, 0.286f, 0.286f);
-        }
-        yield return new WaitForSeconds(.1f);
-        spriteRenderer.color = currentColor;
+        // SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        // Color currentColor = spriteRenderer.color;
+        // if(spriteRenderer != null)
+        // {
+        //     spriteRenderer.color = new Color(1.0f, 0.286f, 0.286f);
+        // }
+        // StartCoroutine(gm.GetComponent<Juicer>().ApplyHitStop(60));
+        // yield return new WaitForSeconds(.1f);
+        // spriteRenderer.color = currentColor;
+            if(isChangingColor)
+                yield break;
+
+            isChangingColor = true;
+
+            SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            
+            if(spriteRenderer != null)
+            {
+                Color currentColor = spriteRenderer.color;
+                spriteRenderer.color = new Color(1.0f, 0.286f, 0.286f);
+                StartCoroutine(gm.GetComponent<Juicer>().ApplyHitStop(60));
+                yield return new WaitForSeconds(.1f);
+                spriteRenderer.color = currentColor;
+            }
+            
+            isChangingColor = false;
     }
 
     private void UpdateSpriteDamage() {
@@ -105,4 +130,15 @@ public class Player_Health : MonoBehaviour
             spriteRenderer.sprite = sprites[0];
         }
     }
+
+    // private const int hitStopFrames = 60; 
+    // IEnumerator ApplyHitStop() {
+    //     Time.timeScale = 0;
+
+    //     for (int i = 0; i < hitStopFrames; i++) {
+    //         yield return new WaitForEndOfFrame();
+    //     }
+
+    //     Time.timeScale = 1;
+    // }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Enemy_Shooting : MonoBehaviour
 {
@@ -47,6 +48,10 @@ public class Enemy_Shooting : MonoBehaviour
     void ShootAtPlayer()
     {
         am.Play("Enemy_Shot");
+        if(gameObject.name == "Googley_Eyes") {
+            Debug.Log("Googley");
+            am.Play("Fast_Projectile");
+        }
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 

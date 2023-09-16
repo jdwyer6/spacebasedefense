@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class EMP : MonoBehaviour
 {
@@ -59,6 +60,9 @@ public class EMP : MonoBehaviour
         canUseEMP = false;
         timer = 0;
         runTimer = true;
+
+        CinemachineImpulseSource impulseSource = GetComponent<CinemachineImpulseSource>();
+        impulseSource.GenerateImpulse();
 
         GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile_Destructible");
         foreach (var projectile in projectiles)
