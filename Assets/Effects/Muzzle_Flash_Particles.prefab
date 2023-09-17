@@ -43,7 +43,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 0.1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4881,6 +4881,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7498917478211541881}
+  - component: {fileID: 1430302893536683486}
   m_Layer: 0
   m_Name: Muzzle_Flash_Particles
   m_TagString: Untagged
@@ -4907,6 +4908,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!114 &1430302893536683486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2577280823933513159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f022ad4909fa0048a4f0c9dad644b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfDestructTime: 5
 --- !u!1 &4748009952956188176
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class GameGlobals : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Ensuring our singleton survives scene changes
+            // DontDestroyOnLoad(gameObject); // Ensuring our singleton survives scene changes
         }
         else
         {

@@ -9,24 +9,43 @@ public class Handle_Game_Over : MonoBehaviour
     GameObject player;
     bool gameOver;
     public GameObject gameOverScreen;
-    // public GameObject playerDeathParticles;
+    public GameObject playerDeathParticles;
+    private AudioManager am;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");    
+        am = FindObjectOfType<AudioManager>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(player.GetComponent<Player_Health>().isDead && !gameOver) {
-            gameOver = true;
-            player.SetActive(false);
-            GameGlobals.Instance.globalMenuOpen = true;
-            // Instantiate(playerDeathParticles, player.transform.position, Quaternion.identity);
-            gameOverScreen.SetActive(true);
+        if(player != null){
+            if(player.GetComponent<Player_Health>().isDead && !gameOver) {
+                gameOver = true;
+                player.GetComponent<Player_Health>().healthBar.value = 0;
+                player.SetActive(false);
+                am.Stop("WaveSoundtrack");
+                var particles = Instantiate(playerDeathParticles, player.transform.position, Quaternion.identity);
+                var particleSystem = particles.GetComponentInChildren<ParticleSystem>();
+                var mainModule = particleSystem.main;
+                mainModule.startColor = Color.white;
+                StartCoroutine(HandleGameOver());
+            }
         }
+
+    }
+
+    IEnumerator HandleGameOver() {
+        Time.timeScale = 1;
+        yield return new WaitForSeconds(1); 
+        Time.timeScale = 0;
+        GameGlobals.Instance.globalMenuOpen = true;
+        gameOverScreen.SetActive(true);
+
     }
 
     public void RestartGame() 
@@ -46,5 +65,16 @@ public class Handle_Game_Over : MonoBehaviour
             // If running in a build
             Application.Quit();
         #endif
+    }
+
+    private void OnDestroy()
+    {
+        // Important to unsubscribe from events to prevent memory leaks or unwanted behavior
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        am.Play("WaveSoundtrack");
     }
 }

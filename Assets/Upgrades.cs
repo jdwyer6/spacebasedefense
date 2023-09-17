@@ -83,13 +83,13 @@ public class Upgrades : MonoBehaviour
             {
                 // Reset color of previously hovered button
                 if (currentMenuHovered >= 0)
-                    upgradeButtons[currentMenuHovered].GetComponent<Image>().color = Color.white; 
+                    upgradeButtons[currentMenuHovered].GetComponent<Outline>().enabled = false;
 
                 currentMenuHovered--;
                 if (currentMenuHovered < 0) currentMenuHovered = upgradeButtons.Length - 1; 
 
                 // Set darker color for currently hovered button
-                upgradeButtons[currentMenuHovered].GetComponent<Image>().color = Color.gray; 
+                upgradeButtons[currentMenuHovered].GetComponent<Outline>().enabled = true; 
 
                 eventSystem.SetSelectedGameObject(upgradeButtons[currentMenuHovered].gameObject);
                 am.Play("UI_Hover");
@@ -98,13 +98,13 @@ public class Upgrades : MonoBehaviour
             {
                 // Reset color of previously hovered button
                 if (currentMenuHovered >= 0)
-                    upgradeButtons[currentMenuHovered].GetComponent<Image>().color = Color.white;
+                    upgradeButtons[currentMenuHovered].GetComponent<Outline>().enabled = false;
 
                 currentMenuHovered++;
                 if (currentMenuHovered >= upgradeButtons.Length) currentMenuHovered = 0;
 
                 // Set darker color for currently hovered button
-                upgradeButtons[currentMenuHovered].GetComponent<Image>().color = Color.gray;
+                upgradeButtons[currentMenuHovered].GetComponent<Outline>().enabled = true;
 
                 eventSystem.SetSelectedGameObject(upgradeButtons[currentMenuHovered].gameObject);
                 am.Play("UI_Hover");
@@ -133,6 +133,7 @@ public class Upgrades : MonoBehaviour
         {
             GameObject newUpgrade = Instantiate(upgradeButton, upgradeGroup.transform);
             newUpgrade.transform.Find("Title").GetComponent<TextMeshProUGUI>().text = upgrade.title;
+            newUpgrade.transform.Find("Icon").GetComponent<Image>().sprite = upgrade.icon;
             if(upgrade.description != null) newUpgrade.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = upgrade.description;
             switch(upgrade.upgradeLogic)
             {

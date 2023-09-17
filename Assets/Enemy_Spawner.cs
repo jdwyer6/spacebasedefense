@@ -46,7 +46,6 @@ public class Enemy_Spawner : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GM");
         data = gm.GetComponent<Data>();
         enemies = data.enemies;
-        
         if (playerObj != null)
         {
             player = playerObj.transform;
@@ -79,16 +78,20 @@ public class Enemy_Spawner : MonoBehaviour
             waveActive = true;
             spawnEnemy = true;
             level++;
-            enemyMovementSpeedMultiplier += enemyMovementSpeedMultiplierAmountToAddEachLevel;
+            // enemyMovementSpeedMultiplier += enemyMovementSpeedMultiplierAmountToAddEachLevel;
             waveText.text = "Wave " + level.ToString();
             StartCoroutine(SpawnEnemy());
         }
 
-        if(coolDown){
-            buildTip.SetActive(true);
-        }else{
-            buildTip.SetActive(false);
+        if(buildTip != null) {
+            if(coolDown){
+                buildTip.SetActive(true);
+            }else{
+                buildTip.SetActive(false);
+            }
         }
+
+
     }
 
     IEnumerator SpawnEnemy() {
@@ -109,6 +112,7 @@ public class Enemy_Spawner : MonoBehaviour
     Vector2 GetRandomSpawnPos() {
             float randomAngle = Random.Range(-180f, 180f) * Mathf.Deg2Rad; 
             Vector2 direction = new Vector2(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle)); 
+            if (player == null) return Vector3.zero + (Vector3)(direction * 20f); // fix null player on initial spawn at restart
             Vector2 pos = player.transform.position + (Vector3)(direction * 20f);
             return pos;
     }

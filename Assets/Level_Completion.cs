@@ -12,6 +12,7 @@ public class Level_Completion : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Level_Completion Start method called.");
         levelCompletionText.gameObject.SetActive(false);
         StartCoroutine(Countdown());
     }

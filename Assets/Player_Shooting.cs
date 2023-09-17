@@ -62,7 +62,6 @@ public class Player_Shooting : MonoBehaviour
                 }
             }
         }
-
     }
 
     void Shoot(Vector2 direction)

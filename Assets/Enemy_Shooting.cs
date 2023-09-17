@@ -13,6 +13,7 @@ public class Enemy_Shooting : MonoBehaviour
     private float shootTimer = 0.0f; // Timer to handle shooting intervals
     private AudioManager am;
     public float distanceFromPlayerToStartShooting = 5;
+    public GameObject flashParticles;
 
     void Start()
     {
@@ -61,7 +62,15 @@ public class Enemy_Shooting : MonoBehaviour
             spriteRenderer.color = Color.red;
         }
 
-        Vector2 direction = (player.position - transform.position).normalized;
+        Vector3 direction = (player.position - transform.position).normalized;
+
+        if(flashParticles != null) {
+            Vector2 flashPosition = transform.position + direction;
+            var particles = Instantiate(flashParticles, flashPosition, Quaternion.identity);
+            float rotationDegree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            SetFlashRotation(particles, rotationDegree);
+        }
+
 
         // Set the velocity of the projectile
         rb.velocity = direction * projectileSpeed;
@@ -78,5 +87,19 @@ public class Enemy_Shooting : MonoBehaviour
         //Ignore collisions with designated objects
         projectile.GetComponent<Projectile>().ignoreList = Projectile.IgnoreList.Enemy;
 
+    }
+
+    private void SetFlashRotation(GameObject particles, float rotationDegree)
+    {
+        Transform flashTransform = particles.transform.Find("Flash");
+        if (flashTransform != null)
+        {
+            ParticleSystem flashParticles = flashTransform.GetComponent<ParticleSystem>();
+            if (flashParticles != null)
+            {
+                var main = flashParticles.main;
+                main.startRotation = rotationDegree * Mathf.Deg2Rad;
+            }
+        }
     }
 }

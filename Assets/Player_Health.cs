@@ -90,15 +90,6 @@ public class Player_Health : MonoBehaviour
     }
 
     IEnumerator ChangeColor() {
-        // SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        // Color currentColor = spriteRenderer.color;
-        // if(spriteRenderer != null)
-        // {
-        //     spriteRenderer.color = new Color(1.0f, 0.286f, 0.286f);
-        // }
-        // StartCoroutine(gm.GetComponent<Juicer>().ApplyHitStop(60));
-        // yield return new WaitForSeconds(.1f);
-        // spriteRenderer.color = currentColor;
             if(isChangingColor)
                 yield break;
 
@@ -130,15 +121,4 @@ public class Player_Health : MonoBehaviour
             spriteRenderer.sprite = sprites[0];
         }
     }
-
-    // private const int hitStopFrames = 60; 
-    // IEnumerator ApplyHitStop() {
-    //     Time.timeScale = 0;
-
-    //     for (int i = 0; i < hitStopFrames; i++) {
-    //         yield return new WaitForEndOfFrame();
-    //     }
-
-    //     Time.timeScale = 1;
-    // }
 }
