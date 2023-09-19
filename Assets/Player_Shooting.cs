@@ -13,7 +13,7 @@ public class Player_Shooting : MonoBehaviour
     public GameObject flamingProjectiles;
     public CinemachineImpulseSource impulseSource;
     public GameObject muzzleParticles;
-    // private bool[] firing = new bool {false, false, false, false};
+    private bool[] shootIdx = new bool[] {false, false, false, false};
     private bool isShooting;
 
     private void Start() {
@@ -22,58 +22,70 @@ public class Player_Shooting : MonoBehaviour
 
     void Update()
     {
-        if(GameGlobals.Instance.globalMenuOpen == false){
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                if(isShooting) return; 
-                float flashRotation = -90f;
-                if(GetComponent<Upgrades>().autoAcquired){
-                    
-                    StartCoroutine(ShootAutomatic(Vector2.up, KeyCode.UpArrow, flashRotation, new Vector3(0, 1, 0)));
-                }else{
-                    var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-                    Shoot(Vector2.up);
-                    SetFlashRotation(particles, flashRotation);
-                }
+        if(GameGlobals.Instance.globalMenuOpen == true) return;
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            ResetShootIndex(0);
+        }
+        else if(Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            ResetShootIndex(1);
+        }
+        else if(Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            ResetShootIndex(2);
+        }
+        else if(Input.GetKeyDown(KeyCode.LeftArrow)) 
+        {
+            ResetShootIndex(3);
+        }
+
+        if(shootIdx[0] && !isShooting) {
+            isShooting = true;
+            float flashRotation = -90f;
+            if(GetComponent<Upgrades>().autoAcquired){
+                StartCoroutine(ShootAutomatic(Vector2.up, KeyCode.UpArrow, flashRotation, new Vector3(0, 1, 0)));
+            }else{
+                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+                Shoot(Vector2.up);
+                SetFlashRotation(particles, flashRotation);
+                isShooting = false;
+                shootIdx[0] = false;
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                if(isShooting) return;
-                float flashRotation = 90f;
-                if(GetComponent<Upgrades>().autoAcquired){
-                    
-                    StartCoroutine(ShootAutomatic(Vector2.down, KeyCode.DownArrow, flashRotation, new Vector3(0, -1, 0)));
-                }else{
-                    var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, -1, 0), Quaternion.identity);
-                    SetFlashRotation(particles, flashRotation);
-                    Shoot(Vector2.down);
-                }
+        }else if(shootIdx[1] && !isShooting) {
+            float flashRotation = 180f;
+            if(GetComponent<Upgrades>().autoAcquired){
+                StartCoroutine(ShootAutomatic(Vector2.right, KeyCode.RightArrow, flashRotation, new Vector3(1, 0, 0)));
+            }else{
+                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+                SetFlashRotation(particles, flashRotation);
+                Shoot(Vector2.right);
+                isShooting = false;
+                shootIdx[1] = false;
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                if(isShooting) return;
-                float flashRotation = -180f;
-                if(GetComponent<Upgrades>().autoAcquired){
-                    
-                    StartCoroutine(ShootAutomatic(Vector2.left, KeyCode.LeftArrow, flashRotation, new Vector3(-1, 0, 0)));
-                }else{
-                    var particles = Instantiate(muzzleParticles, transform.position + new Vector3(-1, 0, 0), Quaternion.identity);
-                    SetFlashRotation(particles, flashRotation);
-                    Shoot(Vector2.left);
-                }
+        }else if(shootIdx[2] && !isShooting) {
+            float flashRotation = 90f;
+            if(GetComponent<Upgrades>().autoAcquired){
+                
+                StartCoroutine(ShootAutomatic(Vector2.down, KeyCode.DownArrow, flashRotation, new Vector3(0, -1, 0)));
+            }else{
+                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, -1, 0), Quaternion.identity);
+                SetFlashRotation(particles, flashRotation);
+                Shoot(Vector2.down);
+                isShooting = false;
+                shootIdx[2] = false;
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                if(isShooting) return;
-                float flashRotation = 180f;
-                if(GetComponent<Upgrades>().autoAcquired){
-                    
-                    StartCoroutine(ShootAutomatic(Vector2.right, KeyCode.RightArrow, flashRotation, new Vector3(1, 0, 0)));
-                }else{
-                    var particles = Instantiate(muzzleParticles, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
-                    SetFlashRotation(particles, flashRotation);
-                    Shoot(Vector2.right);
-                }
+        }else if(shootIdx[3] && !isShooting) {
+            float flashRotation = -180f;
+            if(GetComponent<Upgrades>().autoAcquired){
+                
+                StartCoroutine(ShootAutomatic(Vector2.left, KeyCode.LeftArrow, flashRotation, new Vector3(-1, 0, 0)));
+            }else{
+                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(-1, 0, 0), Quaternion.identity);
+                SetFlashRotation(particles, flashRotation);
+                Shoot(Vector2.left);
+                isShooting = false;
+                shootIdx[3] = false;
             }
         }
     }
@@ -145,12 +157,12 @@ public class Player_Shooting : MonoBehaviour
         }
     }
 
-    // void ResetShootIndex(int idx) {
-    //     for (int i = 0; i < currentlyShooting.Length; i++)
-    //     {
-    //         currentlyShooting[i] = false;
-    //     }
-    //     currentlyShooting[idx] = true;
-    // }
+    void ResetShootIndex(int idx) {
+        for (int i = 0; i < shootIdx.Length; i++)
+        {
+            shootIdx[i] = false;
+        }
+        shootIdx[idx] = true;
+    }
 
 }
