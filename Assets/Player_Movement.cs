@@ -10,7 +10,7 @@ public class Player_Movement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 movement;
-    public Animator anim;
+    // public Animator anim;
 
     // private Alteruna.Avatar avatar;
 
@@ -42,11 +42,10 @@ public class Player_Movement : MonoBehaviour
         if (movement != Vector2.zero) 
         {
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg - 90f;
-            anim.SetBool("Move", true);
-            anim.SetTrigger("StartMove");
             transform.rotation = Quaternion.Euler(0, 0, angle);
+            // anim.SetBool("Move", true);
         }else{
-            anim.SetBool("Move", false);
+            // anim.SetBool("Move", false);
         }
     }
 

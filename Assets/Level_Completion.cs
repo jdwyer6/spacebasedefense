@@ -6,14 +6,12 @@ using TMPro;
 public class Level_Completion : MonoBehaviour
 {
     public TextMeshProUGUI countdownText; // Assign this via Inspector
-    public TextMeshProUGUI levelCompletionText; // Assign this via Inspector
 
-    private float countdownDuration = 20f * 60f; // 20 minutes in seconds
+    private float countdownDuration = 15f * 60f; // 20 minutes in seconds
 
     private void Start()
     {
         Debug.Log("Level_Completion Start method called.");
-        levelCompletionText.gameObject.SetActive(false);
         StartCoroutine(Countdown());
     }
 
@@ -36,6 +34,5 @@ public class Level_Completion : MonoBehaviour
 
         // Once the countdown is done
         countdownText.text = "00:00";
-        levelCompletionText.gameObject.SetActive(true);
     }
 }

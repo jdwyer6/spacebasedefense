@@ -13,6 +13,7 @@ public class Player_Shooting : MonoBehaviour
     public GameObject flamingProjectiles;
     public CinemachineImpulseSource impulseSource;
     public GameObject muzzleParticles;
+    // private bool[] currentlyShooting = new bool[] {false, false, false, false};
 
     private void Start() {
         am = FindObjectOfType<AudioManager>();
@@ -21,6 +22,8 @@ public class Player_Shooting : MonoBehaviour
     void Update()
     {
         if(GameGlobals.Instance.globalMenuOpen == false){
+
+
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
@@ -127,4 +130,13 @@ public class Player_Shooting : MonoBehaviour
             }
         }
     }
+
+    // void ResetShootIndex(int idx) {
+    //     for (int i = 0; i < currentlyShooting.Length; i++)
+    //     {
+    //         currentlyShooting[i] = false;
+    //     }
+    //     currentlyShooting[idx] = true;
+    // }
+
 }
