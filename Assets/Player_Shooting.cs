@@ -13,7 +13,8 @@ public class Player_Shooting : MonoBehaviour
     public GameObject flamingProjectiles;
     public CinemachineImpulseSource impulseSource;
     public GameObject muzzleParticles;
-    // private bool[] currentlyShooting = new bool[] {false, false, false, false};
+    // private bool[] firing = new bool {false, false, false, false};
+    private bool isShooting;
 
     private void Start() {
         am = FindObjectOfType<AudioManager>();
@@ -22,45 +23,55 @@ public class Player_Shooting : MonoBehaviour
     void Update()
     {
         if(GameGlobals.Instance.globalMenuOpen == false){
-
-
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-                SetFlashRotation(particles, -90f);
+                if(isShooting) return; 
+                float flashRotation = -90f;
                 if(GetComponent<Upgrades>().autoAcquired){
-                    StartCoroutine(ShootAutomatic(Vector2.up, KeyCode.UpArrow));
+                    
+                    StartCoroutine(ShootAutomatic(Vector2.up, KeyCode.UpArrow, flashRotation, new Vector3(0, 1, 0)));
                 }else{
+                    var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
                     Shoot(Vector2.up);
+                    SetFlashRotation(particles, flashRotation);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, -1, 0), Quaternion.identity);
-                SetFlashRotation(particles, 90f);
+                if(isShooting) return;
+                float flashRotation = 90f;
                 if(GetComponent<Upgrades>().autoAcquired){
-                    StartCoroutine(ShootAutomatic(Vector2.down, KeyCode.DownArrow));
+                    
+                    StartCoroutine(ShootAutomatic(Vector2.down, KeyCode.DownArrow, flashRotation, new Vector3(0, -1, 0)));
                 }else{
+                    var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, -1, 0), Quaternion.identity);
+                    SetFlashRotation(particles, flashRotation);
                     Shoot(Vector2.down);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(-1, 0, 0), Quaternion.identity);
-                SetFlashRotation(particles, -180f);
+                if(isShooting) return;
+                float flashRotation = -180f;
                 if(GetComponent<Upgrades>().autoAcquired){
-                    StartCoroutine(ShootAutomatic(Vector2.left, KeyCode.LeftArrow));
+                    
+                    StartCoroutine(ShootAutomatic(Vector2.left, KeyCode.LeftArrow, flashRotation, new Vector3(-1, 0, 0)));
                 }else{
+                    var particles = Instantiate(muzzleParticles, transform.position + new Vector3(-1, 0, 0), Quaternion.identity);
+                    SetFlashRotation(particles, flashRotation);
                     Shoot(Vector2.left);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
-                SetFlashRotation(particles, 180f);
+                if(isShooting) return;
+                float flashRotation = 180f;
                 if(GetComponent<Upgrades>().autoAcquired){
-                    StartCoroutine(ShootAutomatic(Vector2.right, KeyCode.RightArrow));
+                    
+                    StartCoroutine(ShootAutomatic(Vector2.right, KeyCode.RightArrow, flashRotation, new Vector3(1, 0, 0)));
                 }else{
+                    var particles = Instantiate(muzzleParticles, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+                    SetFlashRotation(particles, flashRotation);
                     Shoot(Vector2.right);
                 }
             }
@@ -109,12 +120,15 @@ public class Player_Shooting : MonoBehaviour
         }
     }
 
-    IEnumerator ShootAutomatic(Vector2 direction, KeyCode key){
+    IEnumerator ShootAutomatic(Vector2 direction, KeyCode key, float flashRotation, Vector3 offset){
+        isShooting = true;
         while(Input.GetKey(key)){
             Shoot(direction);
+            var particles = Instantiate(muzzleParticles, transform.position + offset, Quaternion.identity);
+            SetFlashRotation(particles, flashRotation);
             yield return new WaitForSeconds(autoShootingInterval);
         }
-
+        isShooting = false;
     }
 
     private void SetFlashRotation(GameObject particles, float rotationDegree)
