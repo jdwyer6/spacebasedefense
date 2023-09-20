@@ -16,5 +16,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 1c0754f5fa2632842bc415be908c46db, type: 3}
   value: 0
   title: Full Auto
-  description: 
+  description: You know what this does.
   upgradeLogic: 3

@@ -16,5 +16,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: d0bae29cf2a37fc459127763e6f6b5ab, type: 3}
   value: 1.5
   title: 1.5X Speed
-  description: 
-  upgradeLogic: speed
+  description: Get way faster.
+  upgradeLogic: 0

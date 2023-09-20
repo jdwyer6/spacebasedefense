@@ -15,6 +15,6 @@ MonoBehaviour:
   upgradeName: Orbit
   icon: {fileID: 21300000, guid: d0bae29cf2a37fc459127763e6f6b5ab, type: 3}
   value: 10
-  title: Orbital Assassin
-  description: Projectile orbits around your ship.
+  title: Orbital Death
+  description: Killer projectile orbits around you.
   upgradeLogic: 4

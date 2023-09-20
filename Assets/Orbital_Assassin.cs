@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class Orbital_Assassin : MonoBehaviour
 {
-[Tooltip("GameObject that will orbit around this object.")]
-    public GameObject objectToOrbit;
+    public GameObject player;          // Reference to the player object
+    public float orbitSpeed = 1f;      // Speed at which the object will orbit around the player
 
-    [Tooltip("Speed of the orbiting movement.")]
-    public float orbitSpeed = 10.0f;
+    private Vector3 relativePosition;  // The initial relative position of the object to the player
 
-    [Tooltip("Distance from this object to the orbiting object.")]
-    public float orbitDistance = 5.0f;
+    private void Start()
+    {
+        if (player == null)
+        {
+            Debug.LogError("Player reference not set on the orbiting object.");
+            return;
+        }
+        
+        relativePosition = transform.position - player.transform.position;
+    }
 
     private void Update()
     {
-        if (objectToOrbit != null)
-        {
-            // Calculate the position for the object to orbit
-            objectToOrbit.transform.RotateAround(transform.position, Vector3.forward, orbitSpeed * Time.deltaTime);
-
-            Vector3 desiredPosition = (objectToOrbit.transform.position - transform.position).normalized * orbitDistance;
-            objectToOrbit.transform.position = new Vector3(desiredPosition.x, objectToOrbit.transform.position.y, desiredPosition.z);
-        }
+        // Orbit the object around the player
+        transform.position = player.transform.position + relativePosition;
+        transform.RotateAround(player.transform.position, Vector3.forward, orbitSpeed * Time.deltaTime);
+        relativePosition = transform.position - player.transform.position;
     }
 }

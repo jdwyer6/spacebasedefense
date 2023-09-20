@@ -15,6 +15,6 @@ MonoBehaviour:
   upgradeName: Arsenist
   icon: {fileID: 21300000, guid: b6f4a58d98f16494fa283efd7178e215, type: 3}
   value: 1.5
-  title: Flaming Bullets
-  description: 
+  title: Arsenist
+  description: Flaming bullets. More damage.
   upgradeLogic: 2

@@ -33,12 +33,15 @@ public class Upgrades : MonoBehaviour
     public bool arsenAcquired = false;
     public bool autoAcquired = false;
     public bool empAcquired = false;
+    public bool orbitalAcquired = false;
 
     public GameObject speedBoostParticles;
 
     private Button[] upgradeButtons;
     private EventSystem eventSystem;
     int currentMenuHovered = 0;
+
+    public GameObject orbitalAssassin;
 
 
 
@@ -113,6 +116,10 @@ public class Upgrades : MonoBehaviour
             {
                 upgradeButtons[currentMenuHovered].onClick.Invoke();
             }
+
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                SoftMenuClose();
+            }
         }
 
 
@@ -152,8 +159,53 @@ public class Upgrades : MonoBehaviour
                 case UpgradeLogicType.emp:
                     newUpgrade.GetComponent<Button>().onClick.AddListener(() => emp(newUpgrade));
                     break;
+                case UpgradeLogicType.orbit:
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => orbit(newUpgrade));
+                break;
             }
         }
+    }
+
+    void OpenUpgradeMenu() {
+        upgradeMenu.SetActive(true);
+        menuOpen = true;
+        GameGlobals.Instance.globalMenuOpen = true;
+        am.Play("Upgrade_UI");
+        Time.timeScale = 0;
+        pickupSlider.maxValue = pickupsNeededForNextUpgrade;
+        pickupSlider.value = pickups;  
+    }
+
+    void CloseUpgradesMenu() {
+        
+        Time.timeScale = 1;
+        upgradeMenu.SetActive(false);
+        Debug.Log("time is called!");
+        menuOpen = false;
+        GameGlobals.Instance.globalMenuOpen = false;
+        foreach (var projectile in GameObject.FindGameObjectsWithTag("Projectile_Destructible"))
+        {
+            projectile.SetActive(false);
+        }
+    }
+
+    public void hover() {
+        am.Play("UI_Hover");
+    }
+
+    
+    void ResetAndUpdatePickups(){
+        pickupsNeededForNextUpgrade *= pickupLevelMultiplier;
+        pickups = 0;
+        pickupSlider.value = 0;
+        targetSliderValue = pickups;
+    }
+
+    public void SoftMenuClose(){
+        Time.timeScale = 1;
+        upgradeMenu.SetActive(false);
+        menuOpen = false;
+        GameGlobals.Instance.globalMenuOpen = false;
     }
 
     public void speed(GameObject button){
@@ -229,39 +281,21 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    void OpenUpgradeMenu() {
-        upgradeMenu.SetActive(true);
-        menuOpen = true;
-        GameGlobals.Instance.globalMenuOpen = true;
-        am.Play("Upgrade_UI");
-        Time.timeScale = 0;
-        pickupSlider.maxValue = pickupsNeededForNextUpgrade;
-        pickupSlider.value = pickups;  
-    }
-
-    void CloseUpgradesMenu() {
-        
-        Time.timeScale = 1;
-        upgradeMenu.SetActive(false);
-        Debug.Log("time is called!");
-        menuOpen = false;
-        GameGlobals.Instance.globalMenuOpen = false;
-        foreach (var projectile in GameObject.FindGameObjectsWithTag("Projectile_Destructible"))
-        {
-            projectile.SetActive(false);
+    public void orbit(GameObject button) {
+        if(!orbitalAcquired) {
+            orbitalAcquired = true;
+            button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
+            button.GetComponent<Button>().interactable = false;
+            orbitalAssassin.SetActive(true);
+            am.Play("UI_Select");
+            am.Play("Upgrade_UI");
+            ResetAndUpdatePickups();
+            CloseUpgradesMenu();
+        }else{
+            am.Play("UI_Disabled");
         }
     }
 
-    public void hover() {
-        am.Play("UI_Hover");
-    }
-
     
-    void ResetAndUpdatePickups(){
-        pickupsNeededForNextUpgrade *= pickupLevelMultiplier;
-        pickups = 0;
-        pickupSlider.value = 0;
-        targetSliderValue = pickups;
-    }
 
 }

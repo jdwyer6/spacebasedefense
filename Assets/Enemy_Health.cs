@@ -45,6 +45,10 @@ public class Enemy_Health : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(0, 0, rotationZ -90); 
             Instantiate(bloodParticlesExit, transform.position, rotation);
         }
+        if(other.gameObject.tag == "Projectile_NonDestructible") {
+            am.Play(data.bloodHits[Random.Range(0, data.bloodHits.Length)]);
+            Die();
+        }
     }
 
     void TakeDamage(float damageToTake) {
