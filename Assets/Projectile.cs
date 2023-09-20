@@ -9,6 +9,9 @@ public class Projectile : MonoBehaviour
     private GameObject gm;
     private Data data;
     private Collider2D thisCollider;
+    public bool flash = false;
+    public Color color1 = Color.red;
+    public Color color2 = Color.white;
 
     public enum IgnoreList
     {
@@ -26,6 +29,7 @@ public class Projectile : MonoBehaviour
         am = FindObjectOfType<AudioManager>();
         gm = GameObject.FindGameObjectWithTag("GM");
         data = gm.GetComponent<Data>();
+        if(flash) StartCoroutine(Flash(color1, color2));
 
         switch (ignoreList)
         {
@@ -68,6 +72,31 @@ public class Projectile : MonoBehaviour
 
         if(other.gameObject.tag == "Destructible_Environment" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Player") {
             Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator Flash(Color color1, Color color2)
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+
+        while (this.gameObject != null)  // Checking if the gameObject exists
+        {
+            if (sr == null)
+            {
+                // In case SpriteRenderer gets destroyed or removed
+                yield break;
+            }
+
+            sr.color = color1;
+            yield return new WaitForSeconds(0.05f);
+
+            if (this.gameObject == null) // Check again before changing color
+            {
+                yield break;
+            }
+
+            sr.color = color2;
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }

@@ -56,11 +56,13 @@ public class Enemy_Shooting : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
-        SpriteRenderer spriteRenderer = projectile.GetComponent<SpriteRenderer>();
-        if(spriteRenderer != null)
-        {
-            spriteRenderer.color = Color.red;
-        }
+        // SpriteRenderer spriteRenderer = projectile.GetComponent<SpriteRenderer>();
+        // if(spriteRenderer != null)
+        // {
+        //     spriteRenderer.color = Color.red;
+        // }
+        projectile.GetComponent<Projectile>().flash = true;
+        projectile.transform.localScale = new Vector3(.2f, .2f, 1f);
 
         Vector3 direction = (player.position - transform.position).normalized;
 

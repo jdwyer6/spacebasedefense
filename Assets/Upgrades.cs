@@ -43,6 +43,7 @@ public class Upgrades : MonoBehaviour
 
     public GameObject orbitalAssassin;
 
+    public GameObject notEnoughXPToolTip;
 
 
     // Start is called before the first frame update
@@ -73,12 +74,11 @@ public class Upgrades : MonoBehaviour
             OpenUpgradeMenu();
         }
 
-        if(Mathf.Abs(pickupSlider.value - targetSliderValue) < 0.01f) {
-            pickupSlider.value = targetSliderValue;
-        } else {
+        // if(Mathf.Abs(pickupSlider.value - targetSliderValue) < 0.01f) {
+        //     pickupSlider.value = targetSliderValue;
+        // } else {
             pickupSlider.value = Mathf.Lerp(pickupSlider.value, targetSliderValue, Time.deltaTime * sliderSpeed);
-        }
-
+        // }
 
         if (menuOpen)
         {
@@ -127,10 +127,14 @@ public class Upgrades : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Pickup") {
+            targetSliderValue = pickups;
             pickups++;
+            if(pickups == 1){
+                targetSliderValue = pickups;
+            }
             am.Play("Pickup");
             Instantiate(pickupParticles, other.transform.position, Quaternion.identity);
-            targetSliderValue = pickups;
+            
             Destroy(other.gameObject);
         }
     }
@@ -195,17 +199,25 @@ public class Upgrades : MonoBehaviour
 
     
     void ResetAndUpdatePickups(){
-        pickupsNeededForNextUpgrade *= pickupLevelMultiplier;
+        pickupsNeededForNextUpgrade = Mathf.Floor(pickupsNeededForNextUpgrade * pickupLevelMultiplier);
         pickups = 0;
         pickupSlider.value = 0;
         targetSliderValue = pickups;
     }
 
     public void SoftMenuClose(){
+        pickups *= .75f;
         Time.timeScale = 1;
         upgradeMenu.SetActive(false);
         menuOpen = false;
         GameGlobals.Instance.globalMenuOpen = false;
+    }
+
+    IEnumerator NotEnoughXP() {
+        notEnoughXPToolTip.SetActive(true);
+        am.Play("UI_Disabled");
+        yield return new WaitForSeconds(2);
+        notEnoughXPToolTip.SetActive(false);
     }
 
     public void speed(GameObject button){
