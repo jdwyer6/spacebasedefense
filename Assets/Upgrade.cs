@@ -7,7 +7,8 @@ public enum UpgradeLogicType
     arsen,
     auto,
     orbit,
-    emp
+    emp,
+    dash
 }
 
 [CreateAssetMenu(fileName = "NewUpgrade", menuName = "Upgrade/Upgrade")]

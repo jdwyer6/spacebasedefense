@@ -34,6 +34,7 @@ public class Upgrades : MonoBehaviour
     public bool autoAcquired = false;
     public bool empAcquired = false;
     public bool orbitalAcquired = false;
+    public bool dashAcquired = false;
 
     public GameObject speedBoostParticles;
 
@@ -165,7 +166,10 @@ public class Upgrades : MonoBehaviour
                     break;
                 case UpgradeLogicType.orbit:
                 newUpgrade.GetComponent<Button>().onClick.AddListener(() => orbit(newUpgrade));
-                break;
+                    break;
+                case UpgradeLogicType.dash:
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => dash(newUpgrade));
+                    break;
             }
         }
     }
@@ -184,7 +188,6 @@ public class Upgrades : MonoBehaviour
         
         Time.timeScale = 1;
         upgradeMenu.SetActive(false);
-        Debug.Log("time is called!");
         menuOpen = false;
         GameGlobals.Instance.globalMenuOpen = false;
         foreach (var projectile in GameObject.FindGameObjectsWithTag("Projectile_Destructible"))
@@ -308,6 +311,18 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    
+    public void dash(GameObject button) {
+        if(!dashAcquired) {
+            dashAcquired = true;
+            button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
+            button.GetComponent<Button>().interactable = false;
+            am.Play("UI_Select");
+            am.Play("Upgrade_UI");
+            ResetAndUpdatePickups();
+            CloseUpgradesMenu();
+        }else{
+            am.Play("UI_Disabled");
+        }
+    }
 
 }

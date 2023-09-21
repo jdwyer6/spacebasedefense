@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Juicer : MonoBehaviour
 {
+    public CinemachineImpulseSource impulseSource;
+    
+    private void Start() {
+        
+    }
+
     public IEnumerator ApplyHitStop(int frames) {
         Time.timeScale = 0;
 
@@ -12,5 +19,9 @@ public class Juicer : MonoBehaviour
         }
 
         Time.timeScale = 1;
+    }
+
+    public void ApplyCameraShake() {
+        impulseSource.GenerateImpulse();
     }
 }

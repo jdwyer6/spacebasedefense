@@ -20,6 +20,13 @@ public class Enemy_Laser : MonoBehaviour
     bool canFire = false;
 
     public EdgeCollider2D edgeCollider;
+    public bool sunRayLaser = false;
+
+    // New Code
+    public GameObject[] sunRayLasers;
+    private LineRenderer[] lineRenderers; 
+    private EdgeCollider2D[] edgeColliders;
+    // End New Code
 
     private void Start()
     {
@@ -31,7 +38,30 @@ public class Enemy_Laser : MonoBehaviour
         lineRenderer.enabled = false; // Initially, the laser is not visible.
         // edgeCollider = GetComponent<EdgeCollider2D>();
         edgeCollider.enabled = false;
-        StartCoroutine(ShootLaser());
+
+
+
+        //New Code
+        lineRenderers = new LineRenderer[sunRayLasers.Length];
+        edgeColliders = new EdgeCollider2D[sunRayLasers.Length];
+        for (int i = 0; i < sunRayLasers.Length; i++) 
+        {
+
+            lineRenderers[i] = sunRayLasers[i].GetComponent<LineRenderer>();
+
+            edgeColliders[i] = sunRayLasers[i].GetComponent<EdgeCollider2D>();
+            edgeColliders[i].enabled = false;
+        }
+        // End New Code
+
+         
+        if(!sunRayLaser) {
+            StartCoroutine(ShootLaser());
+        }else{
+            StartCoroutine(ShootSunRayLaser());
+        }
+
+
     }
 
     void Update()
@@ -128,5 +158,59 @@ public class Enemy_Laser : MonoBehaviour
     void DeactivateLaserCollider() {
         edgeCollider.enabled = false;
     }
+
+    IEnumerator ShootSunRayLaser() 
+    {
+        while (true) 
+        {
+            float angleBetweenRays = 360f / sunRayLasers.Length;
+            for (int i = 0; i < sunRayLasers.Length; i++) 
+            {
+                Vector3 direction = Quaternion.Euler(0, 0, angleBetweenRays * i) * Vector3.up;
+                lineRenderers[i].SetPosition(0, laser_start_location.position);
+                lineRenderers[i].SetPosition(1, laser_start_location.position + direction * laserLength);
+                lineRenderers[i].enabled = true;
+                lineRenderers[i].startColor = Color.white;
+                lineRenderers[i].endColor = Color.white;
+            }
+
+            // Lasers widening (or you can increase their length) and changing to red over 4 seconds
+            float widenDuration = 4f;
+            for (float t = 0; t < widenDuration; t += Time.deltaTime) 
+            {
+                foreach (LineRenderer lr in lineRenderers) 
+                {
+                    // Assuming you're widening by changing the width, adjust as needed
+                    lr.startWidth = Mathf.Lerp(0.1f, 1f, t / widenDuration); 
+                    lr.endWidth = Mathf.Lerp(0.1f, 1f, t / widenDuration);
+                    lr.startColor = Color.Lerp(Color.white, Color.red, t / widenDuration);
+                    lr.endColor = Color.Lerp(Color.white, Color.red, t / widenDuration);
+                }
+                yield return null;
+            }
+
+            am.Play("Laser_Fire"); // Assuming you have initialized 'am' already
+            foreach (EdgeCollider2D ec in edgeColliders) 
+            {
+                ec.enabled = true;
+            }
+
+            yield return new WaitForSeconds(1f); // Assuming you want the lasers to be active for 1 second
+
+            // Hide lasers and deactivate colliders
+            foreach (LineRenderer lr in lineRenderers) 
+            {
+                lr.enabled = false;
+            }
+            foreach (EdgeCollider2D ec in edgeColliders) 
+            {
+                ec.enabled = false;
+            }
+            am.Stop("Laser_Fire");
+
+            yield return new WaitForSeconds(4f); // Cooldown of 4 seconds
+        }
+    }
+        
 
 }

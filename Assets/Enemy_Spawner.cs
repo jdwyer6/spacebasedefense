@@ -39,6 +39,9 @@ public class Enemy_Spawner : MonoBehaviour
     private float spawnInterval = 4;
     private float levelLength = 20;
 
+    public int[] varietyLevelNumbers;
+    public VarietyLevel[] varietyLevels;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,7 +81,6 @@ public class Enemy_Spawner : MonoBehaviour
             waveActive = true;
             spawnEnemy = true;
             level++;
-            // enemyMovementSpeedMultiplier += enemyMovementSpeedMultiplierAmountToAddEachLevel;
             waveText.text = "Wave " + level.ToString();
             StartCoroutine(SpawnEnemy());
         }
@@ -97,12 +99,25 @@ public class Enemy_Spawner : MonoBehaviour
     IEnumerator SpawnEnemy() {
         while (spawnEnemy)
         {
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                if(ShouldSpawnEnemy(enemies[i].GetComponent<Enemy_Data>().probabilityToSpawn, i)){
-                    Instantiate(enemies[i], GetRandomSpawnPos(), Quaternion.identity);
-                } 
+            if(IsVarietyLevel()) {
+                VarietyLevel randomVarietyLevel = varietyLevels[UnityEngine.Random.Range(0, varietyLevels.Length)];
+                foreach (var enemy in randomVarietyLevel.enemies)
+                {
+                    for (int i = 0; i < randomVarietyLevel.amountOfEnemiesToSpawnPerCycle; i++)
+                    {
+                        Instantiate(enemy, GetRandomSpawnPos(), Quaternion.identity);
+                    } 
+                    
+                }
+            }else{
+                for (int i = 0; i < enemies.Length; i++)
+                {
+                    if(ShouldSpawnEnemy(enemies[i].GetComponent<Enemy_Data>().probabilityToSpawn, i)){
+                        Instantiate(enemies[i], GetRandomSpawnPos(), Quaternion.identity);
+                    } 
+                }
             }
+
 
             yield return new WaitForSeconds(spawnInterval);
         }
@@ -135,5 +150,16 @@ public class Enemy_Spawner : MonoBehaviour
             remainingEnemies++;
         }
         return remainingEnemies;
+    }
+
+    private bool IsVarietyLevel() {
+        foreach (var varietyLevel in varietyLevelNumbers)
+        {
+            if(level == varietyLevel) {
+                return true;
+            }
+ 
+        }
+        return false;
     }
 }

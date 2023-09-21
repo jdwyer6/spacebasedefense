@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player_Movement : MonoBehaviour
@@ -10,6 +11,10 @@ public class Player_Movement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 movement;
+    private bool dashRecharged = true;
+    public float dashMultiplier = 2;
+    private GameObject gm;
+    private AudioManager am;
     // public Animator anim;
 
     // private Alteruna.Avatar avatar;
@@ -22,6 +27,9 @@ public class Player_Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = originalMoveSpeed;
+        am = FindObjectOfType<AudioManager>();
+        gm = GameObject.FindGameObjectWithTag("GM");
+
         // avatar = GetComponent<Alteruna.Avatar>();
         // if(!avatar.IsOwner){
         //     return;
@@ -47,11 +55,33 @@ public class Player_Movement : MonoBehaviour
         }else{
             // anim.SetBool("Move", false);
         }
+
+        if(Input.GetKeyDown(KeyCode.Space) && GetComponent<Upgrades>().dashAcquired && dashRecharged) {
+            StartCoroutine(Dash());
+        }
     }
 
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    IEnumerator Dash() {
+        dashRecharged = false;
+        am.Play("Dash");
+        gm.GetComponent<Juicer>().ApplyCameraShake();
+        // Add Particles
+        Vector2 direction = rb.velocity.normalized;
+        float currentSpeed = moveSpeed;
+        moveSpeed *= dashMultiplier;
+        yield return new WaitForSeconds(.3f);
+        moveSpeed = currentSpeed;
+        StartCoroutine(RechargeDash());
+    }
+
+    IEnumerator RechargeDash() {
+        yield return new WaitForSeconds(2);
+        dashRecharged = true;
     }
 }
 

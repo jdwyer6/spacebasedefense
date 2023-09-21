@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd54534695838d44986c19881dab85fc, type: 3}
-  m_Name: Orbit
+  m_Name: Dash
   m_EditorClassIdentifier: 
-  upgradeName: Orbit
-  icon: {fileID: 21300000, guid: d0bae29cf2a37fc459127763e6f6b5ab, type: 3}
-  value: 10
-  title: Orbital
-  description: Killer projectile orbits around you.
-  upgradeLogic: 4
+  upgradeName: Dash
+  icon: {fileID: 21300000, guid: 4c86df36f23ec7a4e953260d139ab228, type: 3}
+  value: 5
+  title: Dash
+  description: Hit Space to Dash
+  upgradeLogic: 6
