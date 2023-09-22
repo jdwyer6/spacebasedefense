@@ -66,6 +66,8 @@ public class Spiral_Shooting : MonoBehaviour
         // Set the velocity of the projectile
         rb.velocity = direction * projectileSpeed;
 
+        projectile.GetComponent<Projectile>().ignoreList = Projectile.IgnoreList.Enemy;
+
         Collider2D projectileCollider = projectile.GetComponent<Collider2D>();
         Collider2D enemyCollider = GetComponent<Collider2D>();
 

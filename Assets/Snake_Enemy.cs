@@ -15,11 +15,15 @@ public class Snake_Enemy : MonoBehaviour
     public float speed = 5f; // Speed of horizontal movement.
     private bool movingRight = true;
 
+    private Vector2 direction;
+    bool ignoreCollisions = false;
+
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
         lastPosition = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
+        direction = Vector2.right;
         SpawnSnake();
         StartCoroutine(DieAfterSeconds());
     }
@@ -41,14 +45,16 @@ public class Snake_Enemy : MonoBehaviour
             UpdateLineRenderer();
         }
 
-        if (movingRight)
-        {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
-        }
-        else
-        {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
-        }
+        transform.Translate(direction * speed * Time.deltaTime);
+
+        // if (movingRight)
+        // {
+        //     direction = Vector2.right;
+        // }
+        // else
+        // {
+        //     direction = Vector2.left;
+        // }
     }
 
     private void UpdateLineRenderer()
@@ -64,5 +70,23 @@ public class Snake_Enemy : MonoBehaviour
     IEnumerator DieAfterSeconds() {
         yield return new WaitForSeconds(10);
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.tag == "Destructible_Environment") {
+            if(!ignoreCollisions) {
+                StartCoroutine(DivertPath());
+            }
+            
+        }
+    }
+
+    IEnumerator DivertPath() {
+        ignoreCollisions = true;
+        Vector2[] pathOptions = { Vector2.down, Vector2.up };
+        direction = pathOptions[UnityEngine.Random.Range(0, pathOptions.Length)];
+        yield return new WaitForSeconds(1);
+        direction = Vector2.right;
+        ignoreCollisions = false;
     }
 }

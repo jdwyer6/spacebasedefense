@@ -20,6 +20,11 @@ public class Player_Movement : MonoBehaviour
     public Animator anim;
     bool isMoving = false;
 
+    public ParticleSystem moveParticles;
+    private float originalEmissionRate;
+    private ParticleSystem.EmissionModule emissionModule; 
+
+
     // private Alteruna.Avatar avatar;
 
     private void Awake() {
@@ -32,6 +37,8 @@ public class Player_Movement : MonoBehaviour
         moveSpeed = originalMoveSpeed;
         am = FindObjectOfType<AudioManager>();
         gm = GameObject.FindGameObjectWithTag("GM");
+        emissionModule = moveParticles.emission;
+        originalEmissionRate = emissionModule.rateOverTime.constant;
 
         // avatar = GetComponent<Alteruna.Avatar>();
         // if(!avatar.IsOwner){
@@ -48,6 +55,7 @@ public class Player_Movement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
 
         if(moveX != 0 || moveY != 0) {
+            emissionModule.rateOverTime = originalEmissionRate; 
             if(!isMoving) {
                 isMoving = true;
                 anim.SetTrigger("Move");
@@ -56,6 +64,7 @@ public class Player_Movement : MonoBehaviour
         }else{
             anim.SetBool("isMoving", false);
             isMoving = false;
+            emissionModule.rateOverTime = 0f;
         }
 
         // Set the movement vector
