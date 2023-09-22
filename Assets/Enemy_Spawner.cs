@@ -97,10 +97,10 @@ public class Enemy_Spawner : MonoBehaviour
     }
 
     IEnumerator SpawnEnemy() {
+        VarietyLevel randomVarietyLevel = varietyLevels[UnityEngine.Random.Range(0, varietyLevels.Length)];
         while (spawnEnemy)
         {
             if(IsVarietyLevel()) {
-                VarietyLevel randomVarietyLevel = varietyLevels[UnityEngine.Random.Range(0, varietyLevels.Length)];
                 foreach (var enemy in randomVarietyLevel.enemies)
                 {
                     for (int i = 0; i < randomVarietyLevel.amountOfEnemiesToSpawnPerCycle; i++)

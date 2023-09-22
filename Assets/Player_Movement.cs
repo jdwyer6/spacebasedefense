@@ -15,7 +15,10 @@ public class Player_Movement : MonoBehaviour
     public float dashMultiplier = 2;
     private GameObject gm;
     private AudioManager am;
-    // public Animator anim;
+
+    [Header("Animation")]
+    public Animator anim;
+    bool isMoving = false;
 
     // private Alteruna.Avatar avatar;
 
@@ -44,6 +47,17 @@ public class Player_Movement : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
+        if(moveX != 0 || moveY != 0) {
+            if(!isMoving) {
+                isMoving = true;
+                anim.SetTrigger("Move");
+                anim.SetBool("isMoving", true);
+            }
+        }else{
+            anim.SetBool("isMoving", false);
+            isMoving = false;
+        }
+
         // Set the movement vector
         movement = new Vector2(moveX, moveY).normalized;
 
@@ -51,14 +65,13 @@ public class Player_Movement : MonoBehaviour
         {
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg - 90f;
             transform.rotation = Quaternion.Euler(0, 0, angle);
-            // anim.SetBool("Move", true);
-        }else{
-            // anim.SetBool("Move", false);
         }
 
         if(Input.GetKeyDown(KeyCode.Space) && GetComponent<Upgrades>().dashAcquired && dashRecharged) {
             StartCoroutine(Dash());
         }
+
+
     }
 
     private void FixedUpdate()
