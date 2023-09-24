@@ -23,6 +23,8 @@ public class Upgrades : MonoBehaviour
     public GameObject upgradeMenu;
     public bool menuOpen = false;
 
+    public GameObject dashToolTip;
+
     //Upgrade Options
     public GameObject upgradeButton;
     Upgrade[] upgrades; 
@@ -313,6 +315,7 @@ public class Upgrades : MonoBehaviour
     public void dash(GameObject button) {
         if(!upgradeAcquired["dashAcquired"]) {
             HandleUpgradeSelectionUI(button, "dashAcquired");
+            dashToolTip.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
