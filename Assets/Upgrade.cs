@@ -20,4 +20,5 @@ public class Upgrade : ScriptableObject
     public string title;         
     public string description;
     public UpgradeLogicType upgradeLogic;
+    public bool acquired;
 }

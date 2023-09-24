@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class Player_Shooting : MonoBehaviour
 {
@@ -9,15 +10,19 @@ public class Player_Shooting : MonoBehaviour
     public float projectileSpeed = 10f; 
     public Vector2 shootingOffset = new Vector2(0, 0.5f); 
     private AudioManager am;
+    private GameObject gm;
     public float autoShootingInterval = .2f;
     public GameObject flamingProjectiles;
     public CinemachineImpulseSource impulseSource;
     public GameObject muzzleParticles;
     private bool[] shootIdx = new bool[] {false, false, false, false};
     private bool isShooting;
+    UpgradeLogicType auto = UpgradeLogicType.auto;
+    UpgradeLogicType arsen = UpgradeLogicType.arsen;
 
     private void Start() {
         am = FindObjectOfType<AudioManager>();
+        gm = GameObject.FindGameObjectWithTag("GM");
     }
 
     void Update()
@@ -43,7 +48,7 @@ public class Player_Shooting : MonoBehaviour
         if(shootIdx[0] && !isShooting) {
             isShooting = true;
             float flashRotation = -90f;
-            if(GetComponent<Upgrades>().upgradeAcquired["autoAcquired"]){
+            if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == auto).acquired){
                 StartCoroutine(ShootAutomatic(Vector2.up, KeyCode.UpArrow, flashRotation, new Vector3(0, 1, 0)));
             }else{
                 var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
@@ -54,7 +59,7 @@ public class Player_Shooting : MonoBehaviour
             }
         }else if(shootIdx[1] && !isShooting) {
             float flashRotation = 180f;
-            if(GetComponent<Upgrades>().upgradeAcquired["autoAcquired"]){
+            if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == auto).acquired){
                 StartCoroutine(ShootAutomatic(Vector2.right, KeyCode.RightArrow, flashRotation, new Vector3(1, 0, 0)));
             }else{
                 var particles = Instantiate(muzzleParticles, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
@@ -65,7 +70,7 @@ public class Player_Shooting : MonoBehaviour
             }
         }else if(shootIdx[2] && !isShooting) {
             float flashRotation = 90f;
-            if(GetComponent<Upgrades>().upgradeAcquired["autoAcquired"]){
+            if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == auto).acquired){
                 
                 StartCoroutine(ShootAutomatic(Vector2.down, KeyCode.DownArrow, flashRotation, new Vector3(0, -1, 0)));
             }else{
@@ -77,7 +82,7 @@ public class Player_Shooting : MonoBehaviour
             }
         }else if(shootIdx[3] && !isShooting) {
             float flashRotation = -180f;
-            if(GetComponent<Upgrades>().upgradeAcquired["autoAcquired"]){
+            if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == auto).acquired){
                 
                 StartCoroutine(ShootAutomatic(Vector2.left, KeyCode.LeftArrow, flashRotation, new Vector3(-1, 0, 0)));
             }else{
@@ -96,7 +101,7 @@ public class Player_Shooting : MonoBehaviour
         impulseSource.GenerateImpulse();
         // Instantiate the projectile
         GameObject projectile = Instantiate(projectilePrefab, (Vector2)transform.position, Quaternion.identity);
-        if(GetComponent<Upgrades>().upgradeAcquired["arsenAcquired"]) {
+        if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == arsen).acquired) {
             GameObject particles = Instantiate(flamingProjectiles, projectile.transform.position, Quaternion.identity);
             particles.transform.SetParent(projectile.transform);
             projectile.GetComponent<Projectile>().damage*=1.5f;
@@ -163,6 +168,11 @@ public class Player_Shooting : MonoBehaviour
             shootIdx[i] = false;
         }
         shootIdx[idx] = true;
+    }
+
+    private Upgrade[] GetUpgrades() {
+        return gm.GetComponent<Data>().upgrades;
+
     }
 
 }

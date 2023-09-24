@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using TMPro;
+using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player_Movement : MonoBehaviour
@@ -24,6 +25,7 @@ public class Player_Movement : MonoBehaviour
     public ParticleSystem moveParticles;
     private float originalEmissionRate;
     private ParticleSystem.EmissionModule emissionModule; 
+    UpgradeLogicType dash = UpgradeLogicType.dash;
 
 
     // private Alteruna.Avatar avatar;
@@ -77,7 +79,7 @@ public class Player_Movement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && GetComponent<Upgrades>().upgradeAcquired["dashAcquired"] && dashRecharged) {
+        if(Input.GetKeyDown(KeyCode.Space) && Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == dash).acquired && dashRecharged) {
             StartCoroutine(Dash());
         }
 

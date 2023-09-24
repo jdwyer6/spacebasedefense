@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using System;
 
 
 public class Upgrades : MonoBehaviour
@@ -30,16 +31,24 @@ public class Upgrades : MonoBehaviour
     Upgrade[] upgrades; 
     public GameObject upgradeGroup;
 
-    [Header("Upgrade Booleans")]
-    public Dictionary<string, bool> upgradeAcquired = new Dictionary<string, bool>{
-        {"speedAcquired", false},
-        {"healthAcquired", false},
-        {"arsenAcquired", false},
-        {"autoAcquired", false},
-        {"empAcquired", false},
-        {"orbitalAcquired", false},
-        {"dashAcquired", false}
-    };
+    // [Header("Upgrade Booleans")]
+    // public Dictionary<string, bool> upgradeAcquired = new Dictionary<string, bool>{
+    //     {"speedAcquired", false},
+    //     {"healthAcquired", false},
+    //     {"arsenAcquired", false},
+    //     {"autoAcquired", false},
+    //     {"empAcquired", false},
+    //     {"orbitalAcquired", false},
+    //     {"dashAcquired", false}
+    // };
+
+    UpgradeLogicType speed = UpgradeLogicType.speed;
+    UpgradeLogicType health = UpgradeLogicType.health;
+    UpgradeLogicType arsen = UpgradeLogicType.arsen;
+    UpgradeLogicType auto = UpgradeLogicType.auto;
+    UpgradeLogicType emp = UpgradeLogicType.emp;
+    UpgradeLogicType orbit = UpgradeLogicType.orbit;
+    UpgradeLogicType dash = UpgradeLogicType.dash;
 
     public GameObject speedBoostParticles;
 
@@ -48,7 +57,6 @@ public class Upgrades : MonoBehaviour
     int currentMenuHovered = 0;
 
     public GameObject orbitalAssassin;
-
     public GameObject notEnoughXPToolTip;
 
 
@@ -155,25 +163,25 @@ public class Upgrades : MonoBehaviour
             switch(upgrade.upgradeLogic)
             {
                 case UpgradeLogicType.speed:
-                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => speed(newUpgrade));
+                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Speed(newUpgrade));
                     break;
                 case UpgradeLogicType.health:
-                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => health(newUpgrade));
+                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Health(newUpgrade));
                     break;
                 case UpgradeLogicType.arsen:
-                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => arsen(newUpgrade));
+                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Arsen(newUpgrade));
                     break;
                 case UpgradeLogicType.auto:
-                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => auto(newUpgrade));
+                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Auto(newUpgrade));
                     break;
                 case UpgradeLogicType.emp:
-                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => emp(newUpgrade));
+                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Emp(newUpgrade));
                     break;
                 case UpgradeLogicType.orbit:
-                newUpgrade.GetComponent<Button>().onClick.AddListener(() => orbit(newUpgrade));
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Orbit(newUpgrade));
                     break;
                 case UpgradeLogicType.dash:
-                newUpgrade.GetComponent<Button>().onClick.AddListener(() => dash(newUpgrade));
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Dash(newUpgrade));
                     break;
             }
         }
@@ -228,8 +236,8 @@ public class Upgrades : MonoBehaviour
         notEnoughXPToolTip.SetActive(false);
     }
 
-    private void HandleUpgradeSelectionUI(GameObject button, string acquiredValueToChange) {
-        upgradeAcquired[acquiredValueToChange] = true;
+    private void HandleUpgradeSelectionUI(GameObject button, Upgrade upgrade) {
+        upgrade.acquired = true;
         button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
         button.GetComponent<Button>().interactable = false;
         am.Play("UI_Select");
@@ -237,9 +245,9 @@ public class Upgrades : MonoBehaviour
     }
 
     public bool AllUpgradesHaveBeenAcquired() {
-        foreach (var hasUpgrade in upgradeAcquired)
+        foreach (var upgrade in upgrades)
         {
-            if(!hasUpgrade.Value) {
+            if(!upgrade.acquired) {
                 return false;
             }
             
@@ -248,9 +256,9 @@ public class Upgrades : MonoBehaviour
         return true;
     }
 
-    public void speed(GameObject button){
-        if(!upgradeAcquired["speedAcquired"]) {
-            HandleUpgradeSelectionUI(button, "speedAcquired");
+    public void Speed(GameObject button){
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == emp).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == speed));
             GetComponent<Player_Movement>().moveSpeed *= 1.5f;
             speedBoostParticles.SetActive(true);
             ResetAndUpdatePickups();
@@ -260,9 +268,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void health(GameObject button) {
-        if(!upgradeAcquired["healthAcquired"]) {
-            HandleUpgradeSelectionUI(button, "healthAcquired");
+    public void Health(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == health).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == health));
             GetComponent<Player_Health>().Heal(100);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
@@ -271,9 +279,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void arsen(GameObject button) {
-        if(!upgradeAcquired["arsenAcquired"]) {
-            HandleUpgradeSelectionUI(button, "arsenAcquired");
+    public void Arsen(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == arsen).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == arsen));
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
@@ -281,9 +289,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void auto(GameObject button) {
-        if(!upgradeAcquired["autoAcquired"]) {
-            HandleUpgradeSelectionUI(button, "autoAcquired");
+    public void Auto(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == auto).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == auto));
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
@@ -291,9 +299,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void emp(GameObject button) {
-        if(!upgradeAcquired["empAcquired"]) {
-            HandleUpgradeSelectionUI(button, "empAcquired");
+    public void Emp(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == emp).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == emp));
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
@@ -301,9 +309,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void orbit(GameObject button) {
-        if(!upgradeAcquired["orbitalAcquired"]) {
-            HandleUpgradeSelectionUI(button, "orbitalAcquired");
+    public void Orbit(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == orbit).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == orbit));
             orbitalAssassin.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
@@ -312,9 +320,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void dash(GameObject button) {
-        if(!upgradeAcquired["dashAcquired"]) {
-            HandleUpgradeSelectionUI(button, "dashAcquired");
+    public void Dash(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == dash).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == dash));
             dashToolTip.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();

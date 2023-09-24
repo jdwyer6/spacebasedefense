@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using System;
 
 public class EMP : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class EMP : MonoBehaviour
     public Slider empTimerSlider;
     public GameObject empSlider;
     private AudioManager am;
+    UpgradeLogicType emp = UpgradeLogicType.emp;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +31,7 @@ public class EMP : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.E) && canUseEMP) {
-            if(GetComponent<Upgrades>().upgradeAcquired["empAcquired"]){
+            if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == emp).acquired){
                 StartCoroutine(LaunchEMP());
             }
         }
@@ -46,7 +48,7 @@ public class EMP : MonoBehaviour
         }
         empTimerSlider.value = timer;
 
-        if(GetComponent<Upgrades>().upgradeAcquired["empAcquired"]){
+        if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == emp).acquired){
             empSlider.SetActive(true);
         }else{
             empSlider.SetActive(false);
@@ -87,9 +89,5 @@ public class EMP : MonoBehaviour
         }
         
     }
-}
 
-// add timer bar
-// start coroutine for enemies fall and die
-// clear all projectiles
-// add sound
+}
