@@ -76,7 +76,7 @@ public class Player_Movement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && GetComponent<Upgrades>().dashAcquired && dashRecharged) {
+        if(Input.GetKeyDown(KeyCode.Space) && GetComponent<Upgrades>().upgradeAcquired["dashAcquired"] && dashRecharged) {
             StartCoroutine(Dash());
         }
 
@@ -90,6 +90,7 @@ public class Player_Movement : MonoBehaviour
 
     IEnumerator Dash() {
         dashRecharged = false;
+        GetComponent<PolygonCollider2D>().enabled = false;
         am.Play("Dash");
         gm.GetComponent<Juicer>().ApplyCameraShake();
         // Add Particles
@@ -99,10 +100,11 @@ public class Player_Movement : MonoBehaviour
         yield return new WaitForSeconds(.3f);
         moveSpeed = currentSpeed;
         StartCoroutine(RechargeDash());
+        GetComponent<PolygonCollider2D>().enabled = true;
     }
 
     IEnumerator RechargeDash() {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         dashRecharged = true;
     }
 }

@@ -15,6 +15,7 @@ public class Upgrades : MonoBehaviour
     private GameObject gm;
     public GameObject pickupParticles;
     public Slider pickupSlider; 
+    public GameObject pickupsParentUI;
 
     private float targetSliderValue;
     public float sliderSpeed = 5f;
@@ -28,13 +29,15 @@ public class Upgrades : MonoBehaviour
     public GameObject upgradeGroup;
 
     [Header("Upgrade Booleans")]
-    public bool speedAcquired = false;
-    public bool healthAcquired = false;
-    public bool arsenAcquired = false;
-    public bool autoAcquired = false;
-    public bool empAcquired = false;
-    public bool orbitalAcquired = false;
-    public bool dashAcquired = false;
+    public Dictionary<string, bool> upgradeAcquired = new Dictionary<string, bool>{
+        {"speedAcquired", false},
+        {"healthAcquired", false},
+        {"arsenAcquired", false},
+        {"autoAcquired", false},
+        {"empAcquired", false},
+        {"orbitalAcquired", false},
+        {"dashAcquired", false}
+    };
 
     public GameObject speedBoostParticles;
 
@@ -70,7 +73,7 @@ public class Upgrades : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(pickups >= pickupsNeededForNextUpgrade && !menuOpen) {
+        if(pickups >= pickupsNeededForNextUpgrade && !menuOpen && !AllUpgradesHaveBeenAcquired()) {
             menuOpen = true;
             OpenUpgradeMenu();
         }
@@ -223,14 +226,30 @@ public class Upgrades : MonoBehaviour
         notEnoughXPToolTip.SetActive(false);
     }
 
+    private void HandleUpgradeSelectionUI(GameObject button, string acquiredValueToChange) {
+        upgradeAcquired[acquiredValueToChange] = true;
+        button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
+        button.GetComponent<Button>().interactable = false;
+        am.Play("UI_Select");
+        am.Play("Upgrade_UI");
+    }
+
+    public bool AllUpgradesHaveBeenAcquired() {
+        foreach (var hasUpgrade in upgradeAcquired)
+        {
+            if(!hasUpgrade.Value) {
+                return false;
+            }
+            
+        }
+        pickupsParentUI.SetActive(false);
+        return true;
+    }
+
     public void speed(GameObject button){
-        if(!speedAcquired) {
-            speedAcquired = true;
+        if(!upgradeAcquired["speedAcquired"]) {
+            HandleUpgradeSelectionUI(button, "speedAcquired");
             GetComponent<Player_Movement>().moveSpeed *= 1.5f;
-            button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
-            button.GetComponent<Button>().interactable = false;
-            am.Play("UI_Select");
-            am.Play("Upgrade_UI");
             speedBoostParticles.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
@@ -240,12 +259,8 @@ public class Upgrades : MonoBehaviour
     }
 
     public void health(GameObject button) {
-        if(!healthAcquired) {
-            healthAcquired = true;
-            button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
-            button.GetComponent<Button>().interactable = false;
-            am.Play("UI_Select");
-            am.Play("Upgrade_UI");
+        if(!upgradeAcquired["healthAcquired"]) {
+            HandleUpgradeSelectionUI(button, "healthAcquired");
             GetComponent<Player_Health>().Heal(100);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
@@ -255,12 +270,8 @@ public class Upgrades : MonoBehaviour
     }
 
     public void arsen(GameObject button) {
-        if(!arsenAcquired) {
-            arsenAcquired = true;
-            button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
-            button.GetComponent<Button>().interactable = false;
-            am.Play("UI_Select");
-            am.Play("Upgrade_UI");
+        if(!upgradeAcquired["arsenAcquired"]) {
+            HandleUpgradeSelectionUI(button, "arsenAcquired");
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
@@ -269,12 +280,8 @@ public class Upgrades : MonoBehaviour
     }
 
     public void auto(GameObject button) {
-        if(!autoAcquired) {
-            autoAcquired = true;
-            button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
-            button.GetComponent<Button>().interactable = false;
-            am.Play("UI_Select");
-            am.Play("Upgrade_UI");
+        if(!upgradeAcquired["autoAcquired"]) {
+            HandleUpgradeSelectionUI(button, "autoAcquired");
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
@@ -283,12 +290,8 @@ public class Upgrades : MonoBehaviour
     }
 
     public void emp(GameObject button) {
-        if(!empAcquired) {
-            empAcquired = true;
-            button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
-            button.GetComponent<Button>().interactable = false;
-            am.Play("UI_Select");
-            am.Play("Upgrade_UI");
+        if(!upgradeAcquired["empAcquired"]) {
+            HandleUpgradeSelectionUI(button, "empAcquired");
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
@@ -297,13 +300,9 @@ public class Upgrades : MonoBehaviour
     }
 
     public void orbit(GameObject button) {
-        if(!orbitalAcquired) {
-            orbitalAcquired = true;
-            button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
-            button.GetComponent<Button>().interactable = false;
+        if(!upgradeAcquired["orbitalAcquired"]) {
+            HandleUpgradeSelectionUI(button, "orbitalAcquired");
             orbitalAssassin.SetActive(true);
-            am.Play("UI_Select");
-            am.Play("Upgrade_UI");
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
@@ -312,12 +311,8 @@ public class Upgrades : MonoBehaviour
     }
 
     public void dash(GameObject button) {
-        if(!dashAcquired) {
-            dashAcquired = true;
-            button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
-            button.GetComponent<Button>().interactable = false;
-            am.Play("UI_Select");
-            am.Play("Upgrade_UI");
+        if(!upgradeAcquired["dashAcquired"]) {
+            HandleUpgradeSelectionUI(button, "dashAcquired");
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{

@@ -10,6 +10,10 @@ public class Building : MonoBehaviour
     public int bricks = 0;
     public TextMeshProUGUI bricksText;
     bool canBuild;
+    public float timeBetweenPlacement = .2f;
+    private bool isHoldingMouse = false;
+
+    private Vector2Int debugGridPosition;
 
     //Text Animation
     private Vector3 originalScale;
@@ -25,14 +29,18 @@ public class Building : MonoBehaviour
     void Update()
     {
         if(canBuild) {
-            if (Input.GetMouseButtonDown(0))
+
+            if (Input.GetMouseButton(0))
             {
-                if(bricks > 0) {
-                    PlaceBlock();
-                }else{
-                    am.Play("Buzzer");
+                if (!isHoldingMouse) 
+                {
+                    isHoldingMouse = true;
+                    StartCoroutine(HoldToPlace());
                 }
-                
+            }
+            else
+            {
+                isHoldingMouse = false;
             }
         }
 
@@ -50,14 +58,18 @@ public class Building : MonoBehaviour
     {
         // Convert mouse position to world position
         Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Instantiate(dustParticles, mouseWorldPosition, Quaternion.identity);
-        am.Play("Construction");
 
         // Convert world position to grid position
-        Vector2Int gridPosition = new Vector2Int(Mathf.FloorToInt(mouseWorldPosition.x), Mathf.FloorToInt(mouseWorldPosition.y));
-
+        // Vector2Int gridPosition = new Vector2Int(Mathf.FloorToInt(mouseWorldPosition.x), Mathf.FloorToInt(mouseWorldPosition.y));
+        Vector2Int gridPosition = new Vector2Int(
+            Mathf.RoundToInt(mouseWorldPosition.x - 0.5f),
+            Mathf.RoundToInt(mouseWorldPosition.y - 0.5f)
+        );
+        
         // Check for existing block
         Collider2D existingBlock = Physics2D.OverlapBox(gridPosition + new Vector2(0.5f, 0.5f), Vector2.one, 0, LayerMask.GetMask("Block"));
+        
+
 
         if (existingBlock != null)
         {
@@ -65,11 +77,17 @@ public class Building : MonoBehaviour
             return;
         }
 
+        Instantiate(dustParticles, mouseWorldPosition, Quaternion.identity);
+        am.Play("Construction");
+
         // Instantiate block at grid position
         Instantiate(blockPrefab, gridPosition + new Vector2(0.5f, 0.5f), Quaternion.identity);
         StartCoroutine(AnimateBricksText());
         bricks--;
     }
+
+
+
 
     IEnumerator AnimateBricksText()
     {
@@ -93,4 +111,39 @@ public class Building : MonoBehaviour
 
         bricksText.transform.localScale = originalScale; // Ensure it returns to its exact original scale
     }
+
+    IEnumerator HoldToPlace() {
+        while (isHoldingMouse)
+        {
+            if (bricks > 0)
+            {
+                PlaceBlock();
+                yield return new WaitForSeconds(timeBetweenPlacement); // You can adjust the delay as needed
+            }
+            else
+            {
+                am.Play("Buzzer");
+                yield return new WaitForSeconds(timeBetweenPlacement); // Prevent from spamming the buzzer sound
+            }
+        }
+    }
+
+    // void OnDrawGizmos()
+    // {
+    //     Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //     Vector2Int gridPosition = new Vector2Int(Mathf.FloorToInt(mouseWorldPosition.x), Mathf.FloorToInt(mouseWorldPosition.y));
+    //     Vector2 exactPosition = gridPosition + new Vector2(0.5f, 0.5f);
+        
+    //     Gizmos.color = Color.green;
+    //     Gizmos.DrawCube(exactPosition, Vector2.one);
+    // }
+
+    void OnDrawGizmos()
+{
+    // Draw the debug position
+    Gizmos.color = Color.red;
+    Gizmos.DrawWireCube(debugGridPosition + new Vector2(0.5f, 0.5f), Vector2.one * 0.95f);
+}
+
+
 }

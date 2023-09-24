@@ -43,7 +43,7 @@ public class Player_Shooting : MonoBehaviour
         if(shootIdx[0] && !isShooting) {
             isShooting = true;
             float flashRotation = -90f;
-            if(GetComponent<Upgrades>().autoAcquired){
+            if(GetComponent<Upgrades>().upgradeAcquired["autoAcquired"]){
                 StartCoroutine(ShootAutomatic(Vector2.up, KeyCode.UpArrow, flashRotation, new Vector3(0, 1, 0)));
             }else{
                 var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
@@ -54,7 +54,7 @@ public class Player_Shooting : MonoBehaviour
             }
         }else if(shootIdx[1] && !isShooting) {
             float flashRotation = 180f;
-            if(GetComponent<Upgrades>().autoAcquired){
+            if(GetComponent<Upgrades>().upgradeAcquired["autoAcquired"]){
                 StartCoroutine(ShootAutomatic(Vector2.right, KeyCode.RightArrow, flashRotation, new Vector3(1, 0, 0)));
             }else{
                 var particles = Instantiate(muzzleParticles, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
@@ -65,7 +65,7 @@ public class Player_Shooting : MonoBehaviour
             }
         }else if(shootIdx[2] && !isShooting) {
             float flashRotation = 90f;
-            if(GetComponent<Upgrades>().autoAcquired){
+            if(GetComponent<Upgrades>().upgradeAcquired["autoAcquired"]){
                 
                 StartCoroutine(ShootAutomatic(Vector2.down, KeyCode.DownArrow, flashRotation, new Vector3(0, -1, 0)));
             }else{
@@ -77,7 +77,7 @@ public class Player_Shooting : MonoBehaviour
             }
         }else if(shootIdx[3] && !isShooting) {
             float flashRotation = -180f;
-            if(GetComponent<Upgrades>().autoAcquired){
+            if(GetComponent<Upgrades>().upgradeAcquired["autoAcquired"]){
                 
                 StartCoroutine(ShootAutomatic(Vector2.left, KeyCode.LeftArrow, flashRotation, new Vector3(-1, 0, 0)));
             }else{
@@ -96,7 +96,7 @@ public class Player_Shooting : MonoBehaviour
         impulseSource.GenerateImpulse();
         // Instantiate the projectile
         GameObject projectile = Instantiate(projectilePrefab, (Vector2)transform.position, Quaternion.identity);
-        if(GetComponent<Upgrades>().arsenAcquired) {
+        if(GetComponent<Upgrades>().upgradeAcquired["arsenAcquired"]) {
             GameObject particles = Instantiate(flamingProjectiles, projectile.transform.position, Quaternion.identity);
             particles.transform.SetParent(projectile.transform);
             projectile.GetComponent<Projectile>().damage*=1.5f;

@@ -13,7 +13,6 @@ public class Snake_Enemy : MonoBehaviour
     private Vector3 lastPosition;
 
     public float speed = 5f; // Speed of horizontal movement.
-    private bool movingRight = true;
 
     private Vector2 direction;
     bool ignoreCollisions = false;

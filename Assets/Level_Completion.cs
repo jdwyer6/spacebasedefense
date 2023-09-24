@@ -8,12 +8,13 @@ public class Level_Completion : MonoBehaviour
     public TextMeshProUGUI countdownText; // Assign this via Inspector
 
     private float countdownDuration = 15f * 60f; // 20 minutes in seconds
+    public GameObject levelCompleteScreen;
 
     private void Start()
     {
-        Debug.Log("Level_Completion Start method called.");
         StartCoroutine(Countdown());
     }
+
 
     IEnumerator Countdown()
     {
@@ -32,7 +33,14 @@ public class Level_Completion : MonoBehaviour
             remainingTime -= 1f;
         }
 
+
         // Once the countdown is done
         countdownText.text = "00:00";
+        EndLevel();
+    }
+
+    void EndLevel() {
+        Time.timeScale = 0;
+        levelCompleteScreen.SetActive(true);
     }
 }

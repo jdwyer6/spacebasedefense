@@ -59,7 +59,7 @@ public class Enemy_Health : MonoBehaviour
 
     void Die() {
         //Death Particles
-        player.GetComponent<Building>().bricks++;
+        player.GetComponent<Building>().bricks += 2;
         if(WillDropPickup()) Instantiate(pickup, transform.position, Quaternion.identity);
         if(GetComponent<Enemy_Eye>()) {
             Instantiate(eyeDeathParticles, transform.position, Quaternion.identity);
@@ -115,6 +115,9 @@ public class Enemy_Health : MonoBehaviour
     }
 
     bool WillDropPickup() {
+        if(player.GetComponent<Upgrades>().AllUpgradesHaveBeenAcquired()) {
+            return false;
+        }
         int randomNum = UnityEngine.Random.Range(0, 100);
         if(randomNum <= percentToDropPickups) {
             return true;

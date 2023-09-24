@@ -10,11 +10,15 @@ TagManager:
   - Enemy
   - Blood_Hit
   - Pickup
+  - Laser
+  - Upgrade_Button
+  - Blood_Drops
+  - Projectile_NonDestructible
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Block
   - Water
   - UI
   - 

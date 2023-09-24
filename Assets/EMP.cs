@@ -29,7 +29,7 @@ public class EMP : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.E) && canUseEMP) {
-            if(GetComponent<Upgrades>().empAcquired){
+            if(GetComponent<Upgrades>().upgradeAcquired["empAcquired"]){
                 StartCoroutine(LaunchEMP());
             }
         }
@@ -46,7 +46,7 @@ public class EMP : MonoBehaviour
         }
         empTimerSlider.value = timer;
 
-        if(GetComponent<Upgrades>().empAcquired){
+        if(GetComponent<Upgrades>().upgradeAcquired["empAcquired"]){
             empSlider.SetActive(true);
         }else{
             empSlider.SetActive(false);

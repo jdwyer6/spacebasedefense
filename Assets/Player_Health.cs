@@ -16,6 +16,7 @@ public class Player_Health : MonoBehaviour
     public float healthSliderSpeed = 5f;
     public bool isDead;
     bool isChangingColor = false;
+    public Animator anim;
 
     public Sprite[] sprites;
     public SpriteRenderer spriteRenderer;
@@ -47,7 +48,7 @@ public class Player_Health : MonoBehaviour
     {
         currentHealth -= damage;
         targetHealthValue = currentHealth; // Set the new target value
-
+        anim.SetTrigger("Hurt");
         StartCoroutine(ChangeColor());
         am.Play(data.playerDamageSounds[Random.Range(0, data.playerDamageSounds.Length)]);
         
