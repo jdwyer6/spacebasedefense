@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; // Needed to use UI elements
+using UnityEngine.UI;
 
 public class Player_Health : MonoBehaviour
 {
     public float maxHealth = 100f; // Maximum health of the player
     public Slider healthBar; // Reference to the health bar UI slider
     
-    private float currentHealth; // Current health of the player
+    public float currentHealth; // Current health of the player
     private AudioManager am;
     private GameObject gm;
     private Data data;
@@ -25,6 +25,7 @@ public class Player_Health : MonoBehaviour
     {
         gm = GameObject.FindGameObjectWithTag("GM");
         data = gm.GetComponent<Data>();
+        maxHealth = 100f;
         currentHealth = maxHealth; // Initialize current health to max health
         am = FindObjectOfType<AudioManager>();
         targetHealthValue = currentHealth; // Initialize the target value

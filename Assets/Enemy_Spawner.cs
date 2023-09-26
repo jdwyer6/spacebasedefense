@@ -13,6 +13,8 @@ public class Enemy_Spawner : MonoBehaviour
     public float distanceToSpawnAwayFromPlayer = 20;
     public bool waveActive = true;
     public bool spawnEnemy = true;
+    bool exploitTimerRunning = false;
+    bool forceNextCoolDown = false;
 
     [Header("Wave Properties")]
     public int level = 1;
@@ -65,7 +67,8 @@ public class Enemy_Spawner : MonoBehaviour
 
         if(waveActive && timer <= 0) {
             spawnEnemy = false;
-            if(GetRemainingEnemies() <= 0) {
+            if(GetRemainingEnemies() <= 0 || forceNextCoolDown) {
+                forceNextCoolDown = false;
                 waveActive = false;
                 timer = coolDownPeriod;
                 coolDown = true;
@@ -91,6 +94,11 @@ public class Enemy_Spawner : MonoBehaviour
             }else{
                 buildTip.SetActive(false);
             }
+        }
+
+        if(waveActive && !spawnEnemy && !exploitTimerRunning) {
+            exploitTimerRunning = true;
+            StartCoroutine(StartExploitStopper());
         }
 
 
@@ -161,5 +169,13 @@ public class Enemy_Spawner : MonoBehaviour
  
         }
         return false;
+    }
+
+    IEnumerator StartExploitStopper() {
+        Debug.Log("Started Exploit");
+        yield return new WaitForSeconds(15);
+        if(waveActive && !spawnEnemy) {
+            forceNextCoolDown = true;
+        }
     }
 }

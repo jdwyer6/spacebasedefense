@@ -31,17 +31,6 @@ public class Upgrades : MonoBehaviour
     Upgrade[] upgrades; 
     public GameObject upgradeGroup;
 
-    // [Header("Upgrade Booleans")]
-    // public Dictionary<string, bool> upgradeAcquired = new Dictionary<string, bool>{
-    //     {"speedAcquired", false},
-    //     {"healthAcquired", false},
-    //     {"arsenAcquired", false},
-    //     {"autoAcquired", false},
-    //     {"empAcquired", false},
-    //     {"orbitalAcquired", false},
-    //     {"dashAcquired", false}
-    // };
-
     UpgradeLogicType speed = UpgradeLogicType.speed;
     UpgradeLogicType health = UpgradeLogicType.health;
     UpgradeLogicType arsen = UpgradeLogicType.arsen;
@@ -49,6 +38,7 @@ public class Upgrades : MonoBehaviour
     UpgradeLogicType emp = UpgradeLogicType.emp;
     UpgradeLogicType orbit = UpgradeLogicType.orbit;
     UpgradeLogicType dash = UpgradeLogicType.dash;
+    UpgradeLogicType healthyHabits = UpgradeLogicType.healthyHabits;
 
     public GameObject speedBoostParticles;
 
@@ -77,6 +67,11 @@ public class Upgrades : MonoBehaviour
         SetUpgrades();
         upgradeButtons = upgradeGroup.GetComponentsInChildren<Button>();
         eventSystem = EventSystem.current;
+
+        foreach (var upgrade in upgrades)
+        {
+            upgrade.acquired = false;
+        }
 
     }
 
@@ -182,6 +177,9 @@ public class Upgrades : MonoBehaviour
                     break;
                 case UpgradeLogicType.dash:
                 newUpgrade.GetComponent<Button>().onClick.AddListener(() => Dash(newUpgrade));
+                    break;
+                case UpgradeLogicType.healthyHabits:
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => HealthyHabits(newUpgrade));
                     break;
             }
         }
@@ -324,6 +322,22 @@ public class Upgrades : MonoBehaviour
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == dash).acquired) {
             HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == dash));
             dashToolTip.SetActive(true);
+            ResetAndUpdatePickups();
+            CloseUpgradesMenu();
+        }else{
+            am.Play("UI_Disabled");
+        }
+    }
+
+        public void HealthyHabits(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == healthyHabits).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == healthyHabits));
+            GetComponent<Player_Health>().maxHealth *= 2;
+            GetComponent<Player_Health>().currentHealth = GetComponent<Player_Health>().maxHealth;
+            GetComponent<Player_Health>().healthBar.value = GetComponent<Player_Health>().maxHealth;
+            RectTransform healthBarRect = GetComponent<Player_Health>().healthBar.GetComponent<RectTransform>();
+            healthBarRect.sizeDelta = new Vector2(healthBarRect.sizeDelta.x * 2, healthBarRect.sizeDelta.y);
+
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{

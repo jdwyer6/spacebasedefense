@@ -23,8 +23,11 @@ public class Player_Movement : MonoBehaviour
     bool isMoving = false;
 
     public ParticleSystem moveParticles;
+    public ParticleSystem dashParticles;
     private float originalEmissionRate;
+    private float dashEmissionRate = 1000;
     private ParticleSystem.EmissionModule emissionModule; 
+    private ParticleSystem.EmissionModule dashEmissionModule; 
     UpgradeLogicType dash = UpgradeLogicType.dash;
 
 
@@ -41,6 +44,7 @@ public class Player_Movement : MonoBehaviour
         am = FindObjectOfType<AudioManager>();
         gm = GameObject.FindGameObjectWithTag("GM");
         emissionModule = moveParticles.emission;
+        dashEmissionModule = dashParticles.emission;
         originalEmissionRate = emissionModule.rateOverTime.constant;
 
         // avatar = GetComponent<Alteruna.Avatar>();
@@ -92,6 +96,7 @@ public class Player_Movement : MonoBehaviour
     }
 
     IEnumerator Dash() {
+        dashEmissionModule.rateOverTime = dashEmissionRate; 
         dashRecharged = false;
         GetComponent<PolygonCollider2D>().enabled = false;
         am.Play("Dash");
@@ -101,6 +106,7 @@ public class Player_Movement : MonoBehaviour
         float currentSpeed = moveSpeed;
         moveSpeed *= dashMultiplier;
         yield return new WaitForSeconds(.3f);
+        dashEmissionModule.rateOverTime = 0f; 
         moveSpeed = currentSpeed;
         StartCoroutine(RechargeDash());
         GetComponent<PolygonCollider2D>().enabled = true;
