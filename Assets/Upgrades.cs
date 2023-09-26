@@ -335,6 +335,7 @@ public class Upgrades : MonoBehaviour
             GetComponent<Player_Health>().maxHealth *= 2;
             GetComponent<Player_Health>().currentHealth = GetComponent<Player_Health>().maxHealth;
             GetComponent<Player_Health>().healthBar.value = GetComponent<Player_Health>().maxHealth;
+            GetComponent<Player_Health>().targetHealthValue = GetComponent<Player_Health>().currentHealth;
             RectTransform healthBarRect = GetComponent<Player_Health>().healthBar.GetComponent<RectTransform>();
             healthBarRect.sizeDelta = new Vector2(healthBarRect.sizeDelta.x * 2, healthBarRect.sizeDelta.y);
 

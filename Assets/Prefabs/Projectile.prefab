@@ -207,7 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   flash: 0
-  color1: {r: 1, g: 0, b: 0, a: 1}
+  color1: {r: 1, g: 0.28773582, b: 0.28773582, a: 1}
   color2: {r: 1, g: 1, b: 1, a: 1}
   ignoreList: 0
 --- !u!58 &-3016659450791029342
@@ -225,4 +225,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.65
+  m_Radius: 0.5

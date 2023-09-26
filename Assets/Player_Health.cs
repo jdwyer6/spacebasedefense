@@ -12,7 +12,7 @@ public class Player_Health : MonoBehaviour
     private AudioManager am;
     private GameObject gm;
     private Data data;
-    private float targetHealthValue; // The target value for the health slider
+    public float targetHealthValue; // The target value for the health slider
     public float healthSliderSpeed = 5f;
     public bool isDead;
     bool isChangingColor = false;
