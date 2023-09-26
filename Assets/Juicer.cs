@@ -6,6 +6,7 @@ using Cinemachine;
 public class Juicer : MonoBehaviour
 {
     public CinemachineImpulseSource impulseSource;
+    public CinemachineImpulseSource impulseSourceHuge;
     
     private void Start() {
         
@@ -23,5 +24,9 @@ public class Juicer : MonoBehaviour
 
     public void ApplyCameraShake() {
         impulseSource.GenerateImpulse();
+    }
+
+    public void ApplyCameraShakeHuge() {
+        impulseSourceHuge.GenerateImpulse();
     }
 }

@@ -10,17 +10,24 @@ public class Bloat : MonoBehaviour
     public GameObject projectilePrefab;
     public int numberOfProjectiles = 8;
     private GameObject player;
+    private AudioManager am;
+    private GameObject gm;
 
     public float shakeMagnitude = 0.1f;  // The magnitude of the shaking effect
     public float shakeFrequency = 1f;    // How fast the object shakes
 
     private bool isEnlarging = false;
     private Vector3 initialPosition;
+    private Vector3 shakeOffset;
+
+    public GameObject explodeParticles;
 
     private void Start()
     {
         initialPosition = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
+        am = FindObjectOfType<AudioManager>();
+        gm = GameObject.FindGameObjectWithTag("GM");
     }
 
     private void Update()
@@ -39,8 +46,12 @@ public class Bloat : MonoBehaviour
         }
         else
         {
-            transform.position = initialPosition;
+            shakeOffset = Vector3.zero; // Reset the shake offset if not shaking.
         }
+
+        float step = enlargementSpeed * Time.deltaTime;
+        // transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+        transform.position += shakeOffset;
     }
 
     private void StartEnlarging()
@@ -51,6 +62,7 @@ public class Bloat : MonoBehaviour
 
     private IEnumerator Enlarge()
     {
+        am.Play("Bloat_Enlarge");
         while (transform.localScale.x < maxSize)
         {
             float scaleValue = enlargementSpeed * Time.deltaTime;
@@ -65,11 +77,15 @@ public class Bloat : MonoBehaviour
     {
         float offsetX = Random.Range(-shakeMagnitude, shakeMagnitude);
         float offsetY = Random.Range(-shakeMagnitude, shakeMagnitude);
-        transform.position = initialPosition + new Vector3(offsetX, offsetY, 0);
+        shakeOffset = new Vector3(offsetX, offsetY, 0);
     }
 
     private void Explode()
     {
+        gm.GetComponent<Juicer>().ApplyCameraShakeHuge();
+        Instantiate(explodeParticles, transform.position, Quaternion.identity);
+        am.Stop("Bloat_Enlarge");
+        am.Play("Bloat_Explode");
         if (explosionParticles)
         {
             Instantiate(explosionParticles, transform.position, Quaternion.identity);
