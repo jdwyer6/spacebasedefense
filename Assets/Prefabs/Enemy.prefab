@@ -955,6 +955,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalSpeed: 2
+  speed: 0
+  isStationary: 0
 --- !u!58 &8811259199029991815
 CircleCollider2D:
   m_ObjectHideFlags: 0

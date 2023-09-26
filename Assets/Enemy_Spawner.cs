@@ -34,8 +34,8 @@ public class Enemy_Spawner : MonoBehaviour
     private Transform player;
     public float timer;
 
-    [Header("UI")]
-    public GameObject buildTip;
+    // [Header("UI")]
+    // public GameObject buildTip;
 
     [Header("Variable Difficulty")]
     private float spawnInterval = 4;
@@ -88,13 +88,13 @@ public class Enemy_Spawner : MonoBehaviour
             StartCoroutine(SpawnEnemy());
         }
 
-        if(buildTip != null) {
-            if(coolDown){
-                buildTip.SetActive(true);
-            }else{
-                buildTip.SetActive(false);
-            }
-        }
+        // if(buildTip != null) {
+        //     if(coolDown){
+        //         buildTip.SetActive(true);
+        //     }else{
+        //         buildTip.SetActive(false);
+        //     }
+        // }
 
         if(waveActive && !spawnEnemy && !exploitTimerRunning) {
             exploitTimerRunning = true;

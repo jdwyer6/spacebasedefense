@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy_Movement : MonoBehaviour
 {
     public float originalSpeed;
-    private float speed;
+    public float speed;
     private Transform player; 
     private Rigidbody2D rb2d; 
     private GameObject gm;
@@ -23,8 +23,9 @@ public class Enemy_Movement : MonoBehaviour
         }
 
         rb2d = GetComponent<Rigidbody2D>(); 
+        speed = originalSpeed;
 
-        speed = originalSpeed * gm.GetComponent<Enemy_Spawner>().enemyMovementSpeedMultiplier;
+        // speed = originalSpeed * gm.GetComponent<Enemy_Spawner>().enemyMovementSpeedMultiplier;
     }
 
     void Update()

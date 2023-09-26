@@ -113,14 +113,14 @@ public class Player_Movement : MonoBehaviour
     }
 
     IEnumerator RechargeDash() {
-        GameObject dashToolTip = GetComponent<Upgrades>().dashToolTip;
-        TextMeshProUGUI dashTextComponent = dashToolTip.GetComponent<TextMeshProUGUI>();
+        // GameObject dashToolTip = GetComponent<Upgrades>().dashToolTip;
+        // TextMeshProUGUI dashTextComponent = dashToolTip.GetComponent<TextMeshProUGUI>();
         
-        dashTextComponent.color = new Color32(255, 73, 73, 255);
+        // dashTextComponent.color = new Color32(255, 73, 73, 255);
         yield return new WaitForSeconds(1.5f);
         
         dashRecharged = true;
-        dashTextComponent.color = Color.white;
+        // dashTextComponent.color = Color.white;
     }
 }
 
