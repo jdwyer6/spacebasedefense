@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HealthyHabits
   m_EditorClassIdentifier: 
   upgradeName: Healthy Habits
-  icon: {fileID: 21300000, guid: d0bae29cf2a37fc459127763e6f6b5ab, type: 3}
+  icon: {fileID: 21300000, guid: 0d7d265009332eb4bb935eaa2df49b2c, type: 3}
   value: 2
   title: Healthy Habits
   description: Extend Health Bar x2

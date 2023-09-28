@@ -12,14 +12,13 @@ public class Juicer : MonoBehaviour
         
     }
 
-    public IEnumerator ApplyHitStop(int frames) {
+    public IEnumerator ApplyHitStop(float seconds) {
+        float originalTimeScale = Time.timeScale;
         Time.timeScale = 0;
 
-        for (int i = 0; i < frames; i++) {
-            yield return new WaitForEndOfFrame();
-        }
+        yield return new WaitForSecondsRealtime(seconds);
 
-        Time.timeScale = 1;
+        Time.timeScale = originalTimeScale;
     }
 
     public void ApplyCameraShake() {

@@ -103,7 +103,7 @@ public class Player_Health : MonoBehaviour
             {
                 Color currentColor = spriteRenderer.color;
                 spriteRenderer.color = new Color(1.0f, 0.286f, 0.286f);
-                StartCoroutine(gm.GetComponent<Juicer>().ApplyHitStop(60));
+                StartCoroutine(gm.GetComponent<Juicer>().ApplyHitStop(.2f));
                 yield return new WaitForSeconds(.1f);
                 spriteRenderer.color = currentColor;
             }

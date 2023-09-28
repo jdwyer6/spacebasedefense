@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player_Movement : MonoBehaviour
@@ -113,14 +114,14 @@ public class Player_Movement : MonoBehaviour
     }
 
     IEnumerator RechargeDash() {
-        // GameObject dashToolTip = GetComponent<Upgrades>().dashToolTip;
-        // TextMeshProUGUI dashTextComponent = dashToolTip.GetComponent<TextMeshProUGUI>();
+        GameObject dashToolTip = GetComponent<Upgrades>().dashToolTip;
+        Image dashImage = dashToolTip.GetComponentInChildren<Image>();
         
-        // dashTextComponent.color = new Color32(255, 73, 73, 255);
+        dashImage.color = new Color32(255, 73, 73, 255);
         yield return new WaitForSeconds(1.5f);
         
         dashRecharged = true;
-        // dashTextComponent.color = Color.white;
+        dashImage.color = Color.white;
     }
 }
 
