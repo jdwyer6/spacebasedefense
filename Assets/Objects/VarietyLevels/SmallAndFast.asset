@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SmallAndFast
   m_EditorClassIdentifier: 
   levelTitle: Small and Fast
-  amountOfEnemiesToSpawnPerCycle: 5
+  amountOfEnemiesToSpawnPerCycle: 20
   enemies:
   - {fileID: 837704418610325059, guid: 6d81b27497924f743879d2f499f54cea, type: 3}

@@ -42,7 +42,7 @@ public class BulletHellSource : MonoBehaviour
                 StartCoroutine(gm.GetComponent<BulletHellLibrary>().Spiral(barrelPosition, shootingDuration, shootInterval, restDuration, projectilePrefab, sound, speed, aimAtPlayer, rotationSpeed, size, distanceFromPlayerToStartShooting, flashParticles, damageToPlayer));
                 break;
             case ShootingStyle.Default:
-                StartCoroutine(gm.GetComponent<BulletHellLibrary>().Spiral(barrelPosition, 1, shootInterval, 0, projectilePrefab, sound, speed, aimAtPlayer, 0, size, distanceFromPlayerToStartShooting, flashParticles, damageToPlayer));
+                StartCoroutine(gm.GetComponent<BulletHellLibrary>().Spiral(barrelPosition, shootingDuration, shootInterval, restDuration, projectilePrefab, sound, speed, aimAtPlayer, 0, size, distanceFromPlayerToStartShooting, flashParticles, damageToPlayer));
                 break;
             case ShootingStyle.Sine:
                 // Start Sine method

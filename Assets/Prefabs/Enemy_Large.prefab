@@ -10380,10 +10380,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToSpawn: 2
-  levelToStopSpawning: 6
+  levelToStopSpawning: 100
   damage: 40
   hasLaser: 1
-  probabilityToSpawn: 30
+  probabilityToSpawn: 20
 --- !u!1 &5084136350985898359
 GameObject:
   m_ObjectHideFlags: 0

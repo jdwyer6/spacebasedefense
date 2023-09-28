@@ -31,7 +31,9 @@ public class BulletHellSourceEditor : Editor
         else if (script.selectedStyle == ShootingStyle.Default)
         {
             script.barrelPosition = EditorGUILayout.ObjectField("Barrel Position", script.barrelPosition, typeof(Transform), true) as Transform;
+            script.shootingDuration = EditorGUILayout.FloatField("Shooting Duration", script.shootingDuration);
             script.shootInterval = EditorGUILayout.FloatField("Shoot Interval", script.shootInterval);
+            script.restDuration = EditorGUILayout.FloatField("Rest Duration", script.restDuration);
             script.speed = EditorGUILayout.FloatField("Speed", script.speed);
             script.size = EditorGUILayout.FloatField("Size", script.size);
             script.projectilePrefab = EditorGUILayout.ObjectField("Projectile Prefab", script.projectilePrefab, typeof(GameObject), true) as GameObject;

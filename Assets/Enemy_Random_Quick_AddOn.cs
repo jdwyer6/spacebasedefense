@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Enemy_Random_Quick_AddOn : MonoBehaviour
 {
-    private float startingSpeed = 3;
+    private float startingSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
+        startingSpeed = GetComponent<Enemy_Movement>().originalSpeed;
         StartCoroutine(MoveFast());
     }
 

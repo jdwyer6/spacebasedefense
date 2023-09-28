@@ -101,7 +101,9 @@ public class Enemy_Spawner : MonoBehaviour
             StartCoroutine(StartExploitStopper());
         }
 
-
+        if(IsVarietyLevel() && !spawnEnemy && GetRemainingEnemies() <= 0) {
+            timer = 0;
+        }
     }
 
     IEnumerator SpawnEnemy() {
@@ -117,6 +119,7 @@ public class Enemy_Spawner : MonoBehaviour
                     } 
                     
                 }
+                spawnEnemy = false;
             }else{
                 for (int i = 0; i < enemies.Length; i++)
                 {

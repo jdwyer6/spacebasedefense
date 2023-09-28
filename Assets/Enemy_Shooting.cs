@@ -62,7 +62,7 @@ public class Enemy_Shooting : MonoBehaviour
         //     spriteRenderer.color = Color.red;
         // }
         projectile.GetComponent<Projectile>().flash = true;
-        projectile.transform.localScale = new Vector3(.2f, .2f, 1f);
+        projectile.transform.localScale = new Vector3(.3f, .3f, 1f);
 
         Vector3 direction = (player.position - transform.position).normalized;
 

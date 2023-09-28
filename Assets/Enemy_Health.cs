@@ -15,6 +15,7 @@ public class Enemy_Health : MonoBehaviour
     public GameObject pickup;
     public int percentToDropPickups = 90;
     public GameObject eyeDeathParticles;
+    bool isChangingColor = false;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +71,10 @@ public class Enemy_Health : MonoBehaviour
     }
 
     IEnumerator ChangeColor() {
+        if(isChangingColor)
+            yield break;
+        isChangingColor = true;
+
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         Color currentColor = spriteRenderer.color;
         if(spriteRenderer != null)
@@ -78,6 +83,7 @@ public class Enemy_Health : MonoBehaviour
         }
         yield return new WaitForSeconds(.1f);
         spriteRenderer.color = currentColor;
+        isChangingColor = false;
     }
 
     void ShowBloodHit() 

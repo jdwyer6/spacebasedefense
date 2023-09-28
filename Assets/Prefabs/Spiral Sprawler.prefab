@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8090bd37320b7fc45a75c54dd1772283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToSpawn: 9
+  levelToSpawn: 6
   levelToStopSpawning: 100
   damage: 10
   hasLaser: 0

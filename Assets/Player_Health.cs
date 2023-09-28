@@ -92,23 +92,23 @@ public class Player_Health : MonoBehaviour
     }
 
     IEnumerator ChangeColor() {
-            if(isChangingColor)
-                yield break;
+        if(isChangingColor)
+            yield break;
 
-            isChangingColor = true;
+        isChangingColor = true;
 
-            SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-            
-            if(spriteRenderer != null)
-            {
-                Color currentColor = spriteRenderer.color;
-                spriteRenderer.color = new Color(1.0f, 0.286f, 0.286f);
-                StartCoroutine(gm.GetComponent<Juicer>().ApplyHitStop(.2f));
-                yield return new WaitForSeconds(.1f);
-                spriteRenderer.color = currentColor;
-            }
-            
-            isChangingColor = false;
+        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        
+        if(spriteRenderer != null)
+        {
+            Color currentColor = spriteRenderer.color;
+            spriteRenderer.color = new Color(1.0f, 0.286f, 0.286f);
+            StartCoroutine(gm.GetComponent<Juicer>().ApplyHitStop(.2f));
+            yield return new WaitForSeconds(.1f);
+            spriteRenderer.color = currentColor;
+        }
+        
+        isChangingColor = false;
     }
 
     private void UpdateSpriteDamage() {
