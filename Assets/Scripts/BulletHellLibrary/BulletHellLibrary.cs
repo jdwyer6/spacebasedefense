@@ -29,19 +29,17 @@ public class BulletHellLibrary : MonoBehaviour
         float rotationSpeed, 
         float size,
         float distanceFromPlayerToStartShooting,
-        GameObject flashParticles
+        GameObject flashParticles, 
+        float damageToPlayer
         ) {
         while (true)
         {
             float rotation = 0;
             for (float t = 0; t < shootingDuration; t += shootInterval)
             {
-                if(Vector3.Distance(transform.position, player.transform.position) < distanceFromPlayerToStartShooting){
-                    ShootProjectile(barrelPosition, projectilePrefab, sound, speed, aimAtPlayer, rotation, size, flashParticles);
-                    yield return new WaitForSeconds(shootInterval);
-                    rotation += rotationSpeed;
-                }
-
+                ShootProjectile(barrelPosition, projectilePrefab, sound, speed, aimAtPlayer, rotation, size, distanceFromPlayerToStartShooting, flashParticles, damageToPlayer);
+                yield return new WaitForSeconds(shootInterval);
+                rotation += rotationSpeed;
             }
             yield return new WaitForSeconds(restDuration);
         }
@@ -50,12 +48,14 @@ public class BulletHellLibrary : MonoBehaviour
 
 
 
-    void ShootProjectile(Transform barrelPosition, GameObject projectilePrefab, string sound, float speed, bool aimAtPlayer, float rotation, float size, GameObject flashParticles)
+    void ShootProjectile(Transform barrelPosition, GameObject projectilePrefab, string sound, float speed, bool aimAtPlayer, float rotation, float size, float distanceFromPlayerToStartShooting, GameObject flashParticles, float damageToPlayer)
     {
+        // if(Vector3.Distance(barrelPosition.position, player.transform.position) > distanceFromPlayerToStartShooting) return;
         GameObject projectile = Instantiate(projectilePrefab, barrelPosition.position, barrelPosition.rotation);
-
+        IgnoreCollisionsWithSelf(projectile);
         projectile.GetComponent<Projectile>().flash = true;
         projectile.transform.localScale = new Vector3(size, size, 1f);
+        projectile.GetComponent<Projectile>().damage = damageToPlayer;
         am.Play(sound);
         SpriteRenderer sr = projectile.GetComponent<SpriteRenderer>();
         if (sr != null)
@@ -72,7 +72,7 @@ public class BulletHellLibrary : MonoBehaviour
         }
 
         if(flashParticles != null) {
-            Vector3 flashPosition = transform.position + new Vector3(direction.x, direction.y, 0);
+            Vector3 flashPosition = barrelPosition.position + new Vector3(direction.x, direction.y, 0);
             var particles = Instantiate(flashParticles, flashPosition, Quaternion.identity);
             float rotationDegree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             SetFlashRotation(particles, rotationDegree);
@@ -81,14 +81,6 @@ public class BulletHellLibrary : MonoBehaviour
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
         rb.velocity = direction * speed;
-
-        Collider2D projectileCollider = projectile.GetComponent<Collider2D>();
-        Collider2D enemyCollider = GetComponent<Collider2D>();
-
-        if (projectileCollider != null && enemyCollider != null)
-        {
-            Physics2D.IgnoreCollision(projectileCollider, enemyCollider);
-        }
     }
 
     private void SetFlashRotation(GameObject particles, float rotationDegree)
@@ -104,4 +96,23 @@ public class BulletHellLibrary : MonoBehaviour
             }
         }
     }
+
+    private void IgnoreCollisionsWithSelf(GameObject projectile) {
+        Collider2D projectileCollider = projectile.GetComponent<Collider2D>();
+        StartCoroutine(EnableColliderAfterDelay(projectileCollider, 0.1f));
+        projectile.GetComponent<Projectile>().ignoreList = Projectile.IgnoreList.Enemy;
+        Collider2D enemyCollider = GetComponent<Collider2D>();
+        if (projectileCollider != null && enemyCollider != null)
+        {
+            Physics2D.IgnoreCollision(projectileCollider, enemyCollider);
+        }
+    }
+
+    private IEnumerator EnableColliderAfterDelay(Collider2D col, float delay) 
+    {
+        col.enabled = false;
+        yield return new WaitForSeconds(delay);
+        col.enabled = true;
+    }
+
 }

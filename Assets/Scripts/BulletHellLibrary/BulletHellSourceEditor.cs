@@ -26,6 +26,7 @@ public class BulletHellSourceEditor : Editor
             script.rotationSpeed = EditorGUILayout.IntField("Rotation Speed", script.rotationSpeed);
             script.distanceFromPlayerToStartShooting = EditorGUILayout.FloatField("Distance From Player To Start Shooting", script.distanceFromPlayerToStartShooting);
             script.flashParticles = EditorGUILayout.ObjectField("Flash Particles", script.flashParticles, typeof(GameObject), true) as GameObject;
+            script.damageToPlayer = EditorGUILayout.FloatField("Damage To Player", script.damageToPlayer);
         }
         else if (script.selectedStyle == ShootingStyle.Default)
         {
@@ -38,6 +39,7 @@ public class BulletHellSourceEditor : Editor
             script.aimAtPlayer = EditorGUILayout.Toggle("Aim At Player", script.aimAtPlayer);
             script.distanceFromPlayerToStartShooting = EditorGUILayout.FloatField("Distance From Player To Start Shooting", script.distanceFromPlayerToStartShooting);
             script.flashParticles = EditorGUILayout.ObjectField("Flash Particles", script.flashParticles, typeof(GameObject), true) as GameObject;
+            script.damageToPlayer = EditorGUILayout.FloatField("Damage To Player", script.damageToPlayer);
         }
         else
         {

@@ -10243,6 +10243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalSpeed: 6
+  speed: 0
+  isStationary: 0
 --- !u!58 &7420548703679430581
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10310,7 +10312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8090bd37320b7fc45a75c54dd1772283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToSpawn: 5
+  levelToSpawn: 7
+  levelToStopSpawning: 10
   damage: 10
   hasLaser: 0
   probabilityToSpawn: 50

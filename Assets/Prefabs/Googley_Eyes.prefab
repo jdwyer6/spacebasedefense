@@ -283,6 +283,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalSpeed: 0.5
+  speed: 0
+  isStationary: 0
 --- !u!58 &837704418610325071
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -315,6 +317,7 @@ MonoBehaviour:
   shootInterval: 3
   projectileSpeed: 20
   distanceFromPlayerToStartShooting: 11
+  flashParticles: {fileID: 0}
 --- !u!114 &837704418610325068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToSpawn: 6
+  levelToStopSpawning: 100
   damage: 10
   hasLaser: 0
   probabilityToSpawn: 50

@@ -10300,6 +10300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToSpawn: 3
+  levelToStopSpawning: 5
   damage: 2
   hasLaser: 0
   probabilityToSpawn: 30

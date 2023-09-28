@@ -10165,6 +10165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalSpeed: 1
+  speed: 0
   isStationary: 0
 --- !u!58 &5026017844872023376
 CircleCollider2D:
@@ -10239,6 +10240,8 @@ MonoBehaviour:
   laserDamage: 25
   distanceFromPlayerToStartShooting: 18
   edgeCollider: {fileID: 9126551646107546845}
+  sunRayLaser: 0
+  sunRayLasers: []
 --- !u!120 &4577875035297223677
 LineRenderer:
   serializedVersion: 2
@@ -10377,6 +10380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToSpawn: 2
+  levelToStopSpawning: 6
   damage: 40
   hasLaser: 1
   probabilityToSpawn: 30
