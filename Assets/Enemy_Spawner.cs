@@ -143,7 +143,7 @@ public class Enemy_Spawner : MonoBehaviour
     bool ShouldSpawnEnemy(int probability, int idx) {
         int randomNum = UnityEngine.Random.Range(0, 100);
         if(randomNum <= probability) {
-            if(enemies[idx].GetComponent<Enemy_Data>().levelToSpawn <= level){
+            if(enemies[idx].GetComponent<Enemy_Data>().levelToSpawn <= level && level < enemies[idx].GetComponent<Enemy_Data>().levelToStopSpawning){
                 return true;
             }  
         }
