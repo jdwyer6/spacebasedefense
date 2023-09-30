@@ -7,7 +7,7 @@ public class Level_Completion : MonoBehaviour
 {
     public TextMeshProUGUI countdownText; // Assign this via Inspector
 
-    private float countdownDuration = 15f * 60f; // 20 minutes in seconds
+    private float countdownDuration = 12f * 60f; // 20 minutes in seconds
     public GameObject levelCompleteScreen;
 
     private void Start()
