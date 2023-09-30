@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1799575ac4c3ab4f9612b03d07f9ca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 30
+  totalHealth: 60
   bloodParticlesExit: {fileID: 7541264274060737703, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
   bloodParticlesDeath: {fileID: 4101786293985824456, guid: 23da123a7da298a49ae8258338e236b6, type: 3}
   pickup: {fileID: 3431140739008499236, guid: 85b4b77ad9676a84aa7f13ff27208b88, type: 3}
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967360091409035101}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdd8689d92728f047972e7d2ed14313c, type: 3}
   m_Name: 
@@ -511,6 +511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1739523700873668795}
+  - component: {fileID: 555515263}
   m_Layer: 0
   m_Name: Barril 1
   m_TagString: Untagged
@@ -533,6 +534,32 @@ Transform:
   m_Father: {fileID: 967360091409035103}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &555515263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739523700873668794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41262d93d2767a841a8a181824598cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedStyle: 0
+  barrelPosition: {fileID: 1739523700873668795}
+  shootingDuration: 5
+  shootInterval: 0.1
+  restDuration: 4
+  speed: 10
+  size: 0.3
+  projectilePrefab: {fileID: 7387422206258482921, guid: 1c7894ad71a9a7c47a309c51af0187b7, type: 3}
+  sound: Enemy_Shot
+  aimAtPlayer: 0
+  rotationSpeed: 1
+  distanceFromPlayerToStartShooting: 15
+  flashParticles: {fileID: 4555537516806970206, guid: 21828e78f4f89be4a839b34e02fcc207, type: 3}
+  damageToPlayer: 10
 --- !u!1 &1739523701006572833
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1739523701006572834}
+  - component: {fileID: 1843487745}
   m_Layer: 0
   m_Name: Barril 2
   m_TagString: Untagged
@@ -564,6 +592,32 @@ Transform:
   m_Father: {fileID: 967360091409035103}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1843487745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739523701006572833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41262d93d2767a841a8a181824598cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedStyle: 0
+  barrelPosition: {fileID: 1739523701006572834}
+  shootingDuration: 5
+  shootInterval: 0.1
+  restDuration: 4
+  speed: 10
+  size: 0.3
+  projectilePrefab: {fileID: 7387422206258482921, guid: 1c7894ad71a9a7c47a309c51af0187b7, type: 3}
+  sound: Enemy_Shot
+  aimAtPlayer: 0
+  rotationSpeed: 1
+  distanceFromPlayerToStartShooting: 15
+  flashParticles: {fileID: 4555537516806970206, guid: 21828e78f4f89be4a839b34e02fcc207, type: 3}
+  damageToPlayer: 10
 --- !u!1 &2032594682052980872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,7 +1513,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -1469,7 +1523,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -2221,7 +2275,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 1000
       minScalar: 10
       maxCurve:
         serializedVersion: 2

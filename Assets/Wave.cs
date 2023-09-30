@@ -5,8 +5,7 @@ public enum Difficulty
     Opening,
     Easy,
     Medium,
-    Hard,
-    VeryHard
+    Hard
 }
 
 [CreateAssetMenu(fileName = "NewWave", menuName = "Wave/Wave")]
@@ -20,7 +19,7 @@ public class Wave : ScriptableObject
 
     [Header("Spawn Settings")]
     public int numberOfSpawnCycles;
-    public int minimumLevelToSpawn;
+    public float timeBetweenCycle;
     
     [Header("Difficulty")]
     public Difficulty difficulty;
@@ -29,4 +28,7 @@ public class Wave : ScriptableObject
 
     [Tooltip("Is this wave a boss wave?")]
     public bool isBoss;
+
+    [Tooltip("Has spawned?")]
+    public bool hasSpawned;
 }

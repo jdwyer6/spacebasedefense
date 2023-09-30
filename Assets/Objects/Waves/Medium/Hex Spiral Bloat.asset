@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17520347318a8ab4b8d846d19e7d6f7a, type: 3}
-  m_Name: Hex and Laser
+  m_Name: Hex Spiral Bloat
   m_EditorClassIdentifier: 
-  title: Hex and Laser
+  title: Hex Spiral Bloat
   enemies:
   - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
   - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
   - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
-  - {fileID: 5026017844872023388, guid: 7646c8ae6decae7499ed800c289dc242, type: 3}
-  numberOfSpawnCycles: 3
-  minimumLevelToSpawn: 1
-  difficulty: 1
+  - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
+  - {fileID: 967360091409035101, guid: d7e9325b2563b3147a7807126429aa8c, type: 3}
+  - {fileID: 1070906587626561048, guid: e2aa8e5b10e57054684703fbbcef0b50, type: 3}
+  numberOfSpawnCycles: 5
+  timeBetweenCycle: 8
+  difficulty: 2
   isBoss: 0
+  hasSpawned: 0

@@ -135,6 +135,7 @@ public class Player_Shooting : MonoBehaviour
         {
             Debug.LogError("Projectile prefab does not have a Rigidbody2D component!");
         }
+
     }
 
     IEnumerator ShootAutomatic(Vector2 direction, KeyCode key, float flashRotation, Vector3 offset){
@@ -174,5 +175,14 @@ public class Player_Shooting : MonoBehaviour
         return gm.GetComponent<Data>().upgrades;
 
     }
+
+    // void ShootSpread(Vector2 mainDirection)
+    // {
+    //     Vector2 leftDirection = Quaternion.Euler(0, 0, 5) * mainDirection;
+    //     Vector2 rightDirection = Quaternion.Euler(0, 0, -5) * mainDirection;
+    //     Shoot(leftDirection);
+    //     Shoot(rightDirection);
+    // }
+
 
 }

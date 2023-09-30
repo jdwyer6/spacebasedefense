@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class Enemy_Spawner : MonoBehaviour
 {
@@ -34,6 +35,11 @@ public class Enemy_Spawner : MonoBehaviour
     private Transform player;
     public float timer;
 
+    [Space]
+
+    public int[] bossLevels;
+    public List<Wave> waves = new List<Wave>();
+
     // [Header("UI")]
     // public GameObject buildTip;
 
@@ -41,8 +47,8 @@ public class Enemy_Spawner : MonoBehaviour
     private float spawnInterval = 4;
     private float levelLength = 20;
 
-    public int[] varietyLevelNumbers;
-    public VarietyLevel[] varietyLevels;
+    // public int[] varietyLevelNumbers;
+    // public VarietyLevel[] varietyLevels;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +60,12 @@ public class Enemy_Spawner : MonoBehaviour
         if (playerObj != null)
         {
             player = playerObj.transform;
+        }
+
+        foreach (var wave in GetComponent<Data>().waves)
+        {
+            wave.hasSpawned = false;
+            waves.Add(wave);
         }
         StartCoroutine(SpawnEnemy());
         timer = levelLength;
@@ -101,38 +113,52 @@ public class Enemy_Spawner : MonoBehaviour
             StartCoroutine(StartExploitStopper());
         }
 
-        if(IsVarietyLevel() && !spawnEnemy && GetRemainingEnemies() <= 0) {
-            timer = 0;
-        }
+        // if(IsVarietyLevel() && !spawnEnemy && GetRemainingEnemies() <= 0) {
+        //     timer = 0;
+        // }
     }
 
-    IEnumerator SpawnEnemy() {
-        VarietyLevel randomVarietyLevel = varietyLevels[UnityEngine.Random.Range(0, varietyLevels.Length)];
-        while (spawnEnemy)
-        {
-            if(IsVarietyLevel()) {
-                foreach (var enemy in randomVarietyLevel.enemies)
-                {
-                    for (int i = 0; i < randomVarietyLevel.amountOfEnemiesToSpawnPerCycle; i++)
-                    {
-                        Instantiate(enemy, GetRandomSpawnPos(), Quaternion.identity);
-                    } 
+    // IEnumerator SpawnEnemy() {
+    //     VarietyLevel randomVarietyLevel = varietyLevels[UnityEngine.Random.Range(0, varietyLevels.Length)];
+    //     while (spawnEnemy)
+    //     {
+    //         if(IsVarietyLevel()) {
+    //             foreach (var enemy in randomVarietyLevel.enemies)
+    //             {
+    //                 for (int i = 0; i < randomVarietyLevel.amountOfEnemiesToSpawnPerCycle; i++)
+    //                 {
+    //                     Instantiate(enemy, GetRandomSpawnPos(), Quaternion.identity);
+    //                 } 
                     
-                }
-                spawnEnemy = false;
-            }else{
-                for (int i = 0; i < enemies.Length; i++)
-                {
-                    if(ShouldSpawnEnemy(enemies[i].GetComponent<Enemy_Data>().probabilityToSpawn, i)){
-                        Instantiate(enemies[i], GetRandomSpawnPos(), Quaternion.identity);
-                    } 
-                }
+    //             }
+    //             spawnEnemy = false;
+    //         }else{
+    //             for (int i = 0; i < enemies.Length; i++)
+    //             {
+    //                 if(ShouldSpawnEnemy(enemies[i].GetComponent<Enemy_Data>().probabilityToSpawn, i)){
+    //                     Instantiate(enemies[i], GetRandomSpawnPos(), Quaternion.identity);
+    //                 } 
+    //             }
+    //         }
+
+
+    //         yield return new WaitForSeconds(spawnInterval);
+    //     }
+
+    // }
+
+    IEnumerator SpawnEnemy() {
+        List<Wave> wavePool = GetCurrentPool();
+        CheckWavesLeftAtDifficultyLevel(wavePool);
+        Wave randomWave = wavePool[UnityEngine.Random.Range(0, wavePool.Count)];
+        for (int i = 0; i < randomWave.numberOfSpawnCycles; i++)
+        {
+            for (int j = 0; j < randomWave.enemies.Length; j++)
+            {
+                Instantiate(randomWave.enemies[j], GetRandomSpawnPos(), Quaternion.identity);
             }
-
-
-            yield return new WaitForSeconds(spawnInterval);
+            yield return new WaitForSeconds(randomWave.timeBetweenCycle);
         }
-
     }
 
     Vector2 GetRandomSpawnPos() {
@@ -143,15 +169,15 @@ public class Enemy_Spawner : MonoBehaviour
             return pos;
     }
 
-    bool ShouldSpawnEnemy(int probability, int idx) {
-        int randomNum = UnityEngine.Random.Range(0, 100);
-        if(randomNum <= probability) {
-            if(enemies[idx].GetComponent<Enemy_Data>().levelToSpawn <= level && level < enemies[idx].GetComponent<Enemy_Data>().levelToStopSpawning){
-                return true;
-            }  
-        }
-        return false;
-    }
+    // bool ShouldSpawnEnemy(int probability, int idx) {
+    //     int randomNum = UnityEngine.Random.Range(0, 100);
+    //     if(randomNum <= probability) {
+    //         if(enemies[idx].GetComponent<Enemy_Data>().levelToSpawn <= level && level < enemies[idx].GetComponent<Enemy_Data>().levelToStopSpawning){
+    //             return true;
+    //         }  
+    //     }
+    //     return false;
+    // }
 
     int GetRemainingEnemies() {
         var remainingEnemies = 0;
@@ -163,16 +189,16 @@ public class Enemy_Spawner : MonoBehaviour
         return remainingEnemies;
     }
 
-    private bool IsVarietyLevel() {
-        foreach (var varietyLevel in varietyLevelNumbers)
-        {
-            if(level == varietyLevel) {
-                return true;
-            }
+    // private bool IsVarietyLevel() {
+    //     foreach (var varietyLevel in varietyLevelNumbers)
+    //     {
+    //         if(level == varietyLevel) {
+    //             return true;
+    //         }
  
-        }
-        return false;
-    }
+    //     }
+    //     return false;
+    // }
 
     IEnumerator StartExploitStopper() {
         Debug.Log("Started Exploit");
@@ -181,4 +207,66 @@ public class Enemy_Spawner : MonoBehaviour
             forceNextCoolDown = true;
         }
     }
+
+    // private void GetCurrentPool() {
+    //     foreach (var wave in waves)
+    //     {
+            
+    //     }
+    // }
+
+    private void TriggerCoolDown() {
+
+    }
+
+    private void TriggerNextWave() {
+
+    }
+
+    private bool checkIfBossLevel() {
+        foreach (var bossLevel in bossLevels)
+        {
+            if(bossLevel == level) {
+                Debug.Log("true");
+                return true;
+            }
+        }
+        Debug.Log("false");
+        return false;
+    }
+
+    private List<Wave> GetCurrentPool() {
+        if(checkIfBossLevel()) {
+            return waves.Where(w => w.isBoss == true).ToList();
+        }
+        switch (level)
+        {
+            case 1:
+                return waves.Where(w => w.difficulty == Difficulty.Opening).ToList();
+            case var n when n > 1 && n < 5:
+                return waves.Where(w => w.difficulty == Difficulty.Easy).ToList();
+            case var n when n > 4 && n < 9:
+                return waves.Where(w => w.difficulty == Difficulty.Medium).ToList();
+            case var n when n > 9:
+                return waves.Where(w => w.difficulty == Difficulty.Hard).ToList();
+            default:
+                Debug.LogError("Unrecognized difficulty setting.");
+                return waves;
+        }
+    }
+
+    private void CheckWavesLeftAtDifficultyLevel(List<Wave> wavePool) {
+        foreach (var wave in wavePool)
+        {
+            if(!wave.hasSpawned) {
+                return;
+            }
+        }
+        // Reset each wave to has not spawned if all waves have spawned
+        foreach (var wave in wavePool)
+        {
+            wave.hasSpawned = false;
+        }
+    }
+    
 }

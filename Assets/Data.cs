@@ -24,4 +24,6 @@ public class Data : MonoBehaviour
     public GameObject[] enemies;
 
     public Upgrade[] upgrades;
+
+    public Wave[] waves;
 }
