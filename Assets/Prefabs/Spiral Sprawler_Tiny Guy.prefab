@@ -10329,6 +10329,7 @@ GameObject:
   - component: {fileID: 5441208790001418971}
   - component: {fileID: 2571004550167048757}
   - component: {fileID: 2571004550167048756}
+  - component: {fileID: -7585594258415854920}
   m_Layer: 0
   m_Name: Spiral Sprawler_Tiny Guy
   m_TagString: Enemy
@@ -10510,7 +10511,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6478967420056022164}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdd8689d92728f047972e7d2ed14313c, type: 3}
   m_Name: 
@@ -10536,6 +10537,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad45b040dc9a484d8f90e0b7de0702f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7585594258415854920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478967420056022164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41262d93d2767a841a8a181824598cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedStyle: 0
+  barrelPosition: {fileID: 0}
+  shootingDuration: 0
+  shootInterval: 0
+  restDuration: 0
+  speed: 0
+  size: 0
+  projectilePrefab: {fileID: 0}
+  sound: 
+  aimAtPlayer: 0
+  rotationSpeed: 0
+  distanceFromPlayerToStartShooting: 0
+  flashParticles: {fileID: 0}
+  damageToPlayer: 10
 --- !u!1 &6532349215047280831
 GameObject:
   m_ObjectHideFlags: 0

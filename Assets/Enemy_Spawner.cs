@@ -77,6 +77,11 @@ public class Enemy_Spawner : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
+        if(waveActive && timer > 0 && GetRemainingEnemies() <= 0 && !forceNextCoolDown) {
+            forceNextCoolDown = true;
+            timer = 0;
+        }
+
         if(waveActive && timer <= 0) {
             spawnEnemy = false;
             if(GetRemainingEnemies() <= 0 || forceNextCoolDown) {
@@ -151,6 +156,7 @@ public class Enemy_Spawner : MonoBehaviour
         List<Wave> wavePool = GetCurrentPool();
         CheckWavesLeftAtDifficultyLevel(wavePool);
         Wave randomWave = wavePool[UnityEngine.Random.Range(0, wavePool.Count)];
+
         for (int i = 0; i < randomWave.numberOfSpawnCycles; i++)
         {
             for (int j = 0; j < randomWave.enemies.Length; j++)
@@ -162,11 +168,11 @@ public class Enemy_Spawner : MonoBehaviour
     }
 
     Vector2 GetRandomSpawnPos() {
-            float randomAngle = Random.Range(-180f, 180f) * Mathf.Deg2Rad; 
-            Vector2 direction = new Vector2(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle)); 
-            if (player == null) return Vector3.zero + (Vector3)(direction * 20f); // fix null player on initial spawn at restart
-            Vector2 pos = player.transform.position + (Vector3)(direction * 20f);
-            return pos;
+        float randomAngle = Random.Range(-180f, 180f) * Mathf.Deg2Rad; 
+        Vector2 direction = new Vector2(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle)); 
+        if (player == null) return Vector3.zero + (Vector3)(direction * 25f); // fix null player on initial spawn at restart
+        Vector2 pos = player.transform.position + (Vector3)(direction * 25f);
+        return pos;
     }
 
     // bool ShouldSpawnEnemy(int probability, int idx) {
@@ -201,7 +207,6 @@ public class Enemy_Spawner : MonoBehaviour
     // }
 
     IEnumerator StartExploitStopper() {
-        Debug.Log("Started Exploit");
         yield return new WaitForSeconds(15);
         if(waveActive && !spawnEnemy) {
             forceNextCoolDown = true;
@@ -227,11 +232,9 @@ public class Enemy_Spawner : MonoBehaviour
         foreach (var bossLevel in bossLevels)
         {
             if(bossLevel == level) {
-                Debug.Log("true");
                 return true;
             }
         }
-        Debug.Log("false");
         return false;
     }
 

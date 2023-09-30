@@ -95,7 +95,7 @@ public class Bloat : MonoBehaviour
         {
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
             projectile.GetComponent<Projectile>().flash = true;
-            projectile.transform.localScale = new Vector3(.2f, .2f, 1f);
+            projectile.transform.localScale = new Vector3(.3f, .3f, 1f);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             if (rb)
             {

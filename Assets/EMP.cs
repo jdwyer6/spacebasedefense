@@ -16,6 +16,9 @@ public class EMP : MonoBehaviour
     public GameObject empSlider;
     private AudioManager am;
     UpgradeLogicType emp = UpgradeLogicType.emp;
+    public GameObject empChargedToolTip;
+    bool toolTipShown = false;
+    private GameObject gm;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,7 @@ public class EMP : MonoBehaviour
         empTimerSlider.minValue = 0;
         empTimerSlider.maxValue = empStartTime;
         empTimerSlider.value = timer;
+        gm = GameObject.FindGameObjectWithTag("GM");
         am = FindObjectOfType<AudioManager>();
     }
 
@@ -53,6 +57,12 @@ public class EMP : MonoBehaviour
         }else{
             empSlider.SetActive(false);
         }
+
+        if(!toolTipShown && canUseEMP && Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == emp).acquired) {
+            toolTipShown = true;
+            am.Play("ToolTip");
+            StartCoroutine(gm.GetComponent<UI_Manager>().ShowToolTip(empChargedToolTip, 2f));
+        }
     }
 
     IEnumerator LaunchEMP() {
@@ -60,6 +70,7 @@ public class EMP : MonoBehaviour
         am.Play("EMP");
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         canUseEMP = false;
+        toolTipShown = false;
         timer = 0;
         runTimer = true;
 

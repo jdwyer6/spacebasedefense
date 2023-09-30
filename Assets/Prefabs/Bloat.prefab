@@ -375,7 +375,7 @@ MonoBehaviour:
   maxSize: 6
   explosionParticles: {fileID: 6130261343760760479, guid: 2a77f1f35c25c004c888e42874dafb02, type: 3}
   projectilePrefab: {fileID: 7387422206258482921, guid: 1c7894ad71a9a7c47a309c51af0187b7, type: 3}
-  numberOfProjectiles: 200
+  numberOfProjectiles: 50
   shakeMagnitude: 0.1
   shakeFrequency: 1
   explodeParticles: {fileID: 1978304892633610466, guid: 91ca8939e615ee2419a1a081e56f25de, type: 3}

@@ -29,6 +29,7 @@ public class Projectile : MonoBehaviour
         am = FindObjectOfType<AudioManager>();
         gm = GameObject.FindGameObjectWithTag("GM");
         data = gm.GetComponent<Data>();
+        IgnoreOtherProjectiles();
         if(flash) StartCoroutine(Flash(color1, color2));
 
         switch (ignoreList)
@@ -97,6 +98,33 @@ public class Projectile : MonoBehaviour
 
             sr.color = color2;
             yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private void IgnoreOtherProjectiles()
+    {
+        // Get the collider of the current game object
+        Collider2D myCollider = GetComponent<Collider2D>();
+
+        // Check if the current game object has a collider
+        if (myCollider == null)
+        {
+            Debug.LogWarning("Current game object does not have a Collider2D component.");
+            return;
+        }
+
+        // Find all game objects with the "Destructible_Environment" tag
+        GameObject[] destructibles = GameObject.FindGameObjectsWithTag("Projectile_Destructible");
+
+        // Iterate over each destructible and ignore their collisions with the current game object
+        foreach (GameObject destructible in destructibles)
+        {
+            Collider2D destructibleCollider = destructible.GetComponent<Collider2D>();
+            
+            if (destructibleCollider != null)
+            {
+                Physics2D.IgnoreCollision(myCollider, destructibleCollider);
+            }
         }
     }
 }
