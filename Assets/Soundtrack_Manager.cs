@@ -25,6 +25,14 @@ public class Soundtrack_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+         if(am == null) Debug.LogError("AudioManager (am) is null");
+        if(data == null) Debug.LogError("Data (data) is null");
+        if(data.soundtracks == null) Debug.LogError("soundtracks array in Data is null");
+        if(currentSoundtrack >= data.soundtracks.Length || data.soundtracks[currentSoundtrack] == null) 
+            Debug.LogError("Current soundtrack string is out of bounds or null");
+
+
         if(!spawner.waveActive && waveTrackIsPlaying) {
             waveTrackIsPlaying = false;
             am.Pause(data.soundtracks[currentSoundtrack]);
@@ -55,6 +63,12 @@ public class Soundtrack_Manager : MonoBehaviour
 
     bool HasClipFinishedPlaying(AudioSource audioSource)
     {
+        if (audioSource == null) 
+        {
+            Debug.LogError("audioSource is null");
+            return false;
+        }
+
         if (audioSource.isPlaying)
         {   
             return false;  // Still playing

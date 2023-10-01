@@ -9,20 +9,65 @@ using TMPro;
 public class Menu_Logic : MonoBehaviour
 {
     private AudioManager am;
-    public bool isCyclingOptions;
+    public bool isCyclingHorizontalOptions;
+    private int currentlyActiveButton;
+    public int optionToCycleHorizontal;
+    public Button[] horizontalOptions;
+    public int currentlyActiveHorizontalButton = 0;
+    public GameObject horizontalRow;
 
     public Button[] buttons;
 
     private void Start() {
         am = FindObjectOfType<AudioManager>();
+        currentlyActiveButton = 0;
+        SetButtonActive();
+    }
+
+    private void Update() {
+
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            ChangeActiveButton(1);  // Increment
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            ChangeActiveButton(-1);  // Decrement
+        }
+
+        if(isCyclingHorizontalOptions) {
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                ChangeActiveHorizontalButton(1);  // Increment
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                ChangeActiveHorizontalButton(-1);  // Decrement
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return)) 
+        {
+            buttons[currentlyActiveButton].onClick.Invoke(); 
+        }
+
+        if(currentlyActiveButton == optionToCycleHorizontal) {
+            isCyclingHorizontalOptions = true;
+            horizontalRow.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            SetHorizontalButtonActive();
+        }else{
+            isCyclingHorizontalOptions = false;
+            horizontalRow.GetComponent<RectTransform>().localScale = new Vector3(.5f, .5f, 1);
+        }
     }
 
     public void HoverSound() {
-        // am.Play();
+        am.Play("UI_Hover");
     }
 
     public void ClickSound() {
-
+        am.Play("UI_Select");
     }
 
     public void StartGame() {
@@ -51,11 +96,11 @@ public class Menu_Logic : MonoBehaviour
     }
 
     public void EngageCycle() {
-        isCyclingOptions = true;
+        isCyclingHorizontalOptions = true;
     }
 
     public void DisengageCycle() {
-        isCyclingOptions = false;
+        isCyclingHorizontalOptions = false;
     }
 
     public void CycleRight() {
@@ -67,12 +112,67 @@ public class Menu_Logic : MonoBehaviour
     }
 
     public void Select() {
+        am.Play("UI_Select");
         foreach (var button in buttons)
         {
             if(EventSystem.current.currentSelectedGameObject == button.gameObject)
             {
-                button.GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
+                button.GetComponentInChildren<TextMeshProUGUI>().color = new Color(255/255f, 200/255f, 62/255f, 1f);
             }
         }
+    }
+
+    public void SetButtonActive() {
+        buttons[currentlyActiveButton].GetComponentInChildren<TextMeshProUGUI>().color = new Color(255/255f, 220/255f, 82/255f, 1f);  
+    }
+
+    public void SetHorizontalButtonActive() {
+        GameObject activeImage = horizontalOptions[currentlyActiveHorizontalButton].transform.Find("Outline").gameObject;
+        if(activeImage != null) {
+            activeImage.SetActive(true);
+        }
+    }
+
+    private void ChangeActiveButton(int change) {
+        // Reset the color of the previously active button to default
+        buttons[currentlyActiveButton].GetComponentInChildren<TextMeshProUGUI>().color = Color.white;  
+        am.Play("UI_Hover");
+
+        currentlyActiveButton += change;
+
+        // Wrap-around the value if necessary
+        if (currentlyActiveButton >= horizontalOptions.Length)
+        {
+            currentlyActiveButton = 0;
+        }
+        else if (currentlyActiveButton < 0)
+        {
+            currentlyActiveButton = horizontalOptions.Length - 1;
+        }
+
+        SetButtonActive();
+    }
+
+    private void ChangeActiveHorizontalButton(int change) {
+        foreach (var option in horizontalOptions)
+        {
+            option.transform.Find("Outline").gameObject.SetActive(false);
+        }
+
+        am.Play("UI_Hover");
+
+        currentlyActiveHorizontalButton += change;
+
+        // Wrap-around the value if necessary
+        if (currentlyActiveHorizontalButton >= horizontalOptions.Length)
+        {
+            currentlyActiveHorizontalButton = 0;
+        }
+        else if (currentlyActiveHorizontalButton < 0)
+        {
+            currentlyActiveHorizontalButton = buttons.Length - 1;
+        }
+
+        SetHorizontalButtonActive();
     }
 }

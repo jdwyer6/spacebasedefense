@@ -1,0 +1,263 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4160252512243044064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4160252512243044066}
+  - component: {fileID: 4160252512243044067}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4160252512243044066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160252512243044064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4160252512243044067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160252512243044064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d66ea02702999f4a873fc7000d843bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Shot
+    clip: {fileID: 8300000, guid: a8f071d59581ef441b07ca6c74c0eb0f, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Ricochet_1
+    clip: {fileID: 8300000, guid: 31eeeed65fbfaeb41be2cc23ff585d89, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Ricochet_2
+    clip: {fileID: 8300000, guid: e5c0269454d86a645becdc1643036e20, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Ricochet_3
+    clip: {fileID: 8300000, guid: 73dce01bf66c83941a6c821011be169b, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Impact_Wall_1
+    clip: {fileID: 8300000, guid: ad4a019db14d7cb4690b3cb06bd97733, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Impact_Wall_2
+    clip: {fileID: 8300000, guid: d1ed3a7b1c1cfd24cbf63119d889a547, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Impact_Wall_3
+    clip: {fileID: 8300000, guid: 5f10036217b0cd347b5d6709d4a822df, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Player_Damage_1
+    clip: {fileID: 8300000, guid: cb83775e6f7d81048bf09325e1c76e67, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Player_Damage_2
+    clip: {fileID: 8300000, guid: d212b1b234296964b8ce93fc0e279be7, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Player_Damage_3
+    clip: {fileID: 8300000, guid: 1199d0e4b79f2d14fa941eb116f02f54, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Blood_Hit_1
+    clip: {fileID: 8300000, guid: e6c164292cc11f749a26cf0e0c830add, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Blood_Hit_2
+    clip: {fileID: 8300000, guid: f8213decffc188b4daf382dde1b22fa8, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Blood_Hit_3
+    clip: {fileID: 8300000, guid: 779b8316df1742a4eb232949190f93a9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Blood_Hit_4
+    clip: {fileID: 8300000, guid: 439964e95f670c242953780bca5cc094, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Enemy_Shot
+    clip: {fileID: 8300000, guid: 292d55632eb5df14ab9821132b8b4e30, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Construction
+    clip: {fileID: 8300000, guid: 065f3e3ea301fd643944b78822f7c49c, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: CoolDownSoundtrack
+    clip: {fileID: 8300000, guid: 52d14781c2b0f654f88388fdc7096527, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: WaveSoundtrack
+    clip: {fileID: 8300000, guid: 1bc50cd079b16c04d82390695d0916d7, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Buzzer
+    clip: {fileID: 8300000, guid: c76c6029010c3144a952b17103e55423, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Pickup
+    clip: {fileID: 8300000, guid: 88d487082dcc58c4b8114da628d08ab4, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Upgrade_UI
+    clip: {fileID: 8300000, guid: 515c3c7dafcf45a4286d7e680de0833b, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Hover
+    clip: {fileID: 8300000, guid: 1bbf4cfb85142bc4db61c8dc31fcbcf5, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Laser_Charge
+    clip: {fileID: 8300000, guid: 4de17029bf4f09145b702a5b21bd29b7, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Laser_Fire
+    clip: {fileID: 8300000, guid: 7e4ba443710f16042a936ce90e40fa86, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Eye_Break
+    clip: {fileID: 8300000, guid: c2b3dd3856094034c8c12264bb20545a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Eye_Scream
+    clip: {fileID: 8300000, guid: d75d054410dcf754fa344d02aa12c1bb, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: UI_Disabled
+    clip: {fileID: 8300000, guid: d79d04b2735f09640a894af0c0224836, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: UI_Select
+    clip: {fileID: 8300000, guid: fa479f5c5bd9cbb4dbf7c917dabdb55a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: UI_Hover
+    clip: {fileID: 8300000, guid: b62e861e8e2b9554fab067c73da834cf, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: EMP
+    clip: {fileID: 8300000, guid: 91ff475726c1a9d44a2cbd88399096ea, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Fast_Projectile
+    clip: {fileID: 8300000, guid: 9e8465e0b94d4da49ab95b73646122f9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Dash
+    clip: {fileID: 8300000, guid: c42728f27bb51c647825885d4aacd0d7, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Bloat_Enlarge
+    clip: {fileID: 8300000, guid: bd9bb65d81432274cbc8e2f95f033fbe, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Bloat_Explode
+    clip: {fileID: 8300000, guid: 143995f1419a39d4a929570e0485e4af, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: WaveSoundtrack2
+    clip: {fileID: 8300000, guid: d0810ddc72933154bb265a85cbe27ba9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: ToolTip
+    clip: {fileID: 8300000, guid: 2779f25fd720d0b418cb3fe43fc86c7d, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
