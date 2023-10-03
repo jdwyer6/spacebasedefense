@@ -39,6 +39,7 @@ public class Upgrades : MonoBehaviour
     UpgradeLogicType orbit = UpgradeLogicType.orbit;
     UpgradeLogicType dash = UpgradeLogicType.dash;
     UpgradeLogicType healthyHabits = UpgradeLogicType.healthyHabits;
+    UpgradeLogicType spread = UpgradeLogicType.spread;
 
     public GameObject speedBoostParticles;
 
@@ -180,6 +181,9 @@ public class Upgrades : MonoBehaviour
                     break;
                 case UpgradeLogicType.healthyHabits:
                 newUpgrade.GetComponent<Button>().onClick.AddListener(() => HealthyHabits(newUpgrade));
+                    break;
+                case UpgradeLogicType.spread:
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Spread(newUpgrade));
                     break;
             }
         }
@@ -329,7 +333,7 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-        public void HealthyHabits(GameObject button) {
+    public void HealthyHabits(GameObject button) {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == healthyHabits).acquired) {
             HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == healthyHabits));
             GetComponent<Player_Health>().maxHealth *= 2;
@@ -339,6 +343,16 @@ public class Upgrades : MonoBehaviour
             RectTransform healthBarRect = GetComponent<Player_Health>().healthBar.GetComponent<RectTransform>();
             healthBarRect.sizeDelta = new Vector2(healthBarRect.sizeDelta.x * 2, healthBarRect.sizeDelta.y);
 
+            ResetAndUpdatePickups();
+            CloseUpgradesMenu();
+        }else{
+            am.Play("UI_Disabled");
+        }
+    }
+
+    public void Spread(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == spread).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == spread));
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{

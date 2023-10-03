@@ -25,7 +25,7 @@ MonoBehaviour:
   - {fileID: 967360091409035101, guid: d7e9325b2563b3147a7807126429aa8c, type: 3}
   - {fileID: 6478967420056022164, guid: f4cca4def2cfc784ca539bffb9a81bc6, type: 3}
   numberOfSpawnCycles: 5
-  timeBetweenCycle: 15
+  timeBetweenCycle: 10
   difficulty: 3
   isBoss: 0
   hasSpawned: 0

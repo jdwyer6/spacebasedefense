@@ -16,6 +16,7 @@ public class Enemy_Health : MonoBehaviour
     public int percentToDropPickups = 90;
     public GameObject eyeDeathParticles;
     bool isChangingColor = false;
+    public bool hasBossDrop = false;
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +60,12 @@ public class Enemy_Health : MonoBehaviour
     }
 
     void Die() {
-        //Death Particles
+        if(hasBossDrop) {
+            Debug.Log("Trying to drop boss item...");
+            GameObject randomDrop = data.bossDrops[UnityEngine.Random.Range(0, data.bossDrops.Length)];
+            Instantiate(randomDrop, transform.position, Quaternion.identity);
+            Debug.Log("Boss item should have dropped.");
+        }
         player.GetComponent<Building>().bricks += 2;
         if(WillDropPickup()) Instantiate(pickup, transform.position, Quaternion.identity);
         if(GetComponent<Enemy_Eye>()) {

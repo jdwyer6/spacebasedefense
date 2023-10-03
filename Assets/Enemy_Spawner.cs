@@ -79,7 +79,10 @@ public class Enemy_Spawner : MonoBehaviour
 
         if(waveActive && timer > 0 && GetRemainingEnemies() <= 0 && !forceNextCoolDown) {
             forceNextCoolDown = true;
-            timer = 0;
+            spawnEnemy = false;
+            waveActive = false;
+            timer = coolDownPeriod;
+            coolDown = true;
         }
 
         if(waveActive && timer <= 0) {
@@ -89,7 +92,7 @@ public class Enemy_Spawner : MonoBehaviour
                 waveActive = false;
                 timer = coolDownPeriod;
                 coolDown = true;
-                waveText.text = "Cool Down";
+                // waveText.text = "Cool Down";
             }
         }
 

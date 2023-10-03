@@ -8,16 +8,24 @@ public class Soundtrack_Manager : MonoBehaviour
     bool waveTrackIsPlaying = true;
     bool coolDownTrackIsPlaying = false;
     private AudioManager am;
+    [SerializeField] private GameObject amPrefab;
     private Data data;
 
     public int currentSoundtrack = 0;
     bool incrememtingSoundtrack = false;
 
+    private void Awake() {
+        am = FindObjectOfType<AudioManager>();
+        
+        if (am == null) {
+            am = Instantiate(amPrefab).GetComponent<AudioManager>();
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         spawner = GetComponent<Enemy_Spawner>();
-        am = FindObjectOfType<AudioManager>();
         data = GetComponent<Data>();
         am.Play(data.soundtracks[currentSoundtrack]);
     }

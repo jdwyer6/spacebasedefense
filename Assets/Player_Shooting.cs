@@ -7,10 +7,12 @@ using System;
 public class Player_Shooting : MonoBehaviour
 {
     public GameObject projectilePrefab;
+    public float projectileSpeedOriginal = 10f;
     public float projectileSpeed = 10f; 
     public Vector2 shootingOffset = new Vector2(0, 0.5f); 
     private AudioManager am;
     private GameObject gm;
+    public float autoShootingIntervalOriginal = .2f;
     public float autoShootingInterval = .2f;
     public GameObject flamingProjectiles;
     public CinemachineImpulseSource impulseSource;
@@ -19,8 +21,11 @@ public class Player_Shooting : MonoBehaviour
     private bool isShooting;
     UpgradeLogicType auto = UpgradeLogicType.auto;
     UpgradeLogicType arsen = UpgradeLogicType.arsen;
+    UpgradeLogicType spread = UpgradeLogicType.spread;
 
     private void Start() {
+        projectileSpeed = projectileSpeedOriginal;
+        autoShootingInterval = autoShootingIntervalOriginal;
         am = FindObjectOfType<AudioManager>();
         gm = GameObject.FindGameObjectWithTag("GM");
     }
@@ -98,6 +103,9 @@ public class Player_Shooting : MonoBehaviour
     void Shoot(Vector2 direction)
     {
         am.Play("Shot");
+        if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == spread).acquired){
+            ShootSpread(direction);
+        }
         impulseSource.GenerateImpulse();
         // Instantiate the projectile
         GameObject projectile = Instantiate(projectilePrefab, (Vector2)transform.position, Quaternion.identity);
@@ -176,13 +184,47 @@ public class Player_Shooting : MonoBehaviour
 
     }
 
-    // void ShootSpread(Vector2 mainDirection)
-    // {
-    //     Vector2 leftDirection = Quaternion.Euler(0, 0, 5) * mainDirection;
-    //     Vector2 rightDirection = Quaternion.Euler(0, 0, -5) * mainDirection;
-    //     Shoot(leftDirection);
-    //     Shoot(rightDirection);
-    // }
+    void ShootSpread(Vector2 mainDirection)
+    {
+        Vector2 leftDirection = Quaternion.Euler(0, 0, 5) * mainDirection;
+        Vector2 rightDirection = Quaternion.Euler(0, 0, -5) * mainDirection;
+        
+        // Directly instantiate the projectiles for the left and right directions
+        InstantiateProjectile(leftDirection);
+        InstantiateProjectile(rightDirection);
+    }
+
+    void InstantiateProjectile(Vector2 direction)
+    {
+        // Your logic to instantiate the projectile and set its properties
+        GameObject projectile = Instantiate(projectilePrefab, (Vector2)transform.position + shootingOffset, Quaternion.identity);
+        if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == arsen).acquired) {
+            GameObject particles = Instantiate(flamingProjectiles, projectile.transform.position, Quaternion.identity);
+            particles.transform.SetParent(projectile.transform);
+            projectile.GetComponent<Projectile>().damage*=1.5f;
+        }
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        if (rb != null) {
+            rb.velocity = direction * projectileSpeed;
+        }
+        else {
+            Debug.LogError("Projectile prefab does not have a Rigidbody2D component!");
+        }
+        Projectile projectileScript = projectile.GetComponent<Projectile>();
+        if (projectileScript != null)
+        {
+            projectileScript.ignoreList = Projectile.IgnoreList.Destructible_Environment;
+
+            Collider2D playerCollider = this.GetComponent<Collider2D>();
+            Collider2D projectileCollider = projectile.GetComponent<Collider2D>();
+
+            // Ensure collisions between the player and their projectiles are ignored
+            if (playerCollider != null && projectileCollider != null)
+            {
+                Physics2D.IgnoreCollision(playerCollider, projectileCollider);
+            }
+        }
+    }
 
 
 }
