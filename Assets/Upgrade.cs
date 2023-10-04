@@ -8,7 +8,7 @@ public enum UpgradeLogicType
     auto,
     orbit,
     emp,
-    dash,
+    deadlyDash,
     healthyHabits,
     spread
 }

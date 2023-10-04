@@ -29,7 +29,7 @@ public class Player_Movement : MonoBehaviour
     private float dashEmissionRate = 1000;
     private ParticleSystem.EmissionModule emissionModule; 
     private ParticleSystem.EmissionModule dashEmissionModule; 
-    UpgradeLogicType dash = UpgradeLogicType.dash;
+    UpgradeLogicType deadlyDash = UpgradeLogicType.deadlyDash;
 
 
     // private Alteruna.Avatar avatar;
@@ -84,7 +84,7 @@ public class Player_Movement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == dash).acquired && dashRecharged) {
+        if(Input.GetKeyDown(KeyCode.Space) && dashRecharged) {
             StartCoroutine(Dash());
         }
 
@@ -106,6 +106,11 @@ public class Player_Movement : MonoBehaviour
         Vector2 direction = rb.velocity.normalized;
         float currentSpeed = moveSpeed;
         moveSpeed *= dashMultiplier;
+
+        // if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == deadlyDash).acquired)
+
+
+
         yield return new WaitForSeconds(.3f);
         dashEmissionModule.rateOverTime = 0f; 
         moveSpeed = currentSpeed;

@@ -37,7 +37,7 @@ public class Upgrades : MonoBehaviour
     UpgradeLogicType auto = UpgradeLogicType.auto;
     UpgradeLogicType emp = UpgradeLogicType.emp;
     UpgradeLogicType orbit = UpgradeLogicType.orbit;
-    UpgradeLogicType dash = UpgradeLogicType.dash;
+    UpgradeLogicType deadlyDash = UpgradeLogicType.deadlyDash;
     UpgradeLogicType healthyHabits = UpgradeLogicType.healthyHabits;
     UpgradeLogicType spread = UpgradeLogicType.spread;
 
@@ -71,10 +71,7 @@ public class Upgrades : MonoBehaviour
 
         foreach (var upgrade in upgrades)
         {
-            // if(upgrade.upgradeLogic != dash) {
-                upgrade.acquired = false;
-            // }
-            
+            upgrade.acquired = false;
         }
 
     }
@@ -179,8 +176,8 @@ public class Upgrades : MonoBehaviour
                 case UpgradeLogicType.orbit:
                 newUpgrade.GetComponent<Button>().onClick.AddListener(() => Orbit(newUpgrade));
                     break;
-                case UpgradeLogicType.dash:
-                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Dash(newUpgrade));
+                case UpgradeLogicType.deadlyDash:
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => DeadlyDash(newUpgrade));
                     break;
                 case UpgradeLogicType.healthyHabits:
                 newUpgrade.GetComponent<Button>().onClick.AddListener(() => HealthyHabits(newUpgrade));
@@ -325,10 +322,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void Dash(GameObject button) {
-        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == dash).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == dash));
-            dashToolTip.SetActive(true);
+    public void DeadlyDash(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == deadlyDash).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == deadlyDash));
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{

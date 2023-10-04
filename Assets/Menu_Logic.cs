@@ -18,13 +18,14 @@ public class Menu_Logic : MonoBehaviour
 
     private bool pauseMenuOpen;
     public GameObject pauseMenu;
+    public bool menuOpen = false;
 
     public Button[] buttons;
 
     private void Start() {
         am = FindObjectOfType<AudioManager>();
         currentlyActiveButton = 0;
-        if(buttons != null) {
+        if(buttons != null && menuOpen) {
             SetButtonActive();
         }
 
@@ -32,7 +33,7 @@ public class Menu_Logic : MonoBehaviour
 
     private void Update() {
 
-        if(buttons != null) {
+        if(buttons != null && menuOpen) {
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 ChangeActiveButton(1);  // Increment
@@ -203,7 +204,7 @@ public class Menu_Logic : MonoBehaviour
     }
 
     public void Pause() {
-        Time.timeScale = 0;
+        // Time.timeScale = 0;
     }
 
     public void ResumeGame() {

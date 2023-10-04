@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd54534695838d44986c19881dab85fc, type: 3}
-  m_Name: Dash
+  m_Name: Dash Damage
   m_EditorClassIdentifier: 
-  upgradeName: Dash
+  upgradeName: Dash Damage
   icon: {fileID: 21300000, guid: 4c86df36f23ec7a4e953260d139ab228, type: 3}
   value: 5
-  title: Dash
-  description: Hit Space to Dash
+  title: Deadly Dash
+  description: Damage enemies during your dash.
   upgradeLogic: 6
   acquired: 0
