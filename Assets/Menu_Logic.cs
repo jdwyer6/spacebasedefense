@@ -16,49 +16,75 @@ public class Menu_Logic : MonoBehaviour
     public int currentlyActiveHorizontalButton = 0;
     public GameObject horizontalRow;
 
+    private bool pauseMenuOpen;
+    public GameObject pauseMenu;
+
     public Button[] buttons;
 
     private void Start() {
         am = FindObjectOfType<AudioManager>();
         currentlyActiveButton = 0;
-        SetButtonActive();
+        if(buttons != null) {
+            SetButtonActive();
+        }
+
     }
 
     private void Update() {
 
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            ChangeActiveButton(1);  // Increment
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            ChangeActiveButton(-1);  // Decrement
-        }
-
-        if(isCyclingHorizontalOptions) {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+        if(buttons != null) {
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                ChangeActiveHorizontalButton(1);  // Increment
+                ChangeActiveButton(1);  // Increment
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                ChangeActiveHorizontalButton(-1);  // Decrement
+                ChangeActiveButton(-1);  // Decrement
+            }
+
+            if(isCyclingHorizontalOptions) {
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    ChangeActiveHorizontalButton(1);  // Increment
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    ChangeActiveHorizontalButton(-1);  // Decrement
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return)) 
+            {
+                buttons[currentlyActiveButton].onClick.Invoke(); 
+            }
+
+            if(horizontalRow) {
+                if(currentlyActiveButton == optionToCycleHorizontal) {
+                    isCyclingHorizontalOptions = true;
+                    horizontalRow.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+                    SetHorizontalButtonActive();
+                }else{
+                    isCyclingHorizontalOptions = false;
+                    horizontalRow.GetComponent<RectTransform>().localScale = new Vector3(.5f, .5f, 1);
+                }
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Return)) 
-        {
-            buttons[currentlyActiveButton].onClick.Invoke(); 
-        }
 
-        if(currentlyActiveButton == optionToCycleHorizontal) {
-            isCyclingHorizontalOptions = true;
-            horizontalRow.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            SetHorizontalButtonActive();
-        }else{
-            isCyclingHorizontalOptions = false;
-            horizontalRow.GetComponent<RectTransform>().localScale = new Vector3(.5f, .5f, 1);
+
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            if(pauseMenuOpen) {
+    
+                CloseMenu(pauseMenu);
+                pauseMenuOpen = false;
+                ResumeGame();
+                
+            }else{
+                OpenMenu(pauseMenu);
+                pauseMenuOpen = true;
+                Pause();
+
+            }
         }
     }
 
@@ -88,11 +114,11 @@ public class Menu_Logic : MonoBehaviour
     }
 
     public void OpenMenu(GameObject menu) {
-
+        menu.SetActive(true);
     }
 
     public void CloseMenu(GameObject menu) {
-
+        menu.SetActive(false);
     }
 
     public void EngageCycle() {
@@ -174,5 +200,13 @@ public class Menu_Logic : MonoBehaviour
         }
 
         SetHorizontalButtonActive();
+    }
+
+    public void Pause() {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame() {
+        Time.timeScale = 1;
     }
 }

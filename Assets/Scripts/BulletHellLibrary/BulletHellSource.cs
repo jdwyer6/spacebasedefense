@@ -7,7 +7,7 @@ public enum ShootingStyle
     Spiral,
     Default,
     Sine,
-    Laser
+    Explode
 }
 
 //Parameters: Transform barrelPosition, float shootingDuration, float shootInterval, float restDuration, GameObject projectilePrefab, string sound, float speed, bool aimAtPlayer, int rotationSpeed, float size
@@ -30,6 +30,8 @@ public class BulletHellSource : MonoBehaviour
     public float distanceFromPlayerToStartShooting;
     public GameObject flashParticles;
     public float damageToPlayer = 10;
+    public bool isExplosion;
+    public int numberOfProjectiles;
  
 
     void Start()
@@ -39,16 +41,16 @@ public class BulletHellSource : MonoBehaviour
         switch (selectedStyle)
         {
             case ShootingStyle.Spiral:
-                StartCoroutine(gm.GetComponent<BulletHellLibrary>().Spiral(barrelPosition, shootingDuration, shootInterval, restDuration, projectilePrefab, sound, speed, aimAtPlayer, rotationSpeed, size, distanceFromPlayerToStartShooting, flashParticles, damageToPlayer));
+                StartCoroutine(gm.GetComponent<BulletHellLibrary>().Spiral(barrelPosition, shootingDuration, shootInterval, restDuration, projectilePrefab, sound, speed, aimAtPlayer, rotationSpeed, size, distanceFromPlayerToStartShooting, flashParticles, damageToPlayer, 1, false));
                 break;
             case ShootingStyle.Default:
-                StartCoroutine(gm.GetComponent<BulletHellLibrary>().Spiral(barrelPosition, shootingDuration, shootInterval, restDuration, projectilePrefab, sound, speed, aimAtPlayer, 0, size, distanceFromPlayerToStartShooting, flashParticles, damageToPlayer));
+                StartCoroutine(gm.GetComponent<BulletHellLibrary>().Spiral(barrelPosition, shootingDuration, shootInterval, restDuration, projectilePrefab, sound, speed, aimAtPlayer, 0, size, distanceFromPlayerToStartShooting, flashParticles, damageToPlayer, 1, false));
                 break;
             case ShootingStyle.Sine:
                 // Start Sine method
                 break;
-            case ShootingStyle.Laser:
-                // Start Laser method
+            case ShootingStyle.Explode:
+                StartCoroutine(gm.GetComponent<BulletHellLibrary>().Spiral(barrelPosition, shootingDuration, shootInterval, restDuration, projectilePrefab, sound, speed, aimAtPlayer, 0, size, distanceFromPlayerToStartShooting, flashParticles, damageToPlayer, numberOfProjectiles, true));
                 break;
             default:
                 Debug.LogWarning("Unrecognized shooting style.");
