@@ -71,7 +71,10 @@ public class Upgrades : MonoBehaviour
 
         foreach (var upgrade in upgrades)
         {
-            upgrade.acquired = false;
+            // if(upgrade.upgradeLogic != dash) {
+                upgrade.acquired = false;
+            // }
+            
         }
 
     }

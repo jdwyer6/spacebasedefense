@@ -18336,6 +18336,8 @@ GameObject:
   - component: {fileID: 1216828595}
   - component: {fileID: 1216828594}
   - component: {fileID: 1216828596}
+  - component: {fileID: 1216828597}
+  - component: {fileID: 1216828598}
   m_Layer: 0
   m_Name: thing
   m_TagString: Untagged
@@ -18350,7 +18352,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216828593}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41262d93d2767a841a8a181824598cc9, type: 3}
   m_Name: 
@@ -18394,7 +18396,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216828593}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41262d93d2767a841a8a181824598cc9, type: 3}
   m_Name: 
@@ -18415,6 +18417,80 @@ MonoBehaviour:
   damageToPlayer: 10
   isExplosion: 0
   numberOfProjectiles: 100
+--- !u!114 &1216828597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216828593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a728c2bf187e74bbc9c1878501d4255d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bulletPrefab: {fileID: 7387422206258482921, guid: 1c7894ad71a9a7c47a309c51af0187b7, type: 3}
+  m_bulletNum: 100
+  m_bulletSpeed: 10
+  m_accelerationSpeed: 0
+  m_useMaxSpeed: 0
+  m_maxSpeed: 0
+  m_useMinSpeed: 0
+  m_minSpeed: 0
+  m_accelerationTurn: 0
+  m_usePauseAndResume: 0
+  m_pauseTime: 0
+  m_resumeTime: 0
+  m_useAutoRelease: 0
+  m_autoReleaseTime: 10
+  m_shotFiredCallbackEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  m_shotFinishedCallbackEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  m_useBulletFiredCallback: 0
+  m_bulletFiredCallbackEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  m_wayNum: 5
+  m_waveCenterAngle: 180
+  m_waveRangeSize: 40
+  m_waveSpeed: 5
+  m_betweenAngle: 5
+  m_nextLineDelay: 0.1
+  m_setTargetFromTag: 1
+  m_targetTagName: Player
+  m_randomSelectTagTarget: 0
+  m_nearestSelectTagTarget: 0
+  m_targetTransform: {fileID: 0}
+  m_aiming: 0
+--- !u!114 &1216828598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216828593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f0f29fa90c15e4ca1c2e77ce62f18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_axisMove: 0
+  m_inheritAngle: 0
+  m_startOnAwake: 1
+  m_startOnAwakeDelay: 1
+  m_startOnEnable: 0
+  m_startOnEnableDelay: 1
+  m_loop: 1
+  m_atRandom: 0
+  m_shotList:
+  - m_shotObj: {fileID: 0}
+    m_afterDelay: 0
+  m_shotRoutineFinishedCallbackEvents:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1233732152
 GameObject:
   m_ObjectHideFlags: 0

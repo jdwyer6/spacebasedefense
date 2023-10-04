@@ -18,3 +18,4 @@ MonoBehaviour:
   title: Dash
   description: Hit Space to Dash
   upgradeLogic: 6
+  acquired: 0
