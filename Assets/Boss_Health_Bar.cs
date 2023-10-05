@@ -17,14 +17,14 @@ public class Boss_Health_Bar : MonoBehaviour
     {
         canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
         var container = Instantiate(bossSliderContainer, canvas);
-        bossHealthBarName = GetComponentInChildren<TextMeshProUGUI>();
+        bossHealthBarName = container.GetComponentInChildren<TextMeshProUGUI>();
         bossSlider = container.GetComponentInChildren<Slider>();
+        bossHealthBarName.text = bossName;
     }
 
     void Update()
     {
         bossHealth = GetComponent<Enemy_Health>().currentHealth;
-                bossHealthBarName.text = bossName;
 
         float maxBossHealth = GetComponent<Enemy_Health>().totalHealth;
         bossSlider.value = bossHealth / maxBossHealth;
