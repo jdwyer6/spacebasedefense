@@ -186,8 +186,8 @@ public class Player_Shooting : MonoBehaviour
 
     void ShootSpread(Vector2 mainDirection)
     {
-        Vector2 leftDirection = Quaternion.Euler(0, 0, 5) * mainDirection;
-        Vector2 rightDirection = Quaternion.Euler(0, 0, -5) * mainDirection;
+        Vector2 leftDirection = Quaternion.Euler(0, 0, 20) * mainDirection;
+        Vector2 rightDirection = Quaternion.Euler(0, 0, -20) * mainDirection;
         
         // Directly instantiate the projectiles for the left and right directions
         InstantiateProjectile(leftDirection);

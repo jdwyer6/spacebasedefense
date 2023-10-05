@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy_Health : MonoBehaviour
 {
     public float totalHealth = 3;
-    private float currentHealth;
+    public float currentHealth;
     private GameObject gm;
     private Data data;
     public GameObject bloodParticlesExit;

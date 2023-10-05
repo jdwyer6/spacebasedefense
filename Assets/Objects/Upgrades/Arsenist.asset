@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd54534695838d44986c19881dab85fc, type: 3}
   m_Name: Arsenist
   m_EditorClassIdentifier: 
-  upgradeName: Arsenist
+  upgradeName: Arsonist
   icon: {fileID: 21300000, guid: b6f4a58d98f16494fa283efd7178e215, type: 3}
   value: 1.5
-  title: Arsenist
-  description: Flaming bullets. More damage.
+  title: Arsonist
+  description: Flaming bullets do 1.5x damage.
   upgradeLogic: 2
+  acquired: 1

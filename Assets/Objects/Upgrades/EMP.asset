@@ -16,5 +16,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 95e5d0170337c3b49a9fe017a61ee798, type: 3}
   value: 0
   title: EMP
-  description: Reusable destuctive blast.
+  description: Reusable destuctive blast. 30 second recharge. Press space to use.
   upgradeLogic: 5
+  acquired: 0

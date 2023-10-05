@@ -31,6 +31,8 @@ public class Player_Movement : MonoBehaviour
     private ParticleSystem.EmissionModule dashEmissionModule; 
     UpgradeLogicType deadlyDash = UpgradeLogicType.deadlyDash;
 
+    public GameObject deadlyDashObject;
+
 
     // private Alteruna.Avatar avatar;
 
@@ -107,7 +109,9 @@ public class Player_Movement : MonoBehaviour
         float currentSpeed = moveSpeed;
         moveSpeed *= dashMultiplier;
 
-        // if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == deadlyDash).acquired)
+        if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == deadlyDash).acquired) {
+            deadlyDashObject.SetActive(true);
+        }
 
 
 
@@ -116,6 +120,7 @@ public class Player_Movement : MonoBehaviour
         moveSpeed = currentSpeed;
         StartCoroutine(RechargeDash());
         GetComponent<PolygonCollider2D>().enabled = true;
+        deadlyDashObject.SetActive(false);
     }
 
     IEnumerator RechargeDash() {

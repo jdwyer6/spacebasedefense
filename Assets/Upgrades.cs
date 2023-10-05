@@ -44,6 +44,7 @@ public class Upgrades : MonoBehaviour
     public GameObject speedBoostParticles;
 
     private Button[] upgradeButtons;
+    bool firstButtonOutlineInitialized = false;
     private EventSystem eventSystem;
     int currentMenuHovered = 0;
 
@@ -57,7 +58,6 @@ public class Upgrades : MonoBehaviour
         am = FindObjectOfType<AudioManager>();
         gm = GameObject.FindGameObjectWithTag("GM");
         upgrades = gm.GetComponent<Data>().upgrades;
-        
         if (pickupSlider)
         {
             pickupSlider.minValue = 0;
@@ -65,8 +65,6 @@ public class Upgrades : MonoBehaviour
             pickupSlider.value = 0;
             targetSliderValue = pickups;
         }
-        SetUpgrades();
-        upgradeButtons = upgradeGroup.GetComponentsInChildren<Button>();
         eventSystem = EventSystem.current;
 
         foreach (var upgrade in upgrades)
@@ -92,6 +90,12 @@ public class Upgrades : MonoBehaviour
 
         if (menuOpen)
         {
+             upgradeButtons = upgradeGroup.GetComponentsInChildren<Button>();
+             if(!firstButtonOutlineInitialized) {
+                upgradeButtons[0].GetComponent<Outline>().enabled = true; 
+                firstButtonOutlineInitialized = true;
+             }
+
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 // Reset color of previously hovered button
@@ -149,8 +153,49 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    void SetUpgrades() {
+    private List<Upgrade> GetNonAcquiredUpgrades() {
+        List<Upgrade> tempList = new List<Upgrade>();
         foreach (var upgrade in upgrades)
+        {
+            if(!upgrade.acquired) {
+                tempList.Add(upgrade);
+            }
+        }
+        return tempList;
+    }
+
+    private List<Upgrade> SelectRandomUpgrades(int numberToSelect) {
+        List<Upgrade> nonAcquiredUpgrades = GetNonAcquiredUpgrades();
+        List<Upgrade> tempList = new List<Upgrade>();
+        
+        for(int i = 0; i < numberToSelect; i++) {
+            Upgrade potentialUpgrade = null;
+            
+            // Ensure we aren't stuck in an infinite loop if there are fewer non-acquired upgrades than numberToSelect
+            int safetyCounter = 0;
+
+            do {
+                potentialUpgrade = nonAcquiredUpgrades[UnityEngine.Random.Range(0, nonAcquiredUpgrades.Count)];
+                safetyCounter++;
+            } while(tempList.Contains(potentialUpgrade) && safetyCounter < 1000);
+            
+            if(!tempList.Contains(potentialUpgrade)) {
+                tempList.Add(potentialUpgrade);
+            }
+        }
+        return tempList;
+    }
+
+    void ClearUpgradeGroupChildren() {
+        foreach(Transform child in upgradeGroup.transform) {
+            Destroy(child.gameObject);
+        }
+    }
+
+
+    void SetUpgrades() {
+        ClearUpgradeGroupChildren();
+        foreach (var upgrade in SelectRandomUpgrades(3))
         {
             GameObject newUpgrade = Instantiate(upgradeButton, upgradeGroup.transform);
             newUpgrade.transform.Find("Title").GetComponent<TextMeshProUGUI>().text = upgrade.title;
@@ -190,6 +235,7 @@ public class Upgrades : MonoBehaviour
     }
 
     void OpenUpgradeMenu() {
+        SetUpgrades();
         upgradeMenu.SetActive(true);
         menuOpen = true;
         GameGlobals.Instance.globalMenuOpen = true;
@@ -209,6 +255,7 @@ public class Upgrades : MonoBehaviour
         {
             projectile.SetActive(false);
         }
+        firstButtonOutlineInitialized = false;
     }
 
     public void hover() {
@@ -259,7 +306,7 @@ public class Upgrades : MonoBehaviour
     }
 
     public void Speed(GameObject button){
-        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == emp).acquired) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == speed).acquired) {
             HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == speed));
             GetComponent<Player_Movement>().moveSpeed *= 1.5f;
             speedBoostParticles.SetActive(true);
