@@ -31,7 +31,9 @@ public class Player_Movement : MonoBehaviour
     private ParticleSystem.EmissionModule dashEmissionModule; 
     UpgradeLogicType deadlyDash = UpgradeLogicType.deadlyDash;
 
-    public GameObject deadlyDashObject;
+    public GameObject deadlyDashCollider;
+    public ParticleSystem deadlyDashParticles1;
+    public ParticleSystem deadlyDashParticles2;
 
 
     // private Alteruna.Avatar avatar;
@@ -110,7 +112,7 @@ public class Player_Movement : MonoBehaviour
         moveSpeed *= dashMultiplier;
 
         if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == deadlyDash).acquired) {
-            deadlyDashObject.SetActive(true);
+            StartCoroutine(StartDeadlyDash());
         }
 
 
@@ -120,7 +122,6 @@ public class Player_Movement : MonoBehaviour
         moveSpeed = currentSpeed;
         StartCoroutine(RechargeDash());
         GetComponent<PolygonCollider2D>().enabled = true;
-        deadlyDashObject.SetActive(false);
     }
 
     IEnumerator RechargeDash() {
@@ -132,6 +133,16 @@ public class Player_Movement : MonoBehaviour
         
         dashRecharged = true;
         dashImage.color = Color.white;
+    }
+
+    IEnumerator StartDeadlyDash() {
+        deadlyDashCollider.SetActive(true);
+        deadlyDashParticles1.Play();
+        deadlyDashParticles2.Play();
+        yield return new WaitForSeconds(1);
+        deadlyDashCollider.SetActive(false);
+        deadlyDashParticles1.Stop();
+        deadlyDashParticles2.Stop();
     }
 }
 
