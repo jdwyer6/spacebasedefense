@@ -267,3 +267,21 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: Shield_Destroyed
+    clip: {fileID: 8300000, guid: e1ef7ab86a44d2b42a0fe8b5286a1e7a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Shield_Hit
+    clip: {fileID: 8300000, guid: 34265d30924d1bd46aa27048b9815995, type: 3}
+    volume: 0.6
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Lightning
+    clip: {fileID: 8300000, guid: 9c5006faf4a789f44b05d5658902e248, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

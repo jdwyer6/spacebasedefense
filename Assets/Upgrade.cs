@@ -10,7 +10,8 @@ public enum UpgradeLogicType
     emp,
     deadlyDash,
     healthyHabits,
-    spread
+    spread,
+    lightning
 }
 
 [CreateAssetMenu(fileName = "NewUpgrade", menuName = "Upgrade/Upgrade")]

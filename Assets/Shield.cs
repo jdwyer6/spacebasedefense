@@ -6,11 +6,15 @@ public class Shield : MonoBehaviour
 {
     private float currentShieldHealth;
     public float startingShieldHealth = 40;
+    private AudioManager am;
+    public GameObject shieldHitParticles;
+        public GameObject shieldDestroyedParticles;
 
     // Start is called before the first frame update
     void Start()
     {
         currentShieldHealth = startingShieldHealth;
+        am = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -24,12 +28,12 @@ public class Shield : MonoBehaviour
             currentShieldHealth -= other.GetComponent<Projectile>().damage;
             Destroy(other.gameObject);
             if(currentShieldHealth <= 0) {
-                //Play Sound
-                //Instantiate Destroy Particles
+                am.Play("Shield_Destroyed");
+                Instantiate(shieldDestroyedParticles, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
-            // Todo: play sound
-            // todo: instantiate shield impact particles
+            am.Play("Shield_Hit");
+            Instantiate(shieldHitParticles, other.transform.position, Quaternion.identity);
         }
     }
 }

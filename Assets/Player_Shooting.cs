@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System;
+using UnityEngine.UI;
 
 public class Player_Shooting : MonoBehaviour
 {
@@ -23,11 +24,20 @@ public class Player_Shooting : MonoBehaviour
     UpgradeLogicType arsen = UpgradeLogicType.arsen;
     UpgradeLogicType spread = UpgradeLogicType.spread;
 
+    [Header("Reloading")]
+    private int originalStartingAmmo = 10;
+    public int currentAmmo;
+    public int magazineCapacity;
+    public Slider ammoAndReloadIndicator;
+
     private void Start() {
         projectileSpeed = projectileSpeedOriginal;
         autoShootingInterval = autoShootingIntervalOriginal;
         am = FindObjectOfType<AudioManager>();
         gm = GameObject.FindGameObjectWithTag("GM");
+
+        magazineCapacity = originalStartingAmmo;
+        currentAmmo = magazineCapacity;
     }
 
     void Update()
@@ -102,6 +112,7 @@ public class Player_Shooting : MonoBehaviour
 
     void Shoot(Vector2 direction)
     {
+        currentAmmo -= 1;
         am.Play("Shot");
         if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == spread).acquired){
             ShootSpread(direction);
@@ -147,6 +158,7 @@ public class Player_Shooting : MonoBehaviour
     }
 
     IEnumerator ShootAutomatic(Vector2 direction, KeyCode key, float flashRotation, Vector3 offset){
+        currentAmmo -= 1;
         isShooting = true;
         while(Input.GetKey(key)){
             Shoot(direction);

@@ -115,10 +115,13 @@ public class Menu_Logic : MonoBehaviour
     }
 
     public void OpenMenu(GameObject menu) {
+        GameGlobals.Instance.globalMenuOpen = true;
         menu.SetActive(true);
     }
 
     public void CloseMenu(GameObject menu) {
+        GameGlobals.Instance.globalMenuOpen = false;
+
         menu.SetActive(false);
     }
 

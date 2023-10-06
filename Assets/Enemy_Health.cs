@@ -53,7 +53,7 @@ public class Enemy_Health : MonoBehaviour
         }
     }
 
-    void TakeDamage(float damageToTake) {
+    public void TakeDamage(float damageToTake) {
         currentHealth -= damageToTake;
         ShowBloodHit();
         StartCoroutine(ChangeColor());

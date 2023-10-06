@@ -40,6 +40,7 @@ public class Upgrades : MonoBehaviour
     UpgradeLogicType deadlyDash = UpgradeLogicType.deadlyDash;
     UpgradeLogicType healthyHabits = UpgradeLogicType.healthyHabits;
     UpgradeLogicType spread = UpgradeLogicType.spread;
+    UpgradeLogicType lightning = UpgradeLogicType.lightning;
 
     public GameObject speedBoostParticles;
 
@@ -50,6 +51,8 @@ public class Upgrades : MonoBehaviour
 
     public GameObject shieldPrefab;
     public GameObject notEnoughXPToolTip;
+
+    public GameObject lightningUpgrade;
 
 
     // Start is called before the first frame update
@@ -230,6 +233,9 @@ public class Upgrades : MonoBehaviour
                 case UpgradeLogicType.spread:
                 newUpgrade.GetComponent<Button>().onClick.AddListener(() => Spread(newUpgrade));
                     break;
+                case UpgradeLogicType.lightning:
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Lightning(newUpgrade));
+                    break;
             }
         }
     }
@@ -399,6 +405,17 @@ public class Upgrades : MonoBehaviour
     public void Spread(GameObject button) {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == spread).acquired) {
             HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == spread));
+            ResetAndUpdatePickups();
+            CloseUpgradesMenu();
+        }else{
+            am.Play("UI_Disabled");
+        }
+    }
+
+    public void Lightning(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == lightning).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == lightning));
+            lightningUpgrade.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
