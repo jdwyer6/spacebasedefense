@@ -261,3 +261,9 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: Enemy_Shot_2
+    clip: {fileID: 8300000, guid: 2f959cce3a94772478f6722c0cf245eb, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
