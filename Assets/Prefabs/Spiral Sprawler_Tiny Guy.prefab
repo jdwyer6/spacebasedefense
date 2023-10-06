@@ -10461,11 +10461,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 20
+  currentHealth: 0
   bloodParticlesExit: {fileID: 7541264274060737703, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
   bloodParticlesDeath: {fileID: 4101786293985824456, guid: 23da123a7da298a49ae8258338e236b6, type: 3}
   pickup: {fileID: 3431140739008499236, guid: 85b4b77ad9676a84aa7f13ff27208b88, type: 3}
   percentToDropPickups: 50
   eyeDeathParticles: {fileID: 0}
+  hasBossDrop: 0
 --- !u!50 &2571004550167048754
 Rigidbody2D:
   serializedVersion: 4
@@ -10517,7 +10519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 360
-  projectilePrefab: {fileID: 7387422206258482921, guid: 1c7894ad71a9a7c47a309c51af0187b7, type: 3}
+  projectilePrefab: {fileID: 7387422206258482921, guid: 0bbd73a11bd216d4aaf23d71441dd061, type: 3}
   barrelPosition1: {fileID: 5521745181866797938}
   barrelPosition2: {fileID: 5521745181999177451}
   shootInterval: 0.1
@@ -10556,13 +10558,15 @@ MonoBehaviour:
   restDuration: 0
   speed: 0
   size: 0
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 7387422206258482921, guid: 0bbd73a11bd216d4aaf23d71441dd061, type: 3}
   sound: 
   aimAtPlayer: 0
   rotationSpeed: 0
   distanceFromPlayerToStartShooting: 0
   flashParticles: {fileID: 0}
   damageToPlayer: 10
+  isExplosion: 0
+  numberOfProjectiles: 0
 --- !u!1 &6532349215047280831
 GameObject:
   m_ObjectHideFlags: 0

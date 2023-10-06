@@ -77,7 +77,7 @@ public class EMP : MonoBehaviour
         CinemachineImpulseSource impulseSource = GetComponent<CinemachineImpulseSource>();
         impulseSource.GenerateImpulse();
 
-        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile_Destructible");
+        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Enemy_Projectile");
         foreach (var projectile in projectiles)
         {
             Destroy(projectile);

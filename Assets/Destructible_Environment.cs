@@ -25,7 +25,7 @@ public class Destructible_Environment : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "Projectile_Destructible" || other.gameObject.GetComponent<Enemy_Data>().hasLaser) {
+        if(other.gameObject.tag == "Enemy_Projectile" || other.gameObject.GetComponent<Enemy_Data>().hasLaser) {
             Vector2 contactPoint = other.contacts[0].point;
             Vector2 directionFromProjectile = (Vector2)transform.position - contactPoint;
             

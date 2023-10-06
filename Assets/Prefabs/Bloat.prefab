@@ -316,6 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 200
+  currentHealth: 0
   bloodParticlesExit: {fileID: 7541264274060737703, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
   bloodParticlesDeath: {fileID: 1978304892633610466, guid: 91ca8939e615ee2419a1a081e56f25de, type: 3}
   pickup: {fileID: 3431140739008499236, guid: 85b4b77ad9676a84aa7f13ff27208b88, type: 3}
@@ -375,7 +376,7 @@ MonoBehaviour:
   enlargementSpeed: 1
   maxSize: 6
   explosionParticles: {fileID: 6130261343760760479, guid: 2a77f1f35c25c004c888e42874dafb02, type: 3}
-  projectilePrefab: {fileID: 7387422206258482921, guid: 1c7894ad71a9a7c47a309c51af0187b7, type: 3}
+  projectilePrefab: {fileID: 7387422206258482921, guid: 0bbd73a11bd216d4aaf23d71441dd061, type: 3}
   numberOfProjectiles: 200
   shakeMagnitude: 0.1
   shakeFrequency: 1

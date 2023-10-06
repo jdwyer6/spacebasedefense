@@ -36,7 +36,7 @@ public class Upgrades : MonoBehaviour
     UpgradeLogicType arsen = UpgradeLogicType.arsen;
     UpgradeLogicType auto = UpgradeLogicType.auto;
     UpgradeLogicType emp = UpgradeLogicType.emp;
-    UpgradeLogicType orbit = UpgradeLogicType.orbit;
+    UpgradeLogicType shield = UpgradeLogicType.shield;
     UpgradeLogicType deadlyDash = UpgradeLogicType.deadlyDash;
     UpgradeLogicType healthyHabits = UpgradeLogicType.healthyHabits;
     UpgradeLogicType spread = UpgradeLogicType.spread;
@@ -48,7 +48,7 @@ public class Upgrades : MonoBehaviour
     private EventSystem eventSystem;
     int currentMenuHovered = 0;
 
-    public GameObject orbitalAssassin;
+    public GameObject shieldPrefab;
     public GameObject notEnoughXPToolTip;
 
 
@@ -218,8 +218,8 @@ public class Upgrades : MonoBehaviour
                 case UpgradeLogicType.emp:
                     newUpgrade.GetComponent<Button>().onClick.AddListener(() => Emp(newUpgrade));
                     break;
-                case UpgradeLogicType.orbit:
-                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Orbit(newUpgrade));
+                case UpgradeLogicType.shield:
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Shield(newUpgrade));
                     break;
                 case UpgradeLogicType.deadlyDash:
                 newUpgrade.GetComponent<Button>().onClick.AddListener(() => DeadlyDash(newUpgrade));
@@ -251,7 +251,7 @@ public class Upgrades : MonoBehaviour
         upgradeMenu.SetActive(false);
         menuOpen = false;
         GameGlobals.Instance.globalMenuOpen = false;
-        foreach (var projectile in GameObject.FindGameObjectsWithTag("Projectile_Destructible"))
+        foreach (var projectile in GameObject.FindGameObjectsWithTag("Enemy_Projectile"))
         {
             projectile.SetActive(false);
         }
@@ -358,10 +358,10 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void Orbit(GameObject button) {
-        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == orbit).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == orbit));
-            orbitalAssassin.SetActive(true);
+    public void Shield(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == shield).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == shield));
+            shieldPrefab.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{

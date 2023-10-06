@@ -21162,7 +21162,6 @@ GameObject:
   - component: {fileID: 1641079126}
   - component: {fileID: 1641079138}
   - component: {fileID: 1641079127}
-  - component: {fileID: 975049047}
   - component: {fileID: 975049048}
   m_Layer: 0
   m_Name: Boss_1
@@ -21549,26 +21548,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 5
-  laserLength: 50
-  laser_start_location: {fileID: 5644007290779393829}
-  laserDamage: 25
-  distanceFromPlayerToStartShooting: 25
-  edgeCollider: {fileID: 1641079126}
-  sunRayLaser: 0
-  sunRayLasers: []
---- !u!114 &975049047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5644007290779393831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1c50e564fc406844b2beb8ccf676c53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interval: 7
   laserLength: 50
   laser_start_location: {fileID: 5644007290779393829}
   laserDamage: 25

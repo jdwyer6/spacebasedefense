@@ -37,7 +37,7 @@ public class Enemy_Health : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "Projectile_Destructible") {
+        if(other.gameObject.tag == "Player_Projectile") {
             TakeDamage(other.gameObject.GetComponent<Projectile>().damage);
             am.Play(data.bloodHits[Random.Range(0, data.bloodHits.Length)]);
 

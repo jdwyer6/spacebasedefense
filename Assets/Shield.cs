@@ -20,12 +20,16 @@ public class Shield : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "Projectile_Destructible") {
+        if(other.gameObject.tag == "Enemy_Projectile") {
             currentShieldHealth -= other.GetComponent<Projectile>().damage;
             Destroy(other.gameObject);
+            if(currentShieldHealth <= 0) {
+                //Play Sound
+                //Instantiate Destroy Particles
+                Destroy(gameObject);
+            }
             // Todo: play sound
             // todo: instantiate shield impact particles
-            // reduce shield helath
         }
     }
 }

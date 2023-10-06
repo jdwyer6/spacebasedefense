@@ -114,16 +114,23 @@ public class Projectile : MonoBehaviour
         }
 
         // Find all game objects with the "Destructible_Environment" tag
-        GameObject[] destructibles = GameObject.FindGameObjectsWithTag("Projectile_Destructible");
+        List<GameObject> allProjectiles = new List<GameObject>();
+
+        GameObject[] enemyProjectiles = GameObject.FindGameObjectsWithTag("Enemy_Projectile");
+        GameObject[] playerProjectiles = GameObject.FindGameObjectsWithTag("Player_Projectile");
+
+        allProjectiles.AddRange(enemyProjectiles);
+        allProjectiles.AddRange(playerProjectiles);
+
 
         // Iterate over each destructible and ignore their collisions with the current game object
-        foreach (GameObject destructible in destructibles)
+        foreach (GameObject projectile in allProjectiles)
         {
-            Collider2D destructibleCollider = destructible.GetComponent<Collider2D>();
+            Collider2D collider = projectile.GetComponent<Collider2D>();
             
-            if (destructibleCollider != null)
+            if (collider != null)
             {
-                Physics2D.IgnoreCollision(myCollider, destructibleCollider);
+                Physics2D.IgnoreCollision(myCollider, collider);
             }
         }
     }

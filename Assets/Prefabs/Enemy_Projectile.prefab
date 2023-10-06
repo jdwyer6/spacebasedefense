@@ -97,9 +97,10 @@ GameObject:
   - component: {fileID: 6638070558727911805}
   - component: {fileID: 633440995873122523}
   - component: {fileID: -3016659450791029342}
+  - component: {fileID: 5399499409268056874}
   m_Layer: 0
   m_Name: Enemy_Projectile
-  m_TagString: Projectile_Destructible
+  m_TagString: Enemy_Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,3 +227,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &5399499409268056874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7387422206258482921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cc9ae49d4a2974a8861d72357d6744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

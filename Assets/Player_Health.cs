@@ -83,7 +83,7 @@ public class Player_Health : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "Projectile_Destructible") {
+        if(other.gameObject.tag == "Enemy_Projectile") {
             TakeDamage(other.gameObject.GetComponent<Projectile>().damage);
         }
         if(other.gameObject.tag == "Enemy") {

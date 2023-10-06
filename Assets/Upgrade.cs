@@ -6,7 +6,7 @@ public enum UpgradeLogicType
     health,
     arsen,
     auto,
-    orbit,
+    shield,
     emp,
     deadlyDash,
     healthyHabits,
