@@ -47,8 +47,16 @@ public class Menu_Logic : MonoBehaviour
         }
     }
 
-    public void HoverSound() {
+    public void MouseEnter() {
         am.Play("UI_Hover");
+        // Image img = PointerEventData.pointerEnter.GetComponent<Image>();
+        // if (img != null) {
+        //     img.color = new Color(150f/255f, 196f/255f, 197f/255f, 1f);
+        // }
+    }
+
+    public void MouseExit() {
+        // eventData.pointerEnter.GetComponent<Image>().color = Color.white;
     }
 
     public void ClickSound() {
