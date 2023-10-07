@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Enemy_Projectile : MonoBehaviour
 {
-    private Collider2D collider;
+    private Collider2D col;
 
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<Collider2D>();
+        col = GetComponent<Collider2D>();
 
         // Find all game objects with the "Enemy" tag
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -20,15 +20,9 @@ public class Enemy_Projectile : MonoBehaviour
             Collider2D enemyCollider = enemy.GetComponent<Collider2D>();
             if (enemyCollider)
             {
-                Physics2D.IgnoreCollision(collider, enemyCollider);
+                Physics2D.IgnoreCollision(col, enemyCollider);
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
 }

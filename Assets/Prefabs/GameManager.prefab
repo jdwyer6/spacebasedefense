@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4570469017198267509}
   - component: {fileID: 4570469017198267514}
   - component: {fileID: 4570469017198267515}
-  - component: {fileID: 2597334839199776368}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GM
@@ -372,30 +371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558d2f18d1506984e915d63894623fb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2597334839199776368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4570469017198267502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c38838f3d8b5da4cb4066d6c73ad02f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCyclingHorizontalOptions: 0
-  isHorizontalMenu: 0
-  horizontalOptions: []
-  currentlyActiveHorizontalButton: 0
-  horizontalRow: {fileID: 0}
-  menuOpen: 0
-  isMainMenu: 0
-  buttons: []
-  pauseMenu: {fileID: 0}
-  mainMenu: {fileID: 8035258006254911916, guid: 870c5df5bfa9b1a428c69845ed3afa47, type: 3}
-  characterSelectMenu: {fileID: 569944156175740551, guid: d9aa2d395bcf0cd45904a3b374f3a0db, type: 3}
-  settingsMenu: {fileID: 0}
 --- !u!1 &4570469017865238122
 GameObject:
   m_ObjectHideFlags: 0

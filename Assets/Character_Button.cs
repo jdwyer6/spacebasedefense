@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Character_Button : MonoBehaviour
 {
     public Character character;
-    public TextMeshProUGUI name;
+    public TextMeshProUGUI characterName;
     public TextMeshProUGUI unlockableDescription;
     private bool unlocked;
     public GameObject padlock;
@@ -16,7 +16,7 @@ public class Character_Button : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        name.text = character.characterName;
+        characterName.text = character.characterName;
         unlockableDescription.text = character.unlockableDescription;
         unlocked = character.unlocked;
         image.sprite = character.sprite;
