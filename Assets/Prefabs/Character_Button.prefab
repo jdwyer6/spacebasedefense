@@ -232,6 +232,7 @@ MonoBehaviour:
   unlockableDescription: {fileID: 700658726870580271}
   padlock: {fileID: 700658726057807692}
   image: {fileID: 700658725817046201}
+  outline: {fileID: 700658727298681436}
 --- !u!1 &700658725940065769
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,7 +901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &700658727298681763
 RectTransform:
   m_ObjectHideFlags: 0
@@ -919,7 +920,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &700658727298681761
 CanvasRenderer:

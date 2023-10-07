@@ -15,4 +15,5 @@ MonoBehaviour:
   characterName: Dooby
   sprite: {fileID: 21300000, guid: d31e4422c8639534ea70a80bbbdf1b84, type: 3}
   unlockableDescription: Unlock after completing stage 1.
-  unlocked: 0
+  selected: 0
+  unlocked: 1

@@ -6,5 +6,6 @@ public class Character : ScriptableObject
     public string characterName;
     public Sprite sprite;               
     public string unlockableDescription;
+    public bool selected;
     public bool unlocked;
 }

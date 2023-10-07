@@ -285,3 +285,9 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: Swoosh
+    clip: {fileID: 8300000, guid: c4762f15b813d9a41acb389e2fa3c573, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

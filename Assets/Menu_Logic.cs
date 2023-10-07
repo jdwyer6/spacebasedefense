@@ -16,6 +16,7 @@ public class Menu_Logic : MonoBehaviour
     private GameObject currentMenuOpen;
 
     public Button[] buttons;
+    public Character[] characters;
 
     [Header("Menus")]
     public GameObject[] menus;
@@ -76,10 +77,7 @@ public class Menu_Logic : MonoBehaviour
         if(GameGlobals.Instance != null){
             GameGlobals.Instance.globalMenuOpen = true;
         }
-
-        menu.SetActive(true);
-        currentMenuOpen.SetActive(false);
-        currentMenuOpen = menu;
+        StartCoroutine(AnimateMenuChange(.5f, menu, currentMenuOpen));
     }
 
     public void CloseMenu(GameObject menu) {
@@ -87,6 +85,17 @@ public class Menu_Logic : MonoBehaviour
             GameGlobals.Instance.globalMenuOpen = true;
         }
         menu.SetActive(false);
+    }
+
+    IEnumerator AnimateMenuChange(float animationDuration, GameObject menu, GameObject currentMenu) {
+        currentMenu.transform.LeanMoveLocal(new Vector2(-1000, 0), animationDuration).setEaseOutQuart();
+        am.Play("Swoosh");
+        menu.SetActive(true);
+        menu.transform.position = new Vector2(1000, 0);
+        menu.transform.LeanMoveLocal(new Vector2(0, 0), animationDuration).setEaseOutQuart();
+        yield return new WaitForSeconds(animationDuration);
+        currentMenuOpen.SetActive(false);
+        currentMenuOpen = menu;
     }
 
     public void Select() {
@@ -118,7 +127,19 @@ public class Menu_Logic : MonoBehaviour
     }
 
     public void SelectCharacter() {
-        Debug.Log(EventSystem.current.currentSelectedGameObject.name);
+        Character_Button characterButton = EventSystem.current.currentSelectedGameObject.GetComponent<Character_Button>();
+        Run_Data runData = GameObject.FindGameObjectWithTag("RunData").GetComponent<Run_Data>();
+        am.Play("UI_Select");
+        if(characterButton != null) {
+            runData.selectedCharacter = characterButton.character;
+            foreach (var character in characters)
+            {
+                character.selected = false;
+            }
+            characterButton.character.selected = true;
+        } else {
+            Debug.Log("No Character_Button component found on the selected object.");
+        }
     }
 
     private void GetCurrentMenu() {
