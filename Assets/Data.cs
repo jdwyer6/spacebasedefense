@@ -22,10 +22,9 @@ public class Data : MonoBehaviour
     public GameObject dustParticles;
 
     public GameObject[] enemies;
-
     public Upgrade[] upgrades;
-
     public Wave[] waves;
-
     public GameObject[] bossDrops;
+
+    public Character[] characters;
 }

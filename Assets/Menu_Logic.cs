@@ -11,22 +11,32 @@ public class Menu_Logic : MonoBehaviour
     private AudioManager am;
     public bool isCyclingHorizontalOptions;
     private int currentlyActiveButton;
-    public int optionToCycleHorizontal;
+    public bool isHorizontalMenu;
     public Button[] horizontalOptions;
     public int currentlyActiveHorizontalButton = 0;
     public GameObject horizontalRow;
 
     private bool pauseMenuOpen;
-    public GameObject pauseMenu;
     public bool menuOpen = false;
+    public bool isMainMenu;
+    private GameObject currentMenuOpen;
 
     public Button[] buttons;
+
+    [Header("Menus")]
+    public GameObject pauseMenu;
+    public GameObject mainMenu;
+    public GameObject characterSelectMenu;
+    public GameObject settingsMenu;
 
     private void Start() {
         am = FindObjectOfType<AudioManager>();
         currentlyActiveButton = 0;
         if(buttons != null && menuOpen) {
             SetButtonActive();
+        }
+        if(isMainMenu) {
+            setCurrentMenuOpen(mainMenu);
         }
 
     }
@@ -60,7 +70,7 @@ public class Menu_Logic : MonoBehaviour
             }
 
             if(horizontalRow) {
-                if(currentlyActiveButton == optionToCycleHorizontal) {
+                if(isHorizontalMenu) {
                     isCyclingHorizontalOptions = true;
                     horizontalRow.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
                     SetHorizontalButtonActive();
@@ -117,11 +127,12 @@ public class Menu_Logic : MonoBehaviour
     public void OpenMenu(GameObject menu) {
         GameGlobals.Instance.globalMenuOpen = true;
         menu.SetActive(true);
+        currentMenuOpen.SetActive(false);
+        currentMenuOpen = menu;
     }
 
     public void CloseMenu(GameObject menu) {
         GameGlobals.Instance.globalMenuOpen = false;
-
         menu.SetActive(false);
     }
 
@@ -212,5 +223,9 @@ public class Menu_Logic : MonoBehaviour
 
     public void ResumeGame() {
         Time.timeScale = 1;
+    }
+
+    public void setCurrentMenuOpen(GameObject menu) {
+        currentMenuOpen = menu;
     }
 }
