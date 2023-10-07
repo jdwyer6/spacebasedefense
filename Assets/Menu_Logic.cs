@@ -33,7 +33,6 @@ public class Menu_Logic : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Escape)) {
             if(pauseMenuOpen) {
-    
                 CloseMenu(menus[0]);
                 pauseMenuOpen = false;
                 ResumeGame();
@@ -49,14 +48,10 @@ public class Menu_Logic : MonoBehaviour
 
     public void MouseEnter() {
         am.Play("UI_Hover");
-        // Image img = PointerEventData.pointerEnter.GetComponent<Image>();
-        // if (img != null) {
-        //     img.color = new Color(150f/255f, 196f/255f, 197f/255f, 1f);
-        // }
     }
 
     public void MouseExit() {
-        // eventData.pointerEnter.GetComponent<Image>().color = Color.white;
+        
     }
 
     public void ClickSound() {
@@ -96,13 +91,18 @@ public class Menu_Logic : MonoBehaviour
     }
 
     IEnumerator AnimateMenuChange(float animationDuration, GameObject menu, GameObject currentMenu) {
-        currentMenu.transform.LeanMoveLocal(new Vector2(-1000, 0), animationDuration).setEaseOutQuart();
+        if(currentMenu != null) {
+            currentMenu.transform.LeanMoveLocal(new Vector2(-1000, 0), animationDuration).setEaseOutQuart();
+        }
         am.Play("Swoosh");
         menu.SetActive(true);
         menu.transform.position = new Vector2(1000, 0);
         menu.transform.LeanMoveLocal(new Vector2(0, 0), animationDuration).setEaseOutQuart();
         yield return new WaitForSeconds(animationDuration);
-        currentMenuOpen.SetActive(false);
+        if(currentMenuOpen != null){
+            currentMenuOpen.SetActive(false);
+        }
+        
         currentMenuOpen = menu;
     }
 
@@ -123,7 +123,7 @@ public class Menu_Logic : MonoBehaviour
 
 
     public void Pause() {
-        // Time.timeScale = 0;
+        Time.timeScale = 0;
     }
 
     public void ResumeGame() {
