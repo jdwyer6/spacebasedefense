@@ -18,6 +18,7 @@ public class Upgrade_Damage_Dash : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Enemy") {
+            Debug.Log(other.gameObject.tag);
             other.gameObject.GetComponent<Enemy_Health>().currentHealth -= 50;
         }
     }

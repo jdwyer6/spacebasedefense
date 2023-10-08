@@ -10201,7 +10201,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -9.745001, y: 2.2389998}
+  m_ConnectedAnchor: {x: 20.938942, y: -0.7257509}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -15380,7 +15380,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -5.1070004, y: 3.067}
+  m_ConnectedAnchor: {x: 25.576942, y: 0.102249146}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -15595,7 +15595,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -6.4630003, y: 2.2120001}
+  m_ConnectedAnchor: {x: 24.220942, y: -0.75275064}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -15704,7 +15704,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -8.275001, y: 1.9960003}
+  m_ConnectedAnchor: {x: 22.408943, y: -0.9687505}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -21305,7 +21305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1799575ac4c3ab4f9612b03d07f9ca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 5000
+  totalHealth: 10
   currentHealth: 0
   bloodParticlesExit: {fileID: 7541264274060737703, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
   bloodParticlesDeath: {fileID: 1978304892633610466, guid: 91ca8939e615ee2419a1a081e56f25de, type: 3}

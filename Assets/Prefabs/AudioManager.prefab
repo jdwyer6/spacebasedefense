@@ -297,3 +297,9 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: MajorUpgrade
+    clip: {fileID: 8300000, guid: 93e92ed9dd6b8934aa8dc24774f4ccff, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

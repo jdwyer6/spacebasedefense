@@ -29,4 +29,6 @@ public class Boss_Health_Bar : MonoBehaviour
         float maxBossHealth = GetComponent<Enemy_Health>().totalHealth;
         bossSlider.value = bossHealth / maxBossHealth;
     }
+
+
 }

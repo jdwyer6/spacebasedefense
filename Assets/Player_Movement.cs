@@ -34,6 +34,7 @@ public class Player_Movement : MonoBehaviour
     public GameObject deadlyDashCollider;
     public ParticleSystem deadlyDashParticles1;
     public ParticleSystem deadlyDashParticles2;
+    private bool isDeadlyDashing;
 
 
     // private Alteruna.Avatar avatar;
@@ -93,7 +94,7 @@ public class Player_Movement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-
+        DamageEnemiesDuringDeadlyDash();
     }
 
     private void FixedUpdate()
@@ -141,13 +142,28 @@ public class Player_Movement : MonoBehaviour
     }
 
     IEnumerator StartDeadlyDash() {
-        deadlyDashCollider.SetActive(true);
+        isDeadlyDashing = true;
         deadlyDashParticles1.Play();
         deadlyDashParticles2.Play();
         yield return new WaitForSeconds(1);
-        deadlyDashCollider.SetActive(false);
+        isDeadlyDashing = false;
         deadlyDashParticles1.Stop();
         deadlyDashParticles2.Stop();
+
     }
+
+    private void DamageEnemiesDuringDeadlyDash() {
+        if(isDeadlyDashing) {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (var enemy in enemies)
+            {
+                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                if(distanceToEnemy <= 2f) {
+                    enemy.GetComponent<Enemy_Health>().TakeDamage(50f);
+                }
+            }
+        }
+    }
+
 }
 

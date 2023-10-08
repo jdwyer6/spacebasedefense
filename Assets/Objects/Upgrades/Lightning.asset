@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lightning
   m_EditorClassIdentifier: 
   upgradeName: Lightning
-  icon: {fileID: 21300000, guid: 61fbdcc5558f98c4fb00c35534190920, type: 3}
+  icon: {fileID: 21300000, guid: e20b9397ed2220041b4c64077bbf6fed, type: 3}
   value: 0
   title: Lightning Strike
   description: Damage the closes enemy to you at set intervals with a lightning strike.

@@ -61,10 +61,9 @@ public class Enemy_Health : MonoBehaviour
 
     void Die() {
         if(hasBossDrop) {
-            Debug.Log("Trying to drop boss item...");
+            GetComponent<Boss_Health_Bar>().bossSliderContainer.SetActive(false);
             GameObject randomDrop = data.bossDrops[UnityEngine.Random.Range(0, data.bossDrops.Length)];
             Instantiate(randomDrop, transform.position, Quaternion.identity);
-            Debug.Log("Boss item should have dropped.");
         }
         player.GetComponent<Building>().bricks += 2;
         if(WillDropPickup()) Instantiate(pickup, transform.position, Quaternion.identity);
