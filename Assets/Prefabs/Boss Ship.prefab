@@ -20616,7 +20616,7 @@ GameObject:
   - component: {fileID: 8315999957203538586}
   - component: {fileID: 179658060}
   - component: {fileID: 179658061}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss Ship
   m_TagString: Enemy
   m_Icon: {fileID: 0}

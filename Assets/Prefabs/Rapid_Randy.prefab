@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 7385314563380968235}
   - component: {fileID: 1031585877984103362}
   - component: {fileID: 1031585877984103363}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rapid_Randy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

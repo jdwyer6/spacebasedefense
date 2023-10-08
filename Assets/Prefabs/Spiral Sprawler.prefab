@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 8586993872537203195}
   - component: {fileID: 2235514925245202706}
   - component: {fileID: 8586993872537203196}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spiral Sprawler
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -1346,6 +1346,7 @@ MonoBehaviour:
   characters:
   - {fileID: 11400000, guid: 9bba9713eff95f0478389cd49fceb776, type: 2}
   - {fileID: 11400000, guid: f8d63247e3eaee14c89f6d2f9f1a2c8c, type: 2}
+  animate: 1
   menus:
   - {fileID: 1098533336}
   - {fileID: 930626349}

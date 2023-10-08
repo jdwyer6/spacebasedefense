@@ -15,6 +15,9 @@ TagManager:
   - Blood_Drops
   - Projectile_NonDestructible
   - Canvas
+  - Enemy_Projectile
+  - Player_Projectile
+  - RunData
   layers:
   - Default
   - TransparentFX
@@ -23,8 +26,8 @@ TagManager:
   - Water
   - UI
   - Post Processing
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 

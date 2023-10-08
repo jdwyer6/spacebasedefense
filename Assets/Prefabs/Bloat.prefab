@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 8402448415211995326}
   - component: {fileID: 2068977162112430167}
   - component: {fileID: 1070906587626561046}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bloat
   m_TagString: Enemy
   m_Icon: {fileID: 0}

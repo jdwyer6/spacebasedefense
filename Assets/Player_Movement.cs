@@ -51,6 +51,7 @@ public class Player_Movement : MonoBehaviour
         emissionModule = moveParticles.emission;
         dashEmissionModule = dashParticles.emission;
         originalEmissionRate = emissionModule.rateOverTime.constant;
+        moveSpeed = originalMoveSpeed;
 
         // avatar = GetComponent<Alteruna.Avatar>();
         // if(!avatar.IsOwner){
@@ -101,12 +102,15 @@ public class Player_Movement : MonoBehaviour
     }
 
     IEnumerator Dash() {
+        int enemyLayer = LayerMask.NameToLayer("Enemy");
+        int playerLayer = LayerMask.NameToLayer("Player");
+        Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
+
         dashEmissionModule.rateOverTime = dashEmissionRate; 
         dashRecharged = false;
-        GetComponent<PolygonCollider2D>().enabled = false;
+        // GetComponent<PolygonCollider2D>().enabled = false;
         am.Play("Dash");
         gm.GetComponent<Juicer>().ApplyCameraShake();
-        // Add Particles
         Vector2 direction = rb.velocity.normalized;
         float currentSpeed = moveSpeed;
         moveSpeed *= dashMultiplier;
@@ -121,7 +125,8 @@ public class Player_Movement : MonoBehaviour
         dashEmissionModule.rateOverTime = 0f; 
         moveSpeed = currentSpeed;
         StartCoroutine(RechargeDash());
-        GetComponent<PolygonCollider2D>().enabled = true;
+        // GetComponent<PolygonCollider2D>().enabled = true;
+        Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);
     }
 
     IEnumerator RechargeDash() {

@@ -280,13 +280,19 @@ MonoBehaviour:
     source: {fileID: 0}
     loop: 0
   - name: Lightning
-    clip: {fileID: 8300000, guid: 9c5006faf4a789f44b05d5658902e248, type: 3}
+    clip: {fileID: 8300000, guid: 24067230f90893b4b88ff7ac081080f8, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: Swoosh
     clip: {fileID: 8300000, guid: c4762f15b813d9a41acb389e2fa3c573, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Projectile_Explosion
+    clip: {fileID: 8300000, guid: 360d2b304aa4fdd4fae677d2d367c0b5, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}

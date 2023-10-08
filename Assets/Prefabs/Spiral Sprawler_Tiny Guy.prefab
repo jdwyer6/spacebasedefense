@@ -10330,7 +10330,7 @@ GameObject:
   - component: {fileID: 2571004550167048757}
   - component: {fileID: 2571004550167048756}
   - component: {fileID: -7585594258415854920}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spiral Sprawler_Tiny Guy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

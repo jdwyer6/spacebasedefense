@@ -10201,7 +10201,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -28.663534, y: 8.581602}
+  m_ConnectedAnchor: {x: -9.745001, y: 2.2389998}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -15380,7 +15380,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -24.025534, y: 9.409603}
+  m_ConnectedAnchor: {x: -5.1070004, y: 3.067}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -15595,7 +15595,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -25.381535, y: 8.554603}
+  m_ConnectedAnchor: {x: -6.4630003, y: 2.2120001}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -15704,7 +15704,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -27.193533, y: 8.338603}
+  m_ConnectedAnchor: {x: -8.275001, y: 1.9960003}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -21163,7 +21163,11 @@ GameObject:
   - component: {fileID: 1641079138}
   - component: {fileID: 1641079127}
   - component: {fileID: 975049048}
-  m_Layer: 0
+  - component: {fileID: 939901674}
+  - component: {fileID: 939901675}
+  - component: {fileID: 939901676}
+  - component: {fileID: 8128135284922076679}
+  m_Layer: 7
   m_Name: Boss_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -21204,7 +21208,7 @@ Transform:
   - {fileID: 4139968702331595163}
   - {fileID: 4139968702957957774}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5644007290779393838
 SpriteRenderer:
@@ -21376,7 +21380,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5644007290779393831}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41262d93d2767a841a8a181824598cc9, type: 3}
   m_Name: 
@@ -21388,7 +21392,7 @@ MonoBehaviour:
   restDuration: 4
   speed: 20
   size: 0.3
-  projectilePrefab: {fileID: 7387422206258482921, guid: 1c7894ad71a9a7c47a309c51af0187b7, type: 3}
+  projectilePrefab: {fileID: 7387422206258482921, guid: 0bbd73a11bd216d4aaf23d71441dd061, type: 3}
   sound: Enemy_Shot
   aimAtPlayer: 1
   rotationSpeed: 1
@@ -21569,6 +21573,149 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossSliderContainer: {fileID: 6381695384792491653, guid: 04287c0e138c7214eb00c512060577fc, type: 3}
   bossName: Dangly Doug
+--- !u!114 &939901674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5644007290779393831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f0f29fa90c15e4ca1c2e77ce62f18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_axisMove: 0
+  m_inheritAngle: 0
+  m_startOnAwake: 1
+  m_startOnAwakeDelay: 1
+  m_startOnEnable: 0
+  m_startOnEnableDelay: 1
+  m_loop: 1
+  m_atRandom: 1
+  m_shotList:
+  - m_shotObj: {fileID: 939901675}
+    m_afterDelay: 5
+  - m_shotObj: {fileID: 939901676}
+    m_afterDelay: 5
+  m_shotRoutineFinishedCallbackEvents:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &939901675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5644007290779393831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a5b17557811c47abac0a65a46f52e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bulletPrefab: {fileID: 7387422206258482921, guid: 0bbd73a11bd216d4aaf23d71441dd061, type: 3}
+  m_bulletNum: 50
+  m_bulletSpeed: 10
+  m_accelerationSpeed: 0
+  m_useMaxSpeed: 0
+  m_maxSpeed: 0
+  m_useMinSpeed: 0
+  m_minSpeed: 0
+  m_accelerationTurn: 0
+  m_usePauseAndResume: 0
+  m_pauseTime: 0
+  m_resumeTime: 0
+  m_useAutoRelease: 0
+  m_autoReleaseTime: 10
+  m_shotFiredCallbackEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8128135284922076679}
+        m_TargetAssemblyTypeName: UniBulletHellHelper, Assembly-CSharp
+        m_MethodName: PlayShotAuto1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_shotFinishedCallbackEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  m_useBulletFiredCallback: 0
+  m_bulletFiredCallbackEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  m_betweenDelay: 0.1
+  m_homingAngleSpeed: 20
+  m_setTargetFromTag: 1
+  m_targetTagName: Player
+  m_randomSelectTagTarget: 0
+  m_nearestSelectTagTarget: 0
+  m_targetTransform: {fileID: 0}
+--- !u!114 &939901676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5644007290779393831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78e50f91ef29dcf45a6d866be09fbb49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bulletPrefab: {fileID: 7387422206258482921, guid: 0bbd73a11bd216d4aaf23d71441dd061, type: 3}
+  m_bulletNum: 100
+  m_bulletSpeed: 12
+  m_accelerationSpeed: 0
+  m_useMaxSpeed: 0
+  m_maxSpeed: 0
+  m_useMinSpeed: 0
+  m_minSpeed: 0
+  m_accelerationTurn: 0
+  m_usePauseAndResume: 0
+  m_pauseTime: 0
+  m_resumeTime: 0
+  m_useAutoRelease: 0
+  m_autoReleaseTime: 10
+  m_shotFiredCallbackEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8128135284922076679}
+        m_TargetAssemblyTypeName: UniBulletHellHelper, Assembly-CSharp
+        m_MethodName: PlayShotAuto1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_shotFinishedCallbackEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  m_useBulletFiredCallback: 0
+  m_bulletFiredCallbackEvents:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8128135284922076679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5644007290779393831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b52ef578ebb5540b2fadb905184a0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6647193889329157613
 GameObject:
   m_ObjectHideFlags: 0
@@ -23896,7 +24043,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0.25}
-  m_ConnectedAnchor: {x: 0, y: -0.2499981}
+  m_ConnectedAnchor: {x: 0, y: -0.24999905}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -27397,7 +27544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.25
+      value: -0.24999952
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedRigidBody
@@ -28722,7 +28869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.2499981
+      value: -0.24999905
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedRigidBody
@@ -30454,7 +30601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.25
+      value: -0.25000095
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedRigidBody
@@ -30720,7 +30867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.2500019
+      value: -0.25000095
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedRigidBody
@@ -31119,7 +31266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.25
+      value: -0.24999905
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedRigidBody
@@ -31252,7 +31399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.2499981
+      value: -0.24999905
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedRigidBody
@@ -31784,7 +31931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.25
+      value: -0.25000048
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedRigidBody
@@ -32976,7 +33123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.25
+      value: -0.25000048
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedRigidBody
@@ -33641,7 +33788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.2500019
+      value: -0.25000095
       objectReference: {fileID: 0}
     - target: {fileID: 6598964467999028717, guid: 652ac5ec4b46b384ba7fd2abea518ef9, type: 3}
       propertyPath: m_ConnectedRigidBody

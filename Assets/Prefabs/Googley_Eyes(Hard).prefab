@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 837704418610325068}
   - component: {fileID: 8207808345823852773}
   - component: {fileID: 1858574463827380236}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Googley_Eyes(Hard)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalSpeed: 3
+  speed: 0
   isStationary: 0
 --- !u!58 &837704418610325071
 CircleCollider2D:
@@ -330,11 +331,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 30
+  currentHealth: 0
   bloodParticlesExit: {fileID: 7541264274060737703, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
   bloodParticlesDeath: {fileID: 4101786293985824456, guid: 23da123a7da298a49ae8258338e236b6, type: 3}
   pickup: {fileID: 3431140739008499236, guid: 85b4b77ad9676a84aa7f13ff27208b88, type: 3}
   percentToDropPickups: 50
   eyeDeathParticles: {fileID: 0}
+  hasBossDrop: 0
 --- !u!50 &8207808345823852773
 Rigidbody2D:
   serializedVersion: 4
@@ -369,6 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToSpawn: 6
+  levelToStopSpawning: 0
   damage: 10
   hasLaser: 0
   probabilityToSpawn: 50

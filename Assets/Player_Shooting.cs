@@ -202,14 +202,15 @@ public class Player_Shooting : MonoBehaviour
         Vector2 rightDirection = Quaternion.Euler(0, 0, -20) * mainDirection;
         
         // Directly instantiate the projectiles for the left and right directions
-        InstantiateProjectile(leftDirection);
-        InstantiateProjectile(rightDirection);
+        InstantiateProjectile(leftDirection, 3.5f);
+        InstantiateProjectile(rightDirection, 3.5f);
     }
 
-    void InstantiateProjectile(Vector2 direction)
+    void InstantiateProjectile(Vector2 direction, float damage)
     {
         // Your logic to instantiate the projectile and set its properties
         GameObject projectile = Instantiate(projectilePrefab, (Vector2)transform.position + shootingOffset, Quaternion.identity);
+        projectile.GetComponent<Projectile>().damage = damage;
         if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == arsen).acquired) {
             GameObject particles = Instantiate(flamingProjectiles, projectile.transform.position, Quaternion.identity);
             particles.transform.SetParent(projectile.transform);

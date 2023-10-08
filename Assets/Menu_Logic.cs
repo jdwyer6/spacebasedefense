@@ -17,6 +17,7 @@ public class Menu_Logic : MonoBehaviour
 
     public Button[] buttons;
     public Character[] characters;
+    public bool animate;
 
     [Header("Menus")]
     public GameObject[] menus;
@@ -91,13 +92,16 @@ public class Menu_Logic : MonoBehaviour
     }
 
     IEnumerator AnimateMenuChange(float animationDuration, GameObject menu, GameObject currentMenu) {
-        if(currentMenu != null) {
+        if(currentMenu != null && animate) {
             currentMenu.transform.LeanMoveLocal(new Vector2(-1000, 0), animationDuration).setEaseOutQuart();
         }
         am.Play("Swoosh");
         menu.SetActive(true);
-        menu.transform.position = new Vector2(1000, 0);
-        menu.transform.LeanMoveLocal(new Vector2(0, 0), animationDuration).setEaseOutQuart();
+        if(animate) {
+            menu.transform.position = new Vector2(1000, 0);
+            menu.transform.LeanMoveLocal(new Vector2(0, 0), animationDuration).setEaseOutQuart();
+        }
+
         yield return new WaitForSeconds(animationDuration);
         if(currentMenuOpen != null){
             currentMenuOpen.SetActive(false);
@@ -128,6 +132,7 @@ public class Menu_Logic : MonoBehaviour
 
     public void ResumeGame() {
         Time.timeScale = 1;
+        GameGlobals.Instance.globalMenuOpen = false;
     }
 
     public void setCurrentMenuOpen(GameObject menu) {

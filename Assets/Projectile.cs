@@ -17,6 +17,7 @@ public class Projectile : MonoBehaviour
     {
         Player,
         Destructible_Environment,
+        Player_AND_Environment,
         Enemy,
         Default
     }
@@ -50,6 +51,13 @@ public class Projectile : MonoBehaviour
                 {
                     Physics2D.IgnoreCollision(thisCollider, env.GetComponent<Collider2D>(), true);
                 }
+                break;
+            case IgnoreList.Player_AND_Environment:
+                foreach (GameObject env in GameObject.FindGameObjectsWithTag("Destructible_Environment"))
+                {
+                    Physics2D.IgnoreCollision(thisCollider, env.GetComponent<Collider2D>(), true);
+                }
+                Physics2D.IgnoreCollision(thisCollider, GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>(), true);
                 break;
             default:
                 // Do nothing

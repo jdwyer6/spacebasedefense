@@ -41,6 +41,7 @@ public class Upgrades : MonoBehaviour
     UpgradeLogicType healthyHabits = UpgradeLogicType.healthyHabits;
     UpgradeLogicType spread = UpgradeLogicType.spread;
     UpgradeLogicType lightning = UpgradeLogicType.lightning;
+    UpgradeLogicType omnishot = UpgradeLogicType.omnishot;
 
     public GameObject speedBoostParticles;
 
@@ -53,6 +54,7 @@ public class Upgrades : MonoBehaviour
     public GameObject notEnoughXPToolTip;
 
     public GameObject lightningUpgrade;
+    public GameObject omnishotPrefab;
 
 
     // Start is called before the first frame update
@@ -236,6 +238,9 @@ public class Upgrades : MonoBehaviour
                 case UpgradeLogicType.lightning:
                 newUpgrade.GetComponent<Button>().onClick.AddListener(() => Lightning(newUpgrade));
                     break;
+                case UpgradeLogicType.omnishot:
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Omnishot(newUpgrade));
+                    break;
             }
         }
     }
@@ -313,8 +318,10 @@ public class Upgrades : MonoBehaviour
 
     public void Speed(GameObject button){
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == speed).acquired) {
+            Debug.Log(GetComponent<Player_Movement>().moveSpeed);
             HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == speed));
             GetComponent<Player_Movement>().moveSpeed *= 1.5f;
+            Debug.Log(GetComponent<Player_Movement>().moveSpeed);
             speedBoostParticles.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
@@ -416,6 +423,17 @@ public class Upgrades : MonoBehaviour
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == lightning).acquired) {
             HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == lightning));
             lightningUpgrade.SetActive(true);
+            ResetAndUpdatePickups();
+            CloseUpgradesMenu();
+        }else{
+            am.Play("UI_Disabled");
+        }
+    }
+
+    public void Omnishot(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == omnishot).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == omnishot));
+            omnishotPrefab.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{

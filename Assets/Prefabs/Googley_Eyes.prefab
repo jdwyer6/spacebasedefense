@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 837704418610325068}
   - component: {fileID: 8207808345823852773}
   - component: {fileID: 1858574463827380236}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Googley_Eyes
   m_TagString: Enemy
   m_Icon: {fileID: 0}
