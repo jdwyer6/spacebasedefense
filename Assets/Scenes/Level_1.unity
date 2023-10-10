@@ -15504,6 +15504,14 @@ PrefabInstance:
       propertyPath: bricksText
       value: 
       objectReference: {fileID: 986088093}
+    - target: {fileID: 143341101103745676, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: projectileSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 143341101103745676, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: projectileSpeedOriginal
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 143341101103745677, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -15547,6 +15555,14 @@ PrefabInstance:
     - target: {fileID: 143341101103745677, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 143341101103745679, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: moveSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 143341101103745679, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: originalMoveSpeed
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 143341101103745687, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
       propertyPath: empSlider

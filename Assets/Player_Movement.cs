@@ -122,7 +122,7 @@ public class Player_Movement : MonoBehaviour
 
 
 
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.2f);
         dashEmissionModule.rateOverTime = 0f; 
         moveSpeed = currentSpeed;
         StartCoroutine(RechargeDash());
