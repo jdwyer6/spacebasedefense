@@ -858,6 +858,7 @@ GameObject:
   - component: {fileID: 8811259199029991812}
   - component: {fileID: 1766410029}
   - component: {fileID: 7506662291355695044}
+  - component: {fileID: 8097335014456481615}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -1048,6 +1049,27 @@ MonoBehaviour:
   damage: 10
   hasLaser: 0
   probabilityToSpawn: 100
+--- !u!114 &8097335014456481615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811259199029991819}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecedb68af2e2dda468f7c1050de16abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagedSpritesOption_1:
+  - {fileID: 21300000, guid: 8aed71853291cc94b8c30dcf34933c11, type: 3}
+  - {fileID: 21300000, guid: fd340df299053e64781bcb0a41f2c77d, type: 3}
+  damagedSpritesOption_2:
+  - {fileID: 21300000, guid: e8b82972f02a3f24791b005a955dad83, type: 3}
+  - {fileID: 21300000, guid: 4cdadb10f08c37e4e99971d2df4e0cb9, type: 3}
+  damagedSpritesOption_3:
+  - {fileID: 21300000, guid: 54ab2b409fbb58d49997846881f69743, type: 3}
+  - {fileID: 21300000, guid: bfab438cde53c15479985e366e92e9dc, type: 3}
 --- !u!1001 &5050970117692819009
 PrefabInstance:
   m_ObjectHideFlags: 0
