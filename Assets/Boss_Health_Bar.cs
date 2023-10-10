@@ -20,6 +20,7 @@ public class Boss_Health_Bar : MonoBehaviour
         bossHealthBarName = container.GetComponentInChildren<TextMeshProUGUI>();
         bossSlider = container.GetComponentInChildren<Slider>();
         bossHealthBarName.text = bossName;
+        container.SetActive(true);
     }
 
     void Update()
