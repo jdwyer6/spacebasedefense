@@ -21,13 +21,13 @@ public class ToolTipManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gm.GetComponent<Enemy_Spawner>().waveActive == false && !buildToolTipHasOpened && numberOfTimesToShowBuildTip > 0) {
+        if(gm.GetComponent<Enemy_Spawner>().isBreak == false && !buildToolTipHasOpened && numberOfTimesToShowBuildTip > 0) {
             numberOfTimesToShowBuildTip -= 1;
             buildToolTipHasOpened = true;
             buildToolTip.Open();
         }   
         
-        if(gm.GetComponent<Enemy_Spawner>().waveActive && buildToolTipHasOpened) {
+        if(gm.GetComponent<Enemy_Spawner>().isBreak && buildToolTipHasOpened) {
             buildToolTipHasOpened = false;
         }
 

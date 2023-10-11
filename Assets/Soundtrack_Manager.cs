@@ -34,31 +34,31 @@ public class Soundtrack_Manager : MonoBehaviour
     void Update()
     {
 
-         if(am == null) Debug.LogError("AudioManager (am) is null");
-        if(data == null) Debug.LogError("Data (data) is null");
-        if(data.soundtracks == null) Debug.LogError("soundtracks array in Data is null");
-        if(currentSoundtrack >= data.soundtracks.Length || data.soundtracks[currentSoundtrack] == null) 
-            Debug.LogError("Current soundtrack string is out of bounds or null");
+        //  if(am == null) Debug.LogError("AudioManager (am) is null");
+        // if(data == null) Debug.LogError("Data (data) is null");
+        // if(data.soundtracks == null) Debug.LogError("soundtracks array in Data is null");
+        // if(currentSoundtrack >= data.soundtracks.Length || data.soundtracks[currentSoundtrack] == null) 
+        //     Debug.LogError("Current soundtrack string is out of bounds or null");
 
 
-        if(!spawner.waveActive && waveTrackIsPlaying) {
-            waveTrackIsPlaying = false;
-            am.Pause(data.soundtracks[currentSoundtrack]);
-            am.Play(data.coolDownSoundtrack);
-            coolDownTrackIsPlaying = true;
-        }
+        // if(!spawner.waveActive && waveTrackIsPlaying) {
+        //     waveTrackIsPlaying = false;
+        //     am.Pause(data.soundtracks[currentSoundtrack]);
+        //     am.Play(data.coolDownSoundtrack);
+        //     coolDownTrackIsPlaying = true;
+        // }
 
-        if(spawner.waveActive && coolDownTrackIsPlaying) {
-            coolDownTrackIsPlaying = false;
-            am.Pause(data.coolDownSoundtrack);
-            am.Play(data.soundtracks[currentSoundtrack]);
-            waveTrackIsPlaying = true;
-        }
+        // if(spawner.waveActive && coolDownTrackIsPlaying) {
+        //     coolDownTrackIsPlaying = false;
+        //     am.Pause(data.coolDownSoundtrack);
+        //     am.Play(data.soundtracks[currentSoundtrack]);
+        //     waveTrackIsPlaying = true;
+        // }
 
-        if (HasClipFinishedPlaying(am.GetAudioSource(data.soundtracks[currentSoundtrack])) && !incrememtingSoundtrack) {
-            incrememtingSoundtrack = true;
-            incrememtSoundtrack();
-        }
+        // if (HasClipFinishedPlaying(am.GetAudioSource(data.soundtracks[currentSoundtrack])) && !incrememtingSoundtrack) {
+        //     incrememtingSoundtrack = true;
+        //     incrememtSoundtrack();
+        // }
     }
 
     public void incrememtSoundtrack() {

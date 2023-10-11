@@ -12,8 +12,8 @@ public class Enemy_Spawner : MonoBehaviour
     public Data data;
     public GameObject[] enemies;
     public float distanceToSpawnAwayFromPlayer = 20;
-    public bool waveActive = true;
-    public bool spawnEnemy = true;
+    // public bool waveActive = true;
+    // public bool spawnEnemy = true;
     bool exploitTimerRunning = false;
     bool forceNextCoolDown = false;
 
@@ -33,7 +33,8 @@ public class Enemy_Spawner : MonoBehaviour
 
     [Header("Internal References")]
     private Transform player;
-    public float timer;
+    public float breakTimer;
+    public float breakTimerStart = 10f;
 
     [Space]
 
@@ -47,8 +48,10 @@ public class Enemy_Spawner : MonoBehaviour
     private float spawnInterval = 4;
     private float levelLength = 20;
 
-    // public int[] varietyLevelNumbers;
-    // public VarietyLevel[] varietyLevels;
+    public bool isBreak;
+    public bool spawningActive;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,45 +71,53 @@ public class Enemy_Spawner : MonoBehaviour
             waves.Add(wave);
         }
         StartCoroutine(SpawnEnemy());
-        timer = levelLength;
+        // timer = levelLength;
         waveText.text = "Wave " + level.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
+        if(isBreak) {
+            breakTimer -= Time.deltaTime;
 
-        if(waveActive && timer > 0 && GetRemainingEnemies() <= 0 && !forceNextCoolDown) {
-            forceNextCoolDown = true;
-            spawnEnemy = false;
-            waveActive = false;
-            timer = coolDownPeriod;
-            coolDown = true;
-        }
-
-        if(waveActive && timer <= 0) {
-            spawnEnemy = false;
-            if(GetRemainingEnemies() <= 0 || forceNextCoolDown) {
-                forceNextCoolDown = false;
-                waveActive = false;
-                timer = coolDownPeriod;
-                coolDown = true;
-                // waveText.text = "Cool Down";
+            if(breakTimer <= 0 && !spawningActive) {
+                isBreak = false;
+                TriggerNextWave();
             }
         }
 
-        if(coolDown && timer <=0) {
-            coolDown = false;
-            levelLength = levelLength * levelLengthMultiplier;
-            spawnInterval = spawnInterval * spawnIntervalMultipler;
-            timer = levelLength;
-            waveActive = true;
-            spawnEnemy = true;
-            level++;
-            waveText.text = "Wave " + level.ToString();
-            StartCoroutine(SpawnEnemy());
-        }
+
+        // if(waveActive && timer > 0 && GetRemainingEnemies() <= 0 && !forceNextCoolDown) {
+        //     forceNextCoolDown = true;
+        //     spawnEnemy = false;
+        //     waveActive = false;
+        //     timer = coolDownPeriod;
+        //     coolDown = true;
+        // }
+
+        // if(waveActive && timer <= 0) {
+        //     spawnEnemy = false;
+        //     if(GetRemainingEnemies() <= 0 || forceNextCoolDown) {
+        //         forceNextCoolDown = false;
+        //         waveActive = false;
+        //         timer = coolDownPeriod;
+        //         coolDown = true;
+        //         // waveText.text = "Cool Down";
+        //     }
+        // }
+
+        // if(coolDown && timer <=0) {
+        //     coolDown = false;
+        //     levelLength = levelLength * levelLengthMultiplier;
+        //     spawnInterval = spawnInterval * spawnIntervalMultipler;
+        //     timer = levelLength;
+        //     waveActive = true;
+        //     spawnEnemy = true;
+        //     level++;
+        //     waveText.text = "Wave " + level.ToString();
+        //     StartCoroutine(SpawnEnemy());
+        // }
 
         // if(buildTip != null) {
         //     if(coolDown){
@@ -116,49 +127,22 @@ public class Enemy_Spawner : MonoBehaviour
         //     }
         // }
 
-        if(waveActive && !spawnEnemy && !exploitTimerRunning) {
-            exploitTimerRunning = true;
-            StartCoroutine(StartExploitStopper());
-        }
+        // if(waveActive && !spawnEnemy && !exploitTimerRunning) {
+        //     exploitTimerRunning = true;
+        //     StartCoroutine(StartExploitStopper());
+        // }
 
         // if(IsVarietyLevel() && !spawnEnemy && GetRemainingEnemies() <= 0) {
         //     timer = 0;
         // }
     }
 
-    // IEnumerator SpawnEnemy() {
-    //     VarietyLevel randomVarietyLevel = varietyLevels[UnityEngine.Random.Range(0, varietyLevels.Length)];
-    //     while (spawnEnemy)
-    //     {
-    //         if(IsVarietyLevel()) {
-    //             foreach (var enemy in randomVarietyLevel.enemies)
-    //             {
-    //                 for (int i = 0; i < randomVarietyLevel.amountOfEnemiesToSpawnPerCycle; i++)
-    //                 {
-    //                     Instantiate(enemy, GetRandomSpawnPos(), Quaternion.identity);
-    //                 } 
-                    
-    //             }
-    //             spawnEnemy = false;
-    //         }else{
-    //             for (int i = 0; i < enemies.Length; i++)
-    //             {
-    //                 if(ShouldSpawnEnemy(enemies[i].GetComponent<Enemy_Data>().probabilityToSpawn, i)){
-    //                     Instantiate(enemies[i], GetRandomSpawnPos(), Quaternion.identity);
-    //                 } 
-    //             }
-    //         }
-
-
-    //         yield return new WaitForSeconds(spawnInterval);
-    //     }
-
-    // }
-
     IEnumerator SpawnEnemy() {
+        spawningActive = true;
         List<Wave> wavePool = GetCurrentPool();
         CheckWavesLeftAtDifficultyLevel(wavePool);
         Wave randomWave = wavePool[UnityEngine.Random.Range(0, wavePool.Count)];
+        Debug.Log(randomWave.title);
 
         for (int i = 0; i < randomWave.numberOfSpawnCycles; i++)
         {
@@ -168,6 +152,9 @@ public class Enemy_Spawner : MonoBehaviour
             }
             yield return new WaitForSeconds(randomWave.timeBetweenCycle);
         }
+
+        spawningActive = false;
+        TriggerBreak();
     }
 
     Vector2 GetRandomSpawnPos() {
@@ -177,16 +164,6 @@ public class Enemy_Spawner : MonoBehaviour
         Vector2 pos = player.transform.position + (Vector3)(direction * 25f);
         return pos;
     }
-
-    // bool ShouldSpawnEnemy(int probability, int idx) {
-    //     int randomNum = UnityEngine.Random.Range(0, 100);
-    //     if(randomNum <= probability) {
-    //         if(enemies[idx].GetComponent<Enemy_Data>().levelToSpawn <= level && level < enemies[idx].GetComponent<Enemy_Data>().levelToStopSpawning){
-    //             return true;
-    //         }  
-    //     }
-    //     return false;
-    // }
 
     int GetRemainingEnemies() {
         var remainingEnemies = 0;
@@ -198,37 +175,22 @@ public class Enemy_Spawner : MonoBehaviour
         return remainingEnemies;
     }
 
-    // private bool IsVarietyLevel() {
-    //     foreach (var varietyLevel in varietyLevelNumbers)
-    //     {
-    //         if(level == varietyLevel) {
-    //             return true;
-    //         }
- 
-    //     }
-    //     return false;
-    // }
 
-    IEnumerator StartExploitStopper() {
-        yield return new WaitForSeconds(15);
-        if(waveActive && !spawnEnemy) {
-            forceNextCoolDown = true;
-        }
-    }
-
-    // private void GetCurrentPool() {
-    //     foreach (var wave in waves)
-    //     {
-            
+    // IEnumerator StartExploitStopper() {
+    //     yield return new WaitForSeconds(15);
+    //     if(waveActive && !spawnEnemy) {
+    //         forceNextCoolDown = true;
     //     }
     // }
 
-    private void TriggerCoolDown() {
-
+    private void TriggerBreak() {
+        breakTimer = breakTimerStart;
+        isBreak = true;
     }
 
     private void TriggerNextWave() {
-
+        level++;
+        StartCoroutine(SpawnEnemy());
     }
 
     private bool checkIfBossLevel() {

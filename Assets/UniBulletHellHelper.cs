@@ -5,11 +5,13 @@ using UnityEngine;
 public class UniBulletHellHelper : MonoBehaviour
 {
     private AudioManager am;
+    private GameObject gm;
     bool soundPlayed = false;
     // Start is called before the first frame update
     void Start()
     {
         am = FindObjectOfType<AudioManager>();
+        gm = GameObject.FindGameObjectWithTag("GM");
     }
 
     // Update is called once per frame
@@ -38,5 +40,9 @@ public class UniBulletHellHelper : MonoBehaviour
     IEnumerator ResetSoundPlayed() {
         yield return new WaitForSeconds(2);
         soundPlayed = false;
+    }
+
+    public void ShakeCamera() {
+        gm.GetComponent<Juicer>().ApplyCameraShake();
     }
 }

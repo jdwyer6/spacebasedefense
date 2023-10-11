@@ -145,7 +145,7 @@ public class Player_Movement : MonoBehaviour
         isDeadlyDashing = true;
         deadlyDashParticles1.Play();
         deadlyDashParticles2.Play();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.2f);
         isDeadlyDashing = false;
         deadlyDashParticles1.Stop();
         deadlyDashParticles2.Stop();
