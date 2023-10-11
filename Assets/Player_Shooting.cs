@@ -20,7 +20,7 @@ public class Player_Shooting : MonoBehaviour
     public GameObject muzzleParticles;
     private bool[] shootIdx = new bool[] {false, false, false, false};
     private bool isShooting;
-    UpgradeLogicType auto = UpgradeLogicType.auto;
+    // UpgradeLogicType auto = UpgradeLogicType.auto;
     UpgradeLogicType arsen = UpgradeLogicType.arsen;
     UpgradeLogicType spread = UpgradeLogicType.spread;
 
@@ -63,56 +63,21 @@ public class Player_Shooting : MonoBehaviour
         if(shootIdx[0] && !isShooting) {
             isShooting = true;
             float flashRotation = -90f;
-            if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == auto).acquired){
-                StartCoroutine(ShootAutomatic(Vector2.up, KeyCode.UpArrow, flashRotation, new Vector3(0, 1, 0)));
-            }else{
-                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-                Shoot(Vector2.up);
-                SetFlashRotation(particles, flashRotation);
-                isShooting = false;
-                shootIdx[0] = false;
-            }
+            StartCoroutine(Fire(Vector2.up, KeyCode.UpArrow, flashRotation, new Vector3(0, 1, 0)));
         }else if(shootIdx[1] && !isShooting) {
             float flashRotation = 180f;
-            if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == auto).acquired){
-                StartCoroutine(ShootAutomatic(Vector2.right, KeyCode.RightArrow, flashRotation, new Vector3(1, 0, 0)));
-            }else{
-                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
-                SetFlashRotation(particles, flashRotation);
-                Shoot(Vector2.right);
-                isShooting = false;
-                shootIdx[1] = false;
-            }
+            StartCoroutine(Fire(Vector2.right, KeyCode.RightArrow, flashRotation, new Vector3(1, 0, 0)));
         }else if(shootIdx[2] && !isShooting) {
-            float flashRotation = 90f;
-            if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == auto).acquired){
-                
-                StartCoroutine(ShootAutomatic(Vector2.down, KeyCode.DownArrow, flashRotation, new Vector3(0, -1, 0)));
-            }else{
-                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(0, -1, 0), Quaternion.identity);
-                SetFlashRotation(particles, flashRotation);
-                Shoot(Vector2.down);
-                isShooting = false;
-                shootIdx[2] = false;
-            }
+            float flashRotation = 90f;  
+            StartCoroutine(Fire(Vector2.down, KeyCode.DownArrow, flashRotation, new Vector3(0, -1, 0)));
         }else if(shootIdx[3] && !isShooting) {
             float flashRotation = -180f;
-            if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == auto).acquired){
-                
-                StartCoroutine(ShootAutomatic(Vector2.left, KeyCode.LeftArrow, flashRotation, new Vector3(-1, 0, 0)));
-            }else{
-                var particles = Instantiate(muzzleParticles, transform.position + new Vector3(-1, 0, 0), Quaternion.identity);
-                SetFlashRotation(particles, flashRotation);
-                Shoot(Vector2.left);
-                isShooting = false;
-                shootIdx[3] = false;
-            }
+            StartCoroutine(Fire(Vector2.left, KeyCode.LeftArrow, flashRotation, new Vector3(-1, 0, 0)));
         }
     }
 
-    void Shoot(Vector2 direction)
+    void LaunchProjectile(Vector2 direction)
     {
-        currentAmmo -= 1;
         am.Play("Shot");
         if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == spread).acquired){
             ShootSpread(direction);
@@ -157,11 +122,11 @@ public class Player_Shooting : MonoBehaviour
 
     }
 
-    IEnumerator ShootAutomatic(Vector2 direction, KeyCode key, float flashRotation, Vector3 offset){
+    IEnumerator Fire(Vector2 direction, KeyCode key, float flashRotation, Vector3 offset){
         currentAmmo -= 1;
         isShooting = true;
         while(Input.GetKey(key)){
-            Shoot(direction);
+            LaunchProjectile(direction);
             var particles = Instantiate(muzzleParticles, transform.position + offset, Quaternion.identity);
             SetFlashRotation(particles, flashRotation);
             yield return new WaitForSeconds(autoShootingInterval);

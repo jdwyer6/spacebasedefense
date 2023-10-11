@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd54534695838d44986c19881dab85fc, type: 3}
-  m_Name: Auto
+  m_Name: Rate of Fire
   m_EditorClassIdentifier: 
-  upgradeName: Full Auto
+  upgradeName: Rate of Fire
   icon: {fileID: 21300000, guid: 1c0754f5fa2632842bc415be908c46db, type: 3}
   value: 0
-  title: Full Auto
-  description: You know what this does.
+  title: Rate of Fire
+  description: Increase rate of fire by 30%.
   upgradeLogic: 3
+  acquired: 0

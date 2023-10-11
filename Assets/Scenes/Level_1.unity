@@ -15435,6 +15435,10 @@ PrefabInstance:
       propertyPath: bricksText
       value: 
       objectReference: {fileID: 986088093}
+    - target: {fileID: 143341101103745676, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: autoShootingIntervalOriginal
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 143341101103745677, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
       propertyPath: m_RootOrder
       value: 2

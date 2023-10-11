@@ -8,7 +8,7 @@ using TMPro;
 public class Boss_Drop : MonoBehaviour
 {
     public bool isRateOfFire;
-    UpgradeLogicType auto = UpgradeLogicType.auto;
+    UpgradeLogicType rateOfFire = UpgradeLogicType.rateOfFire;
     private AudioManager am;
     public GameObject toolTip;
     private Transform canvas;
@@ -23,7 +23,7 @@ public class Boss_Drop : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Player") {
             if (isRateOfFire) {
-                Upgrade targetUpgrade = Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == auto);
+                Upgrade targetUpgrade = Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == rateOfFire);
                 if (targetUpgrade != null) {
                     targetUpgrade.acquired = true;
                 }

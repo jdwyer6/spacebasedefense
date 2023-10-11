@@ -5,7 +5,7 @@ public enum UpgradeLogicType
     speed,
     health,
     arsen,
-    auto,
+    rateOfFire,
     shield,
     emp,
     deadlyDash,

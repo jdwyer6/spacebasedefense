@@ -34,7 +34,7 @@ public class Upgrades : MonoBehaviour
     UpgradeLogicType speed = UpgradeLogicType.speed;
     UpgradeLogicType health = UpgradeLogicType.health;
     UpgradeLogicType arsen = UpgradeLogicType.arsen;
-    UpgradeLogicType auto = UpgradeLogicType.auto;
+    UpgradeLogicType rateOfFire = UpgradeLogicType.rateOfFire;
     UpgradeLogicType emp = UpgradeLogicType.emp;
     UpgradeLogicType shield = UpgradeLogicType.shield;
     UpgradeLogicType deadlyDash = UpgradeLogicType.deadlyDash;
@@ -217,8 +217,8 @@ public class Upgrades : MonoBehaviour
                 case UpgradeLogicType.arsen:
                     newUpgrade.GetComponent<Button>().onClick.AddListener(() => Arsen(newUpgrade));
                     break;
-                case UpgradeLogicType.auto:
-                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Auto(newUpgrade));
+                case UpgradeLogicType.rateOfFire:
+                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => RateOfFire(newUpgrade));
                     break;
                 case UpgradeLogicType.emp:
                     newUpgrade.GetComponent<Button>().onClick.AddListener(() => Emp(newUpgrade));
@@ -351,9 +351,10 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void Auto(GameObject button) {
-        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == auto).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == auto));
+    public void RateOfFire(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == rateOfFire).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == rateOfFire));
+            GetComponent<Player_Shooting>().autoShootingInterval *= .7f;
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
