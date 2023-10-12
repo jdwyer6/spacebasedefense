@@ -9,6 +9,7 @@ public class Player_Health : MonoBehaviour
     public Slider healthBar; // Reference to the health bar UI slider
     
     public float currentHealth; // Current health of the player
+    public bool canTakeDamage = true;
     private AudioManager am;
     private GameObject gm;
     private Data data;
@@ -83,11 +84,13 @@ public class Player_Health : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "Enemy_Projectile") {
-            TakeDamage(other.gameObject.GetComponent<Projectile>().damage);
-        }
-        if(other.gameObject.tag == "Enemy") {
-            TakeDamage(other.gameObject.GetComponent<Enemy_Data>().damage);
+        if(canTakeDamage) {
+            if(other.gameObject.tag == "Enemy_Projectile") {
+                TakeDamage(other.gameObject.GetComponent<Projectile>().damage);
+            }
+            if(other.gameObject.tag == "Enemy") {
+                TakeDamage(other.gameObject.GetComponent<Enemy_Data>().damage);
+            }
         }
     }
 

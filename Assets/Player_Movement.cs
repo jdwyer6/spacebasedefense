@@ -135,7 +135,7 @@ public class Player_Movement : MonoBehaviour
         Image dashImage = dashToolTip.GetComponentInChildren<Image>();
         
         dashImage.color = new Color32(255, 73, 73, 255);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(.75f);
         
         dashRecharged = true;
         dashImage.color = Color.white;
