@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
 
     public Sound[] sounds;
-    public static AudioManager instance;
+    public static AudioManager instance {get; private set; }
 
 
     // Start is called before the first frame update

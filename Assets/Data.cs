@@ -15,7 +15,7 @@ public class Data : MonoBehaviour
 
     //Audio
     public string coolDownSoundtrack;
-    public string[] soundtracks;
+    public AudioClip[] soundtracks;
 
     //Particles
     public GameObject destructionParticles;

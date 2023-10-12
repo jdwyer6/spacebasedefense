@@ -9,6 +9,7 @@ using TMPro;
 public class Menu_Logic : MonoBehaviour
 {
     private AudioManager am;
+    private bool amSet;
     private int currentlyActiveButton;
 
     private bool pauseMenuOpen;
@@ -31,6 +32,14 @@ public class Menu_Logic : MonoBehaviour
     }
 
     private void Update() {
+        if(am == null) {
+            amSet = false;
+        }
+
+        if(amSet == false) {
+            amSet = true;
+            am = FindObjectOfType<AudioManager>();
+        }
 
         if(Input.GetKeyDown(KeyCode.Escape)) {
             if(pauseMenuOpen) {
@@ -137,6 +146,10 @@ public class Menu_Logic : MonoBehaviour
 
     public void setCurrentMenuOpen(GameObject menu) {
         currentMenuOpen = menu;
+    }
+
+    public void MainMenu() {
+        SceneManager.LoadScene(0);
     }
 
     public void SelectCharacter() {

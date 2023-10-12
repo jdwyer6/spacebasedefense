@@ -94,7 +94,7 @@ public class Enemy_Laser : MonoBehaviour
             float telegraphDuration = 1f;
             for (float t = 0; t <= 1; t += Time.deltaTime / telegraphDuration)
             {
-                spriteRenderer.color = Color.Lerp(originalColor, new Color(.5f, 0f, 0f), t);
+                spriteRenderer.color = Color.Lerp(originalColor, new Color(1f, 1f, 1f), t);
                 yield return null;
             }
             am.Stop("Laser_Charge");

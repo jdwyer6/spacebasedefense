@@ -50,6 +50,7 @@ public class Enemy_Spawner : MonoBehaviour
 
     public bool isBreak;
     public bool spawningActive;
+    private bool waitForBossToDie;
 
 
 
@@ -71,7 +72,6 @@ public class Enemy_Spawner : MonoBehaviour
             waves.Add(wave);
         }
         StartCoroutine(SpawnEnemy());
-        // timer = levelLength;
         waveText.text = "Wave " + level.ToString();
     }
 
@@ -87,54 +87,9 @@ public class Enemy_Spawner : MonoBehaviour
             }
         }
 
-
-        // if(waveActive && timer > 0 && GetRemainingEnemies() <= 0 && !forceNextCoolDown) {
-        //     forceNextCoolDown = true;
-        //     spawnEnemy = false;
-        //     waveActive = false;
-        //     timer = coolDownPeriod;
-        //     coolDown = true;
-        // }
-
-        // if(waveActive && timer <= 0) {
-        //     spawnEnemy = false;
-        //     if(GetRemainingEnemies() <= 0 || forceNextCoolDown) {
-        //         forceNextCoolDown = false;
-        //         waveActive = false;
-        //         timer = coolDownPeriod;
-        //         coolDown = true;
-        //         // waveText.text = "Cool Down";
-        //     }
-        // }
-
-        // if(coolDown && timer <=0) {
-        //     coolDown = false;
-        //     levelLength = levelLength * levelLengthMultiplier;
-        //     spawnInterval = spawnInterval * spawnIntervalMultipler;
-        //     timer = levelLength;
-        //     waveActive = true;
-        //     spawnEnemy = true;
-        //     level++;
-        //     waveText.text = "Wave " + level.ToString();
-        //     StartCoroutine(SpawnEnemy());
-        // }
-
-        // if(buildTip != null) {
-        //     if(coolDown){
-        //         buildTip.SetActive(true);
-        //     }else{
-        //         buildTip.SetActive(false);
-        //     }
-        // }
-
-        // if(waveActive && !spawnEnemy && !exploitTimerRunning) {
-        //     exploitTimerRunning = true;
-        //     StartCoroutine(StartExploitStopper());
-        // }
-
-        // if(IsVarietyLevel() && !spawnEnemy && GetRemainingEnemies() <= 0) {
-        //     timer = 0;
-        // }
+        if(waitForBossToDie) {
+            WaitForBossToDie();
+        }
     }
 
     IEnumerator SpawnEnemy() {
@@ -154,7 +109,13 @@ public class Enemy_Spawner : MonoBehaviour
         }
 
         spawningActive = false;
-        TriggerBreak();
+
+        if(!checkIfBossLevel()) {
+            TriggerBreak();
+        }else{
+            waitForBossToDie = true;
+        }
+
     }
 
     Vector2 GetRandomSpawnPos() {
@@ -175,14 +136,6 @@ public class Enemy_Spawner : MonoBehaviour
         return remainingEnemies;
     }
 
-
-    // IEnumerator StartExploitStopper() {
-    //     yield return new WaitForSeconds(15);
-    //     if(waveActive && !spawnEnemy) {
-    //         forceNextCoolDown = true;
-    //     }
-    // }
-
     private void TriggerBreak() {
         breakTimer = breakTimerStart;
         isBreak = true;
@@ -201,6 +154,13 @@ public class Enemy_Spawner : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void WaitForBossToDie() {
+        if(GetRemainingEnemies() <= 0) {
+            TriggerNextWave();
+            waitForBossToDie = false;
+        }
     }
 
     private List<Wave> GetCurrentPool() {

@@ -8,6 +8,7 @@ public class Soundtrack_Manager : MonoBehaviour
     bool waveTrackIsPlaying = true;
     bool coolDownTrackIsPlaying = false;
     private AudioManager am;
+    private AudioSource audioSource;
     [SerializeField] private GameObject amPrefab;
     private Data data;
 
@@ -26,8 +27,10 @@ public class Soundtrack_Manager : MonoBehaviour
     void Start()
     {
         spawner = GetComponent<Enemy_Spawner>();
+        audioSource = GetComponent<AudioSource>();
         data = GetComponent<Data>();
-        am.Play(data.soundtracks[currentSoundtrack]);
+        audioSource.clip = data.soundtracks[currentSoundtrack];
+        audioSource.Play();
     }
 
     // Update is called once per frame
@@ -64,7 +67,7 @@ public class Soundtrack_Manager : MonoBehaviour
     public void incrememtSoundtrack() {
         if(incrememtingSoundtrack){
             currentSoundtrack += 1;
-            am.Play(data.soundtracks[currentSoundtrack]);  
+            // am.Play(data.soundtracks[currentSoundtrack]);  
             incrememtingSoundtrack = false;
         }
     }
