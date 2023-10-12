@@ -8,7 +8,7 @@ public class Shield : MonoBehaviour
     public float startingShieldHealth = 40;
     private AudioManager am;
     public GameObject shieldHitParticles;
-        public GameObject shieldDestroyedParticles;
+    public GameObject shieldDestroyedParticles;
 
     // Start is called before the first frame update
     void Start()

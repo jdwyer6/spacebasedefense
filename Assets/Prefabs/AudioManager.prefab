@@ -303,3 +303,15 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: Shift_Shield_Activated
+    clip: {fileID: 8300000, guid: 0b5c46fdb39b5004390ff9496cdc57bb, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Shift_Shield_Impact
+    clip: {fileID: 8300000, guid: 2e8c25e07f36aa64287503a1436c7ec5, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

@@ -11,6 +11,7 @@ public class Player_Movement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float originalMoveSpeed = 5f;
+    public bool canMove = true;
 
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -53,6 +54,7 @@ public class Player_Movement : MonoBehaviour
         dashEmissionModule = dashParticles.emission;
         originalEmissionRate = emissionModule.rateOverTime.constant;
         moveSpeed = originalMoveSpeed;
+        canMove = true;
 
         // avatar = GetComponent<Alteruna.Avatar>();
         // if(!avatar.IsOwner){
@@ -99,7 +101,10 @@ public class Player_Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if(canMove) {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
+        
     }
 
     IEnumerator Dash() {
