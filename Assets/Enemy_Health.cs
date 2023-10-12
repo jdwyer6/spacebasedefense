@@ -66,6 +66,10 @@ public class Enemy_Health : MonoBehaviour
             Instantiate(randomDrop, transform.position, Quaternion.identity);
         }
         player.GetComponent<Building>().bricks += 2;
+        var drops = GetComponent<Drops>();
+        if(drops) {
+            drops.DropItem(transform.position);
+        }
         if(WillDropPickup()) Instantiate(pickup, transform.position, Quaternion.identity);
         if(GetComponent<Enemy_Eye>()) {
             Instantiate(eyeDeathParticles, transform.position, Quaternion.identity);

@@ -10,7 +10,7 @@ using System;
 public class Upgrades : MonoBehaviour
 {
     private float pickups = 0;
-    float pickupsNeededForNextUpgrade = 5;
+    float pickupsNeededForNextUpgrade = 10;
     float pickupLevelMultiplier = 1.2f;
     AudioManager am;
     private GameObject gm;

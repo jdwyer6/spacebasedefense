@@ -859,6 +859,7 @@ GameObject:
   - component: {fileID: 1766410029}
   - component: {fileID: 7506662291355695044}
   - component: {fileID: 8097335014456481615}
+  - component: {fileID: 964964649059507418}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -1008,7 +1009,7 @@ MonoBehaviour:
   bloodParticlesExit: {fileID: 7541264274060737703, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
   bloodParticlesDeath: {fileID: 4101786293985824456, guid: 23da123a7da298a49ae8258338e236b6, type: 3}
   pickup: {fileID: 3431140739008499236, guid: 85b4b77ad9676a84aa7f13ff27208b88, type: 3}
-  percentToDropPickups: 50
+  percentToDropPickups: 85
   eyeDeathParticles: {fileID: 0}
   hasBossDrop: 0
 --- !u!50 &1766410029
@@ -1070,6 +1071,20 @@ MonoBehaviour:
   damagedSpritesOption_3:
   - {fileID: 21300000, guid: 54ab2b409fbb58d49997846881f69743, type: 3}
   - {fileID: 21300000, guid: bfab438cde53c15479985e366e92e9dc, type: 3}
+--- !u!114 &964964649059507418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811259199029991819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4a7c69149238049ab99b7475bca346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  probabilityToDrop: 100
+  dropPrefab: {fileID: 9214423213955990384, guid: 3838dc53eeba49443922e61e30db6793, type: 3}
 --- !u!1001 &5050970117692819009
 PrefabInstance:
   m_ObjectHideFlags: 0

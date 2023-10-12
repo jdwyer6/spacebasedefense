@@ -320,7 +320,7 @@ MonoBehaviour:
   bloodParticlesExit: {fileID: 7541264274060737703, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
   bloodParticlesDeath: {fileID: 1978304892633610466, guid: 91ca8939e615ee2419a1a081e56f25de, type: 3}
   pickup: {fileID: 3431140739008499236, guid: 85b4b77ad9676a84aa7f13ff27208b88, type: 3}
-  percentToDropPickups: 50
+  percentToDropPickups: 85
   eyeDeathParticles: {fileID: 0}
   hasBossDrop: 0
 --- !u!50 &8402448415211995326

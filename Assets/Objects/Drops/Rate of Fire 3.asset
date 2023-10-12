@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0665eab3e9b142b498c0236ab17b4224, type: 3}
   m_Name: Rate of Fire 3
   m_EditorClassIdentifier: 
-  title: 
-  titleCode: 
-  description: 
+  title: Rate of Fire
+  titleCode: rateOfFire3
+  description: 20% rate of fire increase.
   sprite: {fileID: 0}
   sound: 

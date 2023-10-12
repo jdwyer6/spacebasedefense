@@ -20902,7 +20902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1799575ac4c3ab4f9612b03d07f9ca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 4000
+  totalHealth: 3000
   currentHealth: 0
   bloodParticlesExit: {fileID: 7541264274060737703, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
   bloodParticlesDeath: {fileID: 1978304892633610466, guid: 91ca8939e615ee2419a1a081e56f25de, type: 3}

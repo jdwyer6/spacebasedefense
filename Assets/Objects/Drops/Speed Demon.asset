@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0665eab3e9b142b498c0236ab17b4224, type: 3}
   m_Name: Speed Demon
   m_EditorClassIdentifier: 
-  title: 
-  titleCode: 
-  description: 
+  title: Speed Demon
+  titleCode: speedDemon
+  description: Temporarily move super fast.
   sprite: {fileID: 0}
   sound: 

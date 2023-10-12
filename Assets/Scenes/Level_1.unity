@@ -17228,6 +17228,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 548103978, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 687361893, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
       propertyPath: m_Name
       value: Shift_Shield
@@ -17236,6 +17240,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1275566398, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275566400, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.5254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275566400, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.32156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275566400, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275566400, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 99fd769e3f56bfb43befffc1d34eda24, type: 3}
     - target: {fileID: 1857381485, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
       propertyPath: uiIndicator
       value: 
@@ -17344,6 +17368,18 @@ PrefabInstance:
       propertyPath: empChargedToolTip
       value: 
       objectReference: {fileID: 1142051}
+    - target: {fileID: 7770916802514386726, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.32156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770916802514386726, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770916802514386726, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 687361894, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
@@ -31532,9 +31568,17 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: drops.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: waves.Array.size
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: drops.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 291aa5d0b9c4d6d4b9c6721f59b723c2, type: 2}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: upgrades.Array.size
       value: 11

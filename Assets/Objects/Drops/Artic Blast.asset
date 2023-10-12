@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0665eab3e9b142b498c0236ab17b4224, type: 3}
   m_Name: Artic Blast
   m_EditorClassIdentifier: 
-  title: 
-  titleCode: 
-  description: 
+  title: Artic Blast
+  titleCode: articBlast
+  description: Temporarily freeze all nearby enemies.
   sprite: {fileID: 0}
-  sound: 
+  sound: ArticBlast
