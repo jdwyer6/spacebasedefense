@@ -14,12 +14,14 @@ public class Player_Shield : MonoBehaviour
 
     public float shieldActiveForTime;
     public float shieldRechargeTime;
+    public GameObject shieldIndicator;
+    public Image uiIndicator;
     bool shieldRecharging;
     bool shieldActive = false;
     bool shieldRecharged = true;
-    public GameObject shieldIndicator;
+    bool canUseShield;
 
-    float timer;
+    public float timer;
 
 
     // Start is called before the first frame update
@@ -28,16 +30,18 @@ public class Player_Shield : MonoBehaviour
         playerHealth = GetComponent<Player_Health>();
         playerMovement = GetComponent<Player_Movement>();
         am = FindObjectOfType<AudioManager>();
+        timer = shieldActiveForTime;
+        canUseShield = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.LeftShift) && shieldActiveForTime >= 0) {
+        if(Input.GetKey(KeyCode.LeftShift) && shieldActiveForTime >= 0 && canUseShield) {
             if(shieldActive == false) {
                 am.Play("Shift_Shield_Activated");
+                timer = shieldActiveForTime;
             }
-            timer = shieldActiveForTime;
             shieldActive = true;
             shieldPrefab.SetActive(true);
             playerHealth.canTakeDamage = false;
@@ -60,7 +64,21 @@ public class Player_Shield : MonoBehaviour
 
         if(timer >= shieldActiveForTime) {
             shieldRecharged = true;
+            canUseShield = true;
+            //play sound?
         }
+
+        if(timer <= 0) {
+            canUseShield = false;
+        }
+
+        if(canUseShield) {
+            uiIndicator.color = Color.white;
+
+        } else {
+            uiIndicator.color = new Color32(255, 73, 73, 255);
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
