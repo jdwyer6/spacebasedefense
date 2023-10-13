@@ -6,7 +6,11 @@ public class Instakill : MonoBehaviour
 {
     public float timeActive = 30;
 
-    public IEnumerator InitiateInstakill() {
+    public void InitiateInstakill() {
+        StartCoroutine(StartInstakill());
+    }
+
+    public IEnumerator StartInstakill() {
         GetComponent<Player_Shooting>().instakillActive = true;
         yield return new WaitForSeconds(timeActive);
         GetComponent<Player_Shooting>().instakillActive = false;

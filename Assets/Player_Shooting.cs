@@ -91,9 +91,11 @@ public class Player_Shooting : MonoBehaviour
             particles.transform.SetParent(projectile.transform);
             projectile.GetComponent<Projectile>().damage*=1.5f;
         }
+
         if(instakillActive) {
             projectile.GetComponent<Projectile>().damage = 100;
         }
+
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
         Projectile projectileScript = projectile.GetComponent<Projectile>();
@@ -179,7 +181,12 @@ public class Player_Shooting : MonoBehaviour
     {
         // Your logic to instantiate the projectile and set its properties
         GameObject projectile = Instantiate(projectilePrefab, (Vector2)transform.position + shootingOffset, Quaternion.identity);
-        projectile.GetComponent<Projectile>().damage = damage;
+        
+        if(instakillActive) {
+            projectile.GetComponent<Projectile>().damage = 100;
+        }else{
+            projectile.GetComponent<Projectile>().damage = damage;
+        }
         if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == arsen).acquired) {
             GameObject particles = Instantiate(flamingProjectiles, projectile.transform.position, Quaternion.identity);
             particles.transform.SetParent(projectile.transform);

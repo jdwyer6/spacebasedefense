@@ -5333,7 +5333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &425813706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5349,9 +5349,9 @@ RectTransform:
   m_Father: {fileID: 2055716824}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -158.20654}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &426135757
@@ -9415,9 +9415,9 @@ RectTransform:
   m_Father: {fileID: 920587049}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 116.4828, y: -23.69985}
   m_SizeDelta: {x: 232.9656, y: 14.5034}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &760964726
@@ -11348,9 +11348,9 @@ RectTransform:
   m_Father: {fileID: 920587049}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 116.48275, y: -6.54495}
   m_SizeDelta: {x: 232.9655, y: 13.0899}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &915109392
@@ -11406,7 +11406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &920587049
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11426,7 +11426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 135.2, y: -35}
+  m_AnchoredPosition: {x: 113.90095, y: -17.1549}
   m_SizeDelta: {x: 227.8019, y: 34.3098}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &920587050
@@ -11913,6 +11913,58 @@ Transform:
   m_Father: {fileID: 1624912058}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &937321332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 937321333}
+  - component: {fileID: 937321334}
+  m_Layer: 5
+  m_Name: TooltipManager
+  m_TagString: ToolTipManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &937321333
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937321332}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1326540007}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &937321334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937321332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff517dac636b9648890e9256512591f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToShowToolTip: 4
+  templatePrefab: {fileID: 4273345430800121083, guid: 4763d5f240d9b3d40b3cb67735b25720, type: 3}
+  toolTipContainer: {fileID: 2055716824}
 --- !u!1 &937766376
 GameObject:
   m_ObjectHideFlags: 0
@@ -17955,7 +18007,6 @@ GameObject:
   - component: {fileID: 1326540006}
   - component: {fileID: 1326540005}
   - component: {fileID: 1326540004}
-  - component: {fileID: 1326540008}
   - component: {fileID: 1326540009}
   m_Layer: 5
   m_Name: Canvas
@@ -18049,6 +18100,7 @@ RectTransform:
   - {fileID: 737162080}
   - {fileID: 188439591}
   - {fileID: 279913754}
+  - {fileID: 937321333}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18057,20 +18109,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1326540008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326540003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ff517dac636b9648890e9256512591f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToShowToolTip: 4
-  build: {fileID: 0}
 --- !u!114 &1326540009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29368,10 +29406,10 @@ RectTransform:
   m_Father: {fileID: 1326540007}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 410.00003, y: -216.96}
+  m_SizeDelta: {x: 780, y: 398.08}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2055716825
 MonoBehaviour:
@@ -29382,13 +29420,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2055716823}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d6e5a79c713c094fb2ea4246d215d24, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notifications:
-  - {fileID: 0}
-  enableUpdating: 0
-  delay: 1
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 12
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &2057821628
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Michsky.MUIP;
+using TMPro;
+using UnityEngine.UI;
 
 public class ToolTipManager : MonoBehaviour
 {
@@ -10,7 +12,8 @@ public class ToolTipManager : MonoBehaviour
     public float timeToShowToolTip = 4;
     int numberOfTimesToShowBuildTip = 4;
 
-    public GameObject build;
+    public GameObject templatePrefab;
+    public Transform toolTipContainer;
 
     // Start is called before the first frame update
     void Start()
@@ -19,27 +22,21 @@ public class ToolTipManager : MonoBehaviour
     }
 
 
-    public void ShowToolTip(string toolTipName) {
-        StartCoroutine(InitiateShowToolTip(ProcessParameters(toolTipName)));
+    public void ShowToolTip(string title, string description) {
+        var newToolTip = Instantiate(templatePrefab, toolTipContainer.transform);
+
+        Transform templateTitle = newToolTip.transform.Find("Title");
+        Transform templateDescription = newToolTip.transform.Find("Description");
+
+        templateTitle.GetComponent<TextMeshProUGUI>().text = title;
+        templateDescription.GetComponent<TextMeshProUGUI>().text = description;
+        StartCoroutine(InitiateShowToolTip(newToolTip));
     }
 
     public IEnumerator InitiateShowToolTip(GameObject toolTip) {
         toolTip.SetActive(true);
         yield return new WaitForSeconds(timeToShowToolTip);
         toolTip.SetActive(false);
-    }
-
-    private GameObject ProcessParameters(string toolTip) {
-        switch (toolTip)
-        {
-            case "build":
-                return build;
-
-            default:
-                Debug.Log("Unknown day.");
-                return build;
-        }
-
     }
 
 }

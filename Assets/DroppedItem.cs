@@ -7,12 +7,14 @@ public class DroppedItem : MonoBehaviour
     public Drop drop;
     private GameObject player;
     private AudioManager am;
+    private ToolTipManager toolTipManager;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         am = FindObjectOfType<AudioManager>();
+        toolTipManager = GameObject.FindGameObjectWithTag("ToolTipManager").GetComponent<ToolTipManager>();
     }
 
     // Update is called once per frame
@@ -33,8 +35,10 @@ public class DroppedItem : MonoBehaviour
             }
 
             if (drop.titleCode == "instakill") {
-                StartCoroutine(player.GetComponent<Instakill>().InitiateInstakill());
+                player.GetComponent<Instakill>().InitiateInstakill();
             }
+
+            toolTipManager.ShowToolTip(drop.title, drop.description);
 
             Destroy(gameObject);
         }
