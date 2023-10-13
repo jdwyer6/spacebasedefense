@@ -10330,6 +10330,7 @@ GameObject:
   - component: {fileID: 2571004550167048757}
   - component: {fileID: 2571004550167048756}
   - component: {fileID: -7585594258415854920}
+  - component: {fileID: 3443201264750132633}
   m_Layer: 7
   m_Name: Spiral Sprawler_Tiny Guy
   m_TagString: Enemy
@@ -10567,6 +10568,20 @@ MonoBehaviour:
   damageToPlayer: 10
   isExplosion: 0
   numberOfProjectiles: 0
+--- !u!114 &3443201264750132633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478967420056022164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4a7c69149238049ab99b7475bca346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  probabilityToDrop: 5
+  dropPrefab: {fileID: 9214423213955990384, guid: 3838dc53eeba49443922e61e30db6793, type: 3}
 --- !u!1 &6532349215047280831
 GameObject:
   m_ObjectHideFlags: 0

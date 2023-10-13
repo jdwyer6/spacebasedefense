@@ -31,7 +31,7 @@ public class Boss_Drop : MonoBehaviour
                 toolTip.SetActive(true);
                 toolTip.GetComponent<TextMeshProUGUI>().text = "Increased rate of fire.";
                 am.Play("MajorUpgrade");
-                other.gameObject.GetComponent<Player_Shooting>().autoShootingInterval = .08f;
+                other.gameObject.GetComponent<Player_Shooting>().autoShootingInterval *= .8f;
                 
             }
 

@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 9085348930381247049}
   - component: {fileID: 2080557036807994773}
   - component: {fileID: 1031585877984103363}
+  - component: {fileID: -7763061249615605587}
   m_Layer: 7
   m_Name: Rapid_Randy
   m_TagString: Enemy
@@ -452,6 +453,20 @@ MonoBehaviour:
   damageToPlayer: 10
   isExplosion: 0
   numberOfProjectiles: 0
+--- !u!114 &-7763061249615605587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033949149976421773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4a7c69149238049ab99b7475bca346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  probabilityToDrop: 5
+  dropPrefab: {fileID: 9214423213955990384, guid: 3838dc53eeba49443922e61e30db6793, type: 3}
 --- !u!1 &2266562352599540134
 GameObject:
   m_ObjectHideFlags: 0

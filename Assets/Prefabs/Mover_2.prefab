@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 8709699773422043734}
   - component: {fileID: 7867536731050293654}
   - component: {fileID: 1136623279205033669}
+  - component: {fileID: 7668172335473621392}
   m_Layer: 7
   m_Name: Mover_2
   m_TagString: Enemy
@@ -439,6 +440,20 @@ MonoBehaviour:
   damage: 10
   hasLaser: 0
   probabilityToSpawn: 100
+--- !u!114 &7668172335473621392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2448062567560744406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4a7c69149238049ab99b7475bca346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  probabilityToDrop: 5
+  dropPrefab: {fileID: 9214423213955990384, guid: 3838dc53eeba49443922e61e30db6793, type: 3}
 --- !u!1 &2673338143166712924
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4160252512243044067
 MonoBehaviour:
@@ -311,6 +311,12 @@ MonoBehaviour:
     loop: 0
   - name: Shift_Shield_Impact
     clip: {fileID: 8300000, guid: 2e8c25e07f36aa64287503a1436c7ec5, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Drop_Health
+    clip: {fileID: 8300000, guid: 266312323046d584dad652b2a3c453a1, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}

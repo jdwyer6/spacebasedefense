@@ -17356,6 +17356,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 143341101103745678, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 143341101103745687, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
       propertyPath: empSlider
       value: 

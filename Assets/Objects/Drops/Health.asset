@@ -16,4 +16,4 @@ MonoBehaviour:
   titleCode: health
   description: +20% health
   sprite: {fileID: 21300000, guid: a00e6dfb5dca6b14fb25f65413baef95, type: 3}
-  sound: 
+  sound: Drop_Health
