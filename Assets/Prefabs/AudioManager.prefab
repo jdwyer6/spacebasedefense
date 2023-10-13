@@ -321,3 +321,15 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: Drop_RateOfFire
+    clip: {fileID: 8300000, guid: 048d38e483eea5f4cbd2ecf000d951f9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Drop_Instakill
+    clip: {fileID: 8300000, guid: d4319ed5c82982b448531d1755832de9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

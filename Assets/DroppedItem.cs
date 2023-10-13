@@ -23,9 +23,17 @@ public class DroppedItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Player") {
-            if(drop.titleCode == "health") {
+            if (drop.titleCode == "health") {
                 am.Play(drop.sound);
                 player.GetComponent<Player_Health>().Heal(20);
+            }
+            if (drop.titleCode == "rateOfFire") {
+                am.Play(drop.sound);
+                player.GetComponent<Player_Shooting>().autoShootingInterval *= .7f;
+            }
+
+            if (drop.titleCode == "instakill") {
+                StartCoroutine(player.GetComponent<Instakill>().InitiateInstakill());
             }
 
             Destroy(gameObject);

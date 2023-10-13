@@ -7,10 +7,10 @@ public class ToolTipManager : MonoBehaviour
 {
     private GameObject gm;
     bool buildToolTipHasOpened;
+    public float timeToShowToolTip = 4;
     int numberOfTimesToShowBuildTip = 4;
-    // public GameObject buildToolTip;
 
-    [SerializeField] private NotificationManager buildToolTip;
+    public GameObject build;
 
     // Start is called before the first frame update
     void Start()
@@ -18,17 +18,26 @@ public class ToolTipManager : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GM");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(gm.GetComponent<Enemy_Spawner>().isBreak == false && !buildToolTipHasOpened && numberOfTimesToShowBuildTip > 0) {
-            numberOfTimesToShowBuildTip -= 1;
-            buildToolTipHasOpened = true;
-            buildToolTip.Open();
-        }   
-        
-        if(gm.GetComponent<Enemy_Spawner>().isBreak && buildToolTipHasOpened) {
-            buildToolTipHasOpened = false;
+
+    public void ShowToolTip(string toolTipName) {
+        StartCoroutine(InitiateShowToolTip(ProcessParameters(toolTipName)));
+    }
+
+    public IEnumerator InitiateShowToolTip(GameObject toolTip) {
+        toolTip.SetActive(true);
+        yield return new WaitForSeconds(timeToShowToolTip);
+        toolTip.SetActive(false);
+    }
+
+    private GameObject ProcessParameters(string toolTip) {
+        switch (toolTip)
+        {
+            case "build":
+                return build;
+
+            default:
+                Debug.Log("Unknown day.");
+                return build;
         }
 
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rate of Fire 1
   m_EditorClassIdentifier: 
   title: Rate of Fire
-  titleCode: rateOfFire1
+  titleCode: rateOfFire
   description: 20% rate of fire increase.
-  sprite: {fileID: 0}
-  sound: 
+  sprite: {fileID: 21300000, guid: 1c0754f5fa2632842bc415be908c46db, type: 3}
+  sound: Drop_RateOfFire

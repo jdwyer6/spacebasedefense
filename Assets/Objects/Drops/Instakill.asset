@@ -15,5 +15,5 @@ MonoBehaviour:
   title: Instakill
   titleCode: instakill
   description: Temporarily kill each emeny in one hit.
-  sprite: {fileID: 0}
-  sound: 
+  sprite: {fileID: 21300000, guid: 9c851e99dcedeae4d95e215e10a1d133, type: 3}
+  sound: Drop_Instakill

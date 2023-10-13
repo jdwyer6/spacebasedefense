@@ -20,6 +20,7 @@ public class Player_Shooting : MonoBehaviour
     public GameObject muzzleParticles;
     private bool[] shootIdx = new bool[] {false, false, false, false};
     private bool isShooting;
+    public bool instakillActive;
     // UpgradeLogicType auto = UpgradeLogicType.auto;
     UpgradeLogicType arsen = UpgradeLogicType.arsen;
     UpgradeLogicType spread = UpgradeLogicType.spread;
@@ -89,6 +90,9 @@ public class Player_Shooting : MonoBehaviour
             GameObject particles = Instantiate(flamingProjectiles, projectile.transform.position, Quaternion.identity);
             particles.transform.SetParent(projectile.transform);
             projectile.GetComponent<Projectile>().damage*=1.5f;
+        }
+        if(instakillActive) {
+            projectile.GetComponent<Projectile>().damage = 100;
         }
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
