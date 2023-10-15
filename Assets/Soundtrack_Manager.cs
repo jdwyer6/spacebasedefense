@@ -54,6 +54,7 @@ public class Soundtrack_Manager : MonoBehaviour
         if(incrememtingSoundtrack){
             currentSoundtrack += 1;
             audioSource.clip = data.soundtracks[currentSoundtrack];
+            audioSource.Play();
             incrememtingSoundtrack = false;
         }
     }
