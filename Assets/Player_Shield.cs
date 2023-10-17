@@ -56,6 +56,13 @@ public class Player_Shield : MonoBehaviour
 
         shieldIndicator.GetComponent<Image>().fillAmount = timer / shieldActiveForTime;
 
+        if(Input.GetKeyUp(KeyCode.LeftShift)) {
+            timer = 0;
+            shieldRecharged = false;
+            shieldActive = false;
+            canUseShield = false;
+        }
+
         if(shieldActive && shieldRecharged) {
             timer -= Time.deltaTime;
         } else {
