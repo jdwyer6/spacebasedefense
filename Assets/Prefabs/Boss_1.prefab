@@ -21420,7 +21420,7 @@ EdgeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5644007290779393831}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -21443,7 +21443,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5644007290779393831}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -21546,7 +21546,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5644007290779393831}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1c50e564fc406844b2beb8ccf676c53, type: 3}
   m_Name: 
@@ -21595,9 +21595,9 @@ MonoBehaviour:
   m_atRandom: 1
   m_shotList:
   - m_shotObj: {fileID: 939901675}
-    m_afterDelay: 5
+    m_afterDelay: 3
   - m_shotObj: {fileID: 939901676}
-    m_afterDelay: 5
+    m_afterDelay: 3
   m_shotRoutineFinishedCallbackEvents:
     m_PersistentCalls:
       m_Calls: []
