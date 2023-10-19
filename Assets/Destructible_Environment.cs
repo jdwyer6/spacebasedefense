@@ -22,6 +22,14 @@ public class Destructible_Environment : MonoBehaviour
     private void Start() {
         gm = GameObject.FindGameObjectWithTag("GM");
         data = gm.GetComponent<Data>();
+
+        Collider2D thisCollider = GetComponent<Collider2D>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Collider2D playerCollider = player.GetComponent<Collider2D>();
+        if (thisCollider != null && playerCollider != null)
+        {
+            Physics2D.IgnoreCollision(thisCollider, playerCollider);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other) {

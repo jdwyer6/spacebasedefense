@@ -13,6 +13,10 @@ public class Projectile : MonoBehaviour
     public Color color1 = Color.red;
     public Color color2 = Color.white;
 
+    private string[] barrierImpactSounds = new string[] {"Barrier_Impact_1", "Barrier_Impact_2", "Barrier_Impact_3"};
+    public GameObject barrierParticles;
+    public GameObject barrierHit;
+
     public enum IgnoreList
     {
         Player,
@@ -80,6 +84,14 @@ public class Projectile : MonoBehaviour
         }
 
         if(other.gameObject.tag == "Destructible_Environment" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Player") {
+            Destroy(gameObject);
+        }
+
+        if(other.gameObject.tag == "Barrier") {
+            int randomNum = UnityEngine.Random.Range(0, barrierImpactSounds.Length);
+            am.Play(barrierImpactSounds[randomNum]);
+            Instantiate(barrierParticles, transform.position, Quaternion.identity);
+            Instantiate(barrierHit, transform.position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 360)));
             Destroy(gameObject);
         }
     }

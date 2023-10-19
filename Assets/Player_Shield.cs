@@ -51,7 +51,6 @@ public class Player_Shield : MonoBehaviour
             shieldPrefab.SetActive(false);
             playerHealth.canTakeDamage = true;
             playerMovement.canMove = true;
-            
         }
 
         shieldIndicator.GetComponent<Image>().fillAmount = timer / shieldActiveForTime;
@@ -68,6 +67,7 @@ public class Player_Shield : MonoBehaviour
         } else {
             timer += Time.deltaTime;
         }
+
 
         if(timer >= shieldActiveForTime) {
             shieldRecharged = true;

@@ -16,6 +16,8 @@ public class Enemy_Spawner : MonoBehaviour
     // public bool spawnEnemy = true;
     bool exploitTimerRunning = false;
     bool forceNextCoolDown = false;
+    // bool isTutorial = false;
+    // bool spawnInitialized = false;
 
     [Header("Wave Properties")]
     public int level = 1;
@@ -71,13 +73,21 @@ public class Enemy_Spawner : MonoBehaviour
             wave.hasSpawned = false;
             waves.Add(wave);
         }
-        StartCoroutine(SpawnEnemy());
+        // if(!isTutorial) {
+            StartCoroutine(SpawnEnemy());
+        // }
+
         waveText.text = "Wave " + level.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // if(!isTutorial && !spawnInitialized) {
+        //     StartCoroutine(SpawnEnemy());
+        //     spawnInitialized = true;
+        // }
+
         if(isBreak) {
             breakTimer -= Time.deltaTime;
 

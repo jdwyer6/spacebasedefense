@@ -20398,6 +20398,7 @@ GameObject:
   - component: {fileID: 1857381485}
   - component: {fileID: 1413573189}
   - component: {fileID: 4644268657165348195}
+  - component: {fileID: 585936592013643425}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -20428,7 +20429,7 @@ Transform:
   - {fileID: 2062200556}
   - {fileID: 687361894}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &143341101103745678
 Rigidbody2D:
@@ -20438,7 +20439,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143341101103745664}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -20450,7 +20451,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &143341101103745679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20855,7 +20856,7 @@ MonoBehaviour:
   shieldImpactParticles: {fileID: 3503144720494011406, guid: 7c96756ab07e60c4d827934b4f0495bd, type: 3}
   shieldActiveForTime: 0.75
   shieldRechargeTime: 2
-  shieldIndicator: {fileID: 421559566}
+  shieldIndicator: {fileID: 0}
   uiIndicator: {fileID: 0}
   timer: 0
 --- !u!114 &1413573189
@@ -20883,6 +20884,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc234a2c020fe049b2385fd766a749a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &585936592013643425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143341101103745664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a4b4596490f584db18af056f400b4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeActive: 30
 --- !u!1 &143341101287768654
 GameObject:
   m_ObjectHideFlags: 0
