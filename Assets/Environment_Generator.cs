@@ -9,7 +9,8 @@ public class Environment_Generator : MonoBehaviour
     private float[] possibleXValues = new float[] {0, -4};
     private float[] possibleYValues = new float[] {4, -4};
     private List<Vector2> blockPositions = new List<Vector2>();
-    private Color selectedColor;
+    public Color selectedColor;
+    public GameObject[] buildingBlocks;
 
     private Color[] colors = new Color[]
     {
@@ -56,7 +57,7 @@ public class Environment_Generator : MonoBehaviour
         for (int i = 0; i < numberOfTimesToPlaceBlocks; i++)
         {
             var block = Instantiate(blockPrefab, currentPos, Quaternion.identity);
-            // ChangeBlockColor(block);
+            ChangeBlockColor(block);
             blockPositions.Add(currentPos);
             currentPos = GetNewPos(currentPos);
         }
@@ -69,7 +70,7 @@ public class Environment_Generator : MonoBehaviour
         {
             Vector2 mirroredPos = new Vector2(-pos.x, pos.y); // Mirroring on the X-axis
             var block = Instantiate(blockPrefab, mirroredPos, Quaternion.identity);
-            // ChangeBlockColor(block);
+            ChangeBlockColor(block);
         }
     }
 
@@ -85,6 +86,13 @@ public class Environment_Generator : MonoBehaviour
 
     private void SelectColor() {
         selectedColor = colors[GetRandomNum(0, colors.Length)];
+        foreach (var block in buildingBlocks)
+        {
+            SpriteRenderer renderer = block.GetComponent<SpriteRenderer>();
+            if(renderer != null) {
+                renderer.color = selectedColor;
+            }
+        }
     }
 
     private void ChangeBlockColor(GameObject block) {

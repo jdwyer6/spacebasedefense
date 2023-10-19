@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class DroppedItem : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class DroppedItem : MonoBehaviour
     private GameObject player;
     private AudioManager am;
     private ToolTipManager toolTipManager;
+    public GameObject dropUIPrefab;
+    private GameObject dropUIContainer;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +19,7 @@ public class DroppedItem : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         am = FindObjectOfType<AudioManager>();
         toolTipManager = GameObject.FindGameObjectWithTag("ToolTipManager").GetComponent<ToolTipManager>();
+        dropUIContainer = GameObject.FindGameObjectWithTag("DropsUIContainer");
     }
 
     // Update is called once per frame
@@ -36,11 +41,19 @@ public class DroppedItem : MonoBehaviour
 
             if (drop.titleCode == "instakill") {
                 player.GetComponent<Instakill>().InitiateInstakill();
+                SetDropUI(drop);
             }
 
             toolTipManager.ShowToolTip(drop.title, drop.description);
 
             Destroy(gameObject);
         }
+    }
+
+    private void SetDropUI(Drop drop) {
+        var newDropUI = Instantiate(dropUIPrefab, dropUIContainer.transform);
+        newDropUI.GetComponent<Image>().sprite = drop.sprite;
+        newDropUI.GetComponentInChildren<TextMeshProUGUI>().text = drop.title;
+        newDropUI.name = drop.titleCode;
     }
 }

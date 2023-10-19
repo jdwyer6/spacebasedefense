@@ -133,6 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drop: {fileID: 11400000, guid: 291aa5d0b9c4d6d4b9c6721f59b723c2, type: 2}
+  dropUIPrefab: {fileID: 6163009347854618759, guid: 5caa01e5c6aaa6b49bf56b236a827e19, type: 3}
+  dropUIContainer: {fileID: 0}
 --- !u!212 &5439527197985581529
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -41,6 +41,9 @@ public class Enemy_Spawner : MonoBehaviour
     public bool spawningActive;
     private bool waitForBossToDie;
 
+    public float extremumX = 40;
+    public float extremumY = 25;
+
 
 
     // Start is called before the first frame update
@@ -116,11 +119,55 @@ public class Enemy_Spawner : MonoBehaviour
     }
 
     Vector2 GetRandomSpawnPos() {
-        float randomAngle = Random.Range(-180f, 180f) * Mathf.Deg2Rad; 
-        Vector2 direction = new Vector2(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle)); 
-        if (player == null) return Vector3.zero + (Vector3)(direction * 25f); // fix null player on initial spawn at restart
-        Vector2 pos = player.transform.position + (Vector3)(direction * 25f);
-        return pos;
+        // bool spawnPosInsideBoundary = false;
+        // int infiniteLoopSafety = 0;
+        // while(infiniteLoopSafety < 100) {
+        //     float randomAngle = Random.Range(-180f, 180f) * Mathf.Deg2Rad; 
+        //     Vector2 direction = new Vector2(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle)); 
+        //     if (player == null) return Vector3.zero + (Vector3)(direction * 25f); // fix null player on initial spawn at restart
+        //     Vector2 pos = player.transform.position + (Vector3)(direction * 25f);
+        //     if((pos.x < extremumX && pos.x > -extremumX) && (pos.y < extremumY && pos.y > -extremumY)) {
+        //         infiniteLoopSafety++;
+        //         continue; // Skip to next iteration if position is inside boundary
+        //     }
+        //     Debug.Log("Position Enemy: " + pos);
+        //     return pos;
+        // }
+
+        // Debug.LogWarning("Infinite Loop Searching for enemy spawn position");
+        // return new Vector2(20, 20);
+        int infiniteLoopSafety = 0;
+        while(infiniteLoopSafety < 100) {
+            // Choose a random edge (top, bottom, left, right)
+            int edge = Random.Range(0, 4);
+            
+            Vector2 pos = Vector2.zero;
+            switch(edge) {
+                case 0:  // top
+                    pos = new Vector2(Random.Range(-extremumX, extremumX), extremumY);
+                    break;
+                case 1:  // bottom
+                    pos = new Vector2(Random.Range(-extremumX, extremumX), -extremumY);
+                    break;
+                case 2:  // left
+                    pos = new Vector2(-extremumX, Random.Range(-extremumY, extremumY));
+                    break;
+                case 3:  // right
+                    pos = new Vector2(extremumX, Random.Range(-extremumY, extremumY));
+                    break;
+            }
+            
+            // Check distance from player to avoid spawning too close
+            if (player != null && Vector2.Distance(pos, player.transform.position) >= 25) {
+                Debug.Log("Position Enemy: " + pos);
+                return pos;
+            }
+
+            infiniteLoopSafety++;
+        }
+
+        Debug.LogWarning("Infinite Loop Searching for enemy spawn position");
+        return new Vector2(20, 20); 
     }
 
     int GetRemainingEnemies() {

@@ -7,6 +7,9 @@ public class UniBulletHellHelper : MonoBehaviour
     private AudioManager am;
     private GameObject gm;
     bool soundPlayed = false;
+
+    private int numTimesCalled = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,8 @@ public class UniBulletHellHelper : MonoBehaviour
 
     public void PlayShotAuto1() {
         am.Play("Enemy_Shot_2");
+        Debug.Log("Method Called" + numTimesCalled);
+        numTimesCalled++;
     }
 
     public void PlaySound(string sound) {

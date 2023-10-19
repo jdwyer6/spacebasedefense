@@ -88,7 +88,7 @@ public class Player_Shield : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Enemy_Projectile") {
             am.Play("Shift_Shield_Impact");
             Instantiate(shieldImpactParticles, other.gameObject.transform.position, Quaternion.identity);

@@ -151,9 +151,9 @@ public class Enemy_Laser : MonoBehaviour
         edgeCollider.points = new Vector2[] { transform.InverseTransformPoint(startPoint), transform.InverseTransformPoint(endPoint) };
     }
 
-    private void OnDestroy() {
-        am.Stop("Laser_Charge");    
-    }
+    // private void OnDestroy() {
+    //     am.Stop("Laser_Charge");    
+    // }
 
     void DeactivateLaserCollider() {
         edgeCollider.enabled = false;
