@@ -12,12 +12,6 @@ public class Enemy_Spawner : MonoBehaviour
     public Data data;
     public GameObject[] enemies;
     public float distanceToSpawnAwayFromPlayer = 20;
-    // public bool waveActive = true;
-    // public bool spawnEnemy = true;
-    bool exploitTimerRunning = false;
-    bool forceNextCoolDown = false;
-    // bool isTutorial = false;
-    // bool spawnInitialized = false;
 
     [Header("Wave Properties")]
     public int level = 1;
@@ -42,13 +36,6 @@ public class Enemy_Spawner : MonoBehaviour
 
     public int[] bossLevels;
     public List<Wave> waves = new List<Wave>();
-
-    // [Header("UI")]
-    // public GameObject buildTip;
-
-    [Header("Variable Difficulty")]
-    private float spawnInterval = 4;
-    private float levelLength = 20;
 
     public bool isBreak;
     public bool spawningActive;

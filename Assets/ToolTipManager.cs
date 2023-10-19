@@ -10,7 +10,6 @@ public class ToolTipManager : MonoBehaviour
     private GameObject gm;
     bool buildToolTipHasOpened;
     public float timeToShowToolTip = 4;
-    int numberOfTimesToShowBuildTip = 4;
 
     public GameObject templatePrefab;
     public Transform toolTipContainer;

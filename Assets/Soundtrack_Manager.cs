@@ -5,8 +5,6 @@ using UnityEngine;
 public class Soundtrack_Manager : MonoBehaviour
 {
     private Enemy_Spawner spawner;
-    bool waveTrackIsPlaying = true;
-    bool coolDownTrackIsPlaying = false;
     private AudioManager am;
     private AudioSource audioSource;
     [SerializeField] private GameObject amPrefab;
