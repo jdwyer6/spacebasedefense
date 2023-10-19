@@ -16,7 +16,6 @@ public class Environment_Generator : MonoBehaviour
     {
         new Color(1.0f, 0.2f, 0.2f), // Bright Red
         new Color(0.2f, 1.0f, 0.2f), // Bright Green
-        new Color(0.2f, 0.2f, 1.0f), // Bright Blue
         new Color(1.0f, 0.5f, 0.0f), // Orange
         new Color(0.6f, 0.0f, 0.8f), // Purple
         new Color(1.0f, 1.0f, 0.2f), // Yellow

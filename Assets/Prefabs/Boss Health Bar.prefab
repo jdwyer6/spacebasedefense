@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 6381695384792491654}
   m_Layer: 5
   m_Name: Boss Health Bar
-  m_TagString: Untagged
+  m_TagString: BossHealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6381695384792491654
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: 800, y: 100}
+  m_AnchoredPosition: {x: 0, y: -17.9124}
+  m_SizeDelta: {x: 706.5034, y: 35.8248}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6381695384868059538
 GameObject:
@@ -111,8 +111,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -192.59288, y: 0}
-  m_SizeDelta: {x: 390.5181, y: 20}
+  m_AnchoredPosition: {x: -192.15, y: 0}
+  m_SizeDelta: {x: 388.68, y: 20}
   m_Pivot: {x: 0.005613912, y: 0.49999997}
 --- !u!114 &6381695385086500749
 MonoBehaviour:

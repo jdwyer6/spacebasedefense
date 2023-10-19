@@ -159,7 +159,6 @@ public class Enemy_Spawner : MonoBehaviour
             
             // Check distance from player to avoid spawning too close
             if (player != null && Vector2.Distance(pos, player.transform.position) >= 25) {
-                Debug.Log("Position Enemy: " + pos);
                 return pos;
             }
 

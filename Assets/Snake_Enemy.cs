@@ -23,7 +23,7 @@ public class Snake_Enemy : MonoBehaviour
         lastPosition = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
         direction = Vector2.right;
-        SpawnSnake();
+        // SpawnSnake();
         StartCoroutine(DieAfterSeconds());
     }
 

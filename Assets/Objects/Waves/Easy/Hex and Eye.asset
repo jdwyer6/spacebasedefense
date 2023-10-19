@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Hex and Eye
   enemies:
-  - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
+  - {fileID: 2448062567560744406, guid: 81e866a724f3f8e4b99c3820165c204c, type: 3}
   - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
   - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
   - {fileID: 4803831403545104576, guid: b0733f5a09c19294fa3331628cfc370c, type: 3}

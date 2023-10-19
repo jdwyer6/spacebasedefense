@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Hex and Laser
   enemies:
-  - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
-  - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
+  - {fileID: 8723067437459824971, guid: 370a4ad09f0a4d0469f52b92e40682d3, type: 3}
+  - {fileID: 8723067437459824971, guid: 370a4ad09f0a4d0469f52b92e40682d3, type: 3}
   - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
   - {fileID: 5026017844872023388, guid: 7646c8ae6decae7499ed800c289dc242, type: 3}
   numberOfSpawnCycles: 3

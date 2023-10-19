@@ -12,6 +12,7 @@ public class Boss_Health_Bar : MonoBehaviour
     private TextMeshProUGUI bossHealthBarName;
     private float bossHealth;
     private Transform canvas;
+    private bool bossHealthBarActive = true;
 
     void Start()
     {
@@ -30,9 +31,15 @@ public class Boss_Health_Bar : MonoBehaviour
         float maxBossHealth = GetComponent<Enemy_Health>().totalHealth;
         bossSlider.value = bossHealth / maxBossHealth;
 
-        if(bossHealth <= 10) {
-            bossSliderContainer.SetActive(false);
+        if(bossHealth <= 10 && bossHealthBarActive) {
+
+            DeactivateHealthBar();
         }
+    }
+
+    private void DeactivateHealthBar() {
+        GameObject.FindGameObjectWithTag("BossHealthBar").SetActive(false);
+        bossHealthBarActive = false;
     }
 
 

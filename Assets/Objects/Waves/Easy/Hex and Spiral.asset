@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Hex and Spiral
   enemies:
   - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
-  - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
+  - {fileID: 8723067437459824971, guid: 370a4ad09f0a4d0469f52b92e40682d3, type: 3}
   - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
   - {fileID: 967360091409035101, guid: d7e9325b2563b3147a7807126429aa8c, type: 3}
   numberOfSpawnCycles: 3

@@ -59,6 +59,7 @@ public class Player_Health : MonoBehaviour
             currentHealth = 0;
         }
         UpdateSpriteDamage();
+        StartCoroutine(InitiateInvulnerabilityAfterTakingHit());
     }
 
     // Method to heal the player
@@ -125,5 +126,11 @@ public class Player_Health : MonoBehaviour
         }else{
             spriteRenderer.sprite = sprites[0];
         }
+    }
+
+    IEnumerator InitiateInvulnerabilityAfterTakingHit() {
+        canTakeDamage = false;
+        yield return new WaitForSeconds(1);
+        canTakeDamage = true;
     }
 }

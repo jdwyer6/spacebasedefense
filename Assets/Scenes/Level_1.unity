@@ -21108,6 +21108,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3431140739008499238, guid: 85b4b77ad9676a84aa7f13ff27208b88, type: 3}
   m_PrefabInstance: {fileID: 1500461299}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1501600400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1501600401}
+  m_Layer: 0
+  m_Name: SecondaryWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1501600401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501600400}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.4820154, y: 0.7403005, z: -0.2544384}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1504073106
 GameObject:
   m_ObjectHideFlags: 0
@@ -25585,6 +25616,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 687361893, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 687361895, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -31294,6 +31329,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e81b464699ab140409d86ba37c505a49, type: 2}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: upgrades.Array.data[10]
       value: 
       objectReference: {fileID: 11400000, guid: 9750d6677542a8f4fa6b3f8e59a33d1d, type: 2}
@@ -31305,6 +31344,18 @@ PrefabInstance:
       propertyPath: soundtracks.Array.data[1]
       value: 
       objectReference: {fileID: 8300000, guid: d0810ddc72933154bb265a85cbe27ba9, type: 3}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 362e4fd3c68001943b168e251715c135, type: 3}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a93a99d9b8eecf4680369b01d390c95, type: 3}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3b18a1150dece3b4d84563a1f578c644, type: 3}
     - target: {fileID: 4570469017198267507, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: gameOverScreen
       value: 
