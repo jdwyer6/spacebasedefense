@@ -25,7 +25,7 @@ public class Data : MonoBehaviour
     public Upgrade[] upgrades;
     public Wave[] waves;
     public GameObject[] bossDrops;
-    public Drop[] drops;
+    public List<Drop> drops;
 
     public Character[] characters;
 }

@@ -26,6 +26,8 @@ public class DropManager : MonoBehaviour
         player.GetComponent<Player_Shooting>().instakillActive = false;
     }
 
+    // ----------------------------------------------------------------------
+
     public void InitiateHoming() {
         StartCoroutine(StartHoming());
     }
@@ -37,12 +39,27 @@ public class DropManager : MonoBehaviour
         RemoveDropUI("homing");
     }
 
+    // ----------------------------------------------------------------------
+
+    public void InitiateLaser() {
+        StartCoroutine(StartLaser());
+    }
+
+    private IEnumerator StartLaser() {
+        player.GetComponent<Player_Shooting>().laserActive = true;
+        yield return new WaitForSeconds(timeActive);
+        player.GetComponent<Player_Shooting>().laserActive = false;
+        RemoveDropUI("laser");
+    }
+
+    // ----------------------------------------------------------------------
+
     private void RemoveDropUI(string code) {
         Transform childTransform = dropsContainer.transform.Find(code);
         if (childTransform != null) {
             childTransform.gameObject.SetActive(false);
         } else {
-            Debug.LogWarning("Couldn't find 'instakill' child in 'DropsUIContainer'.");
+            Debug.LogWarning("Couldn't find " + code + " child in 'DropsUIContainer'.");
         }
     }
 }

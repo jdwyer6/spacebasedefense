@@ -29,20 +29,33 @@ public class DroppedItem : MonoBehaviour
             if (drop.titleCode == "health") {
                 am.Play(drop.sound);
                 player.GetComponent<Player_Health>().Heal(20);
+                gm.GetComponent<Data>().drops.Remove(drop);
             }
             if (drop.titleCode == "rateOfFire") {
                 am.Play(drop.sound);
                 player.GetComponent<Player_Shooting>().autoShootingInterval *= .7f;
+                gm.GetComponent<Data>().drops.Remove(drop);
             }
 
             if (drop.titleCode == "instakill") {
+                am.Play(drop.sound);
                 gm.GetComponent<DropManager>().InitiateInstakill();
                 SetDropUI(drop);
+                gm.GetComponent<Data>().drops.Remove(drop);
             }
 
             if (drop.titleCode == "homing") {
+                am.Play(drop.sound);
                 gm.GetComponent<DropManager>().InitiateHoming();
                 SetDropUI(drop);
+                gm.GetComponent<Data>().drops.Remove(drop);
+            }
+
+            if (drop.titleCode == "laser") {
+                am.Play(drop.sound);
+                gm.GetComponent<DropManager>().InitiateLaser();
+                SetDropUI(drop);
+                gm.GetComponent<Data>().drops.Remove(drop);
             }
 
             toolTipManager.ShowToolTip(drop.title, drop.description);

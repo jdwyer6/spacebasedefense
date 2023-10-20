@@ -357,3 +357,15 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: Laser_Projectile
+    clip: {fileID: 8300000, guid: 4c9baa14e7be46f499eefff206d48adb, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Drop_Homing
+    clip: {fileID: 8300000, guid: 8ea183d575e0b14468c1af7d70b79c95, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

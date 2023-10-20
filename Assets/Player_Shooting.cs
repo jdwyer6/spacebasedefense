@@ -31,6 +31,9 @@ public class Player_Shooting : MonoBehaviour
     public int magazineCapacity;
     public Slider ammoAndReloadIndicator;
 
+    public GameObject laser;
+    public bool laserActive;
+
     private void Start() {
         projectileSpeed = projectileSpeedOriginal;
         autoShootingInterval = autoShootingIntervalOriginal;
@@ -83,6 +86,7 @@ public class Player_Shooting : MonoBehaviour
         if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == spread).acquired){
             ShootSpread(direction);
         }
+
         impulseSource.GenerateImpulse();
         // Instantiate the projectile
         GameObject projectile = Instantiate(projectilePrefab, (Vector2)transform.position, Quaternion.identity);
@@ -135,6 +139,9 @@ public class Player_Shooting : MonoBehaviour
             LaunchProjectile(direction);
             var particles = Instantiate(muzzleParticles, transform.position + offset, Quaternion.identity);
             SetFlashRotation(particles, flashRotation);
+            if(laserActive) {
+                StartCoroutine(FireLaser(flashRotation));
+            }
             yield return new WaitForSeconds(autoShootingInterval);
         }
         isShooting = false;
@@ -213,6 +220,29 @@ public class Player_Shooting : MonoBehaviour
                 Physics2D.IgnoreCollision(playerCollider, projectileCollider);
             }
         }
+    }
+
+    IEnumerator FireLaser(float rotation) {
+        laser.SetActive(true);
+        switch (rotation)
+        {
+            case 90:
+                rotation = -180;
+                break;
+            case 180:
+                rotation = -90;
+                break;
+            case -90:
+                rotation = 0;
+                break;
+            case -180:
+                rotation = 90;
+                break;
+        }
+        am.Play("Laser_Projectile");
+        laser.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        yield return new WaitForSeconds(.05f);
+        laser.SetActive(false);
     }
 
 }

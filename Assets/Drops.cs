@@ -5,7 +5,7 @@ using UnityEngine;
 public class Drops : MonoBehaviour
 {
     private GameObject gm;
-    private Drop[] drops;
+    private List<Drop> drops;
     public int probabilityToDrop = 5;
     public GameObject dropPrefab;
 
@@ -35,7 +35,7 @@ public class Drops : MonoBehaviour
             return;
         }
 
-        var randomDrop = drops[UnityEngine.Random.Range(0, drops.Length)];
+        var randomDrop = drops[UnityEngine.Random.Range(0, drops.Count)];
         var drop = Instantiate(dropPrefab, pos, Quaternion.identity);
 
         drop.GetComponent<DroppedItem>().drop = randomDrop;
