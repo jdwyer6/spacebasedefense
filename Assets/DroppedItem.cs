@@ -12,20 +12,16 @@ public class DroppedItem : MonoBehaviour
     private ToolTipManager toolTipManager;
     public GameObject dropUIPrefab;
     private GameObject dropUIContainer;
+    private GameObject gm;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        gm = GameObject.FindGameObjectWithTag("GM");
         am = FindObjectOfType<AudioManager>();
         toolTipManager = GameObject.FindGameObjectWithTag("ToolTipManager").GetComponent<ToolTipManager>();
         dropUIContainer = GameObject.FindGameObjectWithTag("DropsUIContainer");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -40,7 +36,12 @@ public class DroppedItem : MonoBehaviour
             }
 
             if (drop.titleCode == "instakill") {
-                player.GetComponent<Instakill>().InitiateInstakill();
+                gm.GetComponent<DropManager>().InitiateInstakill();
+                SetDropUI(drop);
+            }
+
+            if (drop.titleCode == "homing") {
+                gm.GetComponent<DropManager>().InitiateHoming();
                 SetDropUI(drop);
             }
 

@@ -14510,6 +14510,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4570469017198267500, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
   m_PrefabInstance: {fileID: 4570469016961599458}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1055520207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055520155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a4b4596490f584db18af056f400b4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeActive: 30
+  playerProjectile: {fileID: 7387422206258482921, guid: 1c7894ad71a9a7c47a309c51af0187b7, type: 3}
 --- !u!1 &1055723808
 GameObject:
   m_ObjectHideFlags: 0
@@ -25640,6 +25654,10 @@ PrefabInstance:
       propertyPath: uiIndicator
       value: 
       objectReference: {fileID: 786223139}
+    - target: {fileID: 143341100190751402, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 143341101103745664, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -25736,6 +25754,7 @@ PrefabInstance:
     - {fileID: 4644268657165348195, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
     - {fileID: 794411419703562634, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
     - {fileID: 585936592013643425, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+    - {fileID: 1413573189, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
 --- !u!1001 &1788477743
@@ -31302,7 +31321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: drops.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: waves.Array.size
@@ -31320,6 +31339,10 @@ PrefabInstance:
       propertyPath: drops.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 2b0e692f80083b046885bb93b266c6c6, type: 2}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: drops.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: c2f4752f6de20b34f8c5321fe1593199, type: 2}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: upgrades.Array.size
       value: 11
