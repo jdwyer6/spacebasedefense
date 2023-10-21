@@ -12,7 +12,9 @@ public class Environment_Generator : MonoBehaviour
     public Color selectedColor;
     public GameObject[] buildingBlocks;
 
-    private float[] initialRotation = new float[] {0, 90, -90, 180};
+    private float[] initialBaseEnvironmentRotationOptions = new float[] {0, 90, -90, 180};
+    private float initialBaseEnvironmentRotation;
+    public GameObject[] baseEnvironments;
 
     private Color[] colors = new Color[]
     {
@@ -36,7 +38,7 @@ public class Environment_Generator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //color
+        initialBaseEnvironmentRotation = initialBaseEnvironmentRotationOptions[GetRandomNum(0, initialBaseEnvironmentRotationOptions.Length)];
         GenerateLevel();
     }
 
@@ -110,5 +112,9 @@ public class Environment_Generator : MonoBehaviour
         {
             sr.color = selectedColor;
         }
+    }
+
+    private void SetBase() {
+        // Instantiate(baseEnvironments[GetRandomNum(0, baseEnvironments.Length)], new Vector2(0, 0), Euler.initialBaseEnvironmentRotation);
     }
 }
