@@ -99,7 +99,7 @@ public class Bloat : MonoBehaviour
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             if (rb)
             {
-                rb.AddForce(projectile.transform.up * 30f, ForceMode2D.Impulse);
+                rb.AddForce(projectile.transform.up * 15f, ForceMode2D.Impulse);
             }
             Collider2D projectileCollider = projectile.GetComponent<Collider2D>();
             Collider2D enemyCollider = GetComponent<Collider2D>();

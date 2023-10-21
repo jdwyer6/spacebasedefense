@@ -14,25 +14,20 @@ public class Environment_Generator : MonoBehaviour
 
     private Color[] colors = new Color[]
     {
-        new Color(1.0f, 0.2f, 0.2f), // Bright Red
-        new Color(0.2f, 1.0f, 0.2f), // Bright Green
-        new Color(1.0f, 0.5f, 0.0f), // Orange
-        new Color(0.6f, 0.0f, 0.8f), // Purple
-        new Color(1.0f, 1.0f, 0.2f), // Yellow
-        new Color(0.0f, 0.8f, 0.8f), // Turquoise
-        new Color(0.8f, 0.4f, 0.0f), // Dark Orange
-        new Color(0.9f, 0.0f, 0.5f), // Pink
-        new Color(0.4f, 0.6f, 0.0f), // Olive Green
-        new Color(0.7f, 0.3f, 0.7f), // Magenta
-        new Color(0.3f, 0.3f, 0.9f), // Royal Blue
-        new Color(0.8f, 0.8f, 0.0f), // Gold
-        new Color(0.0f, 0.5f, 0.5f), // Teal
-        new Color(0.5f, 0.2f, 0.1f), // Brown
-        new Color(0.9f, 0.6f, 0.7f), // Light Pink
-        new Color(0.2f, 0.7f, 0.3f), // Sea Green
-        new Color(0.6f, 0.4f, 0.8f), // Lavender
-        new Color(1.0f, 0.7f, 0.3f), // Peach
-        new Color(0.4f, 0.8f, 0.4f)  // Lime Green
+        new Color(0.8f, 0.7f, 0.7f), // Muted Pastel Red
+        new Color(0.7f, 0.8f, 0.7f), // Muted Pastel Green
+        new Color(0.8f, 0.75f, 0.7f), // Muted Pastel Orange
+        new Color(0.75f, 0.7f, 0.8f),  // Muted Pastel Purple
+        new Color(0.8f, 0.8f, 0.7f), // Muted Pastel Yellow
+        new Color(0.7f, 0.8f, 0.8f), // Muted Pastel Turquoise
+        new Color(0.8f, 0.7f, 0.75f),  // Muted Pastel Pink
+        new Color(0.7f, 0.8f, 0.75f),  // Muted Pastel Mint
+        new Color(0.7f, 0.75f, 0.8f),  // Muted Pastel Blue
+        new Color(0.8f, 0.75f, 0.7f),  // Muted Pastel Peach
+        new Color(0.7f, 0.75f, 0.8f),  // Muted Pastel Sky Blue
+        new Color(0.8f, 0.7f, 0.7f), // Muted Pastel Coral
+        new Color(0.75f, 0.8f, 0.7f),  // Muted Pastel Lime Green
+        new Color(0.75f, 0.75f, 0.7f)    // Muted Pastel Beige
     };
 
 

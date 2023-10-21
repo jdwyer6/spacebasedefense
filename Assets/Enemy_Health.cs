@@ -61,9 +61,9 @@ public class Enemy_Health : MonoBehaviour
 
     void Die() {
         if(hasBossDrop) {
-            GetComponent<Boss_Health_Bar>().bossSliderContainer.SetActive(false);
-            GameObject randomDrop = data.bossDrops[UnityEngine.Random.Range(0, data.bossDrops.Length)];
-            Instantiate(randomDrop, transform.position, Quaternion.identity);
+            // GetComponent<Boss_Health_Bar>().bossSliderContainer.SetActive(false);
+            // GameObject randomDrop = data.bossDrops[UnityEngine.Random.Range(0, data.bossDrops.Length)];
+            // Instantiate(randomDrop, transform.position, Quaternion.identity);
         }
         player.GetComponent<Building>().bricks += 2;
 
