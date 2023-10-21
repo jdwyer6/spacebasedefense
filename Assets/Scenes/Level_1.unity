@@ -1476,6 +1476,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest_Room_1
       objectReference: {fileID: 0}
+    - target: {fileID: 8884193222515932341, guid: 11fe059711d9e064ca5096613a926c2b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 11fe059711d9e064ca5096613a926c2b, type: 3}

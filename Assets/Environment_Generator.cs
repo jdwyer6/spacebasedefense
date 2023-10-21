@@ -12,6 +12,8 @@ public class Environment_Generator : MonoBehaviour
     public Color selectedColor;
     public GameObject[] buildingBlocks;
 
+    private float[] initialRotation = new float[] {0, 90, -90, 180};
+
     private Color[] colors = new Color[]
     {
         new Color(0.8f, 0.7f, 0.7f), // Muted Pastel Red
