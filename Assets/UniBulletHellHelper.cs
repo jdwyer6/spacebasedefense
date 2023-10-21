@@ -25,7 +25,6 @@ public class UniBulletHellHelper : MonoBehaviour
 
     public void PlayShotAuto1() {
         am.Play("Enemy_Shot_2");
-        Debug.Log("Method Called" + numTimesCalled);
         numTimesCalled++;
     }
 

@@ -61,6 +61,7 @@ public class Enemy_Spawner : MonoBehaviour
         foreach (var wave in GetComponent<Data>().waves)
         {
             wave.hasSpawned = false;
+            wave.probabilityToSpawn = 100;
             waves.Add(wave);
         }
         // if(!isTutorial) {
@@ -73,10 +74,6 @@ public class Enemy_Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(!isTutorial && !spawnInitialized) {
-        //     StartCoroutine(SpawnEnemy());
-        //     spawnInitialized = true;
-        // }
 
         if(isBreak) {
             breakTimer -= Time.deltaTime;
@@ -97,6 +94,7 @@ public class Enemy_Spawner : MonoBehaviour
         List<Wave> wavePool = GetCurrentPool();
         CheckWavesLeftAtDifficultyLevel(wavePool);
         Wave randomWave = wavePool[UnityEngine.Random.Range(0, wavePool.Count)];
+        randomWave.hasSpawned = true;
         Debug.Log(randomWave.title);
 
         for (int i = 0; i < randomWave.numberOfSpawnCycles; i++)
@@ -119,23 +117,6 @@ public class Enemy_Spawner : MonoBehaviour
     }
 
     Vector2 GetRandomSpawnPos() {
-        // bool spawnPosInsideBoundary = false;
-        // int infiniteLoopSafety = 0;
-        // while(infiniteLoopSafety < 100) {
-        //     float randomAngle = Random.Range(-180f, 180f) * Mathf.Deg2Rad; 
-        //     Vector2 direction = new Vector2(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle)); 
-        //     if (player == null) return Vector3.zero + (Vector3)(direction * 25f); // fix null player on initial spawn at restart
-        //     Vector2 pos = player.transform.position + (Vector3)(direction * 25f);
-        //     if((pos.x < extremumX && pos.x > -extremumX) && (pos.y < extremumY && pos.y > -extremumY)) {
-        //         infiniteLoopSafety++;
-        //         continue; // Skip to next iteration if position is inside boundary
-        //     }
-        //     Debug.Log("Position Enemy: " + pos);
-        //     return pos;
-        // }
-
-        // Debug.LogWarning("Infinite Loop Searching for enemy spawn position");
-        // return new Vector2(20, 20);
         int infiniteLoopSafety = 0;
         while(infiniteLoopSafety < 100) {
             // Choose a random edge (top, bottom, left, right)
@@ -185,8 +166,13 @@ public class Enemy_Spawner : MonoBehaviour
     }
 
     private void TriggerNextWave() {
-        level++;
-        StartCoroutine(SpawnEnemy());
+        if(GetRemainingEnemies() < 20) {
+            level++;
+            StartCoroutine(SpawnEnemy());
+        }else{
+            StartCoroutine(WaitForPlayerToClearStage());
+        }
+
     }
 
     private bool checkIfBossLevel() {
@@ -238,6 +224,11 @@ public class Enemy_Spawner : MonoBehaviour
         {
             wave.hasSpawned = false;
         }
+    }
+
+    IEnumerator WaitForPlayerToClearStage() {
+        yield return new WaitForSeconds(15);
+        TriggerNextWave();
     }
     
 }

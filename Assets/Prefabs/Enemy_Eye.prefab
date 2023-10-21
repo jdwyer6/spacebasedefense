@@ -10269,6 +10269,9 @@ MonoBehaviour:
   percentToDropPickups: 85
   eyeDeathParticles: {fileID: 6747103695085724958, guid: d5345263f32a5a04d9f4ba77773d282e, type: 3}
   hasBossDrop: 0
+  spawnMoreEnemiesAtDeath: 0
+  enemyToSpawnAtDeath: {fileID: 0}
+  numberOfEnemiesToSpawnAtDeath: 0
 --- !u!50 &4102008208383938150
 Rigidbody2D:
   serializedVersion: 4
@@ -10347,7 +10350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4a7c69149238049ab99b7475bca346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probabilityToDrop: 5
+  probabilityToDrop: 0
   dropPrefab: {fileID: 9214423213955990384, guid: 3838dc53eeba49443922e61e30db6793, type: 3}
 --- !u!1 &5498332555892513609
 GameObject:

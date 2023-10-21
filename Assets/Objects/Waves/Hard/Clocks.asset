@@ -22,8 +22,9 @@ MonoBehaviour:
   - {fileID: 1994611304696731382, guid: 15024de0c1430b849b1d3e6e8874d28d, type: 3}
   - {fileID: 5100740097038197964, guid: f8d22a6632ecd0848a7435678f8d88a1, type: 3}
   - {fileID: 5100740097038197964, guid: f8d22a6632ecd0848a7435678f8d88a1, type: 3}
+  - {fileID: 5100740097038197964, guid: f8d22a6632ecd0848a7435678f8d88a1, type: 3}
   numberOfSpawnCycles: 3
-  timeBetweenCycle: 10
+  timeBetweenCycle: 6
   difficulty: 3
   isBoss: 0
   hasSpawned: 0

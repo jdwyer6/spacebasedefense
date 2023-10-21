@@ -31,4 +31,7 @@ public class Wave : ScriptableObject
 
     [Tooltip("Has spawned?")]
     public bool hasSpawned;
+
+    [Space]
+    public int probabilityToSpawn = 100;
 }

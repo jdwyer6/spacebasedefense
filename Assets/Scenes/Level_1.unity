@@ -31764,6 +31764,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1040095380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 548103978, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+  m_PrefabInstance: {fileID: 1781869040}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1040095385
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040095380}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.1
 --- !u!1001 &1041070916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57398,6 +57419,7 @@ PrefabInstance:
     - {fileID: 794411419703562634, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
     - {fileID: 585936592013643425, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
     - {fileID: 1413573189, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+    - {fileID: 548103983, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 143341101103745677, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
       insertIndex: -1
@@ -70643,11 +70665,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: drops.Array.size
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: waves.Array.size
-      value: 22
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: drops.Array.data[0]
@@ -70697,6 +70719,10 @@ PrefabInstance:
       propertyPath: waves.Array.data[21]
       value: 
       objectReference: {fileID: 11400000, guid: fb1a9ef14db092a4c8f47ce9e894ce63, type: 2}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: waves.Array.data[22]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e8ff6f098364224eb84b4244f3fdb65, type: 2}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: soundtracks.Array.size
       value: 5

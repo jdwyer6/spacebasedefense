@@ -29,3 +29,4 @@ MonoBehaviour:
   difficulty: 3
   isBoss: 0
   hasSpawned: 0
+  probabilityToSpawn: 100

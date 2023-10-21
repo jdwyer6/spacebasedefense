@@ -18,6 +18,10 @@ public class Enemy_Health : MonoBehaviour
     bool isChangingColor = false;
     public bool hasBossDrop = false;
 
+    public bool spawnMoreEnemiesAtDeath;
+    public GameObject enemyToSpawnAtDeath;
+    public int numberOfEnemiesToSpawnAtDeath;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,14 +65,14 @@ public class Enemy_Health : MonoBehaviour
 
     void Die() {
         if(hasBossDrop) {
-            // GetComponent<Boss_Health_Bar>().bossSliderContainer.SetActive(false);
+            GetComponent<Boss_Health_Bar>().bossSliderContainer.SetActive(false);
             // GameObject randomDrop = data.bossDrops[UnityEngine.Random.Range(0, data.bossDrops.Length)];
             // Instantiate(randomDrop, transform.position, Quaternion.identity);
         }
         player.GetComponent<Building>().bricks += 2;
 
         var drops = gm.GetComponent<Data>().drops;
-        if(drops.Count > 0) {
+        if(drops.Count > 0 && !hasBossDrop) {
             GetComponent<Drops>().DropItem(transform.position);
         }
 
@@ -77,6 +81,15 @@ public class Enemy_Health : MonoBehaviour
             Instantiate(eyeDeathParticles, transform.position, Quaternion.identity);
         }else{
             Instantiate(bloodParticlesDeath, transform.position, Quaternion.identity);
+        }
+
+        if(spawnMoreEnemiesAtDeath) {
+            for (int i = 0; i < numberOfEnemiesToSpawnAtDeath; i++)
+            {
+                float randomNum = UnityEngine.Random.Range(0, 5);
+                Instantiate(enemyToSpawnAtDeath, new Vector2(transform.position.x + randomNum, transform.position.y + randomNum), Quaternion.identity);
+            }
+            
         }
         Destroy(gameObject);
     }
