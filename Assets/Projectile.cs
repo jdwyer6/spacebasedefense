@@ -16,6 +16,8 @@ public class Projectile : MonoBehaviour
     private string[] barrierImpactSounds = new string[] {"Barrier_Impact_1", "Barrier_Impact_2", "Barrier_Impact_3"};
     public GameObject barrierParticles;
     public GameObject barrierHit;
+    public bool rotate;
+    public float rotationSpeed = 200f;
 
     public enum IgnoreList
     {
@@ -66,6 +68,12 @@ public class Projectile : MonoBehaviour
             default:
                 // Do nothing
                 break;
+        }
+    }
+
+    private void Update() {
+        if(rotate) {
+            transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
         }
     }
 

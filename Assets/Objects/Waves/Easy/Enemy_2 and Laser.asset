@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17520347318a8ab4b8d846d19e7d6f7a, type: 3}
-  m_Name: Hex and Snake
+  m_Name: Enemy_2 and Laser
   m_EditorClassIdentifier: 
-  title: Hex and Snake
+  title: Hex and Laser
   enemies:
-  - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
-  - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
-  - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
-  - {fileID: 1002931399520078170, guid: f86f1831dd5d36c4084da9e04b0d7647, type: 3}
-  numberOfSpawnCycles: 4
+  - {fileID: 6661030510014599329, guid: 67ef1d52aaa67a049ac88e16403040ac, type: 3}
+  - {fileID: 6661030510014599329, guid: 67ef1d52aaa67a049ac88e16403040ac, type: 3}
+  - {fileID: 6661030510014599329, guid: 67ef1d52aaa67a049ac88e16403040ac, type: 3}
+  - {fileID: 5026017844872023388, guid: 7646c8ae6decae7499ed800c289dc242, type: 3}
+  numberOfSpawnCycles: 3
   timeBetweenCycle: 5
   difficulty: 1
   isBoss: 0

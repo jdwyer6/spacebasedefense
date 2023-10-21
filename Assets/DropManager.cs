@@ -13,6 +13,9 @@ public class DropManager : MonoBehaviour
     private void Start() {
         dropsContainer = GameObject.FindGameObjectWithTag("DropsUIContainer");
         player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<Player_Shooting>().instakillActive = false;
+        playerProjectile.GetComponent<Projectile_Homing>().isHoming = false;
+        player.GetComponent<Player_Shooting>().laserActive = false;
     }
 
     public void InitiateInstakill() {

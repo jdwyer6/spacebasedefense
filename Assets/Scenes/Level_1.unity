@@ -57255,7 +57255,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 548103978, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 687361893, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
       propertyPath: m_IsActive
@@ -70647,7 +70647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: waves.Array.size
-      value: 20
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: drops.Array.data[0]
@@ -70689,6 +70689,14 @@ PrefabInstance:
       propertyPath: waves.Array.data[19]
       value: 
       objectReference: {fileID: 11400000, guid: e81b464699ab140409d86ba37c505a49, type: 2}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: waves.Array.data[20]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0b27083c3c061414895290162f627616, type: 2}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: waves.Array.data[21]
+      value: 
+      objectReference: {fileID: 11400000, guid: fb1a9ef14db092a4c8f47ce9e894ce63, type: 2}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: soundtracks.Array.size
       value: 5

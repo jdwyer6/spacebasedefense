@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17520347318a8ab4b8d846d19e7d6f7a, type: 3}
-  m_Name: Hex and Eye
+  m_Name: Enemy_2 and Googley
   m_EditorClassIdentifier: 
-  title: Hex and Eye
+  title: Enemy_2 and Googley
   enemies:
-  - {fileID: 2448062567560744406, guid: 81e866a724f3f8e4b99c3820165c204c, type: 3}
-  - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
-  - {fileID: 8811259199029991819, guid: 02d394c76ffbebe488715b20443c66cd, type: 3}
-  - {fileID: 4803831403545104576, guid: b0733f5a09c19294fa3331628cfc370c, type: 3}
-  numberOfSpawnCycles: 5
+  - {fileID: 6661030510014599329, guid: 67ef1d52aaa67a049ac88e16403040ac, type: 3}
+  - {fileID: 6661030510014599329, guid: 67ef1d52aaa67a049ac88e16403040ac, type: 3}
+  - {fileID: 837704418610325059, guid: 057cbf306d47b4442996ec949ed931cf, type: 3}
+  numberOfSpawnCycles: 4
   timeBetweenCycle: 5
   difficulty: 1
   isBoss: 0
