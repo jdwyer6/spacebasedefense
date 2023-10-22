@@ -18,6 +18,12 @@ TagManager:
   - Enemy_Projectile
   - Player_Projectile
   - RunData
+  - DropsUIContainer
+  - ToolTipManager
+  - BossHealthBar
+  - Barrier
+  - Chest_Door
+  - Chest_Room
   layers:
   - Default
   - TransparentFX

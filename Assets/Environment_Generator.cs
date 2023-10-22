@@ -13,7 +13,7 @@ public class Environment_Generator : MonoBehaviour
     public GameObject[] buildingBlocks;
 
     private float[] initialBaseEnvironmentRotationOptions = new float[] {0, 90, -90, 180};
-    private float initialBaseEnvironmentRotation;
+    public float initialBaseEnvironmentRotation;
     public GameObject[] baseEnvironments;
     public GameObject[] chestRooms;
 
@@ -35,11 +35,14 @@ public class Environment_Generator : MonoBehaviour
         new Color(0.75f, 0.75f, 0.7f)    // Muted Pastel Beige
     };
 
+    private void Awake() {
+        initialBaseEnvironmentRotation = initialBaseEnvironmentRotationOptions[GetRandomNum(0, initialBaseEnvironmentRotationOptions.Length)];
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        initialBaseEnvironmentRotation = initialBaseEnvironmentRotationOptions[GetRandomNum(0, initialBaseEnvironmentRotationOptions.Length)];
         GenerateLevel();
     }
 

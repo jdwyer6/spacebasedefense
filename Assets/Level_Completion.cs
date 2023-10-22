@@ -5,10 +5,12 @@ using TMPro;
 
 public class Level_Completion : MonoBehaviour
 {
-    public TextMeshProUGUI countdownText; // Assign this via Inspector
+    public TextMeshProUGUI countdownText; 
 
-    private float countdownDuration = 12f * 60f; // 20 minutes in seconds
+    private float countdownDuration = 12f * 60f; 
+    public float remainingTime;
     public GameObject levelCompleteScreen;
+    public bool timerPaused = false;
 
     private void Start()
     {
@@ -18,11 +20,15 @@ public class Level_Completion : MonoBehaviour
 
     IEnumerator Countdown()
     {
-        float remainingTime = countdownDuration;
+        remainingTime = countdownDuration;
 
         while (remainingTime > 0)
         {
-            // Calculate minutes and seconds from the remaining time
+            if(timerPaused) {
+                yield return null;
+                continue;
+            }
+
             int minutes = Mathf.FloorToInt(remainingTime / 60);
             int seconds = Mathf.FloorToInt(remainingTime % 60);
 

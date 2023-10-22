@@ -64,10 +64,17 @@ public class Enemy_Spawner : MonoBehaviour
             wave.probabilityToSpawn = 100;
             waves.Add(wave);
         }
-        // if(!isTutorial) {
-            StartCoroutine(SpawnEnemy());
-        // }
 
+        if(GetComponent<Environment_Generator>().initialBaseEnvironmentRotation == 90 || GetComponent<Environment_Generator>().initialBaseEnvironmentRotation == -90) {
+            extremumX = 25;
+            extremumY = 40;
+            Debug.Log("is 90 or -90");
+        }else{
+            Debug.Log("is 0 or 180");
+        }
+
+        StartCoroutine(SpawnEnemy());
+        
         waveText.text = "Wave " + level.ToString();
     }
 
