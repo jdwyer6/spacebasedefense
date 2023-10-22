@@ -10359,7 +10359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4a7c69149238049ab99b7475bca346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probabilityToDrop: 2
+  probabilityToDrop: 3
   dropPrefab: {fileID: 9214423213955990384, guid: 3838dc53eeba49443922e61e30db6793, type: 3}
 --- !u!60 &2031749604632979894
 PolygonCollider2D:

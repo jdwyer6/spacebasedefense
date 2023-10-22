@@ -381,3 +381,15 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: KissOfDeath
+    clip: {fileID: 8300000, guid: fa4849d4ae1c63445b297314409188e1, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Open_Chest
+    clip: {fileID: 8300000, guid: beff115b5be76344b977d1c007d421af, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

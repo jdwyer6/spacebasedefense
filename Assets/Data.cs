@@ -28,4 +28,5 @@ public class Data : MonoBehaviour
     public List<Drop> drops;
 
     public Character[] characters;
+    public Gun[] guns;
 }
