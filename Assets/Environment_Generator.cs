@@ -15,6 +15,7 @@ public class Environment_Generator : MonoBehaviour
     private float[] initialBaseEnvironmentRotationOptions = new float[] {0, 90, -90, 180};
     private float initialBaseEnvironmentRotation;
     public GameObject[] baseEnvironments;
+    public GameObject[] chestRooms;
 
     private Color[] colors = new Color[]
     {
@@ -46,6 +47,7 @@ public class Environment_Generator : MonoBehaviour
         SelectColor();
         CreateBaseDesign();
         MirrorDesignOnXAxis();
+        SetBase();
     }
 
     private void CreateBaseDesign() {
@@ -115,6 +117,8 @@ public class Environment_Generator : MonoBehaviour
     }
 
     private void SetBase() {
-        // Instantiate(baseEnvironments[GetRandomNum(0, baseEnvironments.Length)], new Vector2(0, 0), Euler.initialBaseEnvironmentRotation);
+        GameObject basePrefab = Instantiate(baseEnvironments[GetRandomNum(0, baseEnvironments.Length)], new Vector2(0, 0), Quaternion.Euler(0, 0, initialBaseEnvironmentRotation));
+        Transform chestRoomSpawnPoint = basePrefab.transform.Find("ChestRoomSpawnPoint");
+        Instantiate(chestRooms[GetRandomNum(0, chestRooms.Length)], chestRoomSpawnPoint.position, Quaternion.Euler(0, 0, initialBaseEnvironmentRotation));
     }
 }

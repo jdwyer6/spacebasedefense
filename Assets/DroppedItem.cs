@@ -58,6 +58,13 @@ public class DroppedItem : MonoBehaviour
                 gm.GetComponent<Data>().drops.Remove(drop);
             }
 
+            if (drop.titleCode == "key") {
+                am.Play(drop.sound);
+                player.GetComponent<Keys_and_Chests>().keys++;
+                SetDropUI(drop);
+                gm.GetComponent<Data>().drops.Remove(drop);
+            }
+
             toolTipManager.ShowToolTip(drop.title, drop.description);
 
             Destroy(gameObject);

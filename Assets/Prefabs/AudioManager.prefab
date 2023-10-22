@@ -369,3 +369,15 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: Ding
+    clip: {fileID: 8300000, guid: 06a6eec5cd2172f44b236d70620f6735, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Door_Open
+    clip: {fileID: 8300000, guid: c164e34a781f8a34493ca626563f32c8, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
