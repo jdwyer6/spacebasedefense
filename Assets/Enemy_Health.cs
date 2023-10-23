@@ -22,6 +22,8 @@ public class Enemy_Health : MonoBehaviour
     public GameObject enemyToSpawnAtDeath;
     public int numberOfEnemiesToSpawnAtDeath;
 
+    public GameObject coin;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +72,12 @@ public class Enemy_Health : MonoBehaviour
             // Instantiate(randomDrop, transform.position, Quaternion.identity);
         }
         player.GetComponent<Building>().bricks += 2;
+
+        for (int i = 0; i < GetComponent<Enemy_Data>().numOfCoins; i++)
+        {
+            Instantiate(coin, new Vector2(transform.position.x + UnityEngine.Random.Range(0, 1f), transform.position.y + UnityEngine.Random.Range(0, 1f)), Quaternion.identity);
+        }
+        
 
         var drops = gm.GetComponent<Data>().drops;
         if(drops.Count > 0 && !hasBossDrop) {

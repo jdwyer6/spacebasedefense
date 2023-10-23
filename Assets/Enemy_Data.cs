@@ -9,4 +9,5 @@ public class Enemy_Data : MonoBehaviour
     public float damage;
     public bool hasLaser;
     public int probabilityToSpawn;
+    public int numOfCoins;
 }

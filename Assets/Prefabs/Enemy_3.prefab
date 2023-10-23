@@ -341,6 +341,7 @@ MonoBehaviour:
   spawnMoreEnemiesAtDeath: 0
   enemyToSpawnAtDeath: {fileID: 0}
   numberOfEnemiesToSpawnAtDeath: 0
+  coin: {fileID: 8777426474650213502, guid: 4a39a9775fe620643bd2c0f1676baac5, type: 3}
 --- !u!50 &8493976368469359617
 Rigidbody2D:
   serializedVersion: 4
@@ -379,6 +380,7 @@ MonoBehaviour:
   damage: 10
   hasLaser: 0
   probabilityToSpawn: 100
+  numOfCoins: 1
 --- !u!114 &414095638979292259
 MonoBehaviour:
   m_ObjectHideFlags: 0

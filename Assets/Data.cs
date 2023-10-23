@@ -29,4 +29,5 @@ public class Data : MonoBehaviour
 
     public Character[] characters;
     public Gun[] guns;
+    public PlayerPrefData playerPrefData;
 }
