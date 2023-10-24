@@ -11,6 +11,7 @@ public class Enemy_Movement : MonoBehaviour
     private GameObject gm;
 
     public bool isStationary;
+    public bool followsVertically;
 
     void Start()
     {
@@ -35,6 +36,22 @@ public class Enemy_Movement : MonoBehaviour
             if(!isStationary) {
                 Vector2 direction = (player.position - transform.position).normalized;
                 rb2d.velocity = direction * speed;
+            }else if(followsVertically) {
+                float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+                // If the player is more than 25 units away, move towards the player.
+                if(distanceToPlayer > 25)
+                {
+                    Vector2 direction = (player.position - transform.position).normalized;
+                    rb2d.velocity = direction * speed;
+                }
+                // If the player is within 25 units, only follow the player vertically.
+                else
+                {
+                    float yDifference = player.position.y - transform.position.y;
+                    float yDirection = Mathf.Sign(yDifference); // This will give -1, 0, or 1
+                    rb2d.velocity = new Vector2(0, yDirection * speed);
+                }
             }else{
                 float distance = Vector2.Distance(transform.position, player.position);
                 if (distance <= 15f)

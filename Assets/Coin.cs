@@ -10,6 +10,8 @@ public class Coin : MonoBehaviour
     private GameObject gm;
     private AudioManager am;
     public float speed = 5.0f;
+        public float minSpeedOffset = -1.0f;
+    public float maxSpeedOffset = 1.0f;
     public GameObject coinParticles;
     private TextMeshProUGUI coinText;
 
@@ -20,6 +22,7 @@ public class Coin : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GM");
         am = FindObjectOfType<AudioManager>();
         coinText = GameObject.FindGameObjectWithTag("CashText").GetComponent<TextMeshProUGUI>();
+        speed += Random.Range(minSpeedOffset, maxSpeedOffset);
     }
 
     // Update is called once per frame
@@ -48,17 +51,9 @@ public class Coin : MonoBehaviour
 
     void MoveTowardsTargetWithEasing(Vector3 targetPosition)
     {
-        // Calculate the distance to the target
         float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
-
-        // Calculate an easing factor based on distance, with an inverse square relationship
-        // The +1 is to ensure we never divide by zero
         float easingFactor = 1.0f / (distanceToTarget + 1);
-
-        // Calculate the step to move this frame
         float step = speed * easingFactor * Time.deltaTime;
-
-        // Move towards the target
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
     }
 }
