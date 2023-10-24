@@ -124,4 +124,9 @@ public class Environment_Generator : MonoBehaviour
         Transform chestRoomSpawnPoint = basePrefab.transform.Find("ChestRoomSpawnPoint");
         Instantiate(chestRooms[GetRandomNum(0, chestRooms.Length)], chestRoomSpawnPoint.position, Quaternion.Euler(0, 0, initialBaseEnvironmentRotation));
     }
+
+    private void ResetEditorPreferences() {
+        Camera mainCam = Camera.main;
+        mainCam.backgroundColor = new Color(255f/255f, 73f/255f, 73f/255f, 1f);
+    }
 }
