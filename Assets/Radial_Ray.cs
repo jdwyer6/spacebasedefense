@@ -12,6 +12,7 @@ public class Radial_Ray : MonoBehaviour
     public GameObject laser;
     private AudioManager am;
     public Collider2D col;
+    public ParticleSystem particles;
     
 
     // Start is called before the first frame update
@@ -54,6 +55,10 @@ public class Radial_Ray : MonoBehaviour
             col.enabled = true;
             rotate = true;
             am.Play("RadialRay");
+            if(particles != null) {
+                particles.Play();
+            }
+
             yield return new WaitForSeconds(timeBetweenRotations);
 
         }

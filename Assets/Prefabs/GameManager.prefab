@@ -146,6 +146,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b9e6f54817341f240929351e3b49d89b, type: 2}
   - {fileID: 11400000, guid: 0d25e5b26321cd740be2e17ec6b8ed1c, type: 2}
   - {fileID: 11400000, guid: 9750d6677542a8f4fa6b3f8e59a33d1d, type: 2}
+  - {fileID: 11400000, guid: bace8970094a0f04abcea96678cd3550, type: 2}
   waves:
   - {fileID: 11400000, guid: bed0dc8ff622e954b993e0ce944b1d6d, type: 2}
   - {fileID: 11400000, guid: 4e5189152bebb8c49ab8b69e49491927, type: 2}
@@ -184,6 +185,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f8d63247e3eaee14c89f6d2f9f1a2c8c, type: 2}
   guns:
   - {fileID: 11400000, guid: 852c42de3b0f9ed488d2a8a7674a24c3, type: 2}
+  playerPrefData: {fileID: 11400000, guid: c4c71502596f1a34c9b2175bfe81ad98, type: 2}
 --- !u!114 &4570469017198267501
 MonoBehaviour:
   m_ObjectHideFlags: 0

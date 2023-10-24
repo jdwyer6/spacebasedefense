@@ -42,6 +42,7 @@ public class Upgrades : MonoBehaviour
     UpgradeLogicType spread = UpgradeLogicType.spread;
     UpgradeLogicType lightning = UpgradeLogicType.lightning;
     UpgradeLogicType omnishot = UpgradeLogicType.omnishot;
+    UpgradeLogicType radialRay = UpgradeLogicType.radialRay;
 
     public GameObject speedBoostParticles;
 
@@ -55,6 +56,7 @@ public class Upgrades : MonoBehaviour
 
     public GameObject lightningUpgrade;
     public GameObject omnishotPrefab;
+    public GameObject radialRayPrefab;
 
 
     // Start is called before the first frame update
@@ -240,6 +242,9 @@ public class Upgrades : MonoBehaviour
                     break;
                 case UpgradeLogicType.omnishot:
                 newUpgrade.GetComponent<Button>().onClick.AddListener(() => Omnishot(newUpgrade));
+                    break;
+                case UpgradeLogicType.radialRay:
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => RadialRay(newUpgrade));
                     break;
             }
         }
@@ -435,6 +440,17 @@ public class Upgrades : MonoBehaviour
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == omnishot).acquired) {
             HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == omnishot));
             omnishotPrefab.SetActive(true);
+            ResetAndUpdatePickups();
+            CloseUpgradesMenu();
+        }else{
+            am.Play("UI_Disabled");
+        }
+    }
+
+    public void RadialRay(GameObject button) {
+        if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == radialRay).acquired) {
+            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == radialRay));
+            radialRayPrefab.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
