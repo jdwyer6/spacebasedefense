@@ -10,4 +10,5 @@ public class Enemy_Data : MonoBehaviour
     public bool hasLaser;
     public int probabilityToSpawn;
     public int numOfCoins;
+    public bool showBloodHit = true;
 }

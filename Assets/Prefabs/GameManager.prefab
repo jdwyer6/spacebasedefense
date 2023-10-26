@@ -186,6 +186,10 @@ MonoBehaviour:
   guns:
   - {fileID: 11400000, guid: 852c42de3b0f9ed488d2a8a7674a24c3, type: 2}
   playerPrefData: {fileID: 11400000, guid: c4c71502596f1a34c9b2175bfe81ad98, type: 2}
+  bulletHolePrefabs:
+  - {fileID: 2103613736420850286, guid: 243e5c1fa215b0f4ea3af33f3d738779, type: 3}
+  - {fileID: 1542889480603824151, guid: 450a696443dfb994098816e36d1f35f2, type: 3}
+  - {fileID: 7334762097058080348, guid: 0ea89cfec83ee9a40a2353d46f727cae, type: 3}
 --- !u!114 &4570469017198267501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,6 +565,7 @@ MonoBehaviour:
   - {fileID: 7325194218310117412, guid: e6edced90f606534c8098056abff0216, type: 3}
   chestRooms:
   - {fileID: 4558081304368214547, guid: 11fe059711d9e064ca5096613a926c2b, type: 3}
+  shouldGenerateEnvironment: 1
 --- !u!114 &1055520194
 MonoBehaviour:
   m_ObjectHideFlags: 0

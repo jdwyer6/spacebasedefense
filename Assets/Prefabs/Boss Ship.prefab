@@ -20656,6 +20656,7 @@ MonoBehaviour:
   originalSpeed: 2
   speed: 0
   isStationary: 0
+  followsVertically: 0
 --- !u!114 &4412357053830864110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20719,6 +20720,7 @@ MonoBehaviour:
   hasLaser: 0
   probabilityToSpawn: 100
   numOfCoins: 25
+  showBloodHit: 1
 --- !u!114 &4412357053830864093
 MonoBehaviour:
   m_ObjectHideFlags: 0

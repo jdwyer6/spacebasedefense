@@ -10168,6 +10168,7 @@ MonoBehaviour:
   originalSpeed: 1
   speed: 0
   isStationary: 0
+  followsVertically: 0
 --- !u!58 &5026017844872023376
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10392,6 +10393,7 @@ MonoBehaviour:
   hasLaser: 1
   probabilityToSpawn: 20
   numOfCoins: 6
+  showBloodHit: 1
 --- !u!114 &6759144182823826603
 MonoBehaviour:
   m_ObjectHideFlags: 0

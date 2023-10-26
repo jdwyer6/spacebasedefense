@@ -10583,6 +10583,7 @@ MonoBehaviour:
   hasLaser: 0
   probabilityToSpawn: 100
   numOfCoins: 11
+  showBloodHit: 1
 --- !u!114 &8293076742763999119
 MonoBehaviour:
   m_ObjectHideFlags: 0

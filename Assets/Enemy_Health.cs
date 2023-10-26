@@ -22,6 +22,8 @@ public class Enemy_Health : MonoBehaviour
     public GameObject enemyToSpawnAtDeath;
     public int numberOfEnemiesToSpawnAtDeath;
 
+    private GameObject[] bulletHolePrefabs;
+
     public GameObject coin;
 
     // Start is called before the first frame update
@@ -32,6 +34,7 @@ public class Enemy_Health : MonoBehaviour
         data = gm.GetComponent<Data>();
         am = FindObjectOfType<AudioManager>();
         player = GameObject.FindGameObjectWithTag("Player");
+        bulletHolePrefabs = data.bulletHolePrefabs;
     }
 
     // Update is called once per frame
@@ -45,6 +48,10 @@ public class Enemy_Health : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "Player_Projectile") {
             TakeDamage(other.gameObject.GetComponent<Projectile>().damage);
+            if(GetComponent<Enemy_Data>().showBloodHit) {
+                ShowBloodHit(other.gameObject);
+            }
+
             am.Play(data.bloodHits[Random.Range(0, data.bloodHits.Length)]);
 
             Vector2 incomingDirection = (other.transform.position - transform.position).normalized;
@@ -61,7 +68,7 @@ public class Enemy_Health : MonoBehaviour
 
     public void TakeDamage(float damageToTake) {
         currentHealth -= damageToTake;
-        ShowBloodHit();
+        // ShowBloodHit();
         StartCoroutine(ChangeColor());
     }
 
@@ -118,38 +125,22 @@ public class Enemy_Health : MonoBehaviour
         isChangingColor = false;
     }
 
-    void ShowBloodHit() 
+    void ShowBloodHit(GameObject collisionObject) 
     {
-        Transform[] allChildren = gameObject.GetComponentsInChildren<Transform>();
-        List<GameObject> bloodHitsList = new List<GameObject>();
-        
-        foreach (Transform child in allChildren)
-        {
-            SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
-            if (child.CompareTag("Blood_Hit") && sr != null && !sr.enabled)
-            {
-                bloodHitsList.Add(child.gameObject);
-            }
-        }
+        Vector2 hitPoint = collisionObject.transform.position;
+        Vector2 centerPoint = transform.position;
+        float distanceToCenter = Vector2.Distance(hitPoint, centerPoint);
 
-        if(bloodHitsList.Count > 0) 
-        {
-            int randomIndex = Random.Range(0, bloodHitsList.Count);
-            SpriteRenderer selectedSR = bloodHitsList[randomIndex].GetComponent<SpriteRenderer>();
-            if(selectedSR != null) 
-            {
-                selectedSR.enabled = true;
+        float minLerp = 0.5f / distanceToCenter;
+        float randomLerpValue = UnityEngine.Random.Range(minLerp, 1f);
 
-                // Check for the "Blood_Drops" child and activate it
-                foreach (Transform childOfSelected in bloodHitsList[randomIndex].transform)
-                {
-                    if (childOfSelected.CompareTag("Blood_Drops"))
-                    {
-                        childOfSelected.gameObject.SetActive(true);
-                    }
-                }
-            }
-        }
+        Vector2 instantiatePosition = Vector2.Lerp(hitPoint, centerPoint, randomLerpValue);
+
+        float randomZ = UnityEngine.Random.Range(0f, 360f);
+        Quaternion randomRotation = Quaternion.Euler(0, 0, randomZ);
+
+        GameObject bloodHit = Instantiate(bulletHolePrefabs[UnityEngine.Random.Range(0, bulletHolePrefabs.Length)], instantiatePosition, randomRotation);
+        bloodHit.transform.SetParent(this.transform);
     }
 
     bool WillDropPickup() {

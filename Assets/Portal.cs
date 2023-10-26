@@ -11,6 +11,7 @@ public class Portal : MonoBehaviour
     public float totalTime;
     bool sceneLoaded = false;
     bool runTimer;
+    public int sceneToLoad;
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class Portal : MonoBehaviour
     {
         if(timer >= totalTime && !sceneLoaded) {
             GameObject.FindGameObjectWithTag("Player").transform.position = new Vector2(0, 0);
-            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings);
+            SceneManager.LoadScene(sceneToLoad);
             sceneLoaded = true;
         }
 

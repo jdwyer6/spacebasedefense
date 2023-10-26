@@ -401,12 +401,12 @@ public class Upgrades : MonoBehaviour
     public void HealthyHabits(GameObject button) {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == healthyHabits).acquired) {
             HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == healthyHabits));
-            GetComponent<Player_Health>().maxHealth *= 2;
+            GetComponent<Player_Health>().maxHealth *= 1.2f;
             GetComponent<Player_Health>().currentHealth = GetComponent<Player_Health>().maxHealth;
             GetComponent<Player_Health>().healthBar.value = GetComponent<Player_Health>().maxHealth;
             GetComponent<Player_Health>().targetHealthValue = GetComponent<Player_Health>().currentHealth;
             RectTransform healthBarRect = GetComponent<Player_Health>().healthBar.GetComponent<RectTransform>();
-            healthBarRect.sizeDelta = new Vector2(healthBarRect.sizeDelta.x * 2, healthBarRect.sizeDelta.y);
+            healthBarRect.sizeDelta = new Vector2(healthBarRect.sizeDelta.x * 1.2f, healthBarRect.sizeDelta.y);
 
             ResetAndUpdatePickups();
             CloseUpgradesMenu();

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Environment_Generator : MonoBehaviour
 {
@@ -43,7 +44,10 @@ public class Environment_Generator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateLevel();
+        if(SceneManager.GetActiveScene().buildIndex >= 3 ) {
+            GenerateLevel();
+        }
+       
     }
 
     private void GenerateLevel() {

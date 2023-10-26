@@ -16,6 +16,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 0d7d265009332eb4bb935eaa2df49b2c, type: 3}
   value: 2
   title: Healthy Habits
-  description: Extend Health Bar x2
+  description: Extend health bar by 20% and gain full health.
   upgradeLogic: 7
-  acquired: 1
+  acquired: 0

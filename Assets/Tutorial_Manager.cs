@@ -20,6 +20,7 @@ public class Tutorial_Manager : MonoBehaviour
     public GameObject dustParticles;
 
     bool hasTriggeredSpawn;
+    bool generateEnvironment;
 
     // Start is called before the first frame update
     void Start()
