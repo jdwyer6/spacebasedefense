@@ -15,7 +15,7 @@ public class Cash : MonoBehaviour
     {
         gm = GameObject.FindGameObjectWithTag("GM");
         coinText = GameObject.FindGameObjectWithTag("CashText").GetComponent<TextMeshProUGUI>();
-        coinText.text = gm.GetComponent<Data>().playerPrefData.cash.ToString();
+        coinText.text = PlayerPrefs.GetInt("coins", 0).ToString();
     }
 
 }

@@ -41,10 +41,11 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Player"){
-            gm.GetComponent<Data>().playerPrefData.cash++;
+            int currentCoins = PlayerPrefs.GetInt("coins");
+            PlayerPrefs.SetInt("coins", currentCoins + 1);
             am.Play("Coin");
             Instantiate(coinParticles, transform.position, Quaternion.identity);
-            coinText.text = gm.GetComponent<Data>().playerPrefData.cash.ToString();
+            coinText.text = PlayerPrefs.GetInt("coins", 0).ToString();
             Destroy(gameObject);
         }
     }
