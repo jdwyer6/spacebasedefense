@@ -153,6 +153,11 @@ public class Menu_Logic : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void LoadScene(int sceneNumber) {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(sceneNumber);
+    }
+
     public void SelectCharacter() {
         Character_Button characterButton = EventSystem.current.currentSelectedGameObject.GetComponent<Character_Button>();
         Run_Data runData = GameObject.FindGameObjectWithTag("RunData").GetComponent<Run_Data>();

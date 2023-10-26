@@ -10389,7 +10389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelToSpawn: 2
   levelToStopSpawning: 100
-  damage: 40
+  damage: 10
   hasLaser: 1
   probabilityToSpawn: 20
   numOfCoins: 6

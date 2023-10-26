@@ -11,7 +11,7 @@ public class StoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // currentCashText.text = gm.GetComponent<Data>().playerPrefData.cash.ToString();
+        currentCashText.text = PlayerPrefs.GetInt("coins", 0).ToString();
     }
 
     // Update is called once per frame
