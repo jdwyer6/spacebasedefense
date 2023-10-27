@@ -511,6 +511,7 @@ MonoBehaviour:
   spawnMoreEnemiesAtDeath: 1
   enemyToSpawnAtDeath: {fileID: 6334215718217157200, guid: 05f730d9ec7aff84a88f30436a89fb98, type: 3}
   numberOfEnemiesToSpawnAtDeath: 5
+  bloodLeakParticles: {fileID: 7704732546190525983, guid: c472f662b30ec2042a14fdcecc556e51, type: 3}
   coin: {fileID: 8777426474650213502, guid: 4a39a9775fe620643bd2c0f1676baac5, type: 3}
 --- !u!50 &5056453897818161697
 Rigidbody2D:

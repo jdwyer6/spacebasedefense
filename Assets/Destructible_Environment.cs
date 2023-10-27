@@ -48,10 +48,17 @@ public class Destructible_Environment : MonoBehaviour
                 Instantiate(data.dustParticles, transform.position, quaternion.identity);
                 Destroy(gameObject);
             } else {
+                if(data == null)
+                {
+                    Debug.LogError("Data component not found on GM object.");
+                    return;
+                }
+
                 Instantiate(data.destructionParticles, transform.position, quaternion.identity);
                 GameObject piece = data.environmentDamaged[UnityEngine.Random.Range(0, data.environmentDamaged.Length)];
                 Instantiate(piece, transform.position, rotation);
                 Destroy(gameObject);
+
             }
         }
     }

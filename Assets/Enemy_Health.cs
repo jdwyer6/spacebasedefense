@@ -23,6 +23,7 @@ public class Enemy_Health : MonoBehaviour
     public int numberOfEnemiesToSpawnAtDeath;
 
     private GameObject[] bulletHolePrefabs;
+    public GameObject bloodLeakParticles;
 
     public GameObject coin;
 
@@ -141,6 +142,12 @@ public class Enemy_Health : MonoBehaviour
 
         GameObject bloodHit = Instantiate(bulletHolePrefabs[UnityEngine.Random.Range(0, bulletHolePrefabs.Length)], instantiatePosition, randomRotation);
         bloodHit.transform.SetParent(this.transform);
+
+        int randomNum = UnityEngine.Random.Range(0, 100);
+        if(randomNum < 20) {
+            GameObject particles = Instantiate(bloodLeakParticles, instantiatePosition, Quaternion.identity);
+            particles.transform.SetParent(this.transform);
+        }
     }
 
     bool WillDropPickup() {

@@ -6,11 +6,11 @@ using TMPro;
 
 public class Coin : MonoBehaviour
 {
-    private Transform player;
+    private Transform coinUIPos;
     private GameObject gm;
     private AudioManager am;
     public float speed = 5.0f;
-        public float minSpeedOffset = -1.0f;
+    public float minSpeedOffset = -1.0f;
     public float maxSpeedOffset = 1.0f;
     public GameObject coinParticles;
     private TextMeshProUGUI coinText;
@@ -18,7 +18,7 @@ public class Coin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        coinUIPos = GameObject.FindGameObjectWithTag("CoinUIPos").transform;
         gm = GameObject.FindGameObjectWithTag("GM");
         am = FindObjectOfType<AudioManager>();
         coinText = GameObject.FindGameObjectWithTag("CashText").GetComponent<TextMeshProUGUI>();
@@ -28,19 +28,19 @@ public class Coin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player != null)
+        if (coinUIPos != null)
         {
-            Vector3 nextPosition = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            Vector3 nextPosition = Vector3.MoveTowards(transform.position, coinUIPos.position, speed * Time.deltaTime);
 
             transform.position = nextPosition;
         }
 
-        MoveTowardsTargetWithEasing(player.position);
+        MoveTowardsTargetWithEasing(coinUIPos.position);
     
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "Player"){
+        if(other.gameObject.tag == "CoinUIPos"){
             int currentCoins = PlayerPrefs.GetInt("coins");
             PlayerPrefs.SetInt("coins", currentCoins + 1);
             am.Play("Coin");

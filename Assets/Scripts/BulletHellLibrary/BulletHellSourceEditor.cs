@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 
@@ -66,3 +67,4 @@ public class BulletHellSourceEditor : Editor
         }
     }
 }
+#endif

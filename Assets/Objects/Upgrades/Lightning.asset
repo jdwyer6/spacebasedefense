@@ -16,6 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: e20b9397ed2220041b4c64077bbf6fed, type: 3}
   value: 0
   title: Lightning Strike
-  description: Damage the closes enemy to you at set intervals with a lightning strike.
+  description: Damage the closest enemy to you at set intervals with a lightning
+    strike.
   upgradeLogic: 9
   acquired: 0

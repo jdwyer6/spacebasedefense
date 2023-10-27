@@ -32,11 +32,11 @@ public class Enemy_Laser : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         am = FindObjectOfType<AudioManager>();
-        originalColor = spriteRenderer.color; // Store the original color.
-        player = GameObject.FindGameObjectWithTag("Player").transform; // Assuming the player is tagged "Player".
+        originalColor = spriteRenderer.color; 
+        player = GameObject.FindGameObjectWithTag("Player").transform; 
         lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.enabled = false; // Initially, the laser is not visible.
-        // edgeCollider = GetComponent<EdgeCollider2D>();
+        lineRenderer.enabled = false; 
+        edgeCollider = GetComponent<EdgeCollider2D>();
         edgeCollider.enabled = false;
 
 
@@ -66,13 +66,19 @@ public class Enemy_Laser : MonoBehaviour
 
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+            return; 
+        }
+
         if (isFiring)
         {
             lineRenderer.SetPosition(0, laser_start_location.position);
             UpdateLaserCollider();
         }
 
-        if(Vector3.Distance(transform.position, player.position) < distanceFromPlayerToStartShooting)
+        if (player && Vector3.Distance(transform.position, player.position) < distanceFromPlayerToStartShooting)
         {
             canFire = true;
         }else{
@@ -89,6 +95,12 @@ public class Enemy_Laser : MonoBehaviour
 
             // Determine the direction of the laser based on the player's position at the start of the telegraph period.
             targetDirection = (player.position - laser_start_location.position).normalized;
+            lineRenderer.SetPosition(0, laser_start_location.position);
+            lineRenderer.SetPosition(1, laser_start_location.position + targetDirection * laserLength);
+            lineRenderer.startWidth = 0.02f;
+            lineRenderer.endWidth = 0.02f;
+            spriteRenderer.color = Color.white;
+            lineRenderer.enabled = true;
 
             // Telegraph for 1 second.
             float telegraphDuration = 1f;
@@ -110,6 +122,8 @@ public class Enemy_Laser : MonoBehaviour
                 lineRenderer.SetPosition(0, laser_start_location.position);
                 lineRenderer.SetPosition(1, laser_start_location.position + targetDirection * laserLength);
                 lineRenderer.enabled = true;
+                lineRenderer.startWidth = 0.2f;
+                lineRenderer.endWidth = 0.2f;
                 isFiring = true; // Set the firing flag to true.
                 
                 ActivateLaserCollider();
