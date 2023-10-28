@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class Player_Health : MonoBehaviour
 {
     public float maxHealth = 100f; // Maximum health of the player
-    public Slider healthBar; // Reference to the health bar UI slider
+    public Slider healthBar; 
     
     public float currentHealth; // Current health of the player
     public bool canTakeDamage = true;
     private AudioManager am;
     private GameObject gm;
     private Data data;
-    public float targetHealthValue; // The target value for the health slider
+    public float targetHealthValue; 
     public float healthSliderSpeed = 5f;
     public bool isDead;
     bool isChangingColor = false;
@@ -26,7 +26,7 @@ public class Player_Health : MonoBehaviour
     {
         gm = GameObject.FindGameObjectWithTag("GM");
         data = gm.GetComponent<Data>();
-        maxHealth = 100f;
+        InitializeHealthValuesFromPlayerPrefs();
         currentHealth = maxHealth; // Initialize current health to max health
         am = FindObjectOfType<AudioManager>();
         targetHealthValue = currentHealth; // Initialize the target value
@@ -132,5 +132,12 @@ public class Player_Health : MonoBehaviour
         canTakeDamage = false;
         yield return new WaitForSeconds(1);
         canTakeDamage = true;
+    }
+
+    private void InitializeHealthValuesFromPlayerPrefs() {
+        float initialHealthMultiplier = PlayerPrefs.GetFloat("InitialHealthMultiplier");
+        maxHealth = 100 * initialHealthMultiplier;
+        RectTransform healthBarRect = healthBar.GetComponent<RectTransform>();
+        healthBarRect.sizeDelta = new Vector2(healthBarRect.sizeDelta.x * initialHealthMultiplier, healthBarRect.sizeDelta.y);
     }
 }

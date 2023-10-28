@@ -1,0 +1,2 @@
+Reset Coins to 0
+Reset Multipliers to 1

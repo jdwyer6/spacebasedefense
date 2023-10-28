@@ -11,12 +11,40 @@ public class StoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentCashText.text = PlayerPrefs.GetInt("coins", 0).ToString();
+        int coins = PlayerPrefs.GetInt("coins");
+        currentCashText.text = coins.ToString();
+        // updateCoinText(); TODO
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void SelectHealth(int cost) {
+        if(!CheckHasEnoughCoins(cost)) return;
+        int coins = PlayerPrefs.GetInt("coins");
+        Debug.Log("SelectHealth()");
+        float initialHealthMultiplier = PlayerPrefs.GetFloat("InitialHealthMultiplier");
+        PlayerPrefs.SetFloat("InitialHealthMultiplier", initialHealthMultiplier += .2f);
+        coins -= cost;
+        PlayerPrefs.SetFloat("coins", coins);
+        updateCoinText();
+
+    }
+
+    private bool CheckHasEnoughCoins(int cost) {
+        int coins = PlayerPrefs.GetInt("coins");
+        if(cost > coins) {
+            return false;
+        }
+        return true;
+    }
+
+    private void updateCoinText() {
+        int coins = PlayerPrefs.GetInt("coins");
+        currentCashText.text = coins.ToString();
     }
 }
