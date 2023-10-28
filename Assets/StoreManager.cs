@@ -7,13 +7,12 @@ using TMPro;
 public class StoreManager : MonoBehaviour
 {
     public TextMeshProUGUI currentCashText;
+    public Upgrade[] storeUpgrades;
 
     // Start is called before the first frame update
     void Start()
     {
-        int coins = PlayerPrefs.GetInt("coins");
-        currentCashText.text = coins.ToString();
-        // updateCoinText(); TODO
+        updateCoinText();
 
     }
 

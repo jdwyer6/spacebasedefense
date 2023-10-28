@@ -18,4 +18,6 @@ MonoBehaviour:
   title: Arsonist
   description: Flaming bullets do 1.5x damage.
   upgradeLogic: 2
-  acquired: 1
+  methodName: Arsen
+  acquired: 0
+  purchased: 0

@@ -18,4 +18,6 @@ MonoBehaviour:
   title: Omnishot
   description: Periodically fire a ring of projectiles at set intervals.
   upgradeLogic: 10
+  methodName: Omnishot
   acquired: 0
+  purchased: 0

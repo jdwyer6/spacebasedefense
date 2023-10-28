@@ -18,4 +18,6 @@ MonoBehaviour:
   title: Shield
   description: Stops all incoming projectiles until shield health is depleted.
   upgradeLogic: 4
-  acquired: 1
+  methodName: Shield
+  acquired: 0
+  purchased: 0

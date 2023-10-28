@@ -18,4 +18,6 @@ MonoBehaviour:
   title: EMP
   description: Reusable destuctive blast. 30 second recharge. Press space to use.
   upgradeLogic: 5
+  methodName: EMP
   acquired: 0
+  purchased: 0

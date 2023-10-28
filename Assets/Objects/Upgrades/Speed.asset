@@ -18,3 +18,6 @@ MonoBehaviour:
   title: 1.5X Speed
   description: Get way faster.
   upgradeLogic: 0
+  methodName: Speed
+  acquired: 0
+  purchased: 0

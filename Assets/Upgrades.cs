@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 using System;
+using System.Reflection;
 
 
 public class Upgrades : MonoBehaviour
@@ -74,10 +75,7 @@ public class Upgrades : MonoBehaviour
         }
         eventSystem = EventSystem.current;
 
-        foreach (var upgrade in upgrades)
-        {
-            upgrade.acquired = false;
-        }
+        SetAcquiredUpgrades();
 
     }
 
@@ -278,7 +276,23 @@ public class Upgrades : MonoBehaviour
         am.Play("UI_Hover");
     }
 
-    
+    private void SetAcquiredUpgrades() {
+        foreach (var upgrade in upgrades)
+        {
+            if(upgrade.purchased) {
+                upgrade.acquired = true;
+                MethodInfo method = this.GetType().GetMethod(upgrade.methodName);
+                if (method != null)
+                {
+                    method.Invoke(this, null);
+                }
+            }else{
+                upgrade.acquired = false;
+            }
+            
+        }
+    }
+
     void ResetAndUpdatePickups(){
         pickupsNeededForNextUpgrade = Mathf.Floor(pickupsNeededForNextUpgrade * pickupLevelMultiplier);
         pickups = 0;
@@ -323,10 +337,8 @@ public class Upgrades : MonoBehaviour
 
     public void Speed(GameObject button){
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == speed).acquired) {
-            Debug.Log(GetComponent<Player_Movement>().moveSpeed);
             HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == speed));
             GetComponent<Player_Movement>().moveSpeed *= 1.5f;
-            Debug.Log(GetComponent<Player_Movement>().moveSpeed);
             speedBoostParticles.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
@@ -457,5 +469,4 @@ public class Upgrades : MonoBehaviour
             am.Play("UI_Disabled");
         }
     }
-
 }

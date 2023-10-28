@@ -18,4 +18,6 @@ MonoBehaviour:
   title: Deadly Dash
   description: Damage enemies during your dash.
   upgradeLogic: 6
+  methodName: Dash
   acquired: 0
+  purchased: 0

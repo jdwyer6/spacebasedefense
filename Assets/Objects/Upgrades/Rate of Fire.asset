@@ -18,4 +18,6 @@ MonoBehaviour:
   title: Rate of Fire
   description: Increase rate of fire by 30%.
   upgradeLogic: 3
+  methodName: RateOfFire
   acquired: 0
+  purchased: 0

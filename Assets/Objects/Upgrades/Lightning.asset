@@ -19,4 +19,6 @@ MonoBehaviour:
   description: Damage the closest enemy to you at set intervals with a lightning
     strike.
   upgradeLogic: 9
+  methodName: Lightning
   acquired: 0
+  purchased: 0

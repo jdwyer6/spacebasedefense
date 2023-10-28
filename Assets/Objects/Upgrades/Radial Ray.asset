@@ -18,4 +18,6 @@ MonoBehaviour:
   title: Radial Ray
   description: Periodically fire a deadly laser to clear approaching enemies.
   upgradeLogic: 11
+  methodName: RadialRay
   acquired: 0
+  purchased: 0
