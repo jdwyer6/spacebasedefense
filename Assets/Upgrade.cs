@@ -25,6 +25,7 @@ public class Upgrade : ScriptableObject
     public float value; 
     public string title;         
     public string description;
+    public int price;
     public UpgradeLogicType upgradeLogic;
     public string methodName;
     public bool acquired;

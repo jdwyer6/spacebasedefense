@@ -17,6 +17,7 @@ MonoBehaviour:
   value: 1.5
   title: 1.5X Speed
   description: Get way faster.
+  price: 750
   upgradeLogic: 0
   methodName: Speed
   acquired: 0

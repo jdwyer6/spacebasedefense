@@ -26,7 +26,7 @@ public class Player_Health : MonoBehaviour
     {
         gm = GameObject.FindGameObjectWithTag("GM");
         data = gm.GetComponent<Data>();
-        InitializeHealthValuesFromPlayerPrefs();
+        maxHealth = 100;
         currentHealth = maxHealth; // Initialize current health to max health
         am = FindObjectOfType<AudioManager>();
         targetHealthValue = currentHealth; // Initialize the target value
@@ -132,12 +132,5 @@ public class Player_Health : MonoBehaviour
         canTakeDamage = false;
         yield return new WaitForSeconds(1);
         canTakeDamage = true;
-    }
-
-    private void InitializeHealthValuesFromPlayerPrefs() {
-        float initialHealthMultiplier = PlayerPrefs.GetFloat("InitialHealthMultiplier");
-        maxHealth = 100 * initialHealthMultiplier;
-        RectTransform healthBarRect = healthBar.GetComponent<RectTransform>();
-        healthBarRect.sizeDelta = new Vector2(healthBarRect.sizeDelta.x * initialHealthMultiplier, healthBarRect.sizeDelta.y);
     }
 }

@@ -1,2 +1,2 @@
 Reset Coins to 0
-Reset Multipliers to 1
+Reset Upgrades "Purchased" values to 0

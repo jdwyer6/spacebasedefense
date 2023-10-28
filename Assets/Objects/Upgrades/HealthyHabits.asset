@@ -17,6 +17,7 @@ MonoBehaviour:
   value: 2
   title: Healthy Habits
   description: Extend health bar by 20% and gain full health.
+  price: 849
   upgradeLogic: 7
   methodName: HealthyHabits
   acquired: 0

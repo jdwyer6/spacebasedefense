@@ -209,40 +209,40 @@ public class Upgrades : MonoBehaviour
             switch(upgrade.upgradeLogic)
             {
                 case UpgradeLogicType.speed:
-                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Speed(newUpgrade));
+                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Speed());
                     break;
                 case UpgradeLogicType.health:
-                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Health(newUpgrade));
+                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Health());
                     break;
                 case UpgradeLogicType.arsen:
-                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Arsen(newUpgrade));
+                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Arsen());
                     break;
                 case UpgradeLogicType.rateOfFire:
-                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => RateOfFire(newUpgrade));
+                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => RateOfFire());
                     break;
                 case UpgradeLogicType.emp:
-                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Emp(newUpgrade));
+                    newUpgrade.GetComponent<Button>().onClick.AddListener(() => Emp());
                     break;
                 case UpgradeLogicType.shield:
-                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Shield(newUpgrade));
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Shield());
                     break;
                 case UpgradeLogicType.deadlyDash:
-                newUpgrade.GetComponent<Button>().onClick.AddListener(() => DeadlyDash(newUpgrade));
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => DeadlyDash());
                     break;
                 case UpgradeLogicType.healthyHabits:
-                newUpgrade.GetComponent<Button>().onClick.AddListener(() => HealthyHabits(newUpgrade));
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => HealthyHabits());
                     break;
                 case UpgradeLogicType.spread:
-                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Spread(newUpgrade));
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Spread());
                     break;
                 case UpgradeLogicType.lightning:
-                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Lightning(newUpgrade));
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Lightning());
                     break;
                 case UpgradeLogicType.omnishot:
-                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Omnishot(newUpgrade));
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Omnishot());
                     break;
                 case UpgradeLogicType.radialRay:
-                newUpgrade.GetComponent<Button>().onClick.AddListener(() => RadialRay(newUpgrade));
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => RadialRay());
                     break;
             }
         }
@@ -315,10 +315,10 @@ public class Upgrades : MonoBehaviour
         notEnoughXPToolTip.SetActive(false);
     }
 
-    private void HandleUpgradeSelectionUI(GameObject button, Upgrade upgrade) {
+    private void HandleUpgradeSelectionUI(Upgrade upgrade) {
         upgrade.acquired = true;
-        button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
-        button.GetComponent<Button>().interactable = false;
+        // button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
+        // button.GetComponent<Button>().interactable = false;
         am.Play("UI_Select");
         am.Play("Upgrade_UI");
     }
@@ -335,9 +335,9 @@ public class Upgrades : MonoBehaviour
         return true;
     }
 
-    public void Speed(GameObject button){
+    public void Speed(){
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == speed).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == speed));
+            HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == speed));
             GetComponent<Player_Movement>().moveSpeed *= 1.5f;
             speedBoostParticles.SetActive(true);
             ResetAndUpdatePickups();
@@ -347,9 +347,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void Health(GameObject button) {
+    public void Health() {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == health).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == health));
+            HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == health));
             GetComponent<Player_Health>().Heal(100);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
@@ -358,9 +358,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void Arsen(GameObject button) {
+    public void Arsen() {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == arsen).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == arsen));
+            HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == arsen));
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
@@ -368,9 +368,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void RateOfFire(GameObject button) {
+    public void RateOfFire() {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == rateOfFire).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == rateOfFire));
+            HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == rateOfFire));
             GetComponent<Player_Shooting>().autoShootingInterval *= .7f;
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
@@ -379,9 +379,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void Emp(GameObject button) {
+    public void Emp() {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == emp).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == emp));
+            HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == emp));
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
@@ -389,9 +389,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void Shield(GameObject button) {
+    public void Shield() {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == shield).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == shield));
+            HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == shield));
             shieldPrefab.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
@@ -400,9 +400,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void DeadlyDash(GameObject button) {
+    public void DeadlyDash() {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == deadlyDash).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == deadlyDash));
+            HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == deadlyDash));
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
@@ -410,9 +410,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void HealthyHabits(GameObject button) {
+    public void HealthyHabits() {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == healthyHabits).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == healthyHabits));
+            HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == healthyHabits));
             GetComponent<Player_Health>().maxHealth *= 1.2f;
             GetComponent<Player_Health>().currentHealth = GetComponent<Player_Health>().maxHealth;
             GetComponent<Player_Health>().healthBar.value = GetComponent<Player_Health>().maxHealth;
@@ -427,9 +427,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void Spread(GameObject button) {
+    public void Spread() {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == spread).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == spread));
+            HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == spread));
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
         }else{
@@ -437,9 +437,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void Lightning(GameObject button) {
+    public void Lightning() {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == lightning).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == lightning));
+            HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == lightning));
             lightningUpgrade.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
@@ -448,9 +448,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void Omnishot(GameObject button) {
+    public void Omnishot() {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == omnishot).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == omnishot));
+            HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == omnishot));
             omnishotPrefab.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();
@@ -459,9 +459,9 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void RadialRay(GameObject button) {
+    public void RadialRay() {
         if(!Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == radialRay).acquired) {
-            HandleUpgradeSelectionUI(button, Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == radialRay));
+            HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == radialRay));
             radialRayPrefab.SetActive(true);
             ResetAndUpdatePickups();
             CloseUpgradesMenu();

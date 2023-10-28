@@ -17,7 +17,8 @@ MonoBehaviour:
   value: 0
   title: Bullet Spread
   description: 3 bullets at once.
+  price: 0
   upgradeLogic: 8
   methodName: Spread
   acquired: 0
-  purchased: 1
+  purchased: 0
