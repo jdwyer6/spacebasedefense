@@ -65,6 +65,17 @@ public class DroppedItem : MonoBehaviour
                 gm.GetComponent<Data>().drops.Remove(drop);
             }
 
+            if (drop.titleCode == "articBlast") {
+                am.Play(drop.sound);
+                SetDropUI(drop);
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                foreach (var enemy in enemies)
+                {
+                    
+                }
+                gm.GetComponent<Data>().drops.Remove(drop);
+            }
+
             toolTipManager.ShowToolTip(drop.title, drop.description);
 
             Destroy(gameObject);
