@@ -72,18 +72,35 @@ public class DropManager : MonoBehaviour
         enemyMaterial.SetFloat("(_OutlineAlpha", 0);
         enemyMaterial.EnableKeyword("OUTLINE_DISTORTION_ON");
 
-        foreach (var enemy in GetEnemies())
+        int timeToRemainFrozen = 10;
+        for (int i = 0; i < timeToRemainFrozen; i++)
         {
-
+            FreezeEnemyPos();
+            yield return new WaitForSeconds(1);
         }
 
-        yield return new WaitForSeconds(timeActive);
+        InitializeEnemyShader(); // Undo shader
+        foreach (var enemy in GetEnemies())
+        {
+            Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
+            rb.constraints = RigidbodyConstraints2D.None; // Remove position constraints
+            enemy.GetComponent<Enemy_Shooting>().enabled = true;
+        }
         RemoveDropUI("arcticBlast");
     }
 
     private void InitializeEnemyShader() {
         enemyMaterial.DisableKeyword("HSV_ON");
         enemyMaterial.DisableKeyword("OUTBASE_ON");
+    }
+
+    private void FreezeEnemyPos() {
+        foreach (var enemy in GetEnemies())
+        {
+            Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+            enemy.GetComponent<Enemy_Shooting>().enabled = false;
+        }
     }
 
     // ----------------------------------------------------------------------

@@ -59,7 +59,7 @@ public class DroppedItem : MonoBehaviour
                 SetDropUI(drop);
             }
 
-            if (drop.titleCode == "articBlast") {
+            if (drop.titleCode == "arcticBlast") {
                 am.Play(drop.sound);
                 gm.GetComponent<DropManager>().InitiateArcticBlast();
                 SetDropUI(drop);
