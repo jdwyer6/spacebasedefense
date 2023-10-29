@@ -15,5 +15,5 @@ MonoBehaviour:
   title: Artic Blast
   titleCode: articBlast
   description: Temporarily freeze all nearby enemies.
-  sprite: {fileID: 0}
-  sound: ArticBlast
+  sprite: {fileID: 21300000, guid: 49ebee3e67668d145939485e6f88688c, type: 3}
+  sound: Arctic_Blast

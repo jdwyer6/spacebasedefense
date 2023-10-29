@@ -405,3 +405,9 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: Arctic_Blast
+    clip: {fileID: 8300000, guid: 3cadd1dffaac62e48abeeb1bf5cf284e, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

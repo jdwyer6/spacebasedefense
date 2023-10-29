@@ -1,2 +1,3 @@
 Reset Coins to 0
 Reset Upgrades "Purchased" values to 0
+Set Probability enemies will drop to 0
