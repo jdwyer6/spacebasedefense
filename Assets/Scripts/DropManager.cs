@@ -7,15 +7,19 @@ public class DropManager : MonoBehaviour
     public float timeActive = 20;
     private GameObject dropsContainer;
     private GameObject player;
-
+    private Material enemyMaterial;
     public GameObject playerProjectile;
+    private GameObject gm;
 
     private void Start() {
+        gm = GameObject.FindGameObjectWithTag("GM");
         dropsContainer = GameObject.FindGameObjectWithTag("DropsUIContainer");
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<Player_Shooting>().instakillActive = false;
         playerProjectile.GetComponent<Projectile_Homing>().isHoming = false;
         player.GetComponent<Player_Shooting>().laserActive = false;
+        enemyMaterial = gm.GetComponent<Data>().enemyMaterial;
+        InitializeEnemyShader();
     }
 
     public void InitiateInstakill() {
@@ -62,18 +66,24 @@ public class DropManager : MonoBehaviour
     }
 
     private IEnumerator StartArcticBlast() {
-        
+        enemyMaterial.EnableKeyword("HSV_ON");
+        enemyMaterial.EnableKeyword("OUTBASE_ON");
+        enemyMaterial.SetFloat("_OutlineGlow", 50);
+        enemyMaterial.SetFloat("(_OutlineAlpha", 0);
+        enemyMaterial.EnableKeyword("OUTLINE_DISTORTION_ON");
+
         foreach (var enemy in GetEnemies())
         {
-            Material mat = enemy.GetComponent<Renderer>().material;
-            mat.EnableKeyword("HSV_ON");
-            mat.EnableKeyword("OUTBASE_ON");
-            mat.SetFloat("_OutlineGlow", 50);
-            mat.EnableKeyword("_OutlineDistortToggle");
+
         }
 
         yield return new WaitForSeconds(timeActive);
         RemoveDropUI("arcticBlast");
+    }
+
+    private void InitializeEnemyShader() {
+        enemyMaterial.DisableKeyword("HSV_ON");
+        enemyMaterial.DisableKeyword("OUTBASE_ON");
     }
 
     // ----------------------------------------------------------------------

@@ -32,4 +32,5 @@ public class Data : MonoBehaviour
 
     public GameObject[] bulletHolePrefabs;
     public int probabilityEnemiesWillDrop;
+    public Material enemyMaterial;
 }
