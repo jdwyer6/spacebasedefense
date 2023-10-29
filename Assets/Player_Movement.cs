@@ -42,18 +42,17 @@ public class Player_Movement : MonoBehaviour
 
     private void Awake() {
         Time.timeScale = 1;
+        moveSpeed = originalMoveSpeed;
     }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        moveSpeed = originalMoveSpeed;
         am = FindObjectOfType<AudioManager>();
         gm = GameObject.FindGameObjectWithTag("GM");
         emissionModule = moveParticles.emission;
         dashEmissionModule = dashParticles.emission;
         originalEmissionRate = emissionModule.rateOverTime.constant;
-        moveSpeed = originalMoveSpeed;
         canMove = true;
 
         // avatar = GetComponent<Alteruna.Avatar>();

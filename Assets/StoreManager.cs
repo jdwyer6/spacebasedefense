@@ -23,6 +23,7 @@ public class StoreManager : MonoBehaviour
     }
 
     public void SelectUpgrade(int cost, Upgrade upgrade, Button button) {
+        if(am == null) am = FindObjectOfType<AudioManager>();
         if(!CheckHasEnoughCoins(cost)) {
             StartCoroutine(ShowMessage("NOT ENOUGH CREDITS"));
             am.Play("UI_Disabled");
