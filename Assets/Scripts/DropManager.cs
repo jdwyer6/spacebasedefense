@@ -61,6 +61,19 @@ public class DropManager : MonoBehaviour
 
     // ----------------------------------------------------------------------
 
+    public void InitiateDucks() {
+        StartCoroutine(StartDucks());
+    }
+
+    private IEnumerator StartDucks() {
+        var player_shooting = GetComponent<Player_Shooting>();
+        yield return new WaitForSeconds(timeActive);
+
+        RemoveDropUI("duck");
+    }
+
+    // ----------------------------------------------------------------------
+
     public void InitiateArcticBlast() {
         StartCoroutine(StartArcticBlast());
     }
