@@ -99,7 +99,18 @@ public class DropManager : MonoBehaviour
         {
             Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
             rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
-            enemy.GetComponent<Enemy_Shooting>().enabled = false;
+            if(enemy.GetComponent<Enemy_Shooting>() != null) {
+                enemy.GetComponent<Enemy_Shooting>().enabled = false;
+            }
+
+            if(enemy.GetComponent<Enemy_Laser>() != null) {
+                enemy.GetComponent<Enemy_Laser>().enabled = false;
+            }
+
+            if(enemy.GetComponent<Spiral_Shooting>() != null) {
+                enemy.GetComponent<Spiral_Shooting>().enabled = false;
+            }
+            
         }
     }
 

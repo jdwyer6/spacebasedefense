@@ -90,10 +90,6 @@ public class Enemy_Spawner : MonoBehaviour
                 TriggerNextWave();
             }
         }
-
-        if(waitForBossToDie) {
-            WaitForBossToDie();
-        }
     }
 
     IEnumerator SpawnEnemy() {
@@ -102,7 +98,6 @@ public class Enemy_Spawner : MonoBehaviour
         CheckWavesLeftAtDifficultyLevel(wavePool);
         Wave randomWave = wavePool[UnityEngine.Random.Range(0, wavePool.Count)];
         randomWave.hasSpawned = true;
-        Debug.Log(randomWave.title);
 
         for (int i = 0; i < randomWave.numberOfSpawnCycles; i++)
         {
@@ -119,6 +114,7 @@ public class Enemy_Spawner : MonoBehaviour
             TriggerBreak();
         }else{
             waitForBossToDie = true;
+            StartCoroutine(WaitForBossToDie());
         }
 
     }
@@ -192,10 +188,15 @@ public class Enemy_Spawner : MonoBehaviour
         return false;
     }
 
-    private void WaitForBossToDie() {
-        if(GetRemainingEnemies() <= 0) {
-            TriggerNextWave();
-            waitForBossToDie = false;
+    private IEnumerator WaitForBossToDie() {
+        while(waitForBossToDie) {
+            if(GetRemainingEnemies() <= 0) {
+                TriggerNextWave();
+                waitForBossToDie = false;
+                break;
+            }
+
+            yield return new WaitForSeconds(5);
         }
     }
 
