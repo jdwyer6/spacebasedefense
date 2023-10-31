@@ -74695,6 +74695,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f1cf8c9d8ebc7e4b9f5cd7ceb8ee69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2094179011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094178960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faae3ef34609027468de3302632af356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mine: {fileID: 486594398611542006, guid: 22c1439a15bff2643a63fbabdcc2d110, type: 3}
 --- !u!1001 &2100492353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76040,65 +76053,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3431140739008499238, guid: 85b4b77ad9676a84aa7f13ff27208b88, type: 3}
   m_PrefabInstance: {fileID: 2145988824}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1943329662097696696
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 2
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7541264274060737703, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
-      propertyPath: m_Name
-      value: Blood_Particles_Exit
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997220083500442874, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
-      propertyPath: m_RootOrder
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997220083500442874, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997220083500442874, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997220083500442874, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997220083500442874, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997220083500442874, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997220083500442874, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997220083500442874, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997220083500442874, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997220083500442874, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997220083500442874, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_AddedGameObjects: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2348915a694b08a4cb49b3690692af64, type: 3}
 --- !u!1001 &4570469016961599458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76169,12 +76123,20 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b701816da9f9c7c449ac7635abcb0d4a, type: 2}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: drops.Array.size
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: drops.Array.data[7]
       value: 
       objectReference: {fileID: 11400000, guid: 713c025af46065e4b9a95b2c0e41db0c, type: 2}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: upgrades.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: upgrades.Array.data[12]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe7fa39819444ae4a8f72cc067578abc, type: 2}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: probabilityEnemiesWillDrop
       value: 3

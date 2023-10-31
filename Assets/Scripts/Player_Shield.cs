@@ -24,6 +24,9 @@ public class Player_Shield : MonoBehaviour
 
     public float timer;
 
+    private Collider2D playerCollider;
+    private Collider2D shieldCollider;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,10 @@ public class Player_Shield : MonoBehaviour
         timer = shieldActiveForTime;
         canUseShield = true;
         col = shieldPrefab.GetComponent<Collider2D>();
+
+        playerCollider = GetComponent<Collider2D>();
+        shieldCollider = shieldPrefab.GetComponent<Collider2D>();
+        Physics2D.IgnoreCollision(playerCollider, shieldCollider, true);
     }
 
     // Update is called once per frame

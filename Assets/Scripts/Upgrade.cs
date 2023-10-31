@@ -14,7 +14,8 @@ public enum UpgradeLogicType
     spread,
     lightning,
     omnishot,
-    radialRay
+    radialRay,
+    landmine
 }
 
 [CreateAssetMenu(fileName = "NewUpgrade", menuName = "Upgrade/Upgrade")]
@@ -30,9 +31,4 @@ public class Upgrade : ScriptableObject
     public string methodName;
     public bool acquired;
     public bool purchased;
-
-    // MethodInfo method = this.GetType().GetMethod(methodName);
-    // if(method != null) {
-    //     method.Invoke(this, null);
-    // }
 }

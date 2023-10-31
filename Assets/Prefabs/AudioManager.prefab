@@ -407,7 +407,19 @@ MonoBehaviour:
     loop: 0
   - name: Arctic_Blast
     clip: {fileID: 8300000, guid: 3cadd1dffaac62e48abeeb1bf5cf284e, type: 3}
-    volume: 0.5
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Mine_Explosion
+    clip: {fileID: 8300000, guid: f7d7dcca0a638ca4ebe974466d2f967f, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Beep
+    clip: {fileID: 8300000, guid: 9ba9f8346e61cae40b50d33c7016d7c3, type: 3}
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     loop: 0

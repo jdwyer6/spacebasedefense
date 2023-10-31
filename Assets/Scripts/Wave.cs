@@ -5,7 +5,8 @@ public enum Difficulty
     Opening,
     Easy,
     Medium,
-    Hard
+    Hard,
+    Boss
 }
 
 [CreateAssetMenu(fileName = "NewWave", menuName = "Wave/Wave")]

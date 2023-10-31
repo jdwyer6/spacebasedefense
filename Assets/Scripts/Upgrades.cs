@@ -44,6 +44,7 @@ public class Upgrades : MonoBehaviour
     UpgradeLogicType lightning = UpgradeLogicType.lightning;
     UpgradeLogicType omnishot = UpgradeLogicType.omnishot;
     UpgradeLogicType radialRay = UpgradeLogicType.radialRay;
+    UpgradeLogicType landmine = UpgradeLogicType.landmine;
 
     public GameObject speedBoostParticles;
 
@@ -244,6 +245,9 @@ public class Upgrades : MonoBehaviour
                 case UpgradeLogicType.radialRay:
                 newUpgrade.GetComponent<Button>().onClick.AddListener(() => RadialRay());
                     break;
+                case UpgradeLogicType.landmine:
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Landmine());
+                    break;
             }
         }
     }
@@ -417,6 +421,13 @@ public class Upgrades : MonoBehaviour
     public void RadialRay() {
         HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == radialRay));
         radialRayPrefab.SetActive(true);
+        ResetAndUpdatePickups();
+        CloseUpgradesMenu();
+    }
+
+    public void Landmine() {
+        HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == landmine));
+        GetComponent<Landmines>().InitiateLandmines();
         ResetAndUpdatePickups();
         CloseUpgradesMenu();
     }

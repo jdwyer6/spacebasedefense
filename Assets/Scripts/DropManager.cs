@@ -84,7 +84,17 @@ public class DropManager : MonoBehaviour
         {
             Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
             rb.constraints = RigidbodyConstraints2D.None; // Remove position constraints
-            enemy.GetComponent<Enemy_Shooting>().enabled = true;
+            if(enemy.GetComponent<Enemy_Shooting>() != null) {
+                enemy.GetComponent<Enemy_Shooting>().enabled = true;
+            }
+
+            if(enemy.GetComponent<Enemy_Laser>() != null) {
+                enemy.GetComponent<Enemy_Laser>().enabled = true;
+            }
+
+            if(enemy.GetComponent<Spiral_Shooting>() != null) {
+                enemy.GetComponent<Spiral_Shooting>().enabled = true;
+            }
         }
         RemoveDropUI("arcticBlast");
     }
