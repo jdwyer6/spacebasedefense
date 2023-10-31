@@ -20,6 +20,7 @@ public class Player_Shield : MonoBehaviour
     bool shieldActive = false;
     bool shieldRecharged = true;
     bool canUseShield;
+    private Collider2D col;
 
     public float timer;
 
@@ -32,6 +33,7 @@ public class Player_Shield : MonoBehaviour
         am = FindObjectOfType<AudioManager>();
         timer = shieldActiveForTime;
         canUseShield = true;
+        col = shieldPrefab.GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -43,11 +45,13 @@ public class Player_Shield : MonoBehaviour
                 timer = shieldActiveForTime;
             }
             shieldActive = true;
+            col.enabled = true;
             shieldPrefab.SetActive(true);
             playerHealth.canTakeDamage = false;
             playerMovement.canMove = false;
         } else {
             shieldActive = false;
+            col.enabled = false;
             shieldPrefab.SetActive(false);
             playerHealth.canTakeDamage = true;
             playerMovement.canMove = true;

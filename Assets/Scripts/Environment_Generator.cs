@@ -20,20 +20,20 @@ public class Environment_Generator : MonoBehaviour
 
     private Color[] colors = new Color[]
     {
-        new Color(0.8f, 0.7f, 0.7f), // Muted Pastel Red
-        new Color(0.7f, 0.8f, 0.7f), // Muted Pastel Green
-        new Color(0.8f, 0.75f, 0.7f), // Muted Pastel Orange
-        new Color(0.75f, 0.7f, 0.8f),  // Muted Pastel Purple
-        new Color(0.8f, 0.8f, 0.7f), // Muted Pastel Yellow
-        new Color(0.7f, 0.8f, 0.8f), // Muted Pastel Turquoise
-        new Color(0.8f, 0.7f, 0.75f),  // Muted Pastel Pink
-        new Color(0.7f, 0.8f, 0.75f),  // Muted Pastel Mint
-        new Color(0.7f, 0.75f, 0.8f),  // Muted Pastel Blue
-        new Color(0.8f, 0.75f, 0.7f),  // Muted Pastel Peach
-        new Color(0.7f, 0.75f, 0.8f),  // Muted Pastel Sky Blue
-        new Color(0.8f, 0.7f, 0.7f), // Muted Pastel Coral
-        new Color(0.75f, 0.8f, 0.7f),  // Muted Pastel Lime Green
-        new Color(0.75f, 0.75f, 0.7f)    // Muted Pastel Beige
+        new Color(0.8f, 0.7f, 0.7f), // Pastel Red
+        new Color(0.7f, 0.8f, 0.7f), // Pastel Green
+        new Color(0.8f, 0.75f, 0.7f), // Pastel Orange
+        new Color(0.75f, 0.7f, 0.8f),  // Pastel Purple
+        new Color(0.8f, 0.8f, 0.7f), // Pastel Yellow
+        new Color(0.7f, 0.8f, 0.8f), // Pastel Turquoise
+        new Color(0.8f, 0.7f, 0.75f),  // Pastel Pink
+        new Color(0.7f, 0.8f, 0.75f),  // Pastel Mint
+        new Color(0.7f, 0.75f, 0.8f),  // Pastel Blue
+        new Color(0.8f, 0.75f, 0.7f),  // Pastel Peach
+        new Color(0.7f, 0.75f, 0.8f),  // Pastel Sky Blue
+        new Color(0.8f, 0.7f, 0.7f), // Pastel Coral
+        new Color(0.75f, 0.8f, 0.7f),  // Pastel Lime Green
+        new Color(0.75f, 0.75f, 0.7f)    // Pastel Beige
     };
 
     private void Awake() {
@@ -58,7 +58,7 @@ public class Environment_Generator : MonoBehaviour
     }
 
     private void CreateBaseDesign() {
-        Vector2 currentPos = new Vector2(0, 0);
+        Vector2 currentPos = new Vector2(-.5f, 0);
 
 
         for (int i = 0; i < numberOfTimesToPlaceBlocks; i++)
