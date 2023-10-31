@@ -17,7 +17,7 @@ public class Enemy_Laser : MonoBehaviour
     public float laserDamage = 25;
     private AudioManager am;
     public float distanceFromPlayerToStartShooting = 5;
-    bool canFire = false;
+    bool canFire = true;
 
     public EdgeCollider2D edgeCollider;
     public bool sunRayLaser = false;
@@ -78,12 +78,12 @@ public class Enemy_Laser : MonoBehaviour
             UpdateLaserCollider();
         }
 
-        if (player && Vector3.Distance(transform.position, player.position) < distanceFromPlayerToStartShooting)
-        {
-            canFire = true;
-        }else{
-            canFire = false;
-        }
+        // if (player && Vector3.Distance(transform.position, player.position) < distanceFromPlayerToStartShooting)
+        // {
+        //     canFire = true;
+        // }else{
+        //     canFire = false;
+        // }
     }
 
     IEnumerator ShootLaser()

@@ -257,7 +257,7 @@ Transform:
   - {fileID: 5071125342050991023}
   - {fileID: 7035097614718052999}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &967360091409035092
 SpriteRenderer:
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 4
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -552,7 +552,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1739523700873668795}
-  - component: {fileID: 555515263}
   m_Layer: 0
   m_Name: Barril 1
   m_TagString: Untagged
@@ -575,34 +574,6 @@ Transform:
   m_Father: {fileID: 967360091409035103}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &555515263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1739523700873668794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41262d93d2767a841a8a181824598cc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedStyle: 0
-  barrelPosition: {fileID: 1739523700873668795}
-  shootingDuration: 5
-  shootInterval: 0.1
-  restDuration: 4
-  speed: 10
-  size: 0.3
-  projectilePrefab: {fileID: 7387422206258482921, guid: 1c7894ad71a9a7c47a309c51af0187b7, type: 3}
-  sound: Enemy_Shot
-  aimAtPlayer: 0
-  rotationSpeed: 1
-  distanceFromPlayerToStartShooting: 15
-  flashParticles: {fileID: 4555537516806970206, guid: 21828e78f4f89be4a839b34e02fcc207, type: 3}
-  damageToPlayer: 10
-  isExplosion: 0
-  numberOfProjectiles: 0
 --- !u!1 &1739523701006572833
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +583,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1739523701006572834}
-  - component: {fileID: 1843487745}
   m_Layer: 0
   m_Name: Barril 2
   m_TagString: Untagged
@@ -635,34 +605,6 @@ Transform:
   m_Father: {fileID: 967360091409035103}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1843487745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1739523701006572833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41262d93d2767a841a8a181824598cc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedStyle: 0
-  barrelPosition: {fileID: 1739523701006572834}
-  shootingDuration: 5
-  shootInterval: 0.1
-  restDuration: 4
-  speed: 10
-  size: 0.3
-  projectilePrefab: {fileID: 7387422206258482921, guid: 1c7894ad71a9a7c47a309c51af0187b7, type: 3}
-  sound: Enemy_Shot
-  aimAtPlayer: 0
-  rotationSpeed: 1
-  distanceFromPlayerToStartShooting: 15
-  flashParticles: {fileID: 4555537516806970206, guid: 21828e78f4f89be4a839b34e02fcc207, type: 3}
-  damageToPlayer: 10
-  isExplosion: 0
-  numberOfProjectiles: 0
 --- !u!1 &2032594682052980872
 GameObject:
   m_ObjectHideFlags: 0
