@@ -429,3 +429,9 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: RemoveNonDestructibleEnvironment
+    clip: {fileID: 8300000, guid: 8476b399ac15d59479989289ff05be25, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

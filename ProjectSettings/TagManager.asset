@@ -24,6 +24,9 @@ TagManager:
   - Barrier
   - Chest_Door
   - Chest_Room
+  - CashText
+  - CoinUIPos
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -69,4 +72,7 @@ TagManager:
     locked: 0
   - name: Effects
     uniqueID: 4180015095
+    locked: 0
+  - name: Environment
+    uniqueID: 3282353199
     locked: 0
