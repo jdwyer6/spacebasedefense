@@ -244,5 +244,4 @@ public class Player_Shooting : MonoBehaviour
         yield return new WaitForSeconds(.05f);
         laser.SetActive(false);
     }
-
 }

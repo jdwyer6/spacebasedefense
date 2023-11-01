@@ -45,6 +45,7 @@ public class Upgrades : MonoBehaviour
     UpgradeLogicType omnishot = UpgradeLogicType.omnishot;
     UpgradeLogicType radialRay = UpgradeLogicType.radialRay;
     UpgradeLogicType landmine = UpgradeLogicType.landmine;
+    UpgradeLogicType magnetism = UpgradeLogicType.magnetism;
 
     public GameObject speedBoostParticles;
 
@@ -88,11 +89,9 @@ public class Upgrades : MonoBehaviour
             OpenUpgradeMenu();
         }
 
-        // if(Mathf.Abs(pickupSlider.value - targetSliderValue) < 0.01f) {
-        //     pickupSlider.value = targetSliderValue;
-        // } else {
-            pickupSlider.value = Mathf.Lerp(pickupSlider.value, targetSliderValue, Time.deltaTime * sliderSpeed);
-        // }
+
+        pickupSlider.value = Mathf.Lerp(pickupSlider.value, targetSliderValue, Time.deltaTime * sliderSpeed);
+
 
         if (menuOpen)
         {
@@ -248,6 +247,9 @@ public class Upgrades : MonoBehaviour
                 case UpgradeLogicType.landmine:
                 newUpgrade.GetComponent<Button>().onClick.AddListener(() => Landmine());
                     break;
+                case UpgradeLogicType.magnetism:
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Magnetism());
+                    break;
             }
         }
     }
@@ -321,8 +323,6 @@ public class Upgrades : MonoBehaviour
 
     private void HandleUpgradeSelectionUI(Upgrade upgrade) {
         upgrade.acquired = true;
-        // button.GetComponent<Image>().color = new Color(1.0f, 0.8627f, 0.3216f);
-        // button.GetComponent<Button>().interactable = false;
         am.Play("UI_Select");
         am.Play("Upgrade_UI");
     }
@@ -428,6 +428,13 @@ public class Upgrades : MonoBehaviour
     public void Landmine() {
         HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == landmine));
         GetComponent<Landmines>().InitiateLandmines();
+        ResetAndUpdatePickups();
+        CloseUpgradesMenu();
+    }
+
+    public void Magnetism() {
+        HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == magnetism));
+        GetComponent<Magnetism>().enabled = true;
         ResetAndUpdatePickups();
         CloseUpgradesMenu();
     }
