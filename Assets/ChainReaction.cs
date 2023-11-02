@@ -16,7 +16,10 @@ public class ChainReaction : MonoBehaviour
     }
 
     public void InitiateChainReaction(GameObject other) {
-        am.Play("Chain_Reaction");
+        if(am != null) {
+            am.Play("Chain_Reaction");
+        }
+        
         for (int i = 0; i < numberOfProjectiles; i++) {
             float randomAngle = Random.Range(0f, 360f);
 

@@ -140,11 +140,14 @@ public class Environment_Generator : MonoBehaviour
     }
 
     private void GenerateSpecialRooms() {
-        int numOfRoomsToGenerate = GetRandomNum(1, 3);
+
+        // int numOfRoomsToGenerate = GetRandomNum(1, 3);
+        int numOfRoomsToGenerate = 1;
 
         for (int i = 0; i < numOfRoomsToGenerate; i++)
         {
-            GameObject specialRoomItem = GetComponent<Data>().specialRoomItems[GetRandomNum(0, GetComponent<Data>().specialRoomItems.Length)];
+            // GameObject specialRoomItem = GetComponent<Data>().specialRoomItems[GetRandomNum(0, GetComponent<Data>().specialRoomItems.Length)];
+            GameObject specialRoomItem = GetComponent<Data>().specialRoomItems[0];
             Transform specialRoomSpawnPos = specialRoomSpawnLocations[GetRandomNum(0, specialRoomSpawnLocations.Length)];
             float randomRotation = initialBaseEnvironmentRotationOptions[GetRandomNum(0, initialBaseEnvironmentRotationOptions.Length)];
             var room = Instantiate(specialRoomPrefab, specialRoomSpawnPos.position, Quaternion.Euler(0, 0, randomRotation));

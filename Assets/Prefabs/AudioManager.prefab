@@ -441,3 +441,9 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: Drone_Shot
+    clip: {fileID: 8300000, guid: 2243eb43154f48e4eaf3d361408ff489, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
