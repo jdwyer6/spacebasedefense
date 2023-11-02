@@ -71,6 +71,12 @@ public class DroppedItem : MonoBehaviour
                 SetDropUI(drop);
             }
 
+            if (drop.titleCode == "duck") {
+                am.Play(drop.sound);
+                gm.GetComponent<DropManager>().InitiateDuck();
+                SetDropUI(drop);
+            }
+
             toolTipManager.ShowToolTip(drop.title, drop.description);
 
             Destroy(gameObject);

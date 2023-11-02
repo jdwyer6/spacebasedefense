@@ -46,6 +46,7 @@ public class Upgrades : MonoBehaviour
     UpgradeLogicType radialRay = UpgradeLogicType.radialRay;
     UpgradeLogicType landmine = UpgradeLogicType.landmine;
     UpgradeLogicType magnetism = UpgradeLogicType.magnetism;
+    UpgradeLogicType drone = UpgradeLogicType.drone;
 
     public GameObject speedBoostParticles;
 
@@ -60,6 +61,7 @@ public class Upgrades : MonoBehaviour
     public GameObject lightningUpgrade;
     public GameObject omnishotPrefab;
     public GameObject radialRayPrefab;
+    public GameObject dronePrefab;
 
 
     // Start is called before the first frame update
@@ -250,6 +252,9 @@ public class Upgrades : MonoBehaviour
                 case UpgradeLogicType.magnetism:
                 newUpgrade.GetComponent<Button>().onClick.AddListener(() => Magnetism());
                     break;
+                case UpgradeLogicType.drone:
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Drone());
+                    break;
             }
         }
     }
@@ -435,6 +440,13 @@ public class Upgrades : MonoBehaviour
     public void Magnetism() {
         HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == magnetism));
         GetComponent<Magnetism>().enabled = true;
+        ResetAndUpdatePickups();
+        CloseUpgradesMenu();
+    }
+
+    public void Drone() {
+        HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == drone));
+        dronePrefab.SetActive(true);
         ResetAndUpdatePickups();
         CloseUpgradesMenu();
     }

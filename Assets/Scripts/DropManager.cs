@@ -8,18 +8,21 @@ public class DropManager : MonoBehaviour
     private GameObject dropsContainer;
     private GameObject player;
     private Material enemyMaterial;
-    public GameObject playerProjectile;
+    private GameObject playerProjectile;
+    public GameObject defaultProjectile;
     private GameObject gm;
+    public GameObject duckProjectile;
 
     private void Start() {
         gm = GameObject.FindGameObjectWithTag("GM");
         dropsContainer = GameObject.FindGameObjectWithTag("DropsUIContainer");
         player = GameObject.FindGameObjectWithTag("Player");
+        playerProjectile = player.GetComponent<Player_Shooting>().projectilePrefab;
         player.GetComponent<Player_Shooting>().instakillActive = false;
         playerProjectile.GetComponent<Projectile_Homing>().isHoming = false;
         player.GetComponent<Player_Shooting>().laserActive = false;
         enemyMaterial = gm.GetComponent<Data>().enemyMaterial;
-        playerProjectile.GetComponent<ChainReaction>().enabled = false;
+        playerProjectile.GetComponent<ChainReaction>().chainReactionEnabled = false;
         InitializeEnemyShader();
     }
 
@@ -41,6 +44,7 @@ public class DropManager : MonoBehaviour
     }
 
     public IEnumerator StartHoming() {
+        playerProjectile = player.GetComponent<Player_Shooting>().projectilePrefab;
         playerProjectile.GetComponent<Projectile_Homing>().isHoming = true;
         yield return new WaitForSeconds(timeActive);
         playerProjectile.GetComponent<Projectile_Homing>().isHoming = false;
@@ -62,14 +66,14 @@ public class DropManager : MonoBehaviour
 
     // ----------------------------------------------------------------------
 
-    public void InitiateDucks() {
+    public void InitiateDuck() {
         StartCoroutine(StartDucks());
     }
 
     private IEnumerator StartDucks() {
-        var player_shooting = GetComponent<Player_Shooting>();
+        player.GetComponent<Player_Shooting>().SetProjectile(duckProjectile);
         yield return new WaitForSeconds(timeActive);
-
+        player.GetComponent<Player_Shooting>().SetProjectile(defaultProjectile);
         RemoveDropUI("duck");
     }
 
@@ -145,9 +149,10 @@ public class DropManager : MonoBehaviour
     }
 
     private IEnumerator StartChainReaction() {
-        playerProjectile.GetComponent<ChainReaction>().enabled = true;
+        playerProjectile = player.GetComponent<Player_Shooting>().projectilePrefab;
+        playerProjectile.GetComponent<ChainReaction>().chainReactionEnabled = true;
         yield return new WaitForSeconds(timeActive);
-        playerProjectile.GetComponent<ChainReaction>().enabled = false;
+        playerProjectile.GetComponent<ChainReaction>().chainReactionEnabled = false;
         RemoveDropUI("chainReaction");
     }
 

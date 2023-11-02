@@ -8,6 +8,9 @@ using UnityEngine.UI;
 public class Player_Shooting : MonoBehaviour
 {
     public GameObject projectilePrefab;
+    public GameObject defaultPlayerProjectile;
+    private string gunshotSound;
+
     public float projectileSpeedOriginal = 10f;
     public float projectileSpeed = 10f; 
     public Vector2 shootingOffset = new Vector2(0, 0.5f); 
@@ -35,6 +38,7 @@ public class Player_Shooting : MonoBehaviour
     public bool laserActive;
 
     private void Start() {
+        SetProjectile(defaultPlayerProjectile);
         projectileSpeed = projectileSpeedOriginal;
         autoShootingInterval = autoShootingIntervalOriginal;
         am = FindObjectOfType<AudioManager>();
@@ -82,7 +86,7 @@ public class Player_Shooting : MonoBehaviour
 
     void LaunchProjectile(Vector2 direction)
     {
-        am.Play("Shot");
+        am.Play(gunshotSound);
         if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == spread).acquired){
             ShootSpread(direction);
         }
@@ -103,6 +107,7 @@ public class Player_Shooting : MonoBehaviour
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
         Projectile projectileScript = projectile.GetComponent<Projectile>();
+
         if (projectileScript != null)
         {
             projectileScript.ignoreList = Projectile.IgnoreList.Destructible_Environment;
@@ -243,5 +248,10 @@ public class Player_Shooting : MonoBehaviour
         laser.transform.rotation = Quaternion.Euler(0, 0, rotation);
         yield return new WaitForSeconds(.05f);
         laser.SetActive(false);
+    }
+
+    public void SetProjectile(GameObject projectile) {
+        projectilePrefab = projectile;
+        gunshotSound = projectile.GetComponent<Projectile>().gunshotSound;
     }
 }

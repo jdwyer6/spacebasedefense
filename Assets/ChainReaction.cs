@@ -8,6 +8,7 @@ public class ChainReaction : MonoBehaviour
     private AudioManager am;
     public int numberOfProjectiles = 5;
     public float ricochetSpeed = 25;
+    public bool chainReactionEnabled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +44,9 @@ public class ChainReaction : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "Enemy") {
-            InitiateChainReaction(other.gameObject);
+            if(chainReactionEnabled) {
+                InitiateChainReaction(other.gameObject);
+            }
         }
     }
 }

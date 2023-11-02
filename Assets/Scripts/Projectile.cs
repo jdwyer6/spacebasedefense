@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     public bool flash = false;
     public Color color1 = Color.red;
     public Color color2 = Color.white;
+    public string gunshotSound;
 
     private string[] barrierImpactSounds = new string[] {"Barrier_Impact_1", "Barrier_Impact_2", "Barrier_Impact_3"};
     public GameObject barrierParticles;
