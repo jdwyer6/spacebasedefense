@@ -22,11 +22,11 @@ TagManager:
   - ToolTipManager
   - BossHealthBar
   - Barrier
-  - Chest_Door
   - Chest_Room
   - CashText
   - CoinUIPos
   - Coin
+  - Locked_Door
   layers:
   - Default
   - TransparentFX

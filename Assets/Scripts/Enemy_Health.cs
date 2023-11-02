@@ -69,7 +69,6 @@ public class Enemy_Health : MonoBehaviour
 
     public void TakeDamage(float damageToTake) {
         currentHealth -= damageToTake;
-        // ShowBloodHit();
         StartCoroutine(ChangeColor());
     }
 
@@ -107,6 +106,7 @@ public class Enemy_Health : MonoBehaviour
             }
             
         }
+
         Destroy(gameObject);
     }
 

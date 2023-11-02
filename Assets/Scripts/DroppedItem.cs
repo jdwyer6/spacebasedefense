@@ -65,6 +65,12 @@ public class DroppedItem : MonoBehaviour
                 SetDropUI(drop);
             }
 
+            if (drop.titleCode == "chainReaction") {
+                am.Play(drop.sound);
+                gm.GetComponent<DropManager>().IniateChainReaction();
+                SetDropUI(drop);
+            }
+
             toolTipManager.ShowToolTip(drop.title, drop.description);
 
             Destroy(gameObject);

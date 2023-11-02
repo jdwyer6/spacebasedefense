@@ -19,6 +19,7 @@ public class DropManager : MonoBehaviour
         playerProjectile.GetComponent<Projectile_Homing>().isHoming = false;
         player.GetComponent<Player_Shooting>().laserActive = false;
         enemyMaterial = gm.GetComponent<Data>().enemyMaterial;
+        playerProjectile.GetComponent<ChainReaction>().enabled = false;
         InitializeEnemyShader();
     }
 
@@ -135,6 +136,19 @@ public class DropManager : MonoBehaviour
             }
             
         }
+    }
+
+    // ----------------------------------------------------------------------
+
+    public void IniateChainReaction() {
+        StartCoroutine(StartChainReaction());
+    }
+
+    private IEnumerator StartChainReaction() {
+        playerProjectile.GetComponent<ChainReaction>().enabled = true;
+        yield return new WaitForSeconds(timeActive);
+        playerProjectile.GetComponent<ChainReaction>().enabled = false;
+        RemoveDropUI("chainReaction");
     }
 
     // ----------------------------------------------------------------------

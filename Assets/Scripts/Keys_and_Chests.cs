@@ -26,7 +26,7 @@ public class Keys_and_Chests : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "Chest_Door") {
+        if(other.gameObject.tag == "Locked_Door") {
             if(keys > 0) {
                 am.Play("Door_Open");
                 keys--;

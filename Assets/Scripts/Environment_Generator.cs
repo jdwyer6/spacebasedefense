@@ -36,6 +36,9 @@ public class Environment_Generator : MonoBehaviour
         new Color(0.75f, 0.75f, 0.7f)    // Pastel Beige
     };
 
+    private Transform[] specialRoomSpawnLocations;
+    public GameObject specialRoomPrefab;
+
     private void Awake() {
         initialBaseEnvironmentRotation = initialBaseEnvironmentRotationOptions[GetRandomNum(0, initialBaseEnvironmentRotationOptions.Length)];
     }
@@ -55,6 +58,7 @@ public class Environment_Generator : MonoBehaviour
         CreateBaseDesign();
         MirrorDesignOnXAxis();
         SetBase();
+        GenerateSpecialRooms();
     }
 
     private void CreateBaseDesign() {
@@ -127,10 +131,35 @@ public class Environment_Generator : MonoBehaviour
         GameObject basePrefab = Instantiate(baseEnvironments[GetRandomNum(0, baseEnvironments.Length)], new Vector2(0, 0), Quaternion.Euler(0, 0, initialBaseEnvironmentRotation));
         Transform chestRoomSpawnPoint = basePrefab.transform.Find("ChestRoomSpawnPoint");
         Instantiate(chestRooms[GetRandomNum(0, chestRooms.Length)], chestRoomSpawnPoint.position, Quaternion.Euler(0, 0, initialBaseEnvironmentRotation));
+        SetSpecialRoomSpawnLocations(basePrefab);
     }
 
     private void ResetEditorPreferences() {
         Camera mainCam = Camera.main;
         mainCam.backgroundColor = new Color(255f/255f, 73f/255f, 73f/255f, 1f);
+    }
+
+    private void GenerateSpecialRooms() {
+        int numOfRoomsToGenerate = GetRandomNum(1, 3);
+
+        for (int i = 0; i < numOfRoomsToGenerate; i++)
+        {
+            GameObject specialRoomItem = GetComponent<Data>().specialRoomItems[GetRandomNum(0, GetComponent<Data>().specialRoomItems.Length)];
+            Transform specialRoomSpawnPos = specialRoomSpawnLocations[GetRandomNum(0, specialRoomSpawnLocations.Length)];
+            float randomRotation = initialBaseEnvironmentRotationOptions[GetRandomNum(0, initialBaseEnvironmentRotationOptions.Length)];
+            var room = Instantiate(specialRoomPrefab, specialRoomSpawnPos.position, Quaternion.Euler(0, 0, randomRotation));
+            Transform itemSpawnLocation = room.transform.Find("ItemSpawnLocation");
+            Instantiate(specialRoomItem, itemSpawnLocation.position, Quaternion.identity);
+        }
+    }
+
+    private void SetSpecialRoomSpawnLocations(GameObject basePrefab) {
+        List<Transform> foundSpawnLocations = new List<Transform>();
+        foreach (Transform child in basePrefab.transform) {
+            if (child.CompareTag("SpecialRoomSpawnLocation")) {
+                foundSpawnLocations.Add(child);
+            }
+        }
+        specialRoomSpawnLocations = foundSpawnLocations.ToArray();
     }
 }
