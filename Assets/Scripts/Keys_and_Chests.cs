@@ -9,6 +9,7 @@ public class Keys_and_Chests : MonoBehaviour
     private GameObject gm;
     private ToolTipManager toolTipManager;
     bool insideChestRoom = false;
+    public Transform dropsUIContainer;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,8 @@ public class Keys_and_Chests : MonoBehaviour
             if(keys > 0) {
                 am.Play("Door_Open");
                 keys--;
+                GameObject keyUI = dropsUIContainer.Find("key").gameObject;
+                Destroy(keyUI);
                 Destroy(other.gameObject);
             }else{
                 toolTipManager.ShowToolTip("Missing Key", "You need a key to enter this area");

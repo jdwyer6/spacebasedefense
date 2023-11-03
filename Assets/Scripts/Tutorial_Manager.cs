@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Tutorial_Manager : MonoBehaviour
 {
-    public GameObject rightArrow;
     private float timer;
     public float timerStart;
     private AudioManager am;
@@ -36,13 +35,6 @@ public class Tutorial_Manager : MonoBehaviour
             timer = timerStart;
         } else {
             timer -= Time.deltaTime;
-        }
-
-        if(timer <= 0) {
-            rightArrow.SetActive(true);
-            juicer.Pulse(rightArrow, pulseSpeed, pulseMag);
-        }else{
-            rightArrow.SetActive(false);
         }
     }
 

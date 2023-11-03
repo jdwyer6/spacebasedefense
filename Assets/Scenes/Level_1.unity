@@ -1123,7 +1123,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66177244}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cbeba1b6287d4e4686254e1fdee9ff6, type: 3}
   m_Name: 
@@ -40794,6 +40794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keys: 0
+  dropsUIContainer: {fileID: 447265270}
 --- !u!114 &2094178994
 MonoBehaviour:
   m_ObjectHideFlags: 0
