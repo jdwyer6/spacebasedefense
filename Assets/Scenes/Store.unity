@@ -1052,6 +1052,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 46b0cb70f89f2b64aa99cc538e11fb56, type: 2}
   - {fileID: 11400000, guid: b9e6f54817341f240929351e3b49d89b, type: 2}
   - {fileID: 11400000, guid: 2c07d846abdaa334cb70e0bf43269723, type: 2}
+  - {fileID: 11400000, guid: e21be0238d0f2214b8f504db77b52765, type: 2}
   messageText: {fileID: 134748180}
 --- !u!4 &696289212
 Transform:

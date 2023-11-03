@@ -18,7 +18,7 @@ MonoBehaviour:
   title: Drone
   description: An autonomous and invincible drone follows you and shoots the closest
     enemy.
-  price: 0
+  price: 999
   upgradeLogic: 14
   methodName: Drone
   acquired: 0
