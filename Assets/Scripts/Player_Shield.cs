@@ -27,6 +27,8 @@ public class Player_Shield : MonoBehaviour
     private Collider2D playerCollider;
     private Collider2D shieldCollider;
 
+    public float pushForce;
+
 
     // Start is called before the first frame update
     void Start()
@@ -105,5 +107,24 @@ public class Player_Shield : MonoBehaviour
             Instantiate(shieldImpactParticles, other.gameObject.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.tag == "Enemy")
+        {
+            Rigidbody2D enemyRigidbody = other.gameObject.GetComponent<Rigidbody2D>();
+            if (enemyRigidbody != null)
+            {
+                enemyRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
+                Vector2 pushDirection = enemyRigidbody.position - GetComponent<Rigidbody2D>().position;
+                pushDirection.Normalize();
+                enemyRigidbody.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+                StartCoroutine(UnfreezeEnemyPosition(enemyRigidbody, 1.0f));
+            }
+        }
+    }
+
+    private IEnumerator UnfreezeEnemyPosition(Rigidbody2D enemyRigidbody, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        enemyRigidbody.constraints = RigidbodyConstraints2D.None;
     }
 }
