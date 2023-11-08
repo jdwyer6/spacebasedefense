@@ -36430,7 +36430,7 @@ PrefabInstance:
       objectReference: {fileID: 7278294996663205541, guid: b311759de7720a54f82578347fa6f54f, type: 3}
     - target: {fileID: 1055520181, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: m_Volume
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1055520207, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: duckProjectile
@@ -36529,6 +36529,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 4144f22700f59e34ca5061c5e753cf0d, type: 2}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: upgrades.Array.data[12]
       value: 
       objectReference: {fileID: 11400000, guid: fe7fa39819444ae4a8f72cc067578abc, type: 2}
@@ -36543,23 +36547,43 @@ PrefabInstance:
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: soundtracks.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 3eb9eb20eff18104daadc0643cbf2934, type: 3}
+      objectReference: {fileID: 8300000, guid: d0810ddc72933154bb265a85cbe27ba9, type: 3}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: soundtracks.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: 8ccb31ddc23cc324ca83e61985ed5ee4, type: 3}
+      objectReference: {fileID: 8300000, guid: 362e4fd3c68001943b168e251715c135, type: 3}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: soundtracks.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: 6b8d8a9c2574b7e4aab7ff36ca145d60, type: 3}
+      objectReference: {fileID: 8300000, guid: 1bc50cd079b16c04d82390695d0916d7, type: 3}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: soundtracks.Array.data[3]
       value: 
-      objectReference: {fileID: 8300000, guid: 964e2e63437434f438f40d0aafe3edb1, type: 3}
+      objectReference: {fileID: 8300000, guid: 3b18a1150dece3b4d84563a1f578c644, type: 3}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: soundtracks.Array.data[4]
       value: 
-      objectReference: {fileID: 8300000, guid: 19be4b30c42caaf47bd1497ddab50451, type: 3}
+      objectReference: {fileID: 8300000, guid: 4a93a99d9b8eecf4680369b01d390c95, type: 3}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a93a99d9b8eecf4680369b01d390c95, type: 3}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a93a99d9b8eecf4680369b01d390c95, type: 3}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a93a99d9b8eecf4680369b01d390c95, type: 3}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a93a99d9b8eecf4680369b01d390c95, type: 3}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a93a99d9b8eecf4680369b01d390c95, type: 3}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: probabilityEnemiesWillDrop
       value: 3
