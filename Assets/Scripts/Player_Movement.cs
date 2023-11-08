@@ -102,6 +102,8 @@ public class Player_Movement : MonoBehaviour
     {
         if(canMove) {
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }else{
+            rb.velocity = Vector2.zero;
         }
         
     }
