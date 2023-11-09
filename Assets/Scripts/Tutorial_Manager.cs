@@ -26,6 +26,7 @@ public class Tutorial_Manager : MonoBehaviour
     {
         juicer = GameObject.FindGameObjectWithTag("GM").GetComponent<Juicer>();
         am = FindObjectOfType<AudioManager>();
+        PlayerPrefs.SetInt("hasSeenTutorial", 1);
     }
 
     // Update is called once per frame

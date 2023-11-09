@@ -140,7 +140,16 @@ public class Enemy_Spawner : MonoBehaviour
             
             // Check distance from player to avoid spawning too close
             if (player != null && Vector2.Distance(pos, player.transform.position) >= 25) {
-                return pos;
+
+                bool tooCloseToEnvironment = Physics2D.OverlapCircle(pos, 2f, LayerMask.GetMask("Destructible_Environment")) != null;
+                if (!tooCloseToEnvironment)
+                {
+                    return pos;
+                }
+            }
+
+            if(infiniteLoopSafety == 99) {
+                Debug.LogWarning("Difficulty finding enemy spawn position. Loop exceeding 99 iterations.");
             }
 
             infiniteLoopSafety++;

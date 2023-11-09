@@ -182,4 +182,13 @@ public class Menu_Logic : MonoBehaviour
             }
         }
     }
+
+    public void ToTutorialOrStartGame() {
+        int hasSeenTutorial = PlayerPrefs.GetInt("hasSeenTutorial");
+        if(hasSeenTutorial == 1) {
+            SceneManager.LoadScene(3); 
+        }else{
+            SceneManager.LoadScene(1);
+        }
+    }
 }

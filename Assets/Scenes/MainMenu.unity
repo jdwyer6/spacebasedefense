@@ -8383,17 +8383,25 @@ PrefabInstance:
       value: 0.5874866
       objectReference: {fileID: 0}
     - target: {fileID: 8035258007693426254, guid: 870c5df5bfa9b1a428c69845ed3afa47, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035258007693426254, guid: 870c5df5bfa9b1a428c69845ed3afa47, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1110885529}
     - target: {fileID: 8035258007693426254, guid: 870c5df5bfa9b1a428c69845ed3afa47, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenMenu
+      value: ToTutorialOrStartGame
       objectReference: {fileID: 0}
     - target: {fileID: 8035258007693426254, guid: 870c5df5bfa9b1a428c69845ed3afa47, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1428612687}
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035258007693426254, guid: 870c5df5bfa9b1a428c69845ed3afa47, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8035258007693426255, guid: 870c5df5bfa9b1a428c69845ed3afa47, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
