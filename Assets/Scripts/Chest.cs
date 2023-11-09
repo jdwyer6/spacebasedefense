@@ -14,6 +14,8 @@ public class Chest : MonoBehaviour
     private GameObject inventoryContainer;
     public GameObject chestParticles;
 
+    public Environment_Mover mover;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,8 +36,9 @@ public class Chest : MonoBehaviour
                 other.gameObject.transform.Find("KissOfDeath").gameObject.SetActive(true);
                 Instantiate(kissOfDeathUI, inventoryContainer.transform);
             }
-
+            mover.chestItemCollected = true;
             toolTipManager.ShowToolTip(randomItem.title, randomItem.description);
+
 
             Destroy(gameObject);
         }

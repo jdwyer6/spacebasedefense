@@ -15053,7 +15053,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: EMP Charged
+  m_text: EMP Charged (E)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 060b57e92f4bfeb48b787bb12c091bbe, type: 2}
   m_sharedMaterial: {fileID: -7032811197456215169, guid: 060b57e92f4bfeb48b787bb12c091bbe, type: 2}

@@ -316,6 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4558081304368214546}
   - component: {fileID: 1755005745866075483}
+  - component: {fileID: 6995502763004820026}
   m_Layer: 0
   m_Name: Chest_Room_1
   m_TagString: Chest_Room
@@ -345,7 +346,7 @@ Transform:
   - {fileID: 4729708315655881361}
   - {fileID: 4567304968981913643}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1755005745866075483
 BoxCollider2D:
@@ -373,6 +374,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 18.9, y: 12.94}
   m_EdgeRadius: 0
+--- !u!114 &6995502763004820026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558081304368214547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28d833d5025e2f4bb0ef46c65b7f364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 5
+  spriteTransformTop: {fileID: 5806868534069201428}
+  spriteTransformTopLeft: {fileID: 8488063300491892449}
+  spriteTransformTopRight: {fileID: 2949412345152040486}
+  moveDirectionTop: {x: 0, y: -14, z: 0}
+  moveDirectionTopLeft: {x: 6, y: 1, z: 0}
+  moveDirectionTopRight: {x: -6, y: 1, z: 0}
+  chestItemCollected: 0
 --- !u!1 &4608172180923005205
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,6 +887,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 4558081304368214546}
     m_Modifications:
+    - target: {fileID: 9146562602752369400, guid: 87fe9088b69ed7347a4a6b95d1dab399, type: 3}
+      propertyPath: mover
+      value: 
+      objectReference: {fileID: 6995502763004820026}
     - target: {fileID: 9146562602752369401, guid: 87fe9088b69ed7347a4a6b95d1dab399, type: 3}
       propertyPath: m_Name
       value: Chest
