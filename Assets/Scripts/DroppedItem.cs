@@ -77,6 +77,13 @@ public class DroppedItem : MonoBehaviour
                 SetDropUI(drop);
             }
 
+            
+            if (drop.titleCode == "saw") {
+                am.Play(drop.sound);
+                gm.GetComponent<DropManager>().InitiateSaw();
+                SetDropUI(drop);
+            }
+
             toolTipManager.ShowToolTip(drop.title, drop.description);
 
             Destroy(gameObject);

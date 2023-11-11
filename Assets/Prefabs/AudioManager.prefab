@@ -316,7 +316,7 @@ MonoBehaviour:
     source: {fileID: 0}
     loop: 0
   - name: Drop_Health
-    clip: {fileID: 8300000, guid: 266312323046d584dad652b2a3c453a1, type: 3}
+    clip: {fileID: 8300000, guid: 012c969407bfba54cb3bf2ccc7e3ac93, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
@@ -443,6 +443,12 @@ MonoBehaviour:
     loop: 0
   - name: Drone_Shot
     clip: {fileID: 8300000, guid: 2243eb43154f48e4eaf3d361408ff489, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Saw
+    clip: {fileID: 8300000, guid: 2538158eeb8d1904399d9cf4505a676d, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}

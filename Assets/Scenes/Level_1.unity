@@ -37058,6 +37058,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1055520207, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: sawProjectile
+      value: 
+      objectReference: {fileID: 4631258460423436379, guid: ecfc951c19b16ba45addf6c73343dde9, type: 3}
+    - target: {fileID: 1055520207, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: duckProjectile
       value: 
       objectReference: {fileID: 262054205566815345, guid: 0dd454802924c5a4981183f192bb7b8a, type: 3}
@@ -37127,7 +37131,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b701816da9f9c7c449ac7635abcb0d4a, type: 2}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: drops.Array.size
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: waves.Array.size
@@ -37149,6 +37153,10 @@ PrefabInstance:
       propertyPath: upgrades.Array.size
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: drops.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: 100cc861c2f03fa409d2489f10ce093b, type: 2}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: waves.Array.data[23]
       value: 
@@ -37211,7 +37219,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 4a93a99d9b8eecf4680369b01d390c95, type: 3}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: probabilityEnemiesWillDrop
-      value: 3
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: specialRoomItems.Array.size
