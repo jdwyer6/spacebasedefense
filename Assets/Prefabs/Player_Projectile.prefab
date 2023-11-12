@@ -215,6 +215,7 @@ MonoBehaviour:
   barrierParticles: {fileID: 5299494945850680146, guid: 5d48115f21c2a4649a30d3f1ce9ba325, type: 3}
   barrierHit: {fileID: 4473101031662031867, guid: 9d12f88036982c24493fe01eb2e41a07, type: 3}
   rotate: 0
+  dieOnImpact: 1
   rotationSpeed: 200
   ignoreList: 2
 --- !u!58 &-3016659450791029342

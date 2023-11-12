@@ -18,6 +18,7 @@ public class Projectile : MonoBehaviour
     public GameObject barrierParticles;
     public GameObject barrierHit;
     public bool rotate;
+    public bool dieOnImpact = true;
     public float rotationSpeed = 200f;
 
     public enum IgnoreList
@@ -93,7 +94,9 @@ public class Projectile : MonoBehaviour
         }
 
         if(other.gameObject.tag == "Destructible_Environment" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Player") {
-            Destroy(gameObject);
+            if(dieOnImpact) {
+                Destroy(gameObject);
+            }
         }
 
         if(other.gameObject.tag == "Barrier") {

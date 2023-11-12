@@ -12,6 +12,7 @@ public class DropManager : MonoBehaviour
     public GameObject defaultProjectile;
     private GameObject gm;
     public GameObject duckProjectile;
+    public GameObject sawProjectile;
 
     private void Start() {
         gm = GameObject.FindGameObjectWithTag("GM");
@@ -75,6 +76,19 @@ public class DropManager : MonoBehaviour
         yield return new WaitForSeconds(timeActive);
         player.GetComponent<Player_Shooting>().SetProjectile(defaultProjectile);
         RemoveDropUI("duck");
+    }
+
+    // ----------------------------------------------------------------------
+
+    public void InitiateSaw() {
+        StartCoroutine(StartSaw());
+    }
+
+    private IEnumerator StartSaw() {
+        player.GetComponent<Player_Shooting>().SetProjectile(sawProjectile);
+        yield return new WaitForSeconds(timeActive);
+        player.GetComponent<Player_Shooting>().SetProjectile(defaultProjectile);
+        RemoveDropUI("saw");
     }
 
     // ----------------------------------------------------------------------
