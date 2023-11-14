@@ -37053,6 +37053,10 @@ PrefabInstance:
       propertyPath: specialRoomPrefab
       value: 
       objectReference: {fileID: 7278294996663205541, guid: b311759de7720a54f82578347fa6f54f, type: 3}
+    - target: {fileID: 1055520168, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: numberOfTimesToPlaceBlocks
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1055520181, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: m_Volume
       value: 0.5
