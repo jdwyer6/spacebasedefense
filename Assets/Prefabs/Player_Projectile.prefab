@@ -263,6 +263,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerProjectile: {fileID: 7387422206258482921}
-  numberOfProjectiles: 5
+  numberOfProjectiles: 2
   ricochetSpeed: 25
-  chainReactionEnabled: 0
+  chainReactionEnabled: 1

@@ -60,6 +60,14 @@ public class Enemy_Health : MonoBehaviour
             float rotationZ = Mathf.Atan2(oppositeDirection.y, oppositeDirection.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.Euler(0, 0, rotationZ -90); 
             Instantiate(bloodParticlesExit, transform.position, rotation);
+
+            // ChainReaction chainReaction = other.gameObject.GetComponent<ChainReaction>();
+            // if(chainReaction != null) {
+            //     if(chainReaction.chainReactionEnabled) {
+            //         Debug.Log(chainReaction.chainReactionEnabled);
+            //         chainReaction.InitiateChainReaction(other.gameObject);
+            //     } 
+            // }
         }
         if(other.gameObject.tag == "Projectile_NonDestructible") {
             am.Play(data.bloodHits[Random.Range(0, data.bloodHits.Length)]);

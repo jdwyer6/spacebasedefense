@@ -17,12 +17,6 @@ public class Drops : MonoBehaviour
         probabilityToDrop = gm.GetComponent<Data>().probabilityEnemiesWillDrop;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private bool ShouldDrop() {
         int randomNum = UnityEngine.Random.Range(0, 100);
         if(randomNum <= probabilityToDrop) {

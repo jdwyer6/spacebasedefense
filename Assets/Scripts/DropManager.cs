@@ -163,7 +163,7 @@ public class DropManager : MonoBehaviour
     }
 
     private IEnumerator StartChainReaction() {
-        playerProjectile = player.GetComponent<Player_Shooting>().projectilePrefab;
+        // playerProjectile = player.GetComponent<Player_Shooting>().projectilePrefab;
         playerProjectile.GetComponent<ChainReaction>().chainReactionEnabled = true;
         yield return new WaitForSeconds(timeActive);
         playerProjectile.GetComponent<ChainReaction>().chainReactionEnabled = false;

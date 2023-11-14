@@ -14,7 +14,6 @@ public class ChainReaction : MonoBehaviour
     void Start()
     {
         am = FindObjectOfType<AudioManager>();
-        chainReactionEnabled = false;
     }
 
     public void InitiateChainReaction(GameObject other) {
