@@ -30,11 +30,6 @@ public class Boss_Health_Bar : MonoBehaviour
 
         float maxBossHealth = GetComponent<Enemy_Health>().totalHealth;
         bossSlider.value = bossHealth / maxBossHealth;
-
-        if(bossHealth <= 10 && bossHealthBarActive) {
-
-            DeactivateHealthBar();
-        }
     }
 
     private void DeactivateHealthBar() {
@@ -42,5 +37,8 @@ public class Boss_Health_Bar : MonoBehaviour
         bossHealthBarActive = false;
     }
 
+    private void OnDestroy() {
+        DeactivateHealthBar();
+    }
 
 }

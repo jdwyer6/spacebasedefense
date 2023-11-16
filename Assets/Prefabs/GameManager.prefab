@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 1055520168}
   - component: {fileID: 1055520194}
   - component: {fileID: 1055520207}
+  - component: {fileID: 1053972276}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GM
@@ -116,11 +117,11 @@ MonoBehaviour:
   - Blood_Hit_4
   coolDownSoundtrack: CoolDownSoundtrack
   soundtracks:
-  - {fileID: 8300000, guid: 1bc50cd079b16c04d82390695d0916d7, type: 3}
   - {fileID: 8300000, guid: d0810ddc72933154bb265a85cbe27ba9, type: 3}
   - {fileID: 8300000, guid: 362e4fd3c68001943b168e251715c135, type: 3}
-  - {fileID: 8300000, guid: 4a93a99d9b8eecf4680369b01d390c95, type: 3}
+  - {fileID: 8300000, guid: 1bc50cd079b16c04d82390695d0916d7, type: 3}
   - {fileID: 8300000, guid: 3b18a1150dece3b4d84563a1f578c644, type: 3}
+  - {fileID: 8300000, guid: 4a93a99d9b8eecf4680369b01d390c95, type: 3}
   destructionParticles: {fileID: 5397473351050060577, guid: 3897b4a79f3cc074e959ff62574319c3, type: 3}
   dustParticles: {fileID: 5261648427361601601, guid: 8a086bbdf41ccfd4f8a21b5af92a5032, type: 3}
   enemies:
@@ -147,6 +148,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d25e5b26321cd740be2e17ec6b8ed1c, type: 2}
   - {fileID: 11400000, guid: 9750d6677542a8f4fa6b3f8e59a33d1d, type: 2}
   - {fileID: 11400000, guid: bace8970094a0f04abcea96678cd3550, type: 2}
+  - {fileID: 11400000, guid: fe7fa39819444ae4a8f72cc067578abc, type: 2}
+  - {fileID: 11400000, guid: 2c07d846abdaa334cb70e0bf43269723, type: 2}
+  - {fileID: 11400000, guid: e21be0238d0f2214b8f504db77b52765, type: 2}
   waves:
   - {fileID: 11400000, guid: bed0dc8ff622e954b993e0ce944b1d6d, type: 2}
   - {fileID: 11400000, guid: 4e5189152bebb8c49ab8b69e49491927, type: 2}
@@ -171,6 +175,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0b27083c3c061414895290162f627616, type: 2}
   - {fileID: 11400000, guid: fb1a9ef14db092a4c8f47ce9e894ce63, type: 2}
   - {fileID: 11400000, guid: 1e8ff6f098364224eb84b4244f3fdb65, type: 2}
+  - {fileID: 11400000, guid: 4144f22700f59e34ca5061c5e753cf0d, type: 2}
   bossDrops:
   - {fileID: 5870980810648094293, guid: 79108e9f0ba8b7c449a9ad5ac7e3016a, type: 3}
   drops:
@@ -181,15 +186,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e018fcafedf8bc84094bfd30ede22188, type: 2}
   - {fileID: 11400000, guid: 3368e661ec2e0754385434f3629ff0fc, type: 2}
   - {fileID: 11400000, guid: 51732f36922003f49ae507bd8b56c3d9, type: 2}
+  - {fileID: 11400000, guid: b7132be4813ba1a46ab80993510e4b73, type: 2}
+  - {fileID: 11400000, guid: 51732f36922003f49ae507bd8b56c3d9, type: 2}
+  - {fileID: 11400000, guid: ecd39fc761862754fb2a9f8c3f84821c, type: 2}
+  - {fileID: 11400000, guid: 100cc861c2f03fa409d2489f10ce093b, type: 2}
   characters:
   - {fileID: 11400000, guid: f8d63247e3eaee14c89f6d2f9f1a2c8c, type: 2}
   guns:
   - {fileID: 11400000, guid: 852c42de3b0f9ed488d2a8a7674a24c3, type: 2}
-  playerPrefData: {fileID: 11400000, guid: c4c71502596f1a34c9b2175bfe81ad98, type: 2}
   bulletHolePrefabs:
   - {fileID: 2103613736420850286, guid: 243e5c1fa215b0f4ea3af33f3d738779, type: 3}
   - {fileID: 1542889480603824151, guid: 450a696443dfb994098816e36d1f35f2, type: 3}
   - {fileID: 7334762097058080348, guid: 0ea89cfec83ee9a40a2353d46f727cae, type: 3}
+  probabilityEnemiesWillDrop: 100
+  enemyMaterial: {fileID: 2100000, guid: b701816da9f9c7c449ac7635abcb0d4a, type: 2}
+  specialRoomItems:
+  - {fileID: 7572094129668019157, guid: b35cdebd52d1b7247a13a85a67bba127, type: 3}
+  - {fileID: 1978997692379423248, guid: f653abcec56578349914af8e23b86e8f, type: 3}
 --- !u!114 &4570469017198267501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,7 +461,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -544,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188466e354d293d4584194fff0159cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfTimesToPlaceBlocks: 10
+  numberOfTimesToPlaceBlocks: 5
   blockPrefab: {fileID: 3659098655713761954, guid: 5f41a4f0ebf8b634187b68d0f0be082c, type: 3}
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
   buildingBlocks:
@@ -565,7 +578,7 @@ MonoBehaviour:
   - {fileID: 7325194218310117412, guid: e6edced90f606534c8098056abff0216, type: 3}
   chestRooms:
   - {fileID: 4558081304368214547, guid: 11fe059711d9e064ca5096613a926c2b, type: 3}
-  shouldGenerateEnvironment: 1
+  specialRoomPrefab: {fileID: 7278294996663205541, guid: b311759de7720a54f82578347fa6f54f, type: 3}
 --- !u!114 &1055520194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,7 +605,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeActive: 30
-  playerProjectile: {fileID: 7387422206258482921, guid: 1c7894ad71a9a7c47a309c51af0187b7, type: 3}
+  defaultProjectile: {fileID: 7387422206258482921, guid: 1c7894ad71a9a7c47a309c51af0187b7, type: 3}
+  duckProjectile: {fileID: 262054205566815345, guid: 0dd454802924c5a4981183f192bb7b8a, type: 3}
+  sawProjectile: {fileID: 4631258460423436379, guid: ecfc951c19b16ba45addf6c73343dde9, type: 3}
+--- !u!114 &1053972276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570469017198267502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e79987d49990afb42bd6bb9ab03f3b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicAudioSource: {fileID: 1055520181}
+  musicVolumeSlider: {fileID: 0}
+  postProcessVolume: {fileID: 0}
 --- !u!1 &4570469017865238122
 GameObject:
   m_ObjectHideFlags: 0

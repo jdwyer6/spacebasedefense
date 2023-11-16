@@ -4976,7 +4976,7 @@ GameObject:
   - component: {fileID: 421559567}
   - component: {fileID: 421559570}
   - component: {fileID: 421559569}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Recharge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5025,7 +5025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.5874866, g: 0.7678847, b: 0.7735849, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5139,7 +5139,8 @@ GameObject:
   m_Component:
   - component: {fileID: 687361894}
   - component: {fileID: 687361896}
-  m_Layer: 8
+  - component: {fileID: 1285851337}
+  m_Layer: 0
   m_Name: Shift_Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5214,6 +5215,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1285851337
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687361893}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!1 &1164381528
 GameObject:
   m_ObjectHideFlags: 0
@@ -15024,7 +15041,7 @@ GameObject:
   - component: {fileID: 1556956985}
   - component: {fileID: 1556956984}
   - component: {fileID: 1556956983}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26034,8 +26051,8 @@ MonoBehaviour:
   shieldRechargeTime: 2
   shieldIndicator: {fileID: 421559566}
   uiIndicator: {fileID: 0}
-  shieldRadius: 2.75
   timer: 0
+  pushForce: 5
 --- !u!114 &2094178977
 MonoBehaviour:
   m_ObjectHideFlags: 0
