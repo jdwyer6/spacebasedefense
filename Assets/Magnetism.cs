@@ -53,9 +53,11 @@ public class Magnetism : MonoBehaviour
             Vector3 moveDirection = (transform.position - pickup.transform.position).normalized;
             float distance = Vector3.Distance(transform.position, pickup.transform.position);
 
-            // Increase speed as the pickup gets closer
-            float speedFactor = (distanceToAttract - distance) / distanceToAttract;
-            pickup.transform.position += moveDirection * moveSpeed * speedFactor * Time.deltaTime;
+            if(distance > 0.01f) {
+                // Increase speed as the pickup gets closer
+                float speedFactor = (distanceToAttract - distance) / distanceToAttract;
+                pickup.transform.position += moveDirection * moveSpeed * speedFactor * Time.deltaTime;
+            }
 
             if (distance <= 0.1f)
             {
