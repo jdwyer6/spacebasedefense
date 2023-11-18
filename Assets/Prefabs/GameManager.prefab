@@ -198,7 +198,7 @@ MonoBehaviour:
   - {fileID: 2103613736420850286, guid: 243e5c1fa215b0f4ea3af33f3d738779, type: 3}
   - {fileID: 1542889480603824151, guid: 450a696443dfb994098816e36d1f35f2, type: 3}
   - {fileID: 7334762097058080348, guid: 0ea89cfec83ee9a40a2353d46f727cae, type: 3}
-  probabilityEnemiesWillDrop: 100
+  probabilityEnemiesWillDrop: 3
   enemyMaterial: {fileID: 2100000, guid: b701816da9f9c7c449ac7635abcb0d4a, type: 2}
   specialRoomItems:
   - {fileID: 7572094129668019157, guid: b35cdebd52d1b7247a13a85a67bba127, type: 3}

@@ -37050,10 +37050,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
-      propertyPath: probabilityEnemiesWillDrop
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267507, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: gameOverScreen
       value: 
