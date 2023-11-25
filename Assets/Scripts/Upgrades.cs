@@ -47,6 +47,7 @@ public class Upgrades : MonoBehaviour
     UpgradeLogicType landmine = UpgradeLogicType.landmine;
     UpgradeLogicType magnetism = UpgradeLogicType.magnetism;
     UpgradeLogicType drone = UpgradeLogicType.drone;
+    UpgradeLogicType critical = UpgradeLogicType.critical;
 
     public GameObject speedBoostParticles;
 
@@ -255,6 +256,9 @@ public class Upgrades : MonoBehaviour
                 case UpgradeLogicType.drone:
                 newUpgrade.GetComponent<Button>().onClick.AddListener(() => Drone());
                     break;
+                case UpgradeLogicType.critical:
+                newUpgrade.GetComponent<Button>().onClick.AddListener(() => Critical());
+                    break;
             }
         }
     }
@@ -447,6 +451,13 @@ public class Upgrades : MonoBehaviour
     public void Drone() {
         HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == drone));
         dronePrefab.SetActive(true);
+        ResetAndUpdatePickups();
+        CloseUpgradesMenu();
+    }
+
+    public void Critical() {
+        HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == critical));
+        gm.GetComponent<CriticalHits>().UpdateCriticalHitAmount(2);
         ResetAndUpdatePickups();
         CloseUpgradesMenu();
     }

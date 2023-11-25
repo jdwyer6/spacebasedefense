@@ -17,7 +17,8 @@ public enum UpgradeLogicType
     radialRay,
     landmine,
     magnetism,
-    drone
+    drone,
+    critical
 }
 
 [CreateAssetMenu(fileName = "NewUpgrade", menuName = "Upgrade/Upgrade")]
