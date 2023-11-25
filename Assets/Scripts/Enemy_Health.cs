@@ -48,7 +48,12 @@ public class Enemy_Health : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "Player_Projectile") {
-            TakeDamage(other.gameObject.GetComponent<Projectile>().damage);
+            if (gm.GetComponent<CriticalHits>().isCriticalHit()) {
+                Instantiate(gm.GetComponent<CriticalHits>().criticalHitParticles, other.transform.position, Quaternion.identity);
+                TakeDamage(gm.GetComponent<CriticalHits>().criticalHitDamageAmount);
+            } else {
+                TakeDamage(other.gameObject.GetComponent<Projectile>().damage);
+            }
             if(GetComponent<Enemy_Data>().showBloodHit) {
                 ShowBloodHit(other.gameObject);
             }
@@ -61,13 +66,6 @@ public class Enemy_Health : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(0, 0, rotationZ -90); 
             Instantiate(bloodParticlesExit, transform.position, rotation);
 
-            // ChainReaction chainReaction = other.gameObject.GetComponent<ChainReaction>();
-            // if(chainReaction != null) {
-            //     if(chainReaction.chainReactionEnabled) {
-            //         Debug.Log(chainReaction.chainReactionEnabled);
-            //         chainReaction.InitiateChainReaction(other.gameObject);
-            //     } 
-            // }
         }
         if(other.gameObject.tag == "Projectile_NonDestructible") {
             am.Play(data.bloodHits[Random.Range(0, data.bloodHits.Length)]);
