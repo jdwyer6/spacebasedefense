@@ -68,6 +68,16 @@ public class Player_Shooting : MonoBehaviour
             ResetShootIndex(3);
         }
 
+        // Controller support
+        // if (Input.GetAxis("Fire1") > .1f ) {
+        //     float flashRotation = transform.eulerAngles.z;
+        //     isShooting = true;
+        //     Debug.Log("Fire!");
+        //     am.Play(gunshotSound);
+        //     // StartCoroutine(Fire(Vector2.up, KeyCode.UpArrow, flashRotation, new Vector3(0, 1, 0)));
+        // }
+
+
         if(shootIdx[0] && !isShooting) {
             isShooting = true;
             float flashRotation = -90f;

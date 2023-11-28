@@ -12,6 +12,7 @@ public class Enemy_Movement : MonoBehaviour
 
     public bool isStationary;
     public bool followsVertically;
+    public bool charges;
 
     void Start()
     {
@@ -26,16 +27,19 @@ public class Enemy_Movement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>(); 
         speed = originalSpeed;
 
-        // speed = originalSpeed * gm.GetComponent<Enemy_Spawner>().enemyMovementSpeedMultiplier;
+        if(charges) {
+            StartCoroutine(Charge());
+        }
     }
 
     void Update()
     {
-        if (player != null)
+        if (player != null && !charges)
         {
             if(!isStationary) {
                 Vector2 direction = (player.position - transform.position).normalized;
                 rb2d.velocity = direction * speed;
+
             }else if(followsVertically) {
                 float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
@@ -77,4 +81,20 @@ public class Enemy_Movement : MonoBehaviour
         }
     }
 
+    IEnumerator Charge() {
+        while (true)
+        {
+            Vector2 direction = (player.position - transform.position).normalized;
+            rb2d.velocity = direction * speed;
+
+            float chargeDuration = UnityEngine.Random.Range(2, 4);
+            float elapsedTime = 0f;
+
+            while (elapsedTime < chargeDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+    }
 }
