@@ -30,7 +30,7 @@ public class Building : MonoBehaviour
     {
         if(canBuild) {
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(1))
             {
                 if (!isHoldingMouse) 
                 {

@@ -91,9 +91,10 @@ public class Player_Movement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && dashRecharged) {
+        if(Input.GetButtonDown("Jump") && dashRecharged) {
             StartCoroutine(Dash());
         }
+
 
         DamageEnemiesDuringDeadlyDash();
     }

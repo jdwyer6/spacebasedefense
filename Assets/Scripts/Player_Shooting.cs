@@ -39,9 +39,10 @@ public class Player_Shooting : MonoBehaviour
     public GameObject laser;
     public bool laserActive;
 
-    private Vector2 shootingDirection;
-    private float currentFlashRotation;
-    private Vector2 currentOffset;
+    private Vector2 direction;
+    private float flashRotation;
+    private Vector3 offset;
+
 
     private void Start() {
         SetProjectile(defaultPlayerProjectile);
@@ -74,37 +75,37 @@ public class Player_Shooting : MonoBehaviour
             ResetShootIndex(3);
         }
 
-        if(shootIdx[0] && !isShooting) {
-            isShooting = true;
-            float flashRotation = -90f;
-            StartCoroutine(Fire(Vector2.up, () => Input.GetKey(KeyCode.UpArrow), flashRotation, new Vector3(0, 1, 0)));
-        }else if(shootIdx[1] && !isShooting) {
-            float flashRotation = 180f;
-            StartCoroutine(Fire(Vector2.right, () => Input.GetKey(KeyCode.RightArrow), flashRotation, new Vector3(1, 0, 0)));
-        }else if(shootIdx[2] && !isShooting) {
-            float flashRotation = 90f;  
-            StartCoroutine(Fire(Vector2.down, () => Input.GetKey(KeyCode.DownArrow), flashRotation, new Vector3(0, -1, 0)));
-        }else if(shootIdx[3] && !isShooting) {
-            float flashRotation = -180f;
-            StartCoroutine(Fire(Vector2.left, () => Input.GetKey(KeyCode.LeftArrow), flashRotation, new Vector3(-1, 0, 0)));
-        }
+        // if(shootIdx[0] && !isShooting) {
+        //     isShooting = true;
+        //     float flashRotation = -90f;
+        //     StartCoroutine(Fire(Vector2.up, () => Input.GetKey(KeyCode.UpArrow), flashRotation, new Vector3(0, 1, 0)));
+        // }else if(shootIdx[1] && !isShooting) {
+        //     float flashRotation = 180f;
+        //     StartCoroutine(Fire(Vector2.right, () => Input.GetKey(KeyCode.RightArrow), flashRotation, new Vector3(1, 0, 0)));
+        // }else if(shootIdx[2] && !isShooting) {
+        //     float flashRotation = 90f;  
+        //     StartCoroutine(Fire(Vector2.down, () => Input.GetKey(KeyCode.DownArrow), flashRotation, new Vector3(0, -1, 0)));
+        // }else if(shootIdx[3] && !isShooting) {
+        //     float flashRotation = -180f;
+        //     StartCoroutine(Fire(Vector2.left, () => Input.GetKey(KeyCode.LeftArrow), flashRotation, new Vector3(-1, 0, 0)));
+        // }
 
 
-        GetRightStickInput();
+        GetProjectileDirection();
 
         if (Input.GetAxis("Fire1") > 0.9f && !isShooting)
         {
             float flashRotation;
-            flashRotation = Mathf.Atan2(shootingDirection.y, shootingDirection.x) * Mathf.Rad2Deg;
-            // Vector3 offset = new Vector3(shootingDirection.x, shootingDirection.y, 0) * 1f;
-
-            StartCoroutine(Fire(shootingDirection, () => Input.GetAxis("Fire1") > 0.9f, flashRotation, currentOffset));
+            flashRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            StartCoroutine(Fire(() => Input.GetAxis("Fire1") > 0.9f));
         }
 
-        
+        if(GetIsControllerConnected() && Input.GetMouseButtonDown(0)) {
+            GameObject.FindGameObjectWithTag("ToolTipManager").GetComponent<ToolTipManager>().ShowToolTip("Controller Still Connected", "Please disconnect your controller to use mouse and keyboard.");
+        }
     }
 
-    void LaunchProjectile(Vector2 direction)
+    void LaunchProjectile()
     {
         am.Play(gunshotSound);
         if(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == spread).acquired){
@@ -148,7 +149,7 @@ public class Player_Shooting : MonoBehaviour
 
         if (rb != null)
         {
-            rb.velocity = direction * projectileSpeed;
+            rb.velocity = direction.normalized * projectileSpeed;
         }
         else
         {
@@ -157,14 +158,11 @@ public class Player_Shooting : MonoBehaviour
 
     }
 
-    IEnumerator Fire(Vector2 direction, Func<bool> isInputActive, float flashRotation, Vector3 offset){
+    IEnumerator Fire(Func<bool> isInputActive){
         currentAmmo -= 1;
         isShooting = true;
         while(isInputActive()){
-            direction = shootingDirection;
-            flashRotation = currentFlashRotation;
-            offset = currentOffset;
-            LaunchProjectile(direction);
+            LaunchProjectile();
             var particles = Instantiate(muzzleParticles, transform.position + offset, Quaternion.identity);
             SetFlashRotation(particles, flashRotation);
             if(laserActive) {
@@ -189,22 +187,29 @@ public class Player_Shooting : MonoBehaviour
         }
     }
 
-    private void GetRightStickInput() {
-        float rightStickX = Input.GetAxis("RightStickX");
-        float rightStickY = Input.GetAxis("RightStickY");
-        if (Mathf.Approximately(rightStickX, 0f) && Mathf.Approximately(rightStickY, 0f))
-        {
-            shootingDirection = (Vector2)transform.up; // Assuming the player's forward shootingDirection is to the right
-            currentFlashRotation = Mathf.Atan2(shootingDirection.y, shootingDirection.x) * Mathf.Rad2Deg;
-            currentOffset = new Vector3(shootingDirection.x, shootingDirection.y, 0) * 1f;
+    private void GetProjectileDirection() {
+        if(GetIsControllerConnected()) {
+            float rightStickX = Input.GetAxis("RightStickX");
+            float rightStickY = Input.GetAxis("RightStickY");
+            if (Mathf.Approximately(rightStickX, 0f) && Mathf.Approximately(rightStickY, 0f))
+            {
+                direction = (Vector2)transform.up; // Assuming the player's forward direction is to the right
+                flashRotation = Mathf.Atan2(-direction.y, direction.x) * Mathf.Rad2Deg;
+            }
+            else
+            {
+                direction = new Vector2(rightStickX, -rightStickY).normalized;
+                flashRotation = Mathf.Atan2(rightStickY, rightStickX) * Mathf.Rad2Deg;
+            }
+        }else{
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            direction = (mousePosition - transform.position).normalized;
+            flashRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         }
-        else
-        {
-            shootingDirection = new Vector2(rightStickX, -rightStickY).normalized;
-            currentFlashRotation = Mathf.Atan2(rightStickY, rightStickX) * Mathf.Rad2Deg;
-            currentOffset = new Vector3(shootingDirection.x, shootingDirection.y, 0) * 1f;
-        }
+        offset = direction; 
     }
+
 
     void ResetShootIndex(int idx) {
         for (int i = 0; i < shootIdx.Length; i++)
@@ -293,5 +298,14 @@ public class Player_Shooting : MonoBehaviour
     public void SetProjectile(GameObject projectile) {
         projectilePrefab = projectile;
         gunshotSound = projectile.GetComponent<Projectile>().gunshotSound;
+    }
+
+    private bool GetIsControllerConnected() {
+        if (Gamepad.current != null) 
+        {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

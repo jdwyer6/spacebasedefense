@@ -48,7 +48,7 @@ public class Player_Shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.LeftShift) && shieldActiveForTime >= 0 && canUseShield) {
+        if((Input.GetKey(KeyCode.LeftShift) || Input.GetButton("Circle")) && shieldActiveForTime >= 0 && canUseShield) {
             if(shieldActive == false) {
                 am.Play("Shift_Shield_Activated");
                 timer = shieldActiveForTime;
