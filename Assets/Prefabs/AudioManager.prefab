@@ -335,19 +335,19 @@ MonoBehaviour:
     loop: 0
   - name: Barrier_Impact_1
     clip: {fileID: 8300000, guid: c061a3c74e8c0d8489eef6f1d4990f40, type: 3}
-    volume: 1
+    volume: 0.564
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: Barrier_Impact_2
     clip: {fileID: 8300000, guid: e4915b4c2f226594f8ba6b144eee16b1, type: 3}
-    volume: 1
+    volume: 0.534
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: Barrier_Impact_3
     clip: {fileID: 8300000, guid: 65f9531ea913c52408ef333f7e23b827, type: 3}
-    volume: 1
+    volume: 0.511
     pitch: 1
     source: {fileID: 0}
     loop: 0

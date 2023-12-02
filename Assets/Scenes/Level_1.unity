@@ -37044,12 +37044,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267501, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: level
-      value: 11
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267501, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: waveText
       value: 
       objectReference: {fileID: 1732256798}
+    - target: {fileID: 4570469017198267501, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4570469017198267502, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: m_Name
       value: GameManager
