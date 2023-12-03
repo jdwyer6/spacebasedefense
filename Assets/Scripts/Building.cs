@@ -29,7 +29,7 @@ public class Building : MonoBehaviour
     void Update()
     {
         if(canBuild) {
-
+            // Input.GetAxis("L2") > 0.9f
             if (Input.GetMouseButton(1))
             {
                 if (!isHoldingMouse) 
