@@ -4,7 +4,6 @@ using UnityEngine;
 using Cinemachine;
 using System;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
 
 
 public class Player_Shooting : MonoBehaviour
@@ -300,12 +299,16 @@ public class Player_Shooting : MonoBehaviour
         gunshotSound = projectile.GetComponent<Projectile>().gunshotSound;
     }
 
-    private bool GetIsControllerConnected() {
-        if (Gamepad.current != null) 
+    private bool GetIsControllerConnected() 
+    {
+        string[] joystickNames = Input.GetJoystickNames();
+        foreach (string joystickName in joystickNames)
         {
-            return true;
-        } else {
-            return false;
+            if (!string.IsNullOrEmpty(joystickName))
+            {
+                return true;
+            }
         }
+        return false;
     }
 }

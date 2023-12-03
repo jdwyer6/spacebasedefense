@@ -23,6 +23,8 @@ public class Menu_Logic : MonoBehaviour
     [Header("Menus")]
     public GameObject[] menus;
 
+    public GameObject firstSelected_PauseMenu;
+
     private void Start() {
         am = FindObjectOfType<AudioManager>();
         currentlyActiveButton = 0;
@@ -41,7 +43,7 @@ public class Menu_Logic : MonoBehaviour
             am = FindObjectOfType<AudioManager>();
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape)) {
+        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start")) {
             if(pauseMenuOpen) {
                 CloseMenu(menus[0]);
                 pauseMenuOpen = false;
@@ -49,6 +51,7 @@ public class Menu_Logic : MonoBehaviour
                 
             }else{
                 OpenMenu(menus[0]);
+                SetFirstSelected(firstSelected_PauseMenu);
                 pauseMenuOpen = true;
                 Pause();
 
@@ -91,6 +94,10 @@ public class Menu_Logic : MonoBehaviour
             GameGlobals.Instance.globalMenuOpen = true;
         }
         StartCoroutine(AnimateMenuChange(.5f, menu, currentMenuOpen));
+    }
+
+    public void SetFirstSelected(GameObject firstSelected) {
+        EventSystem.current.SetSelectedGameObject(firstSelected);
     }
 
     public void CloseMenu(GameObject menu) {
