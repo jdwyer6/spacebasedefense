@@ -19,7 +19,8 @@ public class Drops : MonoBehaviour
 
     private bool ShouldDrop() {
         int randomNum = UnityEngine.Random.Range(0, 100);
-        if(randomNum <= probabilityToDrop) {
+        if(randomNum <= probabilityToDrop || CheckIfMaxTimeHasPassedBetweenDrops()) {
+            gm.GetComponent<DropManager>().ResetTimeBetweenDropsTimer();
             return true;
         }
         return false;
@@ -37,5 +38,12 @@ public class Drops : MonoBehaviour
         drop.GetComponent<SpriteRenderer>().sprite = randomDrop.sprite;
         gm.GetComponent<Data>().drops.Remove(randomDrop);
 
+    }
+
+    private bool CheckIfMaxTimeHasPassedBetweenDrops() {
+        if(gm.GetComponent<DropManager>().timeBetweenDropsTimer >= gm.GetComponent<DropManager>().maxTimeBetweenDrops) {
+            return true;
+        }
+        return false;
     }
 }

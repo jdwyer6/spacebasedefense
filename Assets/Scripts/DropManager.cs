@@ -14,6 +14,9 @@ public class DropManager : MonoBehaviour
     public GameObject duckProjectile;
     public GameObject sawProjectile;
 
+    public float maxTimeBetweenDrops = 60;
+    public float timeBetweenDropsTimer = 0;
+
     private void Start() {
         gm = GameObject.FindGameObjectWithTag("GM");
         dropsContainer = GameObject.FindGameObjectWithTag("DropsUIContainer");
@@ -24,7 +27,12 @@ public class DropManager : MonoBehaviour
         player.GetComponent<Player_Shooting>().laserActive = false;
         enemyMaterial = gm.GetComponent<Data>().enemyMaterial;
         playerProjectile.GetComponent<ChainReaction>().chainReactionEnabled = false;
+        timeBetweenDropsTimer = 0;
         InitializeEnemyShader();
+    }
+
+    private void Update() {
+        timeBetweenDropsTimer += Time.deltaTime;
     }
 
     public void InitiateInstakill() {
@@ -183,5 +191,9 @@ public class DropManager : MonoBehaviour
 
     private GameObject[] GetEnemies() {
         return GameObject.FindGameObjectsWithTag("Enemy");
+    }
+
+    public void ResetTimeBetweenDropsTimer() {
+        timeBetweenDropsTimer = 0;
     }
 }

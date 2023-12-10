@@ -113,6 +113,8 @@ public class Enemy_Health : MonoBehaviour
             
         }
 
+        gm.GetComponent<ScoreManager>().SetNumberOfKills();
+
         Destroy(gameObject);
     }
 

@@ -165,7 +165,7 @@ public class Player_Shooting : MonoBehaviour
             var particles = Instantiate(muzzleParticles, transform.position + offset, Quaternion.identity);
             SetFlashRotation(particles, flashRotation);
             if(laserActive) {
-                StartCoroutine(FireLaser(flashRotation));
+                StartCoroutine(FireLaser(flashRotation - 90));
             }
             yield return new WaitForSeconds(autoShootingInterval);
         }
@@ -273,21 +273,21 @@ public class Player_Shooting : MonoBehaviour
 
     IEnumerator FireLaser(float rotation) {
         laser.SetActive(true);
-        switch (rotation)
-        {
-            case 90:
-                rotation = -180;
-                break;
-            case 180:
-                rotation = -90;
-                break;
-            case -90:
-                rotation = 0;
-                break;
-            case -180:
-                rotation = 90;
-                break;
-        }
+        // switch (rotation)
+        // {
+        //     case 90:
+        //         rotation = -90;
+        //         break;
+        //     case 180:
+        //         rotation = 0;
+        //         break;
+        //     case -90:
+        //         rotation = 90;
+        //         break;
+        //     case -180:
+        //         rotation = 180;
+        //         break;
+        // }
         am.Play("Laser_Projectile");
         laser.transform.rotation = Quaternion.Euler(0, 0, rotation);
         yield return new WaitForSeconds(.05f);
