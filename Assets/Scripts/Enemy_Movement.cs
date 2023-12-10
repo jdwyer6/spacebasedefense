@@ -34,6 +34,7 @@ public class Enemy_Movement : MonoBehaviour
 
     void Update()
     {
+        
         if (player != null && !charges)
         {
             if(!isStationary) {

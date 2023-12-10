@@ -71,6 +71,7 @@ public class Upgrades : MonoBehaviour
         am = FindObjectOfType<AudioManager>();
         gm = GameObject.FindGameObjectWithTag("GM");
         upgrades = gm.GetComponent<Data>().upgrades;
+        GameGlobals.Instance.globalMenuOpen = false;
         if (pickupSlider)
         {
             pickupSlider.minValue = 0;
@@ -156,7 +157,6 @@ public class Upgrades : MonoBehaviour
             }
             am.Play("Pickup");
             Instantiate(pickupParticles, other.transform.position, Quaternion.identity);
-            
             Destroy(other.gameObject);
         }
     }
@@ -197,6 +197,37 @@ public class Upgrades : MonoBehaviour
     void ClearUpgradeGroupChildren() {
         foreach(Transform child in upgradeGroup.transform) {
             Destroy(child.gameObject);
+        }
+    }
+
+    void SetNavigation()
+    {
+        Button[] buttons = upgradeGroup.GetComponentsInChildren<Button>();
+
+        if (buttons.Length < 2) // If there are less than 2 buttons, navigation is not necessary.
+            return;
+
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            Navigation navigation = new Navigation();
+            navigation.mode = Navigation.Mode.Explicit;
+
+            // Calculate the index for the previous button
+            int previousIndex = i == 0 ? buttons.Length - 1 : i - 1;
+            // Calculate the index for the next button
+            int nextIndex = (i + 1) % buttons.Length;
+
+            // Assign the navigation based on the calculated indices
+            navigation.selectOnUp = buttons[previousIndex];
+            navigation.selectOnLeft = buttons[previousIndex];
+            navigation.selectOnDown = buttons[nextIndex];
+            navigation.selectOnRight = buttons[nextIndex];
+
+            buttons[i].navigation = navigation;
+
+            // Debug statements to verify the navigation setup
+            Debug.Log($"Button {i} Up/Left Navigation: {buttons[previousIndex].name}");
+            Debug.Log($"Button {i} Down/Right Navigation: {buttons[nextIndex].name}");
         }
     }
 
@@ -268,6 +299,8 @@ public class Upgrades : MonoBehaviour
         upgradeMenu.SetActive(true);
         menuOpen = true;
         GameGlobals.Instance.globalMenuOpen = true;
+        SetNavigation();
+        EventSystem.current.SetSelectedGameObject(upgradeGroup.transform.GetChild(0).gameObject);
         am.Play("Upgrade_UI");
         Time.timeScale = 0;
         pickupSlider.maxValue = pickupsNeededForNextUpgrade;
@@ -378,6 +411,7 @@ public class Upgrades : MonoBehaviour
 
     public void Emp() {
         HandleUpgradeSelectionUI(Array.Find(Helper.GetUpgrades(), upgrade => upgrade.upgradeLogic == emp));
+        GetComponent<EMP>().enabled = true;
         ResetAndUpdatePickups();
         CloseUpgradesMenu();
     }

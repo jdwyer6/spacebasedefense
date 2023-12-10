@@ -19,5 +19,7 @@ public class GameGlobals : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        globalMenuOpen = false;
     }
 }

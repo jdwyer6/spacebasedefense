@@ -12,12 +12,6 @@ public class Additional_UI_Logic : MonoBehaviour
         StartCoroutine(FadeOutKeyBindings());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator FadeOutKeyBindings() {
         yield return new WaitForSeconds(5f);
         keyBindingText.SetActive(false);
