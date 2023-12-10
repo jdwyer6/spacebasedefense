@@ -3778,7 +3778,7 @@ MonoBehaviour:
           m_MethodName: SetFirstSelected
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 1456502954}
+            m_ObjectArgument: {fileID: 2057821628}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -17672,7 +17672,7 @@ MonoBehaviour:
           m_MethodName: SetFirstSelected
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 1456502954}
+            m_ObjectArgument: {fileID: 983807356}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -37469,6 +37469,18 @@ MonoBehaviour:
   criticalHitPercent: 0
   criticalHitDamageAmount: 100
   criticalHitParticles: {fileID: 8175697464865897991, guid: 17b603cd577796b46b1d3fff1b1ef00a, type: 3}
+--- !u!114 &4570469016961599477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570469016961599459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f485136b01fd15345bab1cb3544a373b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7451860667339576662
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,3 +3,4 @@ Reset Upgrades "Purchased" values to 0
 Set Probability enemies will drop to 3
 Reenable narration voices PlayAudio bool
 hasSeenTutorial = false
+set highestNumberOfKills to 0
