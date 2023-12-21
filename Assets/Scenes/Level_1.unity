@@ -37465,6 +37465,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3eb9eb20eff18104daadc0643cbf2934, type: 3}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8ccb31ddc23cc324ca83e61985ed5ee4, type: 3}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6b8d8a9c2574b7e4aab7ff36ca145d60, type: 3}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 964e2e63437434f438f40d0aafe3edb1, type: 3}
+    - target: {fileID: 4570469017198267503, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
+      propertyPath: soundtracks.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 19be4b30c42caaf47bd1497ddab50451, type: 3}
     - target: {fileID: 4570469017198267507, guid: 40ce4fe3277732d4e902f34da4e8b412, type: 3}
       propertyPath: gameOverScreen
       value: 
