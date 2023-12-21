@@ -48,12 +48,14 @@ public class Enemy_Health : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "Player_Projectile") {
+
             if (gm.GetComponent<CriticalHits>().isCriticalHit()) {
                 Instantiate(gm.GetComponent<CriticalHits>().criticalHitParticles, other.transform.position, Quaternion.identity);
                 TakeDamage(gm.GetComponent<CriticalHits>().criticalHitDamageAmount);
             } else {
                 TakeDamage(other.gameObject.GetComponent<Projectile>().damage);
             }
+
             if(GetComponent<Enemy_Data>().showBloodHit) {
                 ShowBloodHit(other.gameObject);
             }

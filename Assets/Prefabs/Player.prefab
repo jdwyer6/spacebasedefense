@@ -25770,7 +25770,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143341101103745664}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec98bfd2188d96c4c81850c57004ac6e, type: 3}
   m_Name: 
@@ -25781,6 +25781,7 @@ MonoBehaviour:
   empTimerSlider: {fileID: 0}
   empSlider: {fileID: 0}
   empChargedToolTip: {fileID: 0}
+  timeBetweenEMP: 40
 --- !u!114 &143341101103745686
 MonoBehaviour:
   m_ObjectHideFlags: 0
