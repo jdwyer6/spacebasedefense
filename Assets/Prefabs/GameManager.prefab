@@ -57,6 +57,8 @@ GameObject:
   - component: {fileID: 1055520194}
   - component: {fileID: 1055520207}
   - component: {fileID: 1053972276}
+  - component: {fileID: 4570469016961599460}
+  - component: {fileID: 4570469016961599477}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GM
@@ -151,6 +153,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe7fa39819444ae4a8f72cc067578abc, type: 2}
   - {fileID: 11400000, guid: 2c07d846abdaa334cb70e0bf43269723, type: 2}
   - {fileID: 11400000, guid: e21be0238d0f2214b8f504db77b52765, type: 2}
+  - {fileID: 11400000, guid: 126e9a8e3ade9fb4dbf5e25bf2fe54e2, type: 2}
   waves:
   - {fileID: 11400000, guid: bed0dc8ff622e954b993e0ce944b1d6d, type: 2}
   - {fileID: 11400000, guid: 4e5189152bebb8c49ab8b69e49491927, type: 2}
@@ -176,6 +179,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fb1a9ef14db092a4c8f47ce9e894ce63, type: 2}
   - {fileID: 11400000, guid: 1e8ff6f098364224eb84b4244f3fdb65, type: 2}
   - {fileID: 11400000, guid: 4144f22700f59e34ca5061c5e753cf0d, type: 2}
+  - {fileID: 11400000, guid: b0d35b0b179bd2941bb493e41df4ddaa, type: 2}
   bossDrops:
   - {fileID: 5870980810648094293, guid: 79108e9f0ba8b7c449a9ad5ac7e3016a, type: 3}
   drops:
@@ -592,6 +596,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 143341101103745664, guid: 16e14bff3cc585544b7b2ef037ab859d, type: 3}
+  gameManagerPrefab: {fileID: 0}
+  amPrefab: {fileID: 0}
 --- !u!114 &1055520207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,6 +614,8 @@ MonoBehaviour:
   defaultProjectile: {fileID: 7387422206258482921, guid: 1c7894ad71a9a7c47a309c51af0187b7, type: 3}
   duckProjectile: {fileID: 262054205566815345, guid: 0dd454802924c5a4981183f192bb7b8a, type: 3}
   sawProjectile: {fileID: 4631258460423436379, guid: ecfc951c19b16ba45addf6c73343dde9, type: 3}
+  maxTimeBetweenDrops: 60
+  timeBetweenDropsTimer: 0
 --- !u!114 &1053972276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,6 +631,35 @@ MonoBehaviour:
   musicAudioSource: {fileID: 1055520181}
   musicVolumeSlider: {fileID: 0}
   postProcessVolume: {fileID: 0}
+--- !u!114 &4570469016961599460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570469017198267502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85545f0531c75794d8c75deb7fef945c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalCriticalHitPercent: 2
+  criticalHitPercent: 0
+  criticalHitDamageAmount: 100
+  criticalHitParticles: {fileID: 8175697464865897991, guid: 17b603cd577796b46b1d3fff1b1ef00a, type: 3}
+--- !u!114 &4570469016961599477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570469017198267502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f485136b01fd15345bab1cb3544a373b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfKillsText: {fileID: 0}
 --- !u!1 &4570469017865238122
 GameObject:
   m_ObjectHideFlags: 0
